@@ -20,21 +20,45 @@ import img247 from "../assets/24.7.png";
 import booking from "../assets/booking.png";
 import orderB from "../assets/order.png";
 import "./home.css";
+import { motion } from "framer-motion";
+import CustomerReviews from "../Reusable-components/CustomerReview";
 
 const Home = () => {
   return (
     <>
-      <div className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)] flex flex-col md:flex-row justify-between items-center p-6 md:p-12">
-        <div className="w-full md:w-1/2 text-center md:text-left md:ml-20">
-          <div className="text-4xl md:text-6xl font-bold">
+      <motion.div
+        className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)] flex flex-col md:flex-row justify-between items-center p-6 md:p-12"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div
+          className="w-full md:w-1/2 text-center md:text-left md:ml-20"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div className="text-4xl md:text-6xl font-bold">
             <div>Experience The Ultimate Taste Best</div>
             <div>
               <span className="text-primary">Biryani In Adelaide</span>
             </div>
-          </div>
+          </motion.div>
           <RedWhip className="mx-auto md:ml-80 mt-2" />
-          <div className="text-2xl md:text-3xl mt-2">Specializing in Mughlai cuisine</div>
-          <div className="flex items-center justify-center md:justify-start bg-primary bg-opacity-10 rounded-2xl p-4 w-48 h-7 my-4 mt-5">
+          <motion.div
+            className="text-2xl md:text-3xl mt-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Specializing in Mughlai cuisine
+          </motion.div>
+          <motion.div
+            className="flex items-center justify-center md:justify-start bg-primary bg-opacity-10 rounded-2xl p-4 w-48 h-7 my-4 mt-5"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
             <div className="flex items-center justify-center bg-primary rounded-full w-5 h-5 mr-4">
               <svg
                 className="w-6 h-6 text-white"
@@ -50,11 +74,16 @@ const Home = () => {
               </svg>
             </div>
             <div className="text-black text-xs font-medium">People Trust us</div>
-          </div>
-          <div className="mt-3">
+          </motion.div>
+          <motion.div className="mt-3">
             <InputSearch placeholder="Search Food" />
-          </div>
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 mt-4">
+          </motion.div>
+          <motion.div
+            className="flex flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
             <RedButton
               className="w-60"
               image={order}
@@ -63,21 +92,23 @@ const Home = () => {
               variant="active"
             />
             <div className="ml-4">
-            <RedButton
-              className="w-60"
-              image={cater}
-              alt="cater"
-              name="BOOK-CATERING"
-              variant="active"
-            />
+              <RedButton
+                className="w-60"
+                image={cater}
+                alt="cater"
+                name="BOOK-CATERING"
+                variant="active"
+              />
             </div>
-          </div>
-          <div className="flex flex-wrap md:justify-start gap-2 mt-4">
-            <img className="h-14 ml-5" src={android} alt="Download Android" />
-            <img className="h-18" src={apple} alt="Download iOS" />
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="relative">
             <div className="h-[300px] md:h-[410px] w-[300px] md:w-[410px] rounded-full bg-primary z-10 overflow-hidden">
               <img
@@ -87,14 +118,38 @@ const Home = () => {
               />
             </div>
             <div className="absolute top-0 left-0 w-full h-full">
-              <img className="absolute top-0 left-0 w-24" src={circle1} alt="" />
-              <img className="absolute bottom-0 left-0 w-28" src={circle2} alt="" />
-              <img className="absolute top-0 right-0 w-28" src={circle3} alt="" />
-              <img className="absolute bottom-0 right-0 w-24" src={circle4} alt="" />
+              <motion.img
+                className="absolute top-0 left-0 w-24"
+                src={circle1}
+                alt=""
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.img
+                className="absolute bottom-0 left-0 w-28"
+                src={circle2}
+                alt=""
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.img
+                className="absolute top-0 right-0 w-28"
+                src={circle3}
+                alt=""
+                animate={{ rotate: 360 }}
+                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.img
+                className="absolute bottom-0 right-0 w-24"
+                src={circle4}
+                alt=""
+                animate={{ rotate: -360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              />
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className="mt-14 text-center">
         <div className="text-4xl font-bold">
@@ -166,6 +221,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <CustomerReviews />
       
     </>
   );
