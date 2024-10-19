@@ -11,7 +11,6 @@ const reviews = [
     review:
       "The positive aspect was undoubtedly the efficiency of the service. The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying.",
   },
-  // Add more reviews here
   {
     id: 2,
     name: "xyz",
@@ -30,25 +29,44 @@ const reviews = [
     review:
       "The positive aspect was undoubtedly the efficiency of the service. The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying.",
   },
+  {
+    id: 4,
+    name: "abc1",
+    location: "In Athol Park",
+    date: "24th September, 2023",
+    rating: 5,
+    review:
+      "The positive aspect was undoubtedly the efficiency of the service. The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying.",
+  },
+  {
+    id: 5,
+    name: "abc-xyz",
+    location: "In Athol Park",
+    date: "24th September, 2023",
+    rating: 5,
+    review:
+      "The positive aspect was undoubtedly the efficiency of the service. The queue moved quickly, the staff was friendly, and the food was up to the usual McDonald's standard – hot and satisfying.",
+  },
 ];
 
 const CustomerReviews = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const reviewsPerPage = window.innerWidth < 768 ? 1 : 3; // 1 review for small screens, 3 for larger screens
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
+      prevIndex === 0 ? reviews.length - reviewsPerPage : prevIndex - reviewsPerPage
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
+      prevIndex + reviewsPerPage >= reviews.length ? 0 : prevIndex + reviewsPerPage
     );
   };
 
   return (
-    <div className="bg-gray-100 py-10 px-4 md:px-10 lg:px-20 ">
+    <div className="bg-gray-100 py-10 px-4 md:px-10 lg:px-20">
       <h2 className="text-3xl font-bold text-center mb-8">Customer Reviews</h2>
 
       {/* Reviews Carousel */}
@@ -61,30 +79,36 @@ const CustomerReviews = () => {
         </button>
 
         <div className="flex overflow-hidden w-full justify-center">
-          <div
-            className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md mx-4"
-            key={reviews[currentIndex].id}
-          >
-            <div className="flex items-center mb-4">
-              <img
-                src={`https://via.placeholder.com/50`}
-                alt={reviews[currentIndex].name}
-                className="w-12 h-12 rounded-full mr-4"
-              />
-              <div>
-                <h4 className="font-semibold">{reviews[currentIndex].name}</h4>
-                <p className="text-sm text-red-500">{reviews[currentIndex].location} 🏠</p>
-                <p className="text-sm text-gray-500">{reviews[currentIndex].date}</p>
-              </div>
-            </div>
-            <p className="text-gray-600">{reviews[currentIndex].review}</p>
-            <div className="mt-4">
-              <div className="flex">
-                {[...Array(reviews[currentIndex].rating)].map((star, index) => (
-                  <span key={index} className="text-yellow-500">★</span>
-                ))}
-              </div>
-            </div>
+          <div className="flex">
+            {reviews
+              .slice(currentIndex, currentIndex + reviewsPerPage)
+              .map((review) => (
+                <div
+                  className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md mx-4"
+                  key={review.id}
+                >
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={`https://via.placeholder.com/50`}
+                      alt={review.name}
+                      className="w-12 h-12 rounded-full mr-4"
+                    />
+                    <div>
+                      <h4 className="font-semibold">{review.name}</h4>
+                      <p className="text-sm text-red-500">{review.location} 🏠</p>
+                      <p className="text-sm text-gray-500">{review.date}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-600">{review.review}</p>
+                  <div className="mt-4">
+                    <div className="flex">
+                      {[...Array(review.rating)].map((star, index) => (
+                        <span key={index} className="text-yellow-500">★</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
 
