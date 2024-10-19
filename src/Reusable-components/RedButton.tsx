@@ -34,8 +34,8 @@ const RedButton: React.FC<RedButtonProps> = ({
   }
   return (
     <div className={buttonClasses}>
-      <div className="flex justify-between -ml-3">
-        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full ">
+      <div className="flex flex-wrap ">
+        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full mr-5 ">
           <img src={image} alt={alt} />
         </div>
         <div className="mt-1">{name}</div>
