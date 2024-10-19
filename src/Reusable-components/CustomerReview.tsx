@@ -102,7 +102,7 @@ const CustomerReviews = () => {
                   <p className="text-gray-600">{review.review}</p>
                   <div className="mt-4">
                     <div className="flex">
-                      {[...Array(review.rating)].map((star, index) => (
+                      {[...Array(review.rating)].map((_star, index) => (
                         <span key={index} className="text-yellow-500">★</span>
                       ))}
                     </div>
