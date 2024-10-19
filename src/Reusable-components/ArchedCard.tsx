@@ -50,7 +50,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
         <h2 className="text-xl font-semibold text-primary mb-2">{title}</h2>
         <p className="text-gray-500 mb-4">{description}</p>
       </div>
-      <div className="relative z-30 mt-6">
+      <div className="relative z-30 -mt-6">
         <RedButton className="mx-auto" variant="active" name={buttonTitle} />
       </div>
     </div>

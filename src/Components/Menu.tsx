@@ -29,7 +29,7 @@ const Menu = () => {
               description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
               buttonTitle="Order Now"
               price="$28.00"
-              className="h-full"
+              className="h-79"
             />
           ))}
         </div>
@@ -51,7 +51,7 @@ const Menu = () => {
               description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
               buttonTitle="Order Now"
               price="$28.00"
-              className="h-full"
+              className="h-79"
             />
           ))}
         </div>
