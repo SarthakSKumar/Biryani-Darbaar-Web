@@ -1,5 +1,12 @@
+import Navbar from "../Reusable-components/Navbar";
+import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
+
 const SpecialOffer = () => {
-  return <div>Special Offer</div>;
+  return (
+    <>
+    <SpecialOfferComponent />
+    </>
+  );
 };
 
 export default SpecialOffer;
