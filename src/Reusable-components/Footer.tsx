@@ -5,26 +5,26 @@ import { Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primaryYellow p-10 text-red-900 ">
-      <div className="flex justify-between">
+    <footer className="bg-primaryYellow p-6 md:p-10 text-red-900">
+      <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-0">
         {/* Logo Section */}
-        <div>
-          <img src={logo} alt="Biryani Darbaar Logo" className="h-36" />
+        <div className="flex flex-col items-center md:items-start">
+          <img src={logo} alt="Biryani Darbaar Logo" className="h-24 md:h-36" />
           <div className="flex mt-4 space-x-4">
             <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-            <Facebook color="#000" />
+              <Facebook color="#000" />
             </a>
             <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
-              <Instagram color="#000"/>
+              <Instagram color="#000" />
             </a>
             <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
-              <Twitter color="#000"/>
+              <Twitter color="#000" />
             </a>
           </div>
         </div>
 
         {/* About Us Section */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-lg font-semibold mb-2">About Us</h4>
           <ul>
             <li>
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Company Section */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-lg font-semibold mb-2">Company</h4>
           <ul>
             <li>
@@ -78,20 +78,20 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Get in Touch Section */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-lg font-semibold mb-2">Get in touch</h4>
           <p className="text-base mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
-          <form className="flex mt-4">
+          <form className="flex flex-col md:flex-row items-center md:items-start mt-4">
             <input
               type="email"
               placeholder="Email"
-              className="p-2 rounded-full bg-yellow-600 text-white placeholder:text-zinc-300 focus:outline-none mr-3"
+              className="p-2 rounded-full bg-yellow-600 text-white placeholder:text-zinc-300 focus:outline-none mb-3 md:mb-0 md:mr-3 w-full md:w-auto"
             />
             <button
               type="submit"
-              className="bg-primary text-white p-2 rounded-full hover:bg-red-700 ml-3"
+              className="bg-primary text-white p-2 rounded-full hover:bg-red-700 w-full md:w-auto"
             >
               Subscribe
             </button>

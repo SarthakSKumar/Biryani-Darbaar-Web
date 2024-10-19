@@ -12,18 +12,23 @@ const InputSearch: React.FC<InputSearchProps> = ({
   className,
 }) => {
   return (
-    <div className={clsx("relative flex items-center", className)}>
+    <div
+      className={clsx(
+        "flex items-center border border-gray-800 rounded-full bg-white w-1/2",
+        className
+      )}
+    >
+      <div className="p-2">
+        <Search size={20} color="#000" />
+      </div>
       <input
         placeholder={placeholder}
         type="text"
-        className="rounded-full border border-gray-800 bg-white pl-10 pr-10 py-2 w-69"
+        className="flex-1 py-2 px-4 rounded-full outline-none"
       />
-      <Search className="absolute left-3" size={20} color="#000" />
-      <div className="absolute ml-[366px] bg-primary rounded-full p-1 cursor-pointer">
-        {/* <a href=""> */}
+      <button className="bg-primary text-white p-2 rounded-full mr-2">
         <Search size={20} color="#fff" />
-        {/* </a> */}
-      </div>
+      </button>
     </div>
   );
 };

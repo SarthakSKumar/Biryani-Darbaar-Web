@@ -104,7 +104,7 @@ const Home = () => {
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
         </div>
-        <div className="mt-5 flex flex-wrap justify-evenly gap-6">
+        <div className="mt-5 flex flex-wrap justify-evenly gap-6 ">
           {[chickenbiryani, chickentikka, haleem, chicken65].map((item, index) => (
             <ArchedCard
               key={index}
@@ -118,18 +118,21 @@ const Home = () => {
           ))}
         </div>
       </div>
-
+      <div className="bg-yellow-50 min-h-screen flex items-center justify-center p-6">
       <div className="mt-20 px-6 md:px-0 flex flex-col md:flex-row justify-between items-center">
+        {/* Left Section - Text */}
         <div className="flex flex-col md:w-1/2">
-          <div className="text-4xl md:text-6xl font-bold">
-            We are <span className="text-primary">more</span> than <br />
-            <span className="text-primary">multiple</span> service
-          </div>
-          <div className="mt-8 text-sm md:text-base">
+          <h1 className="text-4xl md:text-6xl font-bold">
+            We are <span className="text-red-500">more</span> than <br />
+            <span className="text-red-500">multiple</span> service
+          </h1>
+          <p className="mt-8 text-sm md:text-base">
             This is a type of restaurant which typically serves food and drink,
             in addition to light refreshments such as baked goods or snacks. The
             term comes from the French word meaning food.
-          </div>
+          </p>
+
+          {/* Service Grid */}
           <div className="grid grid-cols-2 gap-4 mt-10">
             {[
               { src: orderB, label: "Online Order" },
@@ -140,19 +143,30 @@ const Home = () => {
               { src: booking, label: "Clean Kitchen" },
             ].map((service, index) => (
               <div key={index} className="flex items-center gap-3 font-medium">
-                <img src={service.src} alt={service.label} />
+                <img src={service.src} alt={service.label} className="w-6 h-6" />
                 {service.label}
               </div>
             ))}
           </div>
+
           <div className="mt-8">
-            <RedButton name="About Us" variant="active" />
+            <button className="bg-red-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-600 transition duration-300">
+              About Us
+            </button>
           </div>
         </div>
+
+        {/* Right Section - Chef Image */}
         <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
-          <img src={chef} alt="Chef" className="w-3/4 h-auto" />
+          <img
+            src={chef} // Replace with your actual chef image path
+            alt="Chef"
+            className="w-3/4 h-auto rounded-full shadow-lg"
+          />
         </div>
       </div>
+    </div>
+      
     </>
   );
 };
