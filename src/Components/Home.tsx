@@ -4,8 +4,6 @@ import RedWhip from "../Reusable-components/RedWhip";
 import ArchedCard from "../Reusable-components/ArchedCard";
 import order from "../assets/ordericon.png";
 import cater from "../assets/cateringicon.png";
-import android from "../assets/download1.png";
-import apple from "../assets/download2.png";
 import girl from "../assets/Girl.png";
 import circle1 from "../assets/mealcircle1.png";
 import circle2 from "../assets/mealcircle2.png";
