@@ -1,60 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import MenuCard from "./MenuCard";
 import Sidebar from "./SideBar";
-import biryani from "../../assets/biryani.png";
-import mango from "../../assets/mango.png"
-import circularbiryani from "../../assets/circularbiryani.png";
-
-const menuItems = [
-  {
-    title: "MUTTON FRY",
-    description: "HALF MUTTON",
-    imageUrl: biryani, // replace with actual image URL
-    prices: [
-      { size: "Small", price: "21.50" },
-      { size: "Medium", price: "25.00" },
-      { size: "Large", price: "27.50" },
-    ],
-  },
-  {
-    title: "Mango Rasmalai",
-    description: "1 CUP",
-    imageUrl: mango, // replace with actual image URL
-    prices: [
-      { size: "Small", price: "21.50" },
-      { size: "Medium", price: "25.00" },
-      { size: "Large", price: "27.50" },
-    ],
-  },
-  {
-    title: "biryani",
-    description: "1 CHICKEN LEG RICE",
-    imageUrl: circularbiryani, // replace with actual image URL
-    prices: [
-      { size: "Small", price: "21.50" },
-      { size: "Medium", price: "25.00" },
-      { size: "Large", price: "27.50" },
-    ],
-  },
-];
 
 const MainOrderLayout: React.FC = () => {
+  interface MenuItem {
+    dishId: string;
+    name: string;
+    description: string;
+    image: string;
+    price: number; // Single price value
+  }
+
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
+  const handleCategorySelect = (category: string) => {
+    fetch(`https://biryani-darbar-server.vercel.app/dishes/category/${category}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Map the response data to match the structure we need for the state
+        const menuItems = data.map((item: { dishId: string; name?: string; dishName?: string; description: string; image: string; price: number }) => ({
+          dishId: item.dishId,
+          name: item.name || item.dishName, // Handle both name fields
+          description: item.description,
+          image: item.image,
+          price: item.price, // Assuming a single price value
+        }));
+        // Update the state with the fetched menu items
+        setMenuItems(menuItems);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
+      <Sidebar handleCategorySelect={handleCategorySelect} />
 
-      {/* Main Content */}
       <div className="flex-1 p-6 lg:p-12 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-6">Order from Biryani in Australia</h1>
+        <h1 className="text-3xl font-bold mb-6">
+          Order from Biryani in Australia
+        </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
             <MenuCard
-              key={index}
-              title={item.title}
+              key={item.dishId} // Use unique dishId as key
+              title={item.name}
               description={item.description}
-              imageUrl={item.imageUrl}
-              prices={item.prices}
+              imageUrl={item.image}
+              prices={[{ size: "Regular", price: item.price.toString() }]} // Convert price to match expected format
             />
           ))}
         </div>

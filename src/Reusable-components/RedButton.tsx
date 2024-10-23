@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx"; // You can use clsx or classnames for safely merging classes
+import clsx from "clsx";
 
 interface RedButtonProps {
   name: string;
@@ -7,7 +7,7 @@ interface RedButtonProps {
   className?: string;
   image?: string;
   alt?: string;
-  // Optional external className prop
+  onClick?: () => void; // Adding the onClick prop
 }
 
 const RedButton: React.FC<RedButtonProps> = ({
@@ -16,6 +16,7 @@ const RedButton: React.FC<RedButtonProps> = ({
   className,
   image,
   alt,
+  onClick, // Destructure onClick prop
 }) => {
   const baseClasses =
     "px-4 py-2 w-36 cursor-pointer transition-colors duration-300 rounded-full";
@@ -29,13 +30,19 @@ const RedButton: React.FC<RedButtonProps> = ({
     className // Merge with external className
   );
 
+  // Conditionally render button based on whether image is provided
   if (!image) {
-    return <button className={buttonClasses}>{name}</button>;
+    return (
+      <button className={buttonClasses} onClick={onClick}>
+        {name}
+      </button>
+    );
   }
+
   return (
-    <div className={buttonClasses}>
+    <div className={buttonClasses} onClick={onClick}>
       <div className="flex flex-wrap ">
-        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full mr-5 ">
+        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full mr-5">
           <img src={image} alt={alt} />
         </div>
         <div className="mt-1">{name}</div>

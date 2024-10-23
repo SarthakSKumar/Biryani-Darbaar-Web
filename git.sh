@@ -1,3 +1,3 @@
 git add .
-git commit -m "deployment commit by viky munda"
+git commit -m "Integrated with live deployed backend"
 git push -u origin main

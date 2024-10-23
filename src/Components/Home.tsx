@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
 import RedWhip from "../Reusable-components/RedWhip";
@@ -9,10 +11,6 @@ import circle1 from "../assets/mealcircle1.png";
 import circle2 from "../assets/mealcircle2.png";
 import circle3 from "../assets/mealcircle3.png";
 import circle4 from "../assets/mealcircle4.png";
-import chickenbiryani from "../assets/chickenbiryani.svg";
-import chickentikka from "../assets/chickentikka.svg";
-import haleem from "../assets/haleem.svg";
-import chicken65 from "../assets/chicken65.svg";
 import chef from "../assets/Chef.png";
 import img247 from "../assets/24.7.png";
 import booking from "../assets/booking.png";
@@ -20,8 +18,59 @@ import orderB from "../assets/order.png";
 import "./home.css";
 import { motion } from "framer-motion";
 import CustomerReviews from "../Reusable-components/CustomerReview";
-
 const Home = () => {
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("https://biryani-darbar-server.vercel.app/categories");
+        setCategories(response.data);
+        //console.log(categories);
+        
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, [categories]);
+
+  const [activeCategory, setActiveCategory] = useState<string>("Chicken");
+  const [dishes, setDishes] = useState<Dish[]>([]);
+
+  useEffect(() => {
+    const fetchDishes = async () => {
+      try {
+        const response = await axios.get(`https://biryani-darbar-server.vercel.app/dishes/category/${activeCategory}`);
+        setDishes(response.data);
+
+      } catch (error) {
+        console.error("Error fetching dishes:", error);
+      }
+    };
+
+    fetchDishes();
+  }, [activeCategory]);
+
+  interface Dish {
+    image: string;
+    dishName?: string;
+    name?: string;
+    description?: string;
+    price: number;
+  }
+
+  const [specialDishes, setSpecialDishes] = useState<Dish[]>([]);
+
+  useEffect(() => {
+    // Fetch special dishes from the API endpoint
+    fetch("https://biryani-darbar-server.vercel.app/dishes/special")
+      .then((response) => response.json())
+      .then((data) => setSpecialDishes(data))
+      .catch((error) => console.error("Error fetching special dishes:", error));
+  }, []);
+
   return (
     <>
       <motion.div
@@ -71,7 +120,9 @@ const Home = () => {
                 ></path>
               </svg>
             </div>
-            <div className="text-black text-xs font-medium">People Trust us</div>
+            <div className="text-black text-xs font-medium">
+              People Trust us
+            </div>
           </motion.div>
           <motion.div className="mt-3">
             <InputSearch placeholder="Search Food" />
@@ -112,7 +163,7 @@ const Home = () => {
               <img
                 src={girl}
                 alt="Girl with Biryani"
-                className="max-w-full max-h-full ml-5 -mt-24"
+                className="max-w-full max-h-full ml-16 -mt-24"
               />
             </div>
             <div className="absolute top-0 left-0 w-full h-full">
@@ -154,73 +205,128 @@ const Home = () => {
           Today <span className="text-primary">Special</span> Offers
         </div>
         <div className="mt-5 text-sm md:text-base">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s.
         </div>
         <div className="mt-5 flex flex-wrap justify-evenly gap-6 ">
-          {[chickenbiryani, chickentikka, haleem, chicken65].map((item, index) => (
-            <ArchedCard
-              key={index}
-              image={item}
-              title="Delicious Dish"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-              buttonTitle="Order Now"
-              price="$28.00"
-              className="h-79 "
-            />
-          ))}
+          {specialDishes.length > 0 ? (
+            specialDishes.map((dish, index) => (
+              <ArchedCard
+                key={index}
+                image={dish.image}
+                title={dish.dishName || dish.name || "Delicious Dish"}
+                description={
+                  dish.description || "Delicious dish available now!"
+                }
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-79"
+              />
+            ))
+          ) : (
+            <div>Loading special offers...</div>
+          )}
         </div>
       </div>
+
       <div className="bg-yellow-50 min-h-screen flex items-center justify-center p-6">
-      <div className="mt-20 px-6 md:px-0 flex flex-col md:flex-row justify-between items-center">
-        {/* Left Section - Text */}
-        <div className="flex flex-col md:w-1/2">
-          <h1 className="text-4xl md:text-6xl font-bold">
-            We are <span className="text-red-500">more</span> than <br />
-            <span className="text-red-500">multiple</span> service
-          </h1>
-          <p className="mt-8 text-sm md:text-base">
-            This is a type of restaurant which typically serves food and drink,
-            in addition to light refreshments such as baked goods or snacks. The
-            term comes from the French word meaning food.
-          </p>
+        <div className="mt-20 px-6 md:px-0 flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:w-1/2">
+            <h1 className="text-4xl md:text-6xl font-bold">
+              We are <span className="text-red-500">more</span> than <br />
+              <span className="text-red-500">multiple</span> service
+            </h1>
+            <p className="mt-8 text-sm md:text-base">
+              This is a type of restaurant which typically serves food and
+              drink, in addition to light refreshments such as baked goods or
+              snacks. The term comes from the French word meaning food. There
+              are different types of restaurants such as Cafeterias, Fast food
+              places, and Cafes.
+            </p>
+            {/* Service Grid */}
+            <div className="grid grid-cols-2 gap-4 mt-10">
+              {[
+                { src: orderB, label: "Online Order" },
+                { src: img247, label: "24/7 Services" },
+                { src: booking, label: "Pre-Reservation" },
+                { src: booking, label: "Organized Food Place" },
+                { src: booking, label: "Super Chef" },
+                { src: booking, label: "Clean Kitchen" },
+              ].map((service, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 font-medium"
+                >
+                  <img
+                    src={service.src}
+                    alt={service.label}
+                    className="w-6 h-6"
+                  />
+                  {service.label}
+                </div>
+              ))}
+            </div>
 
-          {/* Service Grid */}
-          <div className="grid grid-cols-2 gap-4 mt-10">
-            {[
-              { src: orderB, label: "Online Order" },
-              { src: img247, label: "24/7 Services" },
-              { src: booking, label: "Pre-Reservation" },
-              { src: booking, label: "Organized Food Place" },
-              { src: booking, label: "Super Chef" },
-              { src: booking, label: "Clean Kitchen" },
-            ].map((service, index) => (
-              <div key={index} className="flex items-center gap-3 font-medium">
-                <img src={service.src} alt={service.label} className="w-6 h-6" />
-                {service.label}
-              </div>
-            ))}
+            <div className="mt-8">
+              <button className="bg-red-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-600 transition duration-300">
+                About Us
+              </button>
+            </div>
           </div>
 
-          <div className="mt-8">
-            <button className="bg-red-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-600 transition duration-300">
-              About Us
-            </button>
+          {/* Right Section - Chef Image */}
+          <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
+            <img
+              src={chef} // Replace with your actual chef image path
+              alt="Chef"
+              className="w-3/4 h-auto rounded-full shadow-lg"
+            />
           </div>
-        </div>
-
-        {/* Right Section - Chef Image */}
-        <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
-          <img
-            src={chef} // Replace with your actual chef image path
-            alt="Chef"
-            className="w-3/4 h-auto rounded-full shadow-lg"
-          />
         </div>
       </div>
-    </div>
-    <CustomerReviews />
-      
+
+      <div className="flex flex-wrap justify-center gap-4 mt-4">
+        {categories.map((category, index) => (
+          <RedButton
+            key={index}
+            className="w-60"
+            name={category}
+            variant={activeCategory === category ? "active" : "inactive"}
+            onClick={() => {
+              setActiveCategory(category);
+              console.log("Category clicked:", category); // Log the clicked category
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="mt-14 text-center">
+        <div className="text-4xl font-bold">
+          {activeCategory} <span className="text-primary">Dishes</span>
+        </div>
+        <div className="mt-5 flex flex-wrap justify-evenly gap-6">
+          {dishes.length > 0 ? (
+            dishes.map((dish, index) => (
+              <ArchedCard
+                key={index}
+                image={dish.image}
+                title={dish.dishName || dish.name || "Delicious Dish"}
+                description={
+                  dish.description || "Delicious dish available now!"
+                }
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-79"
+              />
+            ))
+          ) : (
+            <div>Loading dishes...</div>
+          )}
+        </div>
+      </div>
+
+      <CustomerReviews />
     </>
   );
 };

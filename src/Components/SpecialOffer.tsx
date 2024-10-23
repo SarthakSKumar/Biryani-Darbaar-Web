@@ -1,31 +1,51 @@
 import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
 import ArchedCard from "../Reusable-components/ArchedCard";
-import chickenbiryani from "../assets/chickenbiryani.svg";
-import chickentikka from "../assets/chickentikka.svg";
-import haleem from "../assets/haleem.svg";
-import chicken65 from "../assets/chicken65.svg";
 import "./home.css";
 import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const SpecialOffer = () => {
-  
+  interface Dish {
+    image: string;
+    title: string;
+    description: string;
+    price: number;
+  }
+
+  const [dishes, setDishes] = useState<Dish[]>([]);
+
+  useEffect(() => {
+    const fetchDishes = async () => {
+      try {
+        const response = await axios.get(
+          "https://biryani-darbar-server.vercel.app/dishes/special"
+        );
+        setDishes(response.data);
+      } catch (error) {
+        console.error("Error fetching dishes:", error);
+      }
+    };
+
+    fetchDishes();
+  }, []);
 
   return (
     <>
       {/* Special Offer Component with animation */}
+      <SpecialOfferComponent />
 
-        <SpecialOfferComponent />
-      
       <div className="mt-14 text-center">
-        <div className="mt-5 flex flex-wrap justify-evenly gap-6 ">
-          {[chickenbiryani, chickentikka, haleem, chicken65].map((item, index) => (
+        <div className="mt-10 flex flex-wrap justify-evenly gap-6 ">
+          {dishes.map((dish, index) => (
             <ArchedCard
               key={index}
-              image={item}
-              title="Delicious Dish"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+              image={dish.image}
+              title={dish.title}
+              description={dish.description}
               buttonTitle="Order Now"
-              price="$28.00"
+              price={dish.price.toString()}
               className="h-79"
             />
           ))}

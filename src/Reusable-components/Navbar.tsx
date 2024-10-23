@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import RedButton from "./RedButton";
 import logo from "../assets/DABAAR.png";
@@ -8,9 +8,18 @@ const Navbar: React.FC = () => {
   const [activeItem, setActiveItem] = useState<string>("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
+  // Retrieve active item from localStorage when the component mounts
+  useEffect(() => {
+    const storedActiveItem = localStorage.getItem("activeNavItem");
+    if (storedActiveItem) {
+      setActiveItem(storedActiveItem);
+    }
+  }, []);
+
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
     setIsMobileMenuOpen(false); // Close menu after clicking on a link
+    localStorage.setItem("activeNavItem", itemName); // Store active item in localStorage
   };
 
   const getNavItemClass = (itemName: string) => {
