@@ -35,7 +35,7 @@ const Menu = () => {
       const dishesData: { [key: string]: Dish[] } = {};
       for (const category of categories) {
         try {
-          const response = await axios.get(`http://localhost:3000/dishes/category/${category}`);
+          const response = await axios.get(`https://biryani-darbar-server.vercel.app/dishes/category/${category}`);
           dishesData[category] = response.data;
         } catch (error) {
           console.error(`Error fetching data for category ${category}:`, error);
