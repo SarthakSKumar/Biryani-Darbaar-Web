@@ -66,7 +66,7 @@ const CustomerReviews = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-10 px-4 md:px-10 lg:px-20">
+    <div className="bg-[#D9D9D9] py-10 px-4 md:px-10 lg:px-20 mb-28 ">
       <h2 className="text-3xl font-bold text-center mb-8">Customer Reviews</h2>
 
       {/* Reviews Carousel */}
@@ -119,9 +119,8 @@ const CustomerReviews = () => {
           <FaChevronRight />
         </button>
       </div>
-
-      {/* Review Score */}
-      <div className="text-center mt-6">
+      <div className="relative ">
+      <div className="text-center mt-6 inline-block bg-white rounded-md p-1 absolute right-1/2 top-0">
         <div className="text-4xl font-semibold">3.4</div>
         <div className="text-yellow-500 flex justify-center my-2">
           {[...Array(3)].map((_, index) => (
@@ -130,8 +129,9 @@ const CustomerReviews = () => {
           <span className="text-gray-400 text-xl">★</span>
         </div>
         <p className="text-gray-600">1,360 reviews</p>
+        </div>
       </div>
-    </div>
+      </div>
   );
 };
 

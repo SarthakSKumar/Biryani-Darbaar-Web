@@ -2,9 +2,9 @@ import { FaTruck, FaPhone, FaClock } from "react-icons/fa";
 
 const InfoPage = () => {
   return (
-    <div className="flex flex-wrap lg:flex-nowrap bg-gray-50 p-8 lg:p-16 gap-8">
+    <div className="flex flex-wrap lg:flex-nowrap p-8 lg:p-16">
       {/* Delivery Information */}
-      <div className="bg-white rounded-lg shadow-lg p-6 flex-1">
+      <div className="bg-[#FBFBFB] p-6 flex-1 rounded-tl-lg rounded-bl-lg">
         <div className="flex items-center mb-4">
           <FaTruck className="text-blue-600 mr-2" />
           <h2 className="text-xl font-bold">Delivery Information</h2>
@@ -22,7 +22,7 @@ const InfoPage = () => {
       </div>
 
       {/* Contact Information */}
-      <div className="bg-white rounded-lg shadow-lg p-6 flex-1">
+      <div className="bg-[#FBFBFB] p-6 flex-1">
         <div className="flex items-center mb-4">
           <FaPhone className="text-blue-600 mr-2" />
           <h2 className="text-xl font-bold">Contact Information</h2>
@@ -35,7 +35,7 @@ const InfoPage = () => {
       </div>
 
       {/* Operational Times */}
-      <div className="bg-gray-900 text-white rounded-lg shadow-lg p-6 flex-1">
+      <div className="bg-gray-900 text-white p-6 flex-1 rounded-tr-lg rounded-br-lg">
         <div className="flex items-center mb-4">
           <FaClock className="text-yellow-400 mr-2" />
           <h2 className="text-xl font-bold">Operational Times</h2>

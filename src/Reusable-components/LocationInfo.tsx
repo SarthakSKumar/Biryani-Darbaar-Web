@@ -1,8 +1,7 @@
 import locationmap from "../assets/locationmap.png";
 const LocationInfo = () => {
   return (
-    <div className="relative flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="relative w-full max-w-5xl">
+    <div className="relative flex justify-center items-center mr-10 ml-10 bg-white p-4">
         {/* Map Image */}
         <img
           src={locationmap}
@@ -39,7 +38,6 @@ const LocationInfo = () => {
           <span className="text-sm">McDonald's in Athol oark</span>
         </div>
       </div>
-    </div>
   );
 };
 

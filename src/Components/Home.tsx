@@ -74,7 +74,7 @@ const Home = () => {
   return (
     <>
       <motion.div
-        className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)] flex flex-col md:flex-row justify-between items-center p-6 md:p-12"
+        className="flex flex-col md:flex-row justify-between items-center p-6 md:p-12"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

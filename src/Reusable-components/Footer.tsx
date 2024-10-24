@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
         <div className="text-center md:text-left">
           <h4 className="text-lg font-semibold mb-2">Get in touch</h4>
           <p className="text-base mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
           </p>
           <form className="flex flex-col md:flex-row items-center md:items-start mt-4">
             <input

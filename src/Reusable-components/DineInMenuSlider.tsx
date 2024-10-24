@@ -68,14 +68,14 @@ const DineInMenuSlider: React.FC = () => {
       <Slider {...settings}>
         {menuItems.map((item, index) => (
           <div key={index} className="p-2">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-red-600 rounded-lg shadow-lg overflow-hidden">
               <img
                 src={item.image}
                 alt={item.label}
                 className="w-full h-48 object-cover"
               />
               <div className="p-4 text-center">
-                <h3 className="text-lg font-semibold text-red-600">
+                <h3 className="text-lg font-semibold text-white">
                   {item.label}
                 </h3>
               </div>

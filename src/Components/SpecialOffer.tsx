@@ -1,4 +1,7 @@
 import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
+import { motion } from "framer-motion";
+import InputSearch from "../Reusable-components/InputSearch";
+
 import ArchedCard from "../Reusable-components/ArchedCard";
 import "./home.css";
 import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
@@ -35,9 +38,19 @@ const SpecialOffer = () => {
     <>
       {/* Special Offer Component with animation */}
       <SpecialOfferComponent />
+      <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="ml-10 pt-10 w-1/2"
+        >
+          <InputSearch placeholder="Search Delicious Food" />
+        </motion.div>
 
-      <div className="mt-14 text-center">
-        <div className="mt-10 flex flex-wrap justify-evenly gap-6 ">
+      <div className="mt-24 text-center">
+        <h1 className="text-4xl font-bold">Today  <span className="text-red-500">special</span> offers</h1>
+        <p className="mt-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+        <div className="mt-10 ml-44 gap-4 grid grid-cols-3">
           {dishes.map((dish, index) => (
             <ArchedCard
               key={index}

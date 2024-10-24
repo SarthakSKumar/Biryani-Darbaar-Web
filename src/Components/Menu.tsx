@@ -6,6 +6,9 @@ import InfoPage from "../Reusable-components/InfoPage";
 import LocationInfo from "../Reusable-components/LocationInfo";
 import CustomerReviews from "../Reusable-components/CustomerReview";
 import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+import { motion } from "framer-motion";
+import InputSearch from "../Reusable-components/InputSearch";
+
 const Menu = () => {
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -49,7 +52,15 @@ const Menu = () => {
   return (
     <>
     <SpecialOfferComponent />
-          {categories.map((category: string) => (
+    <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="ml-10 pt-10 w-1/2"
+        >
+          <InputSearch placeholder="Search Delicious Food" />
+        </motion.div>
+    {categories.map((category: string) => (
             <div key={category} className="mt-24">
               <div className="text-4xl font-bold ml-8">
                 <span className="text-primary">{category}</span>
@@ -58,7 +69,7 @@ const Menu = () => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
               </div>
-              <div className="mt-24 flex flex-wrap justify-evenly gap-6 ">
+              <div className="mt-24 flex flex-wrap justify-evenly gap-6 grid grid-cols-3 ml-36 ">
                 {dishes[category]?.map((dish, index) => (
                   <ArchedCard
                     key={index}
