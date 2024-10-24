@@ -42,8 +42,8 @@ const SpecialOffer = () => {
             <ArchedCard
               key={index}
               image={dish.image}
-              title={dish.title}
-              description={dish.description}
+              title={dish.title || "Chicken Biryani"}
+              description={dish.description || "Delicious dishes"}
               buttonTitle="Order Now"
               price={dish.price.toString()}
               className="h-79"

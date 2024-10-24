@@ -64,7 +64,7 @@ const Menu = () => {
                     key={index}
                     image={dish.image}
                     title={dish.name}
-                    description={dish.description}
+                    description={dish.description || "Delicious dishes"}
                     buttonTitle="Order Now"
                     price={`$${dish.price}`}
                     className="h-79"

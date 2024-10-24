@@ -1,3 +1,3 @@
 git add .
-git commit -m "Integrated with live deployed backend"
+git commit -m "Updated css fixes"
 git push -u origin main
