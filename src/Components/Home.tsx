@@ -11,30 +11,49 @@ import circle1 from "../assets/mealcircle1.png";
 import circle2 from "../assets/mealcircle2.png";
 import circle3 from "../assets/mealcircle3.png";
 import circle4 from "../assets/mealcircle4.png";
-import chef from "../assets/Chef.png";
 import img247 from "../assets/24.7.png";
 import booking from "../assets/booking.png";
 import orderB from "../assets/order.png";
 import "./home.css";
 import { motion } from "framer-motion";
 import CustomerReviews from "../Reusable-components/CustomerReview";
+import smily from "../assets/smilyicon.svg";
+import star from "../assets/Star.svg";
+import card1 from "../assets/card1.png";
+import righttop from "../assets/right top corner.png";
+import lefttop from "../assets/left top corner.png";
+import rightbottom from "../assets/right lower corner.svg";
+import leftbottom from "../assets/left lower corner.svg";
+import chef from "../assets/Chef.png";
+import leaves from "../assets/leaves.png";
+import wire from "../assets/wire.svg";
+import spices from "../assets/spices.png";
+import android from "../assets/download1.png";
+import apple from "../assets/download2.png";
+import roundbg from "../assets/roundbg.png";
+import chef2 from "../assets/chef2.png";
+
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://biryani-darbar-server.vercel.app/categories");
+        const response = await axios.get(
+          "https://biryani-darbar-server.vercel.app/categories"
+        );
         setCategories(response.data);
-        //console.log(categories);
-        
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     };
 
     fetchCategories();
-  }, [categories]);
+
+    const intervalId = setInterval(fetchCategories, 10 * 60 * 1000); // 10 minutes
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
 
   const [activeCategory, setActiveCategory] = useState<string>("Chicken");
   const [dishes, setDishes] = useState<Dish[]>([]);
@@ -42,15 +61,19 @@ const Home = () => {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await axios.get(`https://biryani-darbar-server.vercel.app/dishes/category/${activeCategory}`);
+        const response = await axios.get(
+          `https://biryani-darbar-server.vercel.app/dishes/category/${activeCategory}`
+        );
         setDishes(response.data);
-
       } catch (error) {
         console.error("Error fetching dishes:", error);
       }
     };
 
     fetchDishes();
+    const intervalId = setInterval(fetchDishes, 10 * 60 * 1000); // 10 minutes
+
+    return () => clearInterval(intervalId);
   }, [activeCategory]);
 
   interface Dish {
@@ -80,7 +103,7 @@ const Home = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
-          className="w-full md:w-1/2 text-center md:text-left md:ml-20"
+          className="w-full md:w-1/2 text-center md:text-left md:ml-20 mb-20 -mt-20"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -151,55 +174,78 @@ const Home = () => {
             </div>
           </motion.div>
         </motion.div>
-
         <motion.div
-          className="w-full md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0"
+          className="mr-20 -mt-20 mb-36"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative">
-            <div className="h-[300px] md:h-[410px] w-[300px] md:w-[410px] rounded-full bg-primary z-10 overflow-hidden">
-              <img
-                src={girl}
-                alt="Girl with Biryani"
-                className="max-w-full max-h-full ml-16 -mt-24"
-              />
-            </div>
-            <div className="absolute top-0 left-0 w-full h-full">
-              <motion.img
-                className="absolute top-0 left-0 w-24"
-                src={circle1}
-                alt=""
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.img
-                className="absolute bottom-0 left-0 w-28"
-                src={circle2}
-                alt=""
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.img
-                className="absolute top-0 right-0 w-28"
-                src={circle3}
-                alt=""
-                animate={{ rotate: 360 }}
-                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.img
-                className="absolute bottom-0 right-0 w-24"
-                src={circle4}
-                alt=""
-                animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              />
+          <br />
+          <div className="relative w-44 h-10 bg-white md:ml-72 ml-10 lg:ml-72 rounded-3xl flex justify-between items-center">
+            <img className="w-9 " src={smily} alt="" />
+            <div className="flex flex-col">
+              <div className="text-xs mr-2 font-semibold">
+                Our Happy Customer
+              </div>
+              <div className="flex  ">
+                <img className="h-3 text-xs mt-0" src={star} alt="" />
+                <span className="text-xs ml-1">4.9</span>
+                <span className="text-xs ml-1">(1.989 Reviews)</span>
+              </div>
             </div>
           </div>
+          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -ml-5 lg:-ml-10 -mb-28">
+            <img className="w-12 ml-2 " src={card1} alt="" />
+            <div className="flex flex-col ">
+              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold">
+                CHICKEN BIRYANI
+              </span>
+              <div className="ml-4 mt-1">
+                <span className=" text-xs mt-4 ml-3">$</span>9.50
+              </div>
+            </div>
+          </div>
+
+          <div className="h-[410px] w-[410px] rounded-full bg-primary z-10 overflow-hidden mx-auto md:mx-0">
+            <img
+              src={girl}
+              alt=""
+              className="max-w-55 max-h-[500px] ml-5 -mt-24"
+            />
+          </div>
+          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 -ml-4"></div>
+          <motion.img
+            className="-mt-56 -ml-20 w-32"
+            src={circle1}
+            alt=""
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.img
+            className=" w-44"
+            src={circle2}
+            alt=""
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.img
+            className="w-44  ml-48 -mt-32"
+            src={circle3}
+            alt=""
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.img
+            className="w-40 ml-80 -mt-72 -mr-5"
+            src={circle4}
+            alt=""
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
         </motion.div>
       </motion.div>
-
+      <br />
+      <br />
       <div className="mt-14 text-center">
         <div className="text-4xl font-bold">
           Today <span className="text-primary">Special</span> Offers
@@ -209,7 +255,7 @@ const Home = () => {
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s.
         </div>
-        <div className="mt-5 flex flex-wrap justify-evenly gap-6 ">
+        <div className="mt-5 flex flex-col lg:grid lg:grid-cols-4 flex-wrap justify-evenly gap-6 ml-10 lg:ml-20">
           {specialDishes.length > 0 ? (
             specialDishes.map((dish, index) => (
               <ArchedCard
@@ -230,61 +276,84 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="bg-yellow-50 min-h-screen flex items-center justify-center p-6">
-        <div className="mt-20 px-6 md:px-0 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:w-1/2">
-            <h1 className="text-4xl md:text-6xl font-bold">
-              We are <span className="text-red-500">more</span> than <br />
-              <span className="text-red-500">multiple</span> service
-            </h1>
-            <p className="mt-8 text-sm md:text-base">
-              This is a type of restaurant which typically serves food and
-              drink, in addition to light refreshments such as baked goods or
-              snacks. The term comes from the French word meaning food. There
-              are different types of restaurants such as Cafeterias, Fast food
-              places, and Cafes.
-            </p>
-            {/* Service Grid */}
-            <div className="grid grid-cols-2 gap-4 mt-10">
-              {[
-                { src: orderB, label: "Online Order" },
-                { src: img247, label: "24/7 Services" },
-                { src: booking, label: "Pre-Reservation" },
-                { src: booking, label: "Organized Food Place" },
-                { src: booking, label: "Super Chef" },
-                { src: booking, label: "Clean Kitchen" },
-              ].map((service, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 font-medium"
-                >
-                  <img
-                    src={service.src}
-                    alt={service.label}
-                    className="w-6 h-6"
-                  />
-                  {service.label}
-                </div>
-              ))}
-            </div>
+      <div className="segment flex flex-col md:flex-row justify-between">
+        <div>
+          <div className="flex relative top-28 left-20">
+            <img className=" " src={lefttop} alt="" />
 
-            <div className="mt-8">
-              <button className="bg-red-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-600 transition duration-300">
-                About Us
-              </button>
-            </div>
+            <img className=" " src={righttop} alt="" />
           </div>
 
-          {/* Right Section - Chef Image */}
-          <div className="w-full md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
+          <div className="flex relative top-28 left-20">
+            <img className=" " src={leftbottom} alt="" />
+
+            <img className="" src={rightbottom} alt="" />
+          </div>
+          <div>
             <img
-              src={chef} // Replace with your actual chef image path
-              alt="Chef"
-              className="w-3/4 h-auto rounded-full shadow-lg"
+              className="relative -mt-[390px] ml-32 w-[350px] "
+              src={chef}
+              alt=""
             />
+          </div>
+          <img className="ml-[450px] -mt-[350px] " src={wire} alt="" />
+          <img
+            className="ml-[340px] -mt-[390px] relative"
+            src={spices}
+            alt=""
+          />
+          <img className="ml-32 mt-56 relative" src={leaves} alt="" />
+        </div>
+        <div className="flex flex-col md:mr-44 mr-10 mt-36">
+          <div className="text-4xl md:text-6xl font-bold">
+            We are <span className="text-primary">more</span> than <br />
+            <span className="text-primary">multiple</span> service
+          </div>
+          <div className="mt-8">
+            This is a type of resturent which typically serves food and drink,
+            in addition to light <br /> refreshments such as baked goods or
+            snacks. The term comes frome the rench <br /> word meaning food
+          </div>
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 grid-rows-3 mt-20">
+            <div className="flex justify-between items-center w-32 font-medium">
+              <img src={orderB} alt="" />
+              Online Order
+            </div>
+            <div className="flex justify-between items-center w-32 font-medium">
+              <img src={img247} alt="" />
+              24/7 Services
+            </div>
+            <div className="flex justify-between items-center w-36 font-medium">
+              <img src={booking} alt="" />
+              Pre-Reservation
+            </div>
+            <div className="flex justify-between items-center w-56 font-medium">
+              <img src={booking} alt="" />
+              Organized Foodhut Place
+            </div>
+            <div className="flex justify-between items-center w-32 font-medium">
+              <img src={booking} alt="" />
+              Super Chef
+            </div>
+            <div className="flex justify-between items-center w-32 font-medium">
+              <img src={booking} alt="" />
+              Clean Kitchen
+            </div>
+          </div>
+          <div className="flex justify-center items-center mt-10 mr-36">
+            <RedButton name="About Us" variant="active" />
           </div>
         </div>
       </div>
+
+      <div className="flex justify-center items-center mt-10">
+        <div className="text-center text-4xl font-bold">
+          <span className="text-primary">Menu</span> That{" "}
+          <span className="text-primary">Always</span> Make You <br />
+          Fall In <span className="text-primary">Love</span>
+        </div>
+      </div>
+      <br />
 
       <div className="flex flex-wrap justify-center gap-4 mt-4">
         {categories.map((category, index) => (
@@ -305,7 +374,7 @@ const Home = () => {
         <div className="text-4xl font-bold">
           {activeCategory} <span className="text-primary">Dishes</span>
         </div>
-        <div className="mt-5 flex flex-wrap justify-evenly gap-6">
+        <div className="mt-5 flex-col lg:grid lg:grid-cols-3  flex-wrap justify-evenly gap-6 ml-5 lg:ml-36">
           {dishes.length > 0 ? (
             dishes.map((dish, index) => (
               <ArchedCard
@@ -325,7 +394,35 @@ const Home = () => {
           )}
         </div>
       </div>
-
+      <div className="segment">
+        <div className="flex flex-col justify-around">
+          <div className="text-left text-4xl font-bold mt-28 ml-16">
+            It's Now <span className="text-primary">More Easy </span> to{" "}
+            <span className="text-primary">Order</span> <br />
+            by Our Mobile <span className="text-primary">App</span>
+          </div>
+          <div className="text-left text-xs mt-16 ml-16">
+            All you need to do is downlode one of the best delivery apps, <br />
+            make a and most companies are opting for mobile app <br />
+            devlopment for food delivery
+          </div>
+          <div className="flex justify-between items-center w-36 mt-10 ml-10">
+            <img className="w-56" src={android} alt="" />
+            <img className="w-56 mt-2 " src={apple} alt="" />
+          </div>
+        </div>
+        <div>
+          <img className="ml-[950px] -mt-[250px]" src={roundbg} alt="" />
+          <div className="w-[540px] h-[275px] border-[23px] border-shader  rounded-t-full border-b-0 ml-[920px] -mt-[520px]"></div>
+          <img
+            className="ml-[970px] -mt-[280px] h-[500px] "
+            src={chef2}
+            alt=""
+          />
+          <img className="ml-[1250px] -mt-[500px]" src={spices} alt="" />
+          <img className="ml-[1300px] mt-52" src={leaves} alt="" />
+        </div>
+      </div>
       <CustomerReviews />
     </>
   );
