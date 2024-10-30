@@ -109,7 +109,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div className="text-4xl md:text-6xl font-bold">
-            <div>Experience The Ultimate Taste Best</div>
+            <div>Experience The <br /> Ultimate Taste Best</div>
             <div>
               <span className="text-primary">Biryani In Adelaide</span>
             </div>
@@ -244,9 +244,7 @@ const Home = () => {
           />
         </motion.div>
       </motion.div>
-      <br />
-      <br />
-      <div className="mt-14 text-center">
+      <div className="mt-20 text-center">
         <div className="text-4xl font-bold">
           Today <span className="text-primary">Special</span> Offers
         </div>
@@ -396,22 +394,22 @@ const Home = () => {
       </div>
       <div className="segment">
         <div className="flex flex-col justify-around">
-          <div className="text-left text-4xl font-bold mt-28 ml-16">
+          <div className="text-left text-6xl font-bold mt-32 ml-16">
             It's Now <span className="text-primary">More Easy </span> to{" "}
             <span className="text-primary">Order</span> <br />
             by Our Mobile <span className="text-primary">App</span>
           </div>
-          <div className="text-left text-xs mt-16 ml-16">
+          <div className="text-left text-xl mt-16 ml-16">
             All you need to do is downlode one of the best delivery apps, <br />
             make a and most companies are opting for mobile app <br />
             devlopment for food delivery
           </div>
-          <div className="flex justify-between items-center w-36 mt-10 ml-10">
-            <img className="w-56" src={android} alt="" />
-            <img className="w-56 mt-2 " src={apple} alt="" />
+          <div className="flex justify-between items-center w-96 mt-10 ml-10">
+            <img className="w-96" src={android} alt="" />
+            <img className="w-96 mt-2 " src={apple} alt="" />
           </div>
         </div>
-        <div>
+        <div className="mb-20">
           <img className="ml-[950px] -mt-[250px]" src={roundbg} alt="" />
           <div className="w-[540px] h-[275px] border-[23px] border-shader  rounded-t-full border-b-0 ml-[920px] -mt-[520px]"></div>
           <img

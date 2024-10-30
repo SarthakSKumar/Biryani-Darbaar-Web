@@ -39,7 +39,7 @@ const MainOrderLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex mt-20">
       <Sidebar handleCategorySelect={handleCategorySelect} />
 
       <div className="flex-1 p-6 lg:p-12 bg-gray-100">

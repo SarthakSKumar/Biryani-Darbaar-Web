@@ -8,7 +8,7 @@ import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 const Order = () => {
   return (
     <>
-    <SpecialOfferComponent />
+    <SpecialOfferComponent title="Biryani in Australia" description="The rich flavors of Hyderabad biryani" />
     <MainOrderLayout />
     <InfoPage />
     <LocationInfo />

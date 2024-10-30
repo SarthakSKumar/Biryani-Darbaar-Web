@@ -1,14 +1,18 @@
 import { motion } from "framer-motion";
 import { FaClock, FaShoppingCart, FaMotorcycle } from "react-icons/fa";
 import biryani from "../assets/biryani.png";
-
-const SpecialOfferComponent = () => {
+import "./css/special.css";
+interface SpecialProps {
+  title: string;
+  description: string;
+}
+const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-yellow-100  ml-10 mr-10 mb-4 py-8 px-6 md:px-16 lg:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center"
+      className="card  ml-10 mr-10 mb-4 py-1 px-6 md:px-16 lg:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 "
     >
       {/* Left Section */}
       <motion.div
@@ -18,8 +22,8 @@ const SpecialOfferComponent = () => {
         className="flex-1 space-y-6"
       >
         <div>
-        <h1 className="text-gray-700 text-lg">I'm lovin' it!</h1>
-        <h1 className="text-3xl md:text-5xl font-bold">SPECIAL OFFER</h1>
+        <h1 className="text-gray-700 text-lg">{description}</h1>
+        <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
         </div>
 
         {/* Order Information */}

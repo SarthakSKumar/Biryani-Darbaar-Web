@@ -1,3 +1,3 @@
 git add .
-git commit -m "Ui changes to the home page"
+git commit -m "Changes to the entire ui to fit a mac screen"
 git push -u origin main
