@@ -51,19 +51,39 @@ const SpecialOffer = () => {
       <div className="mt-24 text-center">
         <h1 className="text-4xl font-bold">Today  <span className="text-red-500">special</span> offers</h1>
         <p className="mt-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-        <div className="mt-10 ml-44 gap-4 grid grid-cols-3">
-          {dishes.map((dish, index) => (
-            <ArchedCard
-              key={index}
-              image={dish.image}
-              title={dish.title || "Chicken Biryani"}
-              description={dish.description || "Delicious dishes"}
-              buttonTitle="Order Now"
-              price={dish.price.toString()}
-              className="h-79"
-            />
-          ))}
-        </div>
+        <div className="mt-10 md:ml-44">
+  {/* For mobile scrolling */}
+  <div className="flex overflow-x-auto gap-4 lg:hidden"> {/* Flex container for horizontal scrolling */}
+    {dishes.map((dish, index) => (
+      <div key={index} className="min-w-[270px]"> {/* Fixed width to scroll one by one */}
+        <ArchedCard
+          image={dish.image}
+          title={dish.title || "Chicken Biryani"}
+          description={dish.description || "Delicious dishes"}
+          buttonTitle="Order Now"
+          price={dish.price.toString()}
+          className="h-79"
+        />
+      </div>
+    ))}
+  </div>
+
+  {/* Show grid on larger screens */}
+  <div className="hidden lg:grid lg:grid-cols-3 gap-4">
+    {dishes.map((dish, index) => (
+      <ArchedCard
+        key={index}
+        image={dish.image}
+        title={dish.title || "Chicken Biryani"}
+        description={dish.description || "Delicious dishes"}
+        buttonTitle="Order Now"
+        price={dish.price.toString()}
+        className="h-79"
+      />
+    ))}
+  </div>
+</div>
+
       </div>
       <DineInMenuSlider />
     </>

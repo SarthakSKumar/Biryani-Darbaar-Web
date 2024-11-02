@@ -12,7 +12,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="card  ml-10 mr-10 mb-4 py-1 px-6 md:px-16 lg:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 "
+      className="card ml-5 mr-5 md:ml-10 md:mr-10 mb-4 py-1 px-6 md:px-16 lg:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 "
     >
       {/* Left Section */}
       <motion.div
@@ -21,8 +21,8 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex-1 space-y-6"
       >
-        <div>
-        <h1 className="text-gray-700 text-lg">{description}</h1>
+        <div className="break-words w-40 md:whitespace-nowrap md:mt-0 mt-2">
+        <h1 className="text-gray-700 md:text-lg">{description}</h1>
         <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
         </div>
 
@@ -32,19 +32,19 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center text-white bg-black px-4 py-2 rounded-full mt-12"
+            className="flex items-center text-white bg-black md:px-4 md:py-2 rounded-full mt-12"
           >
             <FaShoppingCart className="mr-2" />
-            <p>Minimum Order: 12 GBP</p>
+            <p className="text-sm md:text-lg">Minimum Order: 12 GBP</p>
           </motion.div>
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center text-white bg-black px-4 py-2 rounded-full mt-12 "
+            className="flex items-center text-white bg-black md:px-4 md:py-2 rounded-full mt-12"
           >
             <FaMotorcycle className="mr-2" />
-            <p>Delivery in 20-25 Minutes</p>
+            <p className="text-sm md:text-lg ">Delivery in 20-25 Minutes</p>
           </motion.div>
         </div>
 
@@ -53,7 +53,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-red-600 text-white px-6 py-3 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 "
+          className="bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
         >
           <FaClock className="inline-block mr-2" />
           Open until 3:00 AM
@@ -70,7 +70,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         <motion.img
           src={biryani}
           alt="Special Offer Dish"
-          className="rounded-lg shadow-lg w-full h-auto"
+          className="rounded-lg shadow-lg md:w-full md:h-auto h-44 w-36 -mt-64 ml-52 md:mt-0 md:ml-0"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
@@ -78,13 +78,13 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="absolute bottom-0 -left-12 bg-white p-1 rounded-lg shadow-lg flex flex-col items-center"
+          className="absolute bottom-0 -left-12 bg-white md:p-1 rounded-lg shadow-lg flex flex-col items-center md:ml-0 ml-52 mb-20 md:mb-0"
         >
-          <p className="text-4xl font-semibold">3.4</p>
-          <div className="flex text-yellow-500 mb-2 ">
+          <p className="md:text-4xl text-3xl font-semibold">3.4</p>
+          <div className="flex text-yellow-500 mb-2 text-sm">
             <span>★</span><span>★</span><span>★</span><span>★</span><span className="text-gray-400">★</span>
           </div>
-          <p className="text-gray-600 text-sm">1,360 reviews</p>
+          <p className="text-gray-600 md:text-sm text-xs">1,360 reviews</p>
         </motion.div>
       </motion.div>
 

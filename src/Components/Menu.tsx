@@ -65,48 +65,68 @@ const Menu = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="ml-10 mt-10  pt-10 w-1/2"
+        className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
       <div className="mb-20 ml-10 w-1/2">
         <InputSearch placeholder="Search Delicious Food" />
       </div>
-      <div className="flex flex-wrap justify-center gap-4 mt-28">
-        {categories.map((category, index) => (
-          <RedButton
-            key={index}
-            className="w-60"
-            name={category}
-            variant={activeCategory === category ? "active" : "inactive"}
-            onClick={() => {
-              setActiveCategory(category);
-              console.log("Category clicked:", category); // Log the clicked category
-              const element = document.getElementById(category);
-              if (element) {
+      <div className="flex overflow-x-auto gap-4 mt-28 lg:flex-wrap lg:justify-center">
+  {categories.map((category, index) => (
+    <RedButton
+      key={index}
+      className="w-60 flex-shrink-0" // Makes sure each button stays within scroll bounds on mobile
+      name={category}
+      variant={activeCategory === category ? "active" : "inactive"}
+      onClick={() => {
+        setActiveCategory(category);
+        console.log("Category clicked:", category);
+        const element = document.getElementById(category);
+        if (element) {
           element.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+        }
+      }}
+    />
+  ))}
+</div>
+
+{categories.map((category: string) => (
+  <div key={category} className="mt-24">
+    <div className="text-4xl font-bold ml-28 -mb-20">
+      <span id={category} className="text-primary">{category}</span>
+    </div>
+
+    {/* For mobile scrolling */}
+    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden ml-10"> {/* Flex container for horizontal scrolling */}
+      {dishes[category]?.map((dish, index) => (
+        <div key={index} className="min-w-[270px]"> {/* Fixed width to scroll one by one */}
+          <ArchedCard
+            image={dish.image}
+            title={dish.name}
+            description={dish.description || "Delicious dishes"}
+            buttonTitle="Order Now"
+            price={`$${dish.price}`}
+            className="h-79"
           />
-        ))}
-      </div>
-      {categories.map((category: string) => (
-        <div key={category} className="mt-24">
-          <div className="text-4xl font-bold ml-28 -mb-20">
-            <span id={category} className="text-primary">{category}</span>
-          </div>
-          <div className="mt-24 flex-col flex-wrap justify-evenly gap-6 lg:grid lg:grid-cols-3 ml-36 ">
-            {dishes[category]?.map((dish, index) => (
-              <ArchedCard
-                key={index}
-                image={dish.image}
-                title={dish.name}
-                description={dish.description || "Delicious dishes"}
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-79"
-              />
-            ))}
-          </div>
         </div>
+      ))}
+    </div>
+
+    {/* Show grid on larger screens */}
+    <div className="hidden lg:grid lg:grid-cols-3 gap-6 ml-36">
+      {dishes[category]?.map((dish, index) => (
+        <ArchedCard
+          key={index}
+          image={dish.image}
+          title={dish.name}
+          description={dish.description || "Delicious dishes"}
+          buttonTitle="Order Now"
+          price={`$${dish.price}`}
+          className="h-79"
+        />
+      ))}
+    </div>
+  </div>
+
       ))}
       <InfoPage />
       <LocationInfo />

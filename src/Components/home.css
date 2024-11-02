@@ -16,4 +16,10 @@
     height: 100%;
     z-index: -1;
 }
-
+@media(max-width:768px){
+    html,body{
+    height:10vh;
+    width: 10vh;
+    overflow-x: hidden;
+    }
+}

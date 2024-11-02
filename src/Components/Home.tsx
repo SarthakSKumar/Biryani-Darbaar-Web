@@ -108,7 +108,7 @@ const Home = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div className="text-4xl md:text-6xl font-bold">
+          <motion.div className="text-left text-4xl md:text-6xl font-bold">
             <div>Experience The <br /> Ultimate Taste Best</div>
             <div>
               <span className="text-primary">Biryani In Adelaide</span>
@@ -116,7 +116,7 @@ const Home = () => {
           </motion.div>
           <RedWhip className="mx-auto md:ml-80 mt-2" />
           <motion.div
-            className="text-2xl md:text-3xl mt-2"
+            className="text-left text-2xl md:text-3xl mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -124,7 +124,7 @@ const Home = () => {
             Specializing in Mughlai cuisine
           </motion.div>
           <motion.div
-            className="flex items-center justify-center md:justify-start bg-primary bg-opacity-10 rounded-2xl p-4 w-48 h-7 my-4 mt-5"
+            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl p-4 w-48 h-7 mt-3"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -175,7 +175,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="mr-20 -mt-20 mb-36"
+          className="hidden md:block mr-20 -mt-20 mb-36"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -245,37 +245,50 @@ const Home = () => {
         </motion.div>
       </motion.div>
       <div className="mt-20 text-center">
-        <div className="text-4xl font-bold">
-          Today <span className="text-primary">Special</span> Offers
-        </div>
-        <div className="mt-5 text-sm md:text-base">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s.
-        </div>
-        <div className="mt-5 flex flex-col lg:grid lg:grid-cols-4 flex-wrap justify-evenly gap-6 ml-10 lg:ml-20">
-          {specialDishes.length > 0 ? (
-            specialDishes.map((dish, index) => (
-              <ArchedCard
-                key={index}
-                image={dish.image}
-                title={dish.dishName || dish.name || "Delicious Dish"}
-                description={
-                  dish.description || "Delicious dish available now!"
-                }
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-79"
-              />
-            ))
-          ) : (
-            <div>Loading special offers...</div>
-          )}
-        </div>
+  <div className="text-4xl font-bold">
+    Today <span className="text-primary">Special</span> Offers
+  </div>
+  <div className="mt-5 text-sm md:text-base">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+  </div>
+  <div className="mt-5 lg:ml-20 ml-10">
+    {specialDishes.length > 0 ? (
+      <div className="flex overflow-x-auto gap-6 lg:hidden"> {/* Flex for mobile scrolling */}
+        {specialDishes.map((dish, index) => (
+          <div className="min-w-[270px]"> {/* Fixed width for scrolling one by one */}
+            <ArchedCard
+              key={index}
+              image={dish.image}
+              title={dish.dishName || dish.name || "Delicious Dish"}
+              description={dish.description || "Delicious dish available now!"}
+              buttonTitle="Order Now"
+              price={`$${dish.price}`}
+              className="h-79"
+            />
+          </div>
+        ))}
       </div>
+    ) : (
+      <div>Loading special offers...</div>
+    )}
+    <div className="hidden lg:grid lg:grid-cols-4 gap-6"> {/* Show grid on larger screens */}
+      {specialDishes.map((dish, index) => (
+        <ArchedCard
+          key={index}
+          image={dish.image}
+          title={dish.dishName || dish.name || "Delicious Dish"}
+          description={dish.description || "Delicious dish available now!"}
+          buttonTitle="Order Now"
+          price={`$${dish.price}`}
+          className="h-79"
+        />
+      ))}
+    </div>
+  </div>
+</div>
 
       <div className="segment flex flex-col md:flex-row justify-between">
-        <div>
+        <div className="hidden  md:block">
           <div className="flex relative top-28 left-20">
             <img className=" " src={lefttop} alt="" />
 
@@ -302,17 +315,17 @@ const Home = () => {
           />
           <img className="ml-32 mt-56 relative" src={leaves} alt="" />
         </div>
-        <div className="flex flex-col md:mr-44 mr-10 mt-36">
-          <div className="text-4xl md:text-6xl font-bold">
+        <div className="flex flex-col md:mr-44 mr-18 mt-10">
+          <div className="text-4xl md:text-6xl font-bold text-center ">
             We are <span className="text-primary">more</span> than <br />
             <span className="text-primary">multiple</span> service
           </div>
-          <div className="mt-8">
+          <div className="mt-8 text-center">
             This is a type of resturent which typically serves food and drink,
             in addition to light <br /> refreshments such as baked goods or
             snacks. The term comes frome the rench <br /> word meaning food
           </div>
-          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 grid-rows-3 mt-20">
+          <div className="ml-2 grid gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 mt-20">
             <div className="flex justify-between items-center w-32 font-medium">
               <img src={orderB} alt="" />
               Online Order
@@ -353,60 +366,79 @@ const Home = () => {
       </div>
       <br />
 
-      <div className="flex flex-wrap justify-center gap-4 mt-4">
-        {categories.map((category, index) => (
-          <RedButton
-            key={index}
-            className="w-60"
-            name={category}
-            variant={activeCategory === category ? "active" : "inactive"}
-            onClick={() => {
-              setActiveCategory(category);
-              console.log("Category clicked:", category); // Log the clicked category
-            }}
-          />
-        ))}
-      </div>
+      <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 mt-4">
+  {categories.map((category, index) => (
+    <RedButton
+      key={index}
+      className="w-60 flex-shrink-0" // Keeps the button size consistent in the scrollable view
+      name={category}
+      variant={activeCategory === category ? "active" : "inactive"}
+      onClick={() => {
+        setActiveCategory(category);
+        console.log("Category clicked:", category); // Log the clicked category
+      }}
+    />
+  ))}
+</div>
 
       <div className="mt-14 text-center">
-        <div className="text-4xl font-bold">
-          {activeCategory} <span className="text-primary">Dishes</span>
-        </div>
-        <div className="mt-5 flex-col lg:grid lg:grid-cols-3  flex-wrap justify-evenly gap-6 ml-5 lg:ml-36">
-          {dishes.length > 0 ? (
-            dishes.map((dish, index) => (
-              <ArchedCard
-                key={index}
-                image={dish.image}
-                title={dish.dishName || dish.name || "Delicious Dish"}
-                description={
-                  dish.description || "Delicious dish available now!"
-                }
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-79"
-              />
-            ))
-          ) : (
-            <div>Loading dishes...</div>
-          )}
-        </div>
+  <div className="text-4xl font-bold">
+    {activeCategory} <span className="text-primary">Dishes</span>
+  </div>
+
+  <div className="mt-5 ml-5 lg:ml-36">
+    {/* For mobile scrolling */}
+    {dishes.length > 0 ? (
+      <div className="flex overflow-x-auto gap-6 lg:hidden"> {/* Flex container for horizontal scrolling */}
+        {dishes.map((dish, index) => (
+          <div key={index} className="min-w-[270px]"> {/* Fixed width to scroll one by one */}
+            <ArchedCard
+              image={dish.image}
+              title={dish.dishName || dish.name || "Delicious Dish"}
+              description={dish.description || "Delicious dish available now!"}
+              buttonTitle="Order Now"
+              price={`$${dish.price}`}
+              className="h-79"
+            />
+          </div>
+        ))}
       </div>
+    ) : (
+      <div>Loading dishes...</div>
+    )}
+
+    {/* Show grid on larger screens */}
+    <div className="hidden lg:grid lg:grid-cols-3 gap-6">
+      {dishes.map((dish, index) => (
+        <ArchedCard
+          key={index}
+          image={dish.image}
+          title={dish.dishName || dish.name || "Delicious Dish"}
+          description={dish.description || "Delicious dish available now!"}
+          buttonTitle="Order Now"
+          price={`$${dish.price}`}
+          className="h-79"
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
       <div className="segment">
         <div className="flex flex-col justify-around">
-          <div className="text-left text-6xl font-bold mt-32 ml-16">
+          <div className=" mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16">
             It's Now <span className="text-primary">More Easy </span> to{" "}
             <span className="text-primary">Order</span> <br />
             by Our Mobile <span className="text-primary">App</span>
           </div>
-          <div className="text-left text-xl mt-16 ml-16">
+          <div className=" ml-8 mr-8 mt-6 text-center md:text-left md:text-xl md:mt-16 md:ml-16">
             All you need to do is downlode one of the best delivery apps, <br />
             make a and most companies are opting for mobile app <br />
             devlopment for food delivery
           </div>
-          <div className="flex justify-between items-center w-96 mt-10 ml-10">
-            <img className="w-96" src={android} alt="" />
-            <img className="w-96 mt-2 " src={apple} alt="" />
+          <div className="flex justify-start items-center  md:w-96 md:mt-10 md:ml-10">
+            <img className="md:w-96" src={android} alt="" />
+            <img className="md:w-96 md:mt-2 mr-56" src={apple} alt="" />
           </div>
         </div>
         <div className="mb-20">
