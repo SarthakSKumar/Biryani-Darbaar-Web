@@ -67,14 +67,14 @@ const Menu = () => {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
-      <div className="mb-20 ml-10 w-1/2">
+      <div className="mb-20 md:ml-10 ml-6 w-1/2">
         <InputSearch placeholder="Search Delicious Food" />
       </div>
-      <div className="flex overflow-x-auto gap-4 mt-28 lg:flex-wrap lg:justify-center">
+      <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
   {categories.map((category, index) => (
     <RedButton
       key={index}
-      className="w-60 flex-shrink-0" // Makes sure each button stays within scroll bounds on mobile
+      className="w-60 flex-shrink-0 "
       name={category}
       variant={activeCategory === category ? "active" : "inactive"}
       onClick={() => {
@@ -96,9 +96,9 @@ const Menu = () => {
     </div>
 
     {/* For mobile scrolling */}
-    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden ml-10"> {/* Flex container for horizontal scrolling */}
+    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden ml-10"> 
       {dishes[category]?.map((dish, index) => (
-        <div key={index} className="min-w-[270px]"> {/* Fixed width to scroll one by one */}
+        <div key={index} className="min-w-[270px]">
           <ArchedCard
             image={dish.image}
             title={dish.name}

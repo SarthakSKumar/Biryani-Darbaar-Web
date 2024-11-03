@@ -108,7 +108,7 @@ const Home = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div className="text-left text-4xl md:text-6xl font-bold">
+          <motion.div className="text-left text-4xl md:text-6xl font-bold md:mt-0 mt-10">
             <div>Experience The <br /> Ultimate Taste Best</div>
             <div>
               <span className="text-primary">Biryani In Adelaide</span>
@@ -156,8 +156,9 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
+            <div className="flex md:flex-row md:gap-4">
             <RedButton
-              className="w-60"
+              className=" md:mt-0 mt-3 w-48 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs"
               image={order}
               alt="order"
               name="ORDER FOOD"
@@ -165,12 +166,13 @@ const Home = () => {
             />
             <div className="ml-4">
               <RedButton
-                className="w-60"
+                className="md:mt-0 mt-3 w-48 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs"
                 image={cater}
                 alt="cater"
                 name="BOOK-CATERING"
                 variant="active"
               />
+            </div>
             </div>
           </motion.div>
         </motion.div>
@@ -320,12 +322,12 @@ const Home = () => {
             We are <span className="text-primary">more</span> than <br />
             <span className="text-primary">multiple</span> service
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center md:mr-0 md:ml-0 mr-8 ml-8">
             This is a type of resturent which typically serves food and drink,
             in addition to light <br /> refreshments such as baked goods or
             snacks. The term comes frome the rench <br /> word meaning food
           </div>
-          <div className="ml-2 grid gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 mt-20">
+          <div className="md:ml-2 md:mr-0 ml-8 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 mr-38">
             <div className="flex justify-between items-center w-32 font-medium">
               <img src={orderB} alt="" />
               Online Order
@@ -338,7 +340,7 @@ const Home = () => {
               <img src={booking} alt="" />
               Pre-Reservation
             </div>
-            <div className="flex justify-between items-center w-56 font-medium">
+            <div className="flex justify-between items-center md:w-56 font-medium">
               <img src={booking} alt="" />
               Organized Foodhut Place
             </div>
@@ -351,7 +353,7 @@ const Home = () => {
               Clean Kitchen
             </div>
           </div>
-          <div className="flex justify-center items-center mt-10 mr-36">
+          <div className="flex justify-center items-center mt-10 md:mr-36">
             <RedButton name="About Us" variant="active" />
           </div>
         </div>
@@ -424,7 +426,7 @@ const Home = () => {
   </div>
 </div>
 
-      <div className="segment">
+      <div className="segment ">
         <div className="flex flex-col justify-around">
           <div className=" mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16">
             It's Now <span className="text-primary">More Easy </span> to{" "}

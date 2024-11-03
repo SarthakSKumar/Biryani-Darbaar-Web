@@ -36,14 +36,14 @@ const SpecialOffer = () => {
 
   return (
     <>
-      {/* Special Offer Component with animation */}
+
       <SpecialOfferComponent title="SPECIAL OFFER" description="I'm Lovin' it!" />
       
       <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="ml-10 mt-10 pt-10 w-1/2"
+          className="ml-6  md:ml-10 mt-10 pt-10 w-1/2"
         >
           <InputSearch placeholder="Search Delicious Food" />
         </motion.div>

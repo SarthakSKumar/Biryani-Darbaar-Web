@@ -22,4 +22,7 @@
     width: 10vh;
     overflow-x: hidden;
     }
+    .segment{
+        height: 60vh;
+    }
 }
