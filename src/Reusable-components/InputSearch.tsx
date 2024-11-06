@@ -24,7 +24,7 @@ const InputSearch: React.FC<InputSearchProps> = ({
       <input
         placeholder={placeholder}
         type="text"
-        className="flex-1 py-2 px-4 rounded-full outline-none"
+        className="flex-1 py-2 md:px-4 px-1 rounded-full outline-none"
       />
       <button className="bg-primary text-white p-2 rounded-full mr-2">
         <Search size={20} color="#fff" />

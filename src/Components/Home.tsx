@@ -114,7 +114,7 @@ const Home = () => {
               <span className="text-primary">Biryani In Adelaide</span>
             </div>
           </motion.div>
-          <RedWhip className="mx-auto md:ml-80 mt-2" />
+          <RedWhip className="md:ml-80 mt-2" />
           <motion.div
             className="text-left text-2xl md:text-3xl mt-2"
             initial={{ opacity: 0 }}
@@ -124,12 +124,12 @@ const Home = () => {
             Specializing in Mughlai cuisine
           </motion.div>
           <motion.div
-            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl p-4 w-48 h-7 mt-3"
+            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <div className="flex items-center justify-center bg-primary rounded-full w-5 h-5 mr-4">
+            <div className="flex items-center justify-center bg-primary rounded-full w-5 h-5 mr-3">
               <svg
                 className="w-6 h-6 text-white"
                 fill="currentColor"
@@ -151,14 +151,14 @@ const Home = () => {
             <InputSearch placeholder="Search Food" />
           </motion.div>
           <motion.div
-            className="flex flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
+            className="flex md:flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
             <div className="flex md:flex-row md:gap-4">
             <RedButton
-              className=" md:mt-0 mt-3 w-48 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs"
+              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs"
               image={order}
               alt="order"
               name="ORDER FOOD"
@@ -166,7 +166,7 @@ const Home = () => {
             />
             <div className="ml-4">
               <RedButton
-                className="md:mt-0 mt-3 w-48 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs"
+                className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs"
                 image={cater}
                 alt="cater"
                 name="BOOK-CATERING"
@@ -183,7 +183,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <br />
-          <div className="relative w-44 h-10 bg-white md:ml-72 ml-10 lg:ml-72 rounded-3xl flex justify-between items-center">
+          <div className="relative w-44 h-10 bg-white md:ml-72 lg:ml-72 rounded-3xl flex justify-between items-center">
             <img className="w-9 " src={smily} alt="" />
             <div className="flex flex-col">
               <div className="text-xs mr-2 font-semibold">
@@ -196,7 +196,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -ml-5 lg:-ml-10 -mb-28">
+          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 lg:-ml-10 -mb-28">
             <img className="w-12 ml-2 " src={card1} alt="" />
             <div className="flex flex-col ">
               <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold">
@@ -208,14 +208,14 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="h-[410px] w-[410px] rounded-full bg-primary z-10 overflow-hidden mx-auto md:mx-0">
+          <div className="h-[410px] w-[410px] rounded-full bg-primary z-10 overflow-hidden md:mx-0">
             <img
               src={girl}
               alt=""
               className="max-w-55 max-h-[500px] ml-5 -mt-24"
             />
           </div>
-          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 -ml-4"></div>
+          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 "></div>
           <motion.img
             className="-mt-56 -ml-20 w-32"
             src={circle1}
@@ -253,9 +253,9 @@ const Home = () => {
   <div className="mt-5 text-sm md:text-base">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
   </div>
-  <div className="mt-5 lg:ml-20 ml-10">
+  <div className="mt-5 lg:ml-20 md:ml-10">
     {specialDishes.length > 0 ? (
-      <div className="flex overflow-x-auto gap-6 lg:hidden"> {/* Flex for mobile scrolling */}
+      <div className="flex overflow-x-auto gap-4 lg:hidden"> {/* Flex for mobile scrolling */}
         {specialDishes.map((dish, index) => (
           <div className="min-w-[270px]"> {/* Fixed width for scrolling one by one */}
             <ArchedCard
@@ -317,7 +317,7 @@ const Home = () => {
           />
           <img className="ml-32 mt-56 relative" src={leaves} alt="" />
         </div>
-        <div className="flex flex-col md:mr-44 mr-18 mt-10">
+        <div className="flex flex-col md:mr-44  mt-10">
           <div className="text-4xl md:text-6xl font-bold text-center ">
             We are <span className="text-primary">more</span> than <br />
             <span className="text-primary">multiple</span> service
@@ -327,7 +327,7 @@ const Home = () => {
             in addition to light <br /> refreshments such as baked goods or
             snacks. The term comes frome the rench <br /> word meaning food
           </div>
-          <div className="md:ml-2 md:mr-0 ml-8 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 mr-38">
+          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8">
             <div className="flex justify-between items-center w-32 font-medium">
               <img src={orderB} alt="" />
               Online Order
@@ -340,7 +340,7 @@ const Home = () => {
               <img src={booking} alt="" />
               Pre-Reservation
             </div>
-            <div className="flex justify-between items-center md:w-56 font-medium">
+            <div className="flex justify-between items-center md:w-56 md:font-medium">
               <img src={booking} alt="" />
               Organized Foodhut Place
             </div>
@@ -426,7 +426,7 @@ const Home = () => {
   </div>
 </div>
 
-      <div className="segment ">
+      <div className="segment">
         <div className="flex flex-col justify-around">
           <div className=" mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16">
             It's Now <span className="text-primary">More Easy </span> to{" "}
@@ -438,11 +438,12 @@ const Home = () => {
             make a and most companies are opting for mobile app <br />
             devlopment for food delivery
           </div>
-          <div className="flex justify-start items-center  md:w-96 md:mt-10 md:ml-10">
-            <img className="md:w-96" src={android} alt="" />
-            <img className="md:w-96 md:mt-2 mr-56" src={apple} alt="" />
+          <div className="flex justify-start items-center mt-8 md:w-96 md:mt-10 md:ml-10">
+            <img className=" w-40 md:w-96" src={android} alt="" />
+            <img className=" w-40 md:w-96 md:mt-2" src={apple} alt="" />
           </div>
         </div>
+        <div className="hidden md:block">
         <div className="mb-20">
           <img className="ml-[950px] -mt-[250px]" src={roundbg} alt="" />
           <div className="w-[540px] h-[275px] border-[23px] border-shader  rounded-t-full border-b-0 ml-[920px] -mt-[520px]"></div>
@@ -453,6 +454,7 @@ const Home = () => {
           />
           <img className="ml-[1250px] -mt-[500px]" src={spices} alt="" />
           <img className="ml-[1300px] mt-52" src={leaves} alt="" />
+        </div>
         </div>
       </div>
       <CustomerReviews />

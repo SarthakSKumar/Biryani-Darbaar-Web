@@ -17,12 +17,7 @@
     z-index: -1;
 }
 @media(max-width:768px){
-    html,body{
-    height:10vh;
-    width: 10vh;
-    overflow-x: hidden;
-    }
-    .segment{
-        height: 60vh;
+    .segment::before{
+        height:60%
     }
 }

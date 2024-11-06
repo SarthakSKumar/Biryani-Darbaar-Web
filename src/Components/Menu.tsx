@@ -5,7 +5,7 @@ import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent"
 import InfoPage from "../Reusable-components/InfoPage";
 import LocationInfo from "../Reusable-components/LocationInfo";
 import CustomerReviews from "../Reusable-components/CustomerReview";
-import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import { motion } from "framer-motion";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
@@ -112,7 +112,7 @@ const Menu = () => {
     </div>
 
     {/* Show grid on larger screens */}
-    <div className="hidden lg:grid lg:grid-cols-3 gap-6 ml-36">
+    <div className="hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24">
       {dishes[category]?.map((dish, index) => (
         <ArchedCard
           key={index}
@@ -131,7 +131,7 @@ const Menu = () => {
       <InfoPage />
       <LocationInfo />
       <CustomerReviews />
-      <DineInMenuSlider />
+      {/* <DineInMenuSlider /> */}
     </>
   );
 };

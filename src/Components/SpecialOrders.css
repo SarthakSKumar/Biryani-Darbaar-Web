@@ -17,9 +17,3 @@ body::before {
     height: 90%;
     z-index: -1;
 }
-@media (max-width: 640px) {
-    body::before {
-        height: 75%;
-    }
-}
-

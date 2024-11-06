@@ -63,7 +63,7 @@ const DineInMenuSlider: React.FC = () => {
   };
 
   return (
-    <div className="w-full px-4 md:px-8 lg:px-12 py-8">
+    <div className="md:w-full px-4 md:px-8 lg:px-12 py-8">
       <h2 className="text-center text-2xl font-bold mb-6 text-gray-800">DINE IN MENU</h2>
       <Slider {...settings}>
         {menuItems.map((item, index) => (

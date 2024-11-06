@@ -70,7 +70,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         <motion.img
           src={biryani}
           alt="Special Offer Dish"
-          className="rounded-lg shadow-lg md:w-full md:h-auto h-40 w-36 -mt-60 ml-52 md:mt-0 md:ml-0"
+          className="rounded-lg shadow-lg md:w-full md:h-auto w-40 h-40 md:ml-4 ml-44 md:mt-0 -mt-60 "
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
@@ -78,7 +78,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="absolute bottom-0 -left-12 bg-white md:p-1 rounded-lg shadow-lg flex flex-col items-center md:ml-0 ml-52 mb-20 md:mb-0"
+          className="absolute bottom-0 -left-12 bg-white md:p-1 rounded-lg shadow-lg flex flex-col items-center md:ml-0 ml-48 mb-20 md:mb-0"
         >
           <p className="md:text-4xl text-3xl font-semibold">3.4</p>
           <div className="flex text-yellow-500 mb-2 text-sm">

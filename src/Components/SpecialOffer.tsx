@@ -4,7 +4,7 @@ import InputSearch from "../Reusable-components/InputSearch";
 
 import ArchedCard from "../Reusable-components/ArchedCard";
 import "./home.css";
-import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import "./SpecialOrders.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -85,7 +85,7 @@ const SpecialOffer = () => {
 </div>
 
       </div>
-      <DineInMenuSlider />
+      {/* <DineInMenuSlider /> */}
     </>
   );
 };

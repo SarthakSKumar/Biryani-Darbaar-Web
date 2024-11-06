@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* About Us Section */}
-        <div className="flex md:gap-40 md:ml-0 ml-52 gap-2 md:mt-0 -mt-44">
+        <div className="flex md:gap-40 md:ml-0 ml-40 gap-2 md:mt-0 -mt-44">
         <div className="text-center md:text-left">
           <h4 className="md:text-lg font-semibold mb-2 text-red-600">About Us</h4>
           <ul>
