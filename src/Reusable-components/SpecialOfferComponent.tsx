@@ -70,7 +70,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         <motion.img
           src={biryani}
           alt="Special Offer Dish"
-          className="rounded-lg shadow-lg md:w-full md:h-auto h-44 w-36 -mt-64 ml-52 md:mt-0 md:ml-0"
+          className="rounded-lg shadow-lg md:w-full md:h-auto h-40 w-36 -mt-60 ml-52 md:mt-0 md:ml-0"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />

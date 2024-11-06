@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-0">
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start">
-          <img src={logo} alt="Biryani Darbaar Logo" className="h-24 md:h-36" />
-          <div className="flex mt-4 space-x-4">
+          <img src={logo} alt="Biryani Darbaar Logo" className="h-36 mr-60 md:mr-0" />
+          <div className="flex mt-4 space-x-4 mr-60 md:mr-0">
             <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
               <Facebook color="#000" />
             </a>
@@ -24,8 +24,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* About Us Section */}
+        <div className="flex md:gap-40 md:ml-0 ml-52 gap-2 md:mt-0 -mt-44">
         <div className="text-center md:text-left">
-          <h4 className="text-lg font-semibold mb-2">About Us</h4>
+          <h4 className="md:text-lg font-semibold mb-2 text-red-600">About Us</h4>
           <ul>
             <li>
               <Link to="/about" className="text-base hover:text-red-600">
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
 
         {/* Company Section */}
         <div className="text-center md:text-left">
-          <h4 className="text-lg font-semibold mb-2">Company</h4>
+          <h4 className="md:text-lg font-semibold mb-2 text-red-600">Company</h4>
           <ul>
             <li>
               <Link to="/partnership" className="text-base hover:text-red-600">
@@ -76,14 +77,15 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
+        </div>
 
         {/* Get in Touch Section */}
-        <div className="text-center md:text-left">
-          <h4 className="text-lg font-semibold mb-2">Get in touch</h4>
+        <div className="ml-36 md:ml-0 md:text-left">
+          <h4 className="text-lg font-semibold mb-2 text-red-600">Get in touch</h4>
           <p className="text-base mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
           </p>
-          <form className="flex flex-col md:flex-row items-center md:items-start mt-4">
+          <form className="flex gap-4 md:gap-0 md:flex-row items-center md:items-start mt-4">
             <input
               type="email"
               placeholder="Email"
@@ -91,14 +93,14 @@ const Footer: React.FC = () => {
             />
             <button
               type="submit"
-              className="bg-primary text-white p-2 rounded-full hover:bg-red-700 w-full md:w-auto"
+              className="bg-primary text-white p-2 rounded-full hover:bg-red-700 md:w-auto"
             >
               Subscribe
             </button>
           </form>
         </div>
       </div>
-      <div className="text-center mt-6 text-black">
+      <div className=" text-xs md:text-lg text-center mt-6 text-black">
         &copy; 2024 BIRYANI DARBAAR. All rights reserved.
       </div>
     </footer>
