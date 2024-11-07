@@ -4,7 +4,7 @@ import InputSearch from "../Reusable-components/InputSearch";
 
 import ArchedCard from "../Reusable-components/ArchedCard";
 import "./home.css";
-// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import "./SpecialOrders.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -48,7 +48,7 @@ const SpecialOffer = () => {
           <InputSearch placeholder="Search Delicious Food" />
         </motion.div>
 
-      <div className="mt-24 text-center">
+      <div className="tso md:mt-24 text-center">
         <h1 className="text-4xl font-bold">Today  <span className="text-red-500">special</span> offers</h1>
         <p className="mt-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
         <div className="mt-10 md:ml-44">
@@ -85,7 +85,7 @@ const SpecialOffer = () => {
 </div>
 
       </div>
-      {/* <DineInMenuSlider /> */}
+      <DineInMenuSlider />
     </>
   );
 };

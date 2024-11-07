@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-0">
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start">
-          <img src={logo} alt="Biryani Darbaar Logo" className="h-36 mr-60 md:mr-0" />
+          <img src={logo} alt="Biryani Darbaar Logo" className="logo h-36  md:mr-0" />
           <div className="flex mt-4 space-x-4 mr-60 md:mr-0">
             <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
               <Facebook color="#000" />

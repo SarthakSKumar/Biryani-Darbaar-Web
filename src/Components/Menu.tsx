@@ -5,7 +5,7 @@ import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent"
 import InfoPage from "../Reusable-components/InfoPage";
 import LocationInfo from "../Reusable-components/LocationInfo";
 import CustomerReviews from "../Reusable-components/CustomerReview";
-// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import { motion } from "framer-motion";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
@@ -67,7 +67,7 @@ const Menu = () => {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
-      <div className="mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4">
+      <div className="md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4">
         <InputSearch placeholder="Search Delicious Food" />
       </div>
       <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
@@ -96,7 +96,7 @@ const Menu = () => {
     </div>
 
     {/* For mobile scrolling */}
-    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden ml-10"> 
+    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10"> 
       {dishes[category]?.map((dish, index) => (
         <div key={index} className="min-w-[270px]">
           <ArchedCard
@@ -131,7 +131,7 @@ const Menu = () => {
       <InfoPage />
       <LocationInfo />
       <CustomerReviews />
-      {/* <DineInMenuSlider /> */}
+      <DineInMenuSlider />
     </>
   );
 };

@@ -14,7 +14,14 @@ const Navbar: React.FC = () => {
     if (storedActiveItem) {
       setActiveItem(storedActiveItem);
     }
-  }, []);
+
+    // Update body class based on mobile menu state
+    if (isMobileMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMobileMenuOpen]);
 
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
@@ -42,7 +49,7 @@ const Navbar: React.FC = () => {
           <div className=" h-36 mb-8 md:h-48 md:ml-20">
             <img src={logo} alt="Product Logo" className="h-full" />
           </div>
-          <div className="hidden  md:flex space-x-11 mb-20">
+          <div className="hidden md:flex space-x-11 mb-20">
             <Link
               to="/"
               className={getNavItemClass("Home")}

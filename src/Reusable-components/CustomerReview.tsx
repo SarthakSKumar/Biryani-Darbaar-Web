@@ -120,7 +120,7 @@ const CustomerReviews = () => {
         </button>
       </div>
       <div className="relative ">
-      <div className="text-center mt-6 inline-block bg-white rounded-md p-1 absolute right-1/2 top-0">
+      <div className="text-center mt-11 md:mt-6 inline-block bg-white rounded-md md:p-1 absolute md:ml-0 ml-32 md:right-1/2 md:top-0">
         <div className="text-4xl font-semibold">3.4</div>
         <div className="text-yellow-500 flex justify-center my-2">
           {[...Array(3)].map((_, index) => (
