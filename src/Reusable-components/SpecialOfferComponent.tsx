@@ -21,9 +21,9 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex-1 space-y-6"
       >
-        <div className="break-words w-40 md:whitespace-nowrap md:mt-0 mt-2 lg:mt-8">
-        <h1 className="text-gray-700 md:text-lg">{description}</h1>
-        <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
+        <div className=" break-words w-40 md:whitespace-nowrap md:mt-0 mt-2 lg:mt-8">
+        <h1 className="words1 text-gray-700 md:text-lg ">{description}</h1>
+        <h1 className="words text-3xl lg:text-5xl md:text-5xl font-bold">{title}</h1>
         </div>
 
         {/* Order Information */}
@@ -53,7 +53,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className=" open bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
+          className="open bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
         >
           <FaClock className="inline-block mr-2" />
           Open until 3:00 AM

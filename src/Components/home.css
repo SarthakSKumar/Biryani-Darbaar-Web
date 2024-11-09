@@ -35,7 +35,7 @@ body::before{
     body::before {
         height:90vh;
         }
-        
+
     
 
 }
@@ -43,6 +43,7 @@ body::before{
     body::before {
         height:100vh;
         }
+
         
 }
 
@@ -78,7 +79,36 @@ body::before{
 
 
 }
-@media(min-width:1024px) and (max-width:1440px){
+@media(min-width:1024px) and (max-width:1353px){
+    .hometext{
+        margin-left:-20%;
+    }
+    .homechef2{
+        width:60%;
+        margin-top: 15%;
+        margin-left: 43%;
+
+    }
+
+    .girl{
+        margin-left:-5%;
+        margin-bottom:5%
+    }
+    .textinhome{
+        font-size:3rem
+    }
+    .textinhome2{
+        font-size:3rem
+
+    }
+    .arched{
+        margin-left: 15%;
+    
+
+    }
+
+}
+@media(min-width:1354px) and (max-width:1440px){
     .homechef2{
         margin-left:0%; 
          margin-top:5%;
@@ -87,7 +117,13 @@ body::before{
 
 
         .girl{
-        margin-left: -8%;
-    }            
+        margin-right:10%;
+    }   
+    .hometext{
+        margin-left:-10%
+    }  
+    .homechef2{
+        margin-left:50%
+    }       
 
 }

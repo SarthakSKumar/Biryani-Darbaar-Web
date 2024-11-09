@@ -43,7 +43,7 @@ const SpecialOffer = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="ml-6 md:ml-10 mt-10 pt-10 md:w-1/2 w-3/4 lg:w-3/4 "
+          className="search1  ml-6 md:ml-10  pt-10 md:w-1/2 w-3/4  "
         >
           <InputSearch placeholder="Search Delicious Food" />
         </motion.div>

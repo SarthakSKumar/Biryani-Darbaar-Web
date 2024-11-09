@@ -1,4 +1,6 @@
-
+.search1{
+    margin-top:3%;
+}
 @media(max-width:359px) {
     body::before {
         height:80vh;
@@ -58,20 +60,25 @@
     
 }
 @media(min-width:768px) and (max-width:1023px){
-.socard{
-    margin-left: 10%;
-}
 
 
 }
-@media(min-width:1024px) and (max-width:1440px){
-.socard{
-    transform: translatex(-50%);
+@media(min-width:1024px) and (max-width:1353px){
 
-}
 body::before{
     height:90vh;
 }
+.search1{
+    margin-top:8%;
+}
 
 
+
+}
+@media(min-width:1354px) and (max-width:1440px){
+    .search1{
+        margin-top:8%;
+    }
+    
+    
 }

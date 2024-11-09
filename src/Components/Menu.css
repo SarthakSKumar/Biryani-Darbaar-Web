@@ -56,11 +56,30 @@ height: 160px;
 
     }
 }
-@media(min-width:1024px) and (max-width:1440px){
+@media(min-width:1024px) and (max-width:1353px){
+    .socard{
+        margin-left:-50%
+    }
+    .search{
+        margin-top:8%
+    }
+    .words{
+        margin-left:-40%
+    }
+    .words1{
+        margin-left:-40%
+    }
+
+}
+@media(min-width:1354px) and (max-width:1440px){
 .socard{
     margin-left: 20px;
 
 
 }
+.search{
+    margin-top: 10%;
+}
+
 
 }

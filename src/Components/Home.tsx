@@ -97,20 +97,20 @@ const Home = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
-          className="w-full md:w-1/2 text-center md:text-left md:ml-20 mb-20 -mt-20"
+          className=" w-full md:w-1/2 text-center md:text-left md:ml-20 mb-20 -mt-20"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div className="hometext text-left text-4xl md:text-6xl lg:text-5xl font-bold md:mt-0 mt-10 lg:-ml-20">
-            <div>Experience The <br /> Ultimate Taste Best</div>
+          <motion.div className="hometext text-left text-4xl md:text-6xl  font-bold md:mt-0 mt-10 ">
+            <div className="textinhome">Experience The <br /> Ultimate Taste Best</div>
             <div>
-              <span className="text-primary">Biryani In Adelaide</span>
+              <span className="textinhome2 text-primary ">Biryani In Adelaide</span>
             </div>
           </motion.div>
-          <RedWhip className="md:ml-80 mt-2 lg:ml-32" />
+          <RedWhip className="lg:ml-40 md:ml-80 mt-2" />
           <motion.div
-            className="text-left text-2xl md:text-3xl mt-2 lg:-ml-20"
+            className="hometext text-left text-2xl md:text-3xl mt-2 "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -118,7 +118,7 @@ const Home = () => {
             Specializing in Mughlai cuisine
           </motion.div>
           <motion.div
-            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 lg:-ml-20"
+            className="hometext flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 "
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -141,18 +141,18 @@ const Home = () => {
               People Trust us
             </div>
           </motion.div>
-          <motion.div className="mt-3 lg:-ml-20">
+          <motion.div className="hometext mt-3">
             <InputSearch placeholder="Search Food" />
           </motion.div>
           <motion.div
-            className="flex md:flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
+            className="hometext flex md:flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
             <div className="flex md:flex-row md:gap-4">
             <RedButton
-              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs lg:-ml-20"
+              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs "
               image={order}
               alt="order"
               name="ORDER FOOD"
@@ -190,7 +190,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 lg:-ml-8 lg:w-40 lg:h-12 -mb-28 ">
+          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -mb-28 ">
             <img className="lg:w-10 w-12 ml-2 " src={card1} alt="" />
             <div className="flex flex-col ">
               <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold lg:-ml-0">
@@ -267,7 +267,7 @@ const Home = () => {
     ) : (
       <div>Loading special offers...</div>
     )}
-    <div className="arched hidden lg:grid lg:grid-cols-4 gap-6 "> {/* Show grid on larger screens */}
+    <div className="arched hidden lg:grid lg:grid-cols-3 gap-6 "> {/* Show grid on larger screens */}
       {specialDishes.map((dish, index) => (
         <ArchedCard
           key={index}
@@ -284,27 +284,25 @@ const Home = () => {
 </div>
 
       <div className="segment flex flex-col md:flex-row justify-between">
-        <div className="hidden  md:block">
+        <div className="hidden  md:block lg:-ml-20 lg:mt-20">
           <img src={homechef1}
           alt=" "
           className=" homechef1"/>
-          <div>
 
-          </div>
           
         </div>
         <div className="flex flex-col md:mr-44  mt-10">
-          <div className="text-4xl md:text-6xl font-bold text-center ">
+          <div className="lg:text-4xl text-4xl md:text-6xl font-bold text-center lg:ml-20">
             We are <span className="text-primary">more</span> than <br />
             <span className="text-primary">multiple</span> service
           </div>
-          <div className="mt-8 text-center md:mr-0 md:ml-0 mr-8 ml-8">
+          <div className="mt-8 text-center md:mr-0 md:ml-0 mr-8 ml-8 lg:ml-32">
             This is a type of resturent which typically serves food and drink,
             in addition to light <br /> refreshments such as baked goods or
             snacks. The term comes frome the rench <br /> word meaning food
           </div>
-          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8">
-            <div className="flex justify-between items-center w-32 font-medium">
+          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 lg:ml-48 lg:gap-8">
+            <div className="flex justify-between items-center w-32 font-medium ">
               <img src={orderB} alt="" />
               Online Order
             </div>
@@ -329,7 +327,7 @@ const Home = () => {
               Clean Kitchen
             </div>
           </div>
-          <div className="flex justify-center items-center mt-10 md:mr-36">
+          <div className="flex justify-center items-center mt-10 md:mr-36 lg:mt-36">
             <RedButton name="About Us" variant="active" />
           </div>
         </div>
@@ -404,12 +402,12 @@ const Home = () => {
 
       <div className="segment">
         <div className="flex flex-col justify-around">
-          <div className=" mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16">
+          <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 ">
             It's Now <span className="text-primary">More Easy </span> to{" "}
             <span className="text-primary">Order</span> <br />
             by Our Mobile <span className="text-primary">App</span>
           </div>
-          <div className=" ml-8 mr-8 mt-6 text-center md:text-left md:text-xl md:mt-16 md:ml-16">
+          <div className=" ml-8 mr-8 mt-6 text-center md:text-left md:text-xl md:mt-16 md:ml-16 lg:mt-10">
             All you need to do is downlode one of the best delivery apps, <br />
             make a and most companies are opting for mobile app <br />
             devlopment for food delivery
