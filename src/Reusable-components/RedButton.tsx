@@ -42,7 +42,7 @@ const RedButton: React.FC<RedButtonProps> = ({
   return (
     <div className={buttonClasses} onClick={onClick}>
       <div className="flex md:flex-wrap">
-        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full">
+        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full lg:mr-2">
           <img src={image} alt={alt} />
         </div>
         <div className=" md:mt-1">{name}</div>

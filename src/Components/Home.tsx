@@ -20,18 +20,12 @@ import CustomerReviews from "../Reusable-components/CustomerReview";
 import smily from "../assets/smilyicon.svg";
 import star from "../assets/Star.svg";
 import card1 from "../assets/card1.png";
-import righttop from "../assets/right top corner.png";
-import lefttop from "../assets/left top corner.png";
-import rightbottom from "../assets/right lower corner.svg";
-import leftbottom from "../assets/left lower corner.svg";
-import chef from "../assets/Chef.png";
-import leaves from "../assets/leaves.png";
-import wire from "../assets/wire.svg";
-import spices from "../assets/spices.png";
 import android from "../assets/download1.png";
 import apple from "../assets/download2.png";
-import roundbg from "../assets/roundbg.png";
-import chef2 from "../assets/chef2.png";
+import homechef1 from "../assets/homechef1.png";
+import homechef2 from "../assets/homechef2.png";
+
+
 
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -108,15 +102,15 @@ const Home = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div className="text-left text-4xl md:text-6xl font-bold md:mt-0 mt-10">
+          <motion.div className="hometext text-left text-4xl md:text-6xl lg:text-5xl font-bold md:mt-0 mt-10 lg:-ml-20">
             <div>Experience The <br /> Ultimate Taste Best</div>
             <div>
               <span className="text-primary">Biryani In Adelaide</span>
             </div>
           </motion.div>
-          <RedWhip className="md:ml-80 mt-2" />
+          <RedWhip className="md:ml-80 mt-2 lg:ml-32" />
           <motion.div
-            className="text-left text-2xl md:text-3xl mt-2"
+            className="text-left text-2xl md:text-3xl mt-2 lg:-ml-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -124,7 +118,7 @@ const Home = () => {
             Specializing in Mughlai cuisine
           </motion.div>
           <motion.div
-            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3"
+            className="flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 lg:-ml-20"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -147,7 +141,7 @@ const Home = () => {
               People Trust us
             </div>
           </motion.div>
-          <motion.div className="mt-3">
+          <motion.div className="mt-3 lg:-ml-20">
             <InputSearch placeholder="Search Food" />
           </motion.div>
           <motion.div
@@ -158,7 +152,7 @@ const Home = () => {
           >
             <div className="flex md:flex-row md:gap-4">
             <RedButton
-              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs"
+              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs lg:-ml-20"
               image={order}
               alt="order"
               name="ORDER FOOD"
@@ -177,7 +171,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="hidden md:block mr-20 -mt-20 mb-36"
+          className="girl hidden md:block "
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -196,10 +190,10 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 lg:-ml-10 -mb-28">
-            <img className="w-12 ml-2 " src={card1} alt="" />
+          <div className="w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 lg:-ml-8 lg:w-40 lg:h-12 -mb-28 ">
+            <img className="lg:w-10 w-12 ml-2 " src={card1} alt="" />
             <div className="flex flex-col ">
-              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold">
+              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold lg:-ml-0">
                 CHICKEN BIRYANI
               </span>
               <div className="ml-4 mt-1">
@@ -208,7 +202,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="h-[410px] w-[410px] rounded-full bg-primary z-10 overflow-hidden md:mx-0">
+          <div className="h-[410px] w-[410px] rounded-full bg-primary z-10 overflow-hidden md:mx-0 ">
             <img
               src={girl}
               alt=""
@@ -250,10 +244,10 @@ const Home = () => {
   <div className="text-4xl font-bold">
     Today <span className="text-primary">Special</span> Offers
   </div>
-  <div className="mt-5 text-sm md:text-base">
+  <div className="mt-5 text-sm md:text-base lg:ml-10 lg:mr-10">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
   </div>
-  <div className="mt-5 lg:ml-20 md:ml-10">
+  <div className="mt-5 md:ml-10">
     {specialDishes.length > 0 ? (
       <div className="flex overflow-x-auto gap-4 lg:hidden"> {/* Flex for mobile scrolling */}
         {specialDishes.map((dish, index) => (
@@ -273,7 +267,7 @@ const Home = () => {
     ) : (
       <div>Loading special offers...</div>
     )}
-    <div className="hidden lg:grid lg:grid-cols-4 gap-6"> {/* Show grid on larger screens */}
+    <div className="arched hidden lg:grid lg:grid-cols-4 gap-6 "> {/* Show grid on larger screens */}
       {specialDishes.map((dish, index) => (
         <ArchedCard
           key={index}
@@ -291,31 +285,13 @@ const Home = () => {
 
       <div className="segment flex flex-col md:flex-row justify-between">
         <div className="hidden  md:block">
-          <div className="flex relative top-28 left-20">
-            <img className=" " src={lefttop} alt="" />
-
-            <img className=" " src={righttop} alt="" />
-          </div>
-
-          <div className="flex relative top-28 left-20">
-            <img className=" " src={leftbottom} alt="" />
-
-            <img className="" src={rightbottom} alt="" />
-          </div>
+          <img src={homechef1}
+          alt=" "
+          className=" homechef1"/>
           <div>
-            <img
-              className="relative -mt-[390px] ml-32 w-[350px] "
-              src={chef}
-              alt=""
-            />
+
           </div>
-          <img className="ml-[450px] -mt-[350px] " src={wire} alt="" />
-          <img
-            className="ml-[340px] -mt-[390px] relative"
-            src={spices}
-            alt=""
-          />
-          <img className="ml-32 mt-56 relative" src={leaves} alt="" />
+          
         </div>
         <div className="flex flex-col md:mr-44  mt-10">
           <div className="text-4xl md:text-6xl font-bold text-center ">
@@ -410,7 +386,7 @@ const Home = () => {
     )}
 
     {/* Show grid on larger screens */}
-    <div className="hidden lg:grid lg:grid-cols-3 gap-6">
+    <div className=" hidden lg:grid lg:grid-cols-3 gap-6">
       {dishes.map((dish, index) => (
         <ArchedCard
           key={index}
@@ -444,19 +420,12 @@ const Home = () => {
           </div>
         </div>
         <div className="hidden md:block">
-        <div className="mb-20">
-          <img className="ml-[950px] -mt-[250px]" src={roundbg} alt="" />
-          <div className="w-[540px] h-[275px] border-[23px] border-shader  rounded-t-full border-b-0 ml-[920px] -mt-[520px]"></div>
-          <img
-            className="ml-[970px] -mt-[280px] h-[500px] "
-            src={chef2}
-            alt=""
-          />
-          <img className="ml-[1250px] -mt-[500px]" src={spices} alt="" />
-          <img className="ml-[1300px] mt-52" src={leaves} alt="" />
+          <img src={homechef2}
+          alt=""
+          className="homechef2 "/>
+
         </div>
         </div>
-      </div>
       <CustomerReviews />
     </>
   );

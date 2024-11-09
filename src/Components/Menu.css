@@ -56,3 +56,11 @@ height: 160px;
 
     }
 }
+@media(min-width:1024px) and (max-width:1440px){
+.socard{
+    margin-left: 20px;
+
+
+}
+
+}

@@ -112,7 +112,7 @@ const Menu = () => {
     </div>
 
     {/* Show grid on larger screens */}
-    <div className="hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24">
+    <div className="lg:gap-16 hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24">
       {dishes[category]?.map((dish, index) => (
         <ArchedCard
           key={index}

@@ -21,7 +21,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex-1 space-y-6"
       >
-        <div className="break-words w-40 md:whitespace-nowrap md:mt-0 mt-2">
+        <div className="break-words w-40 md:whitespace-nowrap md:mt-0 mt-2 lg:mt-8">
         <h1 className="text-gray-700 md:text-lg">{description}</h1>
         <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>
         </div>
@@ -32,7 +32,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center text-white bg-black md:px-4 md:py-2 rounded-full mt-12"
+            className="flex items-center text-white bg-black md:px-4 md:py-2 lg:h-12 rounded-full mt-12 lg:text-base lg:mb-20"
           >
             <FaShoppingCart className="mr-2" />
             <p className="text-sm md:text-lg">Minimum Order: 12 GBP</p>
@@ -41,10 +41,10 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center text-white bg-black md:px-4 md:py-2 rounded-full mt-12"
+            className="flex items-center text-white bg-black lg:h-12 md:px-4 md:py-2 lg:mb-20 rounded-full mt-12"
           >
             <FaMotorcycle className="mr-2" />
-            <p className="text-sm md:text-lg ">Delivery in 20-25 Minutes</p>
+            <p className="text-sm md:text-lg lg:text-base">Delivery in 20-25 Minutes</p>
           </motion.div>
         </div>
 
@@ -53,7 +53,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
+          className=" open bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
         >
           <FaClock className="inline-block mr-2" />
           Open until 3:00 AM
@@ -70,7 +70,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         <motion.img
           src={biryani}
           alt="Special Offer Dish"
-          className="dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60 "
+          className="dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60  lg:ml-28"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
@@ -78,7 +78,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="absolute bottom-0 -left-12 bg-white md:p-1 rounded-lg shadow-lg flex flex-col items-center md:ml-0 ml-48 mb-20 md:mb-0"
+          className="absolute bottom-0 -left-12 bg-white md:p-1 rounded-lg shadow-lg flex flex-col items-center md:ml-0 ml-48 mb-20 md:mb-0 lg:ml-12"
         >
           <p className="md:text-4xl text-3xl font-semibold">3.4</p>
           <div className="flex text-yellow-500 mb-2 text-sm">
