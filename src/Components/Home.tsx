@@ -269,7 +269,7 @@ const Home = () => {
     ) : (
       <div>Loading special offers...</div>
     )}
-    <div className="arched hidden lg:grid lg:grid-cols-4 gap-6 desktop:-ml-8 l"> {/* Show grid on larger screens */}
+    <div className="arched hidden lg:grid lg:grid-cols-4 desktop:gap-6 desktop:-ml-8 laptop:mr-24 laptop:-ml-8 desktop:mr-0 laptop:gap-12"> {/* Show grid on larger screens */}
       {specialDishes.map((dish, index) => (
 
         <ArchedCard
