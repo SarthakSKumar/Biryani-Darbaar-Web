@@ -67,7 +67,7 @@ const Menu = () => {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
-      <div className="search md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4">
+      <div className="search md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4 desktop:mt-28 laptop:mt-28">
         <InputSearch placeholder="Search Delicious Food" />
       </div>
       <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
@@ -112,7 +112,7 @@ const Menu = () => {
     </div>
 
     {/* Show grid on larger screens */}
-    <div className="lg:gap-16 hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24">
+    <div className=" hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24 desktop:ml-24 laptop:ml-8">
       {dishes[category]?.map((dish, index) => (
         <ArchedCard
           key={index}

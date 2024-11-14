@@ -22,9 +22,9 @@ const CardComponent: React.FC<CardComponentProps> = ({
   className,
 }) => {
   return (
-    <div className="socard">    <div
+      <div
       className={clsx(
-        "relative p-4 rounded-lg  text-center h-54 w-72 z-0",
+        "relative p-4 rounded-lg  text-center h-54 w-72 z-0 ",
         className
       )}
     >
@@ -53,7 +53,6 @@ const CardComponent: React.FC<CardComponentProps> = ({
       <div className="relative z-30 -mt-6">
         <RedButton className="mx-auto" variant="active" name={buttonTitle} />
       </div>
-    </div>
     </div>
   );
 };

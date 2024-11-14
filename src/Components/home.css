@@ -24,10 +24,7 @@ body::before{
     margin-left: 20vh;
     margin-top:10%
 }
-.homechef2{
-    margin-left: 110vh;
-    transform: translatey(-70%);
-}
+
 .girl{
     margin-top:-10%;
 }
@@ -79,7 +76,19 @@ body::before{
 
 
 }
-@media(min-width:1024px) and (max-width:1353px){
+@media (min-width: 1024px){
+    .homechef2{
+        transform: translatex(100%);
+        margin-top:-120%
+    }
+}
+@media (min-width: 1280px){
+    .homechef2{
+        transform: translatex(100%);
+        margin-top:-105%
+    }
+}
+/* @media(min-width:1024px) and (max-width:1353px){
     .hometext{
         margin-left:-20%;
     }
@@ -107,8 +116,8 @@ body::before{
 
     }
 
-}
-@media(min-width:1354px) and (max-width:1440px){
+} */
+/* @media(min-width:1354px) and (max-width:1440px){
     .homechef2{
         margin-left:0%; 
          margin-top:5%;
@@ -120,10 +129,10 @@ body::before{
         margin-right:10%;
     }   
     .hometext{
-        margin-left:-10%
+        margin-left:-10%;
     }  
     .homechef2{
         margin-left:50%
     }       
 
-}
+} */

@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)]">
         <div className="flex items-center justify-between p-4 sticky h-48">
-          <div className="h-36 mb-8 md:h-48 lg:ml-14 lg:mt-8">
+          <div className="h-36 mb-8 md:h-48 lg:ml-32 lg:mt-8 desktop: lp:ml-50">
             <img src={logo} alt="Product Logo" className="h-full" />
           </div>
           <div className="hidden md:flex space-x-11 mb-20">
