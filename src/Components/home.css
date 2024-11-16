@@ -88,6 +88,14 @@ body::before{
         margin-top:-105%
     }
 }
+@media(min-width:1500px) and (max-width:1700px)
+{
+    .homechef2{
+        margin-top: -90%;
+        margin-left:15%;
+        width:90%
+    }
+}
 /* @media(min-width:1024px) and (max-width:1353px){
     .hometext{
         margin-left:-20%;
