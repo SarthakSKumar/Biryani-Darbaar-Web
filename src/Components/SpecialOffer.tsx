@@ -43,7 +43,7 @@ const SpecialOffer = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="search1  ml-6 md:ml-10  pt-10 md:w-1/2 w-3/4 desktop:mt-32 laptop:mt-32"
+          className="search1  ml-6 md:ml-10  pt-10 md:w-1/2 w-3/4 desktop:mt-32 laptop:mt-32 dp1:mt-10"
         >
           <InputSearch placeholder="Search Delicious Food" />
         </motion.div>
@@ -69,7 +69,7 @@ const SpecialOffer = () => {
   </div>
 
   {/* Show grid on larger screens */}
-  <div className=" hidden lg:grid lg:grid-cols-3  gap-4 desktop:-ml-24 laptop:-ml-36">
+  <div className=" hidden lg:grid lg:grid-cols-3  gap-4 desktop:-ml-24 laptop:-ml-36 dp1:ml-10">
     {dishes.map((dish, index) => (
       <ArchedCard
         key={index}

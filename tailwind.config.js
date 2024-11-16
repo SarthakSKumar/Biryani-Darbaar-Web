@@ -32,7 +32,11 @@ export default {
         // => @media (min-width: 1024px) { ... }
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
-        'dp':{min:'1500px', max:'1700px'},
+        'dp':{min:'1500px',max:'1700px'},
+        'dp1':{min:'1701px',max:'1900px'},
+        'dp2':{min:'1901px',max:'2100px'},
+        'dp3':{min:'2101px',max:'2500px'},
+
 
 
       },

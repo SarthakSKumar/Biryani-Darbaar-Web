@@ -38,41 +38,41 @@ const Navbar: React.FC = () => {
       </div>
       <div className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)]">
         <div className="flex items-center justify-between p-4 sticky h-48">
-          <div className="h-36 mb-8 md:h-48 lg:ml-32 lg:mt-8 desktop: lp:ml-50">
-            <img src={logo} alt="Product Logo" className="h-full" />
+          <div className="h-36 mb-8 md:h-48 lg:ml-32 lg:mt-8 desktop: lp:ml-50 ">
+            <img src={logo} alt="Product Logo" className="h-full dp1:w-56 dp1:h-56" />
           </div>
-          <div className="hidden md:flex space-x-11 mb-20">
+          <div className="hidden md:flex space-x-11 mb-20 ">
             <Link
               to="/"
-              className={getNavItemClass("Home")}
+              className={`${getNavItemClass("Home")} dp1:text-2xl`}
               onClick={() => handleItemClick("Home")}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className={getNavItemClass("About")}
+              className={`${getNavItemClass("About")} dp1:text-2xl`}
               onClick={() => handleItemClick("About")}
             >
               About
             </Link>
             <Link
               to="/menu"
-              className={getNavItemClass("Menu")}
+              className={`${getNavItemClass("Menu")} dp1:text-2xl`}
               onClick={() => handleItemClick("Menu")}
             >
               Menu
             </Link>
             <Link
               to="/specialoffer"
-              className={getNavItemClass("SpecialOffer")}
+              className={`${getNavItemClass("SpecialOffer")} dp1:text-2xl`}
               onClick={() => handleItemClick("SpecialOffer")}
             >
               Special Offer
             </Link>
             <Link
               to="/order"
-              className={getNavItemClass("Order")}
+              className={`${getNavItemClass("Order")} dp1:text-2xl`}
               onClick={() => handleItemClick("Order")}
             >
               Order
