@@ -107,7 +107,35 @@ body::before{
 
     }
 }
+@media(min-width:1901px) and (max-width:2100px){
+    .homechef1{
+        width:90%
+    }
+    .homechef2{
+        width:80%;
+        margin-left:30%;
+        margin-top:-70%
 
+    }
+    body::before {
+        height:110vh;
+}
+}
+@media(min-width:2101px) and (max-width:2500px){
+    body::before {
+        height:110vh;
+}
+.homechef1{
+    width:100%;
+
+}
+.homechef2{
+    width:75%;
+        margin-left:30%;
+        margin-top:-55%
+
+}
+}
 /* @media(min-width:1024px) and (max-width:1353px){
     .hometext{
         margin-left:-20%;

@@ -12,7 +12,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="card ml-5 mr-5 md:ml-10 md:mr-10 mb-4 py-1 px-6 md:px-16 laptop:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 "
+      className="card ml-5 mr-5 md:ml-10 md:mr-10 mb-4 py-1 px-6 md:px-16 laptop:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 dp3:mt-12"
     >
       {/* Left Section */}
       <motion.div
@@ -22,8 +22,8 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         className="flex-1 space-y-6"
       >
         <div className=" break-words w-40 md:whitespace-nowrap md:mt-0 mt-2 laptop:mt-8">
-        <h1 className="words1 text-gray-700 md:text-lg desktop:ml-0 laptop:-ml-16">{description}</h1>
-        <h1 className="words text-3xl lg:text-5xl md:text-5xl font-bold desktop:ml-0 laptop:-ml-16">{title}</h1>
+        <h1 className="words1 text-gray-700 md:text-lg desktop:ml-0 laptop:-ml-16 dp3:text-3xl ">{description}</h1>
+        <h1 className="words text-3xl lg:text-5xl md:text-5xl font-bold desktop:ml-0 laptop:-ml-16 dp3:text-7xl">{title}</h1>
         </div>
 
         {/* Order Information */}
@@ -70,7 +70,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         <motion.img
           src={biryani}
           alt="Special Offer Dish"
-          className="dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60  lg:ml-28 dp:mt-5 dp1:mt-5"
+          className="dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60  lg:ml-28 dp:mt-5 dp1:mt-5 dp3:mt-5"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
