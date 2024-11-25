@@ -14,7 +14,7 @@ const MainOrderLayout: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
   const handleCategorySelect = (category: string) => {
-    fetch(`https://biryani-darbar-server.vercel.app/dishes/category/${category}`)
+    fetch(`http://localhost:4200/dishes/category/${category}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

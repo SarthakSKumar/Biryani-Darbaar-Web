@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import RedButton from "./RedButton"; // Assuming RedButton is already created
 import clsx from "clsx";
@@ -21,8 +22,14 @@ const CardComponent: React.FC<CardComponentProps> = ({
   price,
   className,
 }) => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/order");
+  };
+
   return (
-      <div
+    <div
       className={clsx(
         "relative p-4 rounded-lg  text-center h-54 w-72 z-0 dp:ml-10",
         className
@@ -42,16 +49,31 @@ const CardComponent: React.FC<CardComponentProps> = ({
           />
         </div>
         <div className="relative text-2xl font-bold desktop:mb-2 desktop:ml-0 laptop:-ml-12">
-          <img src={priceb} alt="" className="desktop:w-40 desktop:h-14 laptop:w-36 w-40 h-14 z-20" />
+          <img
+            src={priceb}
+            alt=""
+            className="desktop:w-40 desktop:h-14 laptop:w-36 w-40 h-14 z-20"
+          />
           <span className="absolute inset-0 flex items-center justify-center text-black mb-1 z-30 desktop:text-2xl laptop:text-xl ">
             {price}
           </span>
         </div>
-        <h2 className="text-xl desktop:text-xl laptop:text-lg font-semibold text-primary mb-2 desktop:mr-0 laptop:mr-12">{title}</h2>
-        <p className="text-gray-500 mb-4 laptop:-ml-12 laptop:w-56 desktop:w-auto laptop:text-sm desktop:ml-0 desktop:text-base">{description}</p>
+        <h2 className="text-xl desktop:text-xl laptop:text-lg font-semibold text-primary mb-2 desktop:mr-0 laptop:mr-12">
+          {title}
+        </h2>
+        <p className="text-gray-500 mb-4 laptop:-ml-12 laptop:w-56 desktop:w-auto laptop:text-sm desktop:ml-0 desktop:text-base">
+          {description}
+        </p>
       </div>
       <div className="relative z-30 -mt-6 laptop:mr-10 desktop:mr-0 laptop:-mt-28 desktop:-mt-6">
-        <RedButton className="mx-auto" variant="active" name={buttonTitle} />
+        {/* <RedButton className="mx-auto" variant="active" name={buttonTitle} /> */}
+
+        <RedButton
+          className="mx-auto"
+          variant="active"
+          name={buttonTitle}
+          onClick={handleButtonClick}
+        />
       </div>
     </div>
   );

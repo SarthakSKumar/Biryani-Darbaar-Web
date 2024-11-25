@@ -34,7 +34,7 @@ const Home = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://biryani-darbar-server.vercel.app/categories"
+          "http://localhost:4200/categories"
         );
         setCategories(response.data);
       } catch (error) {
@@ -49,14 +49,14 @@ const Home = () => {
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
-  const [activeCategory, setActiveCategory] = useState<string>("Chicken");
+  const [activeCategory, setActiveCategory] = useState<string>("Chicken Curry");
   const [dishes, setDishes] = useState<Dish[]>([]);
 
   useEffect(() => {
     const fetchDishes = async () => {
       try {
         const response = await axios.get(
-          `https://biryani-darbar-server.vercel.app/dishes/category/${activeCategory}`
+          `http://localhost:4200/dishes/category/${activeCategory}`
         );
         setDishes(response.data);
       } catch (error) {
@@ -81,11 +81,16 @@ const Home = () => {
   const [specialDishes, setSpecialDishes] = useState<Dish[]>([]);
 
   useEffect(() => {
-    // Fetch special dishes from the API endpoint
-    fetch("https://biryani-darbar-server.vercel.app/dishes/special")
-      .then((response) => response.json())
-      .then((data) => setSpecialDishes(data))
-      .catch((error) => console.error("Error fetching special dishes:", error));
+    const fetchSpecialDishes = async () => {
+      try {
+        const response = await axios.get("http://localhost:4200/specialOffers");
+        setSpecialDishes(response.data);
+      } catch (error) {
+        console.error("Error fetching special dishes:", error);
+      }
+    };
+
+    fetchSpecialDishes();
   }, []);
 
   return (

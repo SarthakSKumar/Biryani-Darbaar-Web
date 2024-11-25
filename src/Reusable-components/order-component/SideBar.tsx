@@ -11,7 +11,7 @@ import axios from "axios";
       useEffect(() => {
         const fetchCategories = async () => {
           try {
-            const response = await axios.get("https://biryani-darbar-server.vercel.app/categories");
+            const response = await axios.get("http://localhost:4200/categories");
             setCategories(response.data);
           } catch (error) {
             console.error("Error fetching categories:", error);

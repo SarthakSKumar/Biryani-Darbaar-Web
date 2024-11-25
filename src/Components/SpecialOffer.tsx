@@ -23,7 +23,7 @@ const SpecialOffer = () => {
     const fetchDishes = async () => {
       try {
         const response = await axios.get(
-          "https://biryani-darbar-server.vercel.app/dishes/special"
+          "http://localhost:4200/specialOffers"
         );
         setDishes(response.data);
       } catch (error) {
