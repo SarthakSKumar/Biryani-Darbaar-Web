@@ -12,9 +12,12 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
   onSuccess,
 }) => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -40,8 +43,15 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
       return;
     }
 
+    const fullName = `${firstName} ${lastName}`;
+
     try {
-      await axios.post("http://localhost:4200/signup", { email, password });
+      await axios.post("http://localhost:4200/signup", {
+        userName: fullName,
+        email,
+        password,
+        phoneNumber,
+      });
       setIsSignUp(false); // Switch to sign-in mode after successful sign-up
     } catch (error) {
       console.log(error);
@@ -55,6 +65,31 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
         <h2 className="text-xl font-bold mb-4 text-center">
           {isSignUp ? "Sign Up" : "Sign In"}
         </h2>
+        {isSignUp && (
+          <>
+            <input
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="w-full px-4 py-2 mb-4 border rounded"
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="w-full px-4 py-2 mb-4 border rounded"
+            />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="w-full px-4 py-2 mb-4 border rounded"
+            />
+          </>
+        )}
         <input
           type="email"
           placeholder="Email"

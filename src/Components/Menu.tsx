@@ -30,7 +30,7 @@ const Menu = () => {
   }, []);
   interface Dish {
     image: string;
-    name: string;
+    dishName: string;
     description: string;
     price: number;
   }
@@ -101,7 +101,7 @@ const Menu = () => {
         <div key={index} className="min-w-[270px]">
           <ArchedCard
             image={dish.image}
-            title={dish.name}
+            title={dish.dishName}
             description={dish.description || "Delicious dishes"}
             buttonTitle="Order Now"
             price={`$${dish.price}`}
@@ -117,7 +117,7 @@ const Menu = () => {
         <ArchedCard
           key={index}
           image={dish.image}
-          title={dish.name}
+          title={dish.dishName}
           description={dish.description || "Delicious dishes"}
           buttonTitle="Order Now"
           price={`$${dish.price}`}

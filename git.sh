@@ -1,3 +1,3 @@
 git add .
-git commit -m "Responsiveness for all the pages fix by janu  "
-git push -u origin main
+git commit -m "Bug fixes of auth and styles" --date="2024-11-27 12:00:00"
+git push

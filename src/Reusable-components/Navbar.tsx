@@ -3,18 +3,28 @@ import { Link } from "react-router-dom";
 import RedButton from "./RedButton";
 import logo from "../assets/DABAAR.png";
 import { Instagram, Phone, Mail, Menu, X } from "lucide-react";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import axios from "axios";
 
 const Navbar: React.FC = () => {
   const [activeItem, setActiveItem] = useState<string>("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const isAuthenticated = true; // or fetch the actual authentication status
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   useEffect(() => {
     const storedActiveItem = localStorage.getItem("activeNavItem");
     if (storedActiveItem) {
       setActiveItem(storedActiveItem);
     }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+    });
+
+    return () => unsubscribe(); // Cleanup subscription on unmount
   }, []);
+
+  
 
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
@@ -102,14 +112,17 @@ const Navbar: React.FC = () => {
           ) : (
             <div className="hidden md:block mb-20">
               <RedButton
-                className="mr-4"
-                variant="active"
-                name="Sign Out"
-                onClick={() => {
-                  // Add your logout logic here
-                  console.log("User logged out");
-                }}
-              />
+                    className="mr-4"
+                    variant="active"
+                    name="Sign Out"
+                    onClick={async () => {
+                      const auth = getAuth();
+                      await signOut(auth);
+                      const res = await axios.post("http://localhost:4200/logout");
+                      console.log("Sign out response:", res);
+                      sessionStorage.clear();
+                    }}
+                  />
             </div>
           )}
           {/* Mobile Menu Toggle */}
@@ -194,9 +207,12 @@ const Navbar: React.FC = () => {
                     className="mr-4"
                     variant="active"
                     name="Sign Out"
-                    onClick={() => {
-                      // Add your logout logic here
-                      console.log("User logged out");
+                    onClick={async () => {
+                      const auth = getAuth();
+                      await signOut(auth);
+                      const res = await axios.post("http://localhost:4200/logout");
+                      console.log("Sign out response:", res);
+                      sessionStorage.clear();
                     }}
                   />
                 </div>
