@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 interface SignInSignUpModalProps {
   onClose: () => void;
@@ -28,7 +29,10 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
       const auth = getAuth();
       const res = await signInWithEmailAndPassword(auth, email, password);
       const accessToken = await res.user.getIdToken();
-      await axios.post("http://localhost:4200/login", { idToken: accessToken });
+      const response = await axios.post("http://localhost:4200/login", { idToken: accessToken });
+      const { sessionId, sessionUserId } = response.data;
+      sessionStorage.setItem("sessionId", sessionId);
+      sessionStorage.setItem("sessionUserId", sessionUserId);
       onSuccess(); // Notify parent of successful authentication
     } catch (error) {
       console.log(error);
@@ -140,12 +144,14 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
             ? "Already have an account? Sign In"
             : "Don't have an account? Sign Up"}
         </button>
-        <button
-          onClick={onClose}
-          className="w-full mt-2 text-gray-600 underline"
-        >
-          Cancel
-        </button>
+        <Link to={"/"}>
+          <button
+            onClick={onClose}
+            className="w-full mt-2 text-gray-600 underline"
+          >
+            Cancel
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -20,12 +20,10 @@ import CustomerReviews from "../Reusable-components/CustomerReview";
 import smily from "../assets/smilyicon.svg";
 import star from "../assets/Star.svg";
 import card1 from "../assets/card1.png";
-import android from "../assets/download1.png";
+import android from "../assets/android.png";
 import apple from "../assets/download2.png";
 import homechef1 from "../assets/homechef1.png";
 import homechef2 from "../assets/homechef2.png";
-
-
 
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -33,9 +31,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:4200/categories"
-        );
+        const response = await axios.get("http://localhost:4200/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -108,9 +104,13 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div className="hometext text-left text-4xl md:text-6xl  font-bold md:mt-0  laptop:mt-8 laptop:-ml-20 desktop:ml-0 desktop:text-6xl laptop:text-5xl dp:text-7xl dp1:text-7xl dp2:text-8xl dp3:text-8xl">
-            <div className="textinhome">Experience The <br /> Ultimate Taste Best</div>
+            <div className="textinhome">
+              Experience The <br /> Ultimate Taste Best
+            </div>
             <div>
-              <span className="textinhome2 text-primary ">Biryani In Adelaide</span>
+              <span className="textinhome2 text-primary ">
+                Biryani In Adelaide
+              </span>
             </div>
           </motion.div>
           <RedWhip className=" md:ml-80 mt-2 desktop:ml-72 laptop:ml-32 dp:ml-96 dp1:ml-96 dp2:ml-96" />
@@ -156,25 +156,23 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex md:flex-row md:gap-4 laptop:mt-12 desktop:mt-0">
-            <RedButton
-              className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6"
-              image={order}
-              alt="order"
-              name="ORDER FOOD"
-              variant="active"
-            />
-            <div className="ml-4">
               <RedButton
-                className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs desktop:w-60 laptop:w-56 dp:mt-10 dp1:mt-6"
-                image={cater}
-                alt="cater"
-                name="BOOK-CATERING"
+                className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6"
+                image={order}
+                alt="order"
+                name="ORDER FOOD"
                 variant="active"
               />
+              <div className="ml-4">
+                <RedButton
+                  className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs desktop:w-60 laptop:w-56 dp:mt-10 dp1:mt-6"
+                  image={cater}
+                  alt="cater"
+                  name="BOOK-CATERING"
+                  variant="active"
+                />
+              </div>
             </div>
-            
-            </div>
-
           </motion.div>
         </motion.div>
         <motion.div
@@ -200,11 +198,14 @@ const Home = () => {
           <div className="desktpo:w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -mb-28 laptop:w-44 laptop:-ml-10 desktop:-ml-16 dp1:w-48 dp2:w-52 dp2:h-18">
             <img className="desktop:w-10 w-12 ml-2" src={card1} alt="" />
             <div className="flex flex-col ">
-              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold desktop:-ml-0 laptop:-ml-0 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5" >
+              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold desktop:-ml-0 laptop:-ml-0 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5">
                 CHICKEN BIRYANI
               </span>
               <div className="ml-4 mt-1">
-                <span className=" text-xs mt-4 ml-3 dp1:text-lg dp2:text-lg">$</span>9.50
+                <span className=" text-xs mt-4 ml-3 dp1:text-lg dp2:text-lg">
+                  $
+                </span>
+                9.50
               </div>
             </div>
           </div>
@@ -248,56 +249,63 @@ const Home = () => {
         </motion.div>
       </motion.div>
       <div className="mt-20 text-center">
-  <div className="text-4xl font-bold dp1:text-5xl dp2:text-5xl dp3:text-5xl">
-    Today <span className="text-primary">Special</span> Offers
-  </div>
-  <div className="mt-5 text-sm md:text-base lg:ml-10 lg:mr-10 dp1:text-xl dp2:text-2xl dp3:text-2xl ">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-  </div>
-  <div className="mt-5 md:ml-10">
-    {specialDishes.length > 0 ? (
-      <div className="flex overflow-x-auto gap-4 lg:hidden"> {/* Flex for mobile scrolling */}
-        {specialDishes.map((dish, index) => (
-          <div className="min-w-[270px]"> {/* Fixed width for scrolling one by one */}
-            <ArchedCard
-              key={index}
-              image={dish.image}
-              title={dish.dishName || dish.name || "Delicious Dish"}
-              description={dish.description || "Delicious dish available now!"}
-              buttonTitle="Order Now"
-              price={`$${dish.price}`}
-              className="h-79"
-            />
+        <div className="text-4xl font-bold dp1:text-5xl dp2:text-5xl dp3:text-5xl">
+          Today <span className="text-primary">Special</span> Offers
+        </div>
+        <div className="mt-5 text-sm md:text-base lg:ml-10 lg:mr-10 dp1:text-xl dp2:text-2xl dp3:text-2xl ">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s.
+        </div>
+        <div className="mt-5 md:ml-10">
+          {specialDishes.length > 0 ? (
+            <div className="flex overflow-x-auto gap-4 lg:hidden">
+              {" "}
+              {/* Flex for mobile scrolling */}
+              {specialDishes.map((dish, index) => (
+                <div className="min-w-[270px]">
+                  {" "}
+                  {/* Fixed width for scrolling one by one */}
+                  <ArchedCard
+                    key={index}
+                    image={dish.image}
+                    title={dish.dishName || dish.name || "Delicious Dish"}
+                    description={
+                      dish.description || "Delicious dish available now!"
+                    }
+                    buttonTitle="Order Now"
+                    price={`$${dish.price}`}
+                    className="h-79"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>Loading special offers...</div>
+          )}
+          <div className="arched hidden lg:grid lg:grid-cols-4 desktop:gap-6 desktop:-ml-8 laptop:mr-24 laptop:-ml-8 desktop:mr-0 laptop:gap-12 dp1:ml-20 dp2:ml-28 dp3:ml-28">
+            {" "}
+            {/* Show grid on larger screens */}
+            {specialDishes.map((dish, index) => (
+              <ArchedCard
+                key={index}
+                image={dish.image}
+                title={dish.dishName || dish.name || "Delicious Dish"}
+                description={
+                  dish.description || "Delicious dish available now!"
+                }
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-79"
+              />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    ) : (
-      <div>Loading special offers...</div>
-    )}
-    <div className="arched hidden lg:grid lg:grid-cols-4 desktop:gap-6 desktop:-ml-8 laptop:mr-24 laptop:-ml-8 desktop:mr-0 laptop:gap-12 dp1:ml-20 dp2:ml-28 dp3:ml-28"> {/* Show grid on larger screens */}
-      {specialDishes.map((dish, index) => (
-
-        <ArchedCard
-          key={index}
-          image={dish.image}
-          title={dish.dishName || dish.name || "Delicious Dish"}
-          description={dish.description || "Delicious dish available now!"}
-          buttonTitle="Order Now"
-          price={`$${dish.price}`}
-          className="h-79"
-        />
-      ))}
-    </div>
-  </div>
-</div>
 
       <div className="segment flex flex-col md:flex-row justify-between">
         <div className="hidden  md:block desktop:mr-28 laptop:-ml-20 desktop:ml-0 dp3:-mt-10 ">
-          <img src={homechef1}
-          alt=" "
-          className=" homechef1"/>
-
-          
+          <img src={homechef1} alt=" " className=" homechef1" />
         </div>
         <div className="flex flex-col md:mr-44  mt-10">
           <div className=" text-4xl md:text-6xl font-bold text-center  lg:text-left  lg:mt-40  desktop:ml-24  laptop:ml-48 desktop:text-5xl laptop:text-4xl dp:text-6xl dp:mt-10 dp1:text-7xl dp2:text-7xl dp3:text-8xl dp3:mt-10">
@@ -320,7 +328,7 @@ const Home = () => {
             </div>
             <div className="flex justify-between items-center w-36 font-medium dp:w-52 dp1:text-2xl dp1:w-52 dp2:w-52 dp3:w-64">
               <img src={booking} alt="" />
-              Pre-Reservation
+              <div className="ml-9">Pre-Reservation</div>
             </div>
             <div className="flex justify-between items-center md:w-56 md:font-medium dp:w-80 dp1:text-2xl dp1:w-80 dp2:w-80 dp3:w-96">
               <img src={booking} alt="" />
@@ -335,9 +343,6 @@ const Home = () => {
               Clean Kitchen
             </div>
           </div>
-          <div className="flex justify-center items-center mt-10 md:mr-36 desktop:mr-8 laptop:-mr-44">
-            <RedButton name="About Us" variant="active" />
-          </div>
         </div>
       </div>
 
@@ -351,85 +356,98 @@ const Home = () => {
       <br />
 
       <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 mt-4">
-  {categories.map((category, index) => (
-    <RedButton
-      key={index}
-      className="w-60 flex-shrink-0" // Keeps the button size consistent in the scrollable view
-      name={category}
-      variant={activeCategory === category ? "active" : "inactive"}
-      onClick={() => {
-        setActiveCategory(category);
-        console.log("Category clicked:", category); // Log the clicked category
-      }}
-    />
-  ))}
-</div>
-
-      <div className="mt-14 text-center">
-  <div className="text-4xl font-bold">
-    {activeCategory} <span className="text-primary">Dishes</span>
-  </div>
-
-  <div className="mt-5 ml-5 lg:ml-36">
-    {/* For mobile scrolling */}
-    {dishes.length > 0 ? (
-      <div className="flex overflow-x-auto gap-6 lg:hidden"> {/* Flex container for horizontal scrolling */}
-        {dishes.map((dish, index) => (
-          <div key={index} className="min-w-[270px]"> {/* Fixed width to scroll one by one */}
-            <ArchedCard
-              image={dish.image}
-              title={dish.dishName || dish.name || "Delicious Dish"}
-              description={dish.description || "Delicious dish available now!"}
-              buttonTitle="Order Now"
-              price={`$${dish.price}`}
-              className="h-79"
-            />
-          </div>
+        {categories.map((category, index) => (
+          <RedButton
+            key={index}
+            className="w-60 flex-shrink-0" // Keeps the button size consistent in the scrollable view
+            name={category}
+            variant={activeCategory === category ? "active" : "inactive"}
+            onClick={() => {
+              setActiveCategory(category);
+              console.log("Category clicked:", category); // Log the clicked category
+            }}
+          />
         ))}
       </div>
-    ) : (
-      <div>Loading dishes...</div>
-    )}
 
-    {/* Show grid on larger screens */}
-    <div className=" hidden lg:grid lg:grid-cols-3 gap-6">
-      {dishes.map((dish, index) => (
-        <ArchedCard
-          key={index}
-          image={dish.image}
-          title={dish.dishName || dish.name || "Delicious Dish"}
-          description={dish.description || "Delicious dish available now!"}
-          buttonTitle="Order Now"
-          price={`$${dish.price}`}
-          className="h-79"
-        />
-      ))}
-    </div>
-  </div>
-</div>
-
-        <div className="segment flex flex-col justify-around">
-          <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 desktop:text-5xl laptop:text-4xl dp:text-6xl dp1:text-7xl dp2:text-7xl dp3:text-8xl ">
-            It's Now <span className="text-primary">More Easy </span> to{" "}
-            <span className="text-primary">Order</span> <br />
-            by Our Mobile <span className="text-primary">App</span>
-          </div>
-          <div className=" ml-8 mr-8 mt-10 text-center md:text-left md:text-xl md:mt-16 md:ml-16   desktop:text-xl laptop:text-sm  laptop:-mt-32 dp:mt-1 dp:text-2xl dp1:text-2xl dp1:mt-10 dp2:text-2xl dp2:mt-10 dp3:text-3xl dp3:mt-10">
-            All you need to do is download one of the best delivery apps, <br />
-            make a and most companies are opting for mobile app <br />
-            devlopment for food delivery
-          </div>
-          <div className="flex justify-start items-center mt-8 md:w-96 md:mt-10 md:ml-10">
-            <img className=" w-40 md:w-96  laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10" src={android} alt="" />
-            <img className=" w-40 md:w-96 md:mt-2  laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10" src={apple} alt="" />
-          </div>
-          <div className="hidden md:block  laptop:w-1/2">
-          <img src={homechef2}
-          alt=""
-          className="homechef2"/>
-
+      <div className="mt-14 text-center">
+        <div className="text-4xl font-bold">
+          {activeCategory} <span className="text-primary">Dishes</span>
         </div>
+
+        <div className="mt-5 ml-5 lg:ml-36">
+          {/* For mobile scrolling */}
+          {dishes.length > 0 ? (
+            <div className="flex overflow-x-auto gap-6 lg:hidden">
+              {" "}
+              {/* Flex container for horizontal scrolling */}
+              {dishes.map((dish, index) => (
+                <div key={index} className="min-w-[270px]">
+                  {" "}
+                  {/* Fixed width to scroll one by one */}
+                  <ArchedCard
+                    image={dish.image}
+                    title={dish.dishName || dish.name || "Delicious Dish"}
+                    description={
+                      dish.description || "Delicious dish available now!"
+                    }
+                    buttonTitle="Order Now"
+                    price={`$${dish.price}`}
+                    className="h-79"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>Loading dishes...</div>
+          )}
+
+          {/* Show grid on larger screens */}
+          <div className=" hidden lg:grid lg:grid-cols-3 gap-6">
+            {dishes.map((dish, index) => (
+              <ArchedCard
+                key={index}
+                image={dish.image}
+                title={dish.dishName || dish.name || "Delicious Dish"}
+                description={
+                  dish.description || "Delicious dish available now!"
+                }
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-79"
+              />
+            ))}
+          </div>
         </div>
+      </div>
+
+      <div className="segment flex flex-col justify-around">
+        <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 desktop:text-5xl laptop:text-4xl dp:text-6xl dp1:text-7xl dp2:text-7xl dp3:text-8xl ">
+          It's Now <span className="text-primary">More Easy </span> to{" "}
+          <span className="text-primary">Order</span> <br />
+          by Our Mobile <span className="text-primary">App</span>
+        </div>
+        <div className=" ml-8 mr-8 mt-10 text-center md:text-left md:text-xl md:mt-16 md:ml-16   desktop:text-xl laptop:text-sm  laptop:-mt-32 dp:mt-1 dp:text-2xl dp1:text-2xl dp1:mt-10 dp2:text-2xl dp2:mt-10 dp3:text-3xl dp3:mt-10">
+          All you need to do is download one of the best delivery apps, <br />
+          make a and most companies are opting for mobile app <br />
+          devlopment for food delivery
+        </div>
+        <div className="flex justify-start items-center mt-8 md:w-96 md:mt-10 md:ml-10">
+          <img
+            className=" w-40 md:w-40 laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10"
+            src={android}
+            alt=""
+          />
+          <img
+            className=" w-40 md:w-96 md:mt-2  laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10"
+            src={apple}
+            alt=""
+          />
+        </div>
+        <div className="hidden md:block  laptop:w-1/2">
+          <img src={homechef2} alt="" className="homechef2" />
+        </div>
+      </div>
 
       <CustomerReviews />
     </>

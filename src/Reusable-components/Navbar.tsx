@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RedButton from "./RedButton";
 import logo from "../assets/DABAAR.png";
 import { Instagram, Phone, Mail, Menu, X } from "lucide-react";
@@ -8,15 +8,11 @@ import { auth } from "../lib/firebase";
 import axios from "axios";
 
 const Navbar: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<string>("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+  const location = useLocation();
+
   useEffect(() => {
-    const storedActiveItem = localStorage.getItem("activeNavItem");
-    if (storedActiveItem) {
-      setActiveItem(storedActiveItem);
-    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
     });
@@ -24,16 +20,8 @@ const Navbar: React.FC = () => {
     return () => unsubscribe(); // Cleanup subscription on unmount
   }, []);
 
-  
-
-  const handleItemClick = (itemName: string) => {
-    setActiveItem(itemName);
-    setIsMobileMenuOpen(false); // Close menu after clicking on a link
-    localStorage.setItem("activeNavItem", itemName);
-  };
-
-  const getNavItemClass = (itemName: string) => {
-    return itemName === activeItem
+  const getNavItemClass = (path: string) => {
+    return location.pathname === path
       ? "nav-button text-xl text-red-600"
       : "nav-button text-xl text-black";
   };
@@ -61,46 +49,31 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-11 mb-20 ">
             <Link
               to="/"
-              className={`${getNavItemClass(
-                "Home"
-              )} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
-              onClick={() => handleItemClick("Home")}
+              className={`${getNavItemClass("/")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className={`${getNavItemClass(
-                "About"
-              )} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
-              onClick={() => handleItemClick("About")}
+              className={`${getNavItemClass("/about")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
             >
               About
             </Link>
             <Link
               to="/menu"
-              className={`${getNavItemClass(
-                "Menu"
-              )} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
-              onClick={() => handleItemClick("Menu")}
+              className={`${getNavItemClass("/menu")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
             >
               Menu
             </Link>
             <Link
               to="/specialoffer"
-              className={`${getNavItemClass(
-                "SpecialOffer"
-              )} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
-              onClick={() => handleItemClick("SpecialOffer")}
+              className={`${getNavItemClass("/specialoffer")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
             >
               Special Offer
             </Link>
             <Link
               to="/order"
-              className={`${getNavItemClass(
-                "Order"
-              )} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
-              onClick={() => handleItemClick("Order")}
+              className={`${getNavItemClass("/order")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
             >
               Order
             </Link>
@@ -149,47 +122,40 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 className={`${
-                  activeItem === "Home" ? "bg-white text-black" : "text-white"
+                  location.pathname === "/" ? "bg-white text-black" : "text-white"
                 }  py-2 px-4 w-60 text-center rounded-lg transition-all`}
-                onClick={() => handleItemClick("Home")}
               >
                 Home
               </Link>
               <Link
                 to="/about"
                 className={`${
-                  activeItem === "About" ? "bg-white text-black" : "text-white"
+                  location.pathname === "/about" ? "bg-white text-black" : "text-white"
                 } py-2 px-4 w-60 text-center rounded-lg transition-all`}
-                onClick={() => handleItemClick("About")}
               >
                 About
               </Link>
               <Link
                 to="/menu"
                 className={`${
-                  activeItem === "Menu" ? "bg-white text-black" : "text-white"
+                  location.pathname === "/menu" ? "bg-white text-black" : "text-white"
                 } py-2 px-4 w-60 text-center rounded-lg transition-all`}
-                onClick={() => handleItemClick("Menu")}
               >
                 Menu
               </Link>
               <Link
                 to="/specialoffer"
                 className={`${
-                  activeItem === "SpecialOffer"
-                    ? "bg-white text-black"
-                    : "text-white"
+                  location.pathname === "/specialoffer" ? "bg-white text-black" : "text-white"
                 } py-2 px-4 w-60 text-center rounded-lg transition-all`}
-                onClick={() => handleItemClick("SpecialOffer")}
               >
                 Special Offer
               </Link>
               <Link
                 to="/order"
                 className={`${
-                  activeItem === "Order" ? "bg-white text-black" : "text-white"
+                  location.pathname === "/order" ? "bg-white text-black" : "text-white"
                 } py-2 px-4 w-60 text-center rounded-lg transition-all`}
-                onClick={() => handleItemClick("Order")}
               >
                 Order
               </Link>
