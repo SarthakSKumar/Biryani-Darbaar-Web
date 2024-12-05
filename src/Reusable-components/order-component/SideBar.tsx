@@ -4,9 +4,10 @@ import axios from "axios"; // Import icons
 interface SidebarProps {
   handleCategorySelect: (category: string) => void;
   handleOrdersSelect: () => void; // Add new prop for handling orders selection
+  handleClearOrders: () => void; // Add new prop for clearing orders
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSelect }) => {
+const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSelect, handleClearOrders }) => {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
@@ -30,7 +31,10 @@ const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSel
           <li
             key={index}
             className="text-black font-semibold hover:text-red-600 cursor-pointer"
-            onClick={() => handleCategorySelect(category)}
+            onClick={() => {
+              handleClearOrders(); // Clear orders when a category is selected
+              handleCategorySelect(category);
+            }}
           >
             {category}
           </li>

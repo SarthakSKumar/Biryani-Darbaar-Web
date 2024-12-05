@@ -88,11 +88,16 @@ const MainOrderLayout: React.FC = () => {
     }
   };
 
+  const handleClearOrders = () => {
+    setOrders([]); // Clear orders
+  };
+
   return (
     <div className="flex mt-20">
       <Sidebar
         handleCategorySelect={handleCategorySelect}
         handleOrdersSelect={handleOrdersSelect}
+        handleClearOrders={handleClearOrders} // Pass handleClearOrders to Sidebar
       />
 
       <div className="flex-1 p-6 lg:p-12 bg-gray-100">
