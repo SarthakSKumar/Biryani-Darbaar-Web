@@ -31,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:4200/categories");
+        const response = await axios.get("http://localhost:3000/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -52,7 +52,7 @@ const Home = () => {
     const fetchDishes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4200/dishes/category/${activeCategory}`
+          `http://localhost:3000/dishes/category/${activeCategory}`
         );
         setDishes(response.data);
       } catch (error) {
@@ -79,7 +79,7 @@ const Home = () => {
   useEffect(() => {
     const fetchSpecialDishes = async () => {
       try {
-        const response = await axios.get("http://localhost:4200/specialOffers");
+        const response = await axios.get("http://localhost:3000/specialOffers");
         setSpecialDishes(response.data);
       } catch (error) {
         console.error("Error fetching special dishes:", error);

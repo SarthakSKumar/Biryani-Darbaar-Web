@@ -18,7 +18,7 @@ const Menu = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4200/categories"
+          "http://localhost:3000/categories"
         );
         setCategories(response.data);
       } catch (error) {
@@ -43,7 +43,7 @@ const Menu = () => {
       for (const category of categories) {
         try {
           const response = await axios.get(
-            `http://localhost:4200/dishes/category/${category}`
+            `http://localhost:3000/dishes/category/${category}`
           );
           dishesData[category] = response.data;
         } catch (error) {

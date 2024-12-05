@@ -1,58 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { Plus, Minus } from "lucide-react"; // Import icons
+import CartModal from "../../Components/CartModal"; // Import CartModal component
+
 interface MenuCardProps {
   title: string;
   description: string;
   imageUrl: string;
-  prices: { size: string; price: string }[];
+  price: number;
   dishId: string;
   addOns: {addonName: string, price: string | number}[]; // Add this line
 }
 
-const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, prices, dishId, addOns }) => {
+const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, price, dishId, addOns }) => {
   // console.log(addOns);
-  
-  const handleAddToCart = async (price: string) => {
+  console.log(dishId);
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+  const [isModalOpen, setIsModalOpen] = useState(false); // Add state for modal
+
+  const updateQuantity = (orderId: string, change: number) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [orderId]: Math.max((prevQuantities[orderId] || 1) + change, 1),
+    }));
+  };
+
+  const handleAddToCart = async (price: number, quantity: number) => {
     const userId = sessionStorage.getItem("sessionUserId");
     console.log(userId);
-    const cartResponse = await axios.post(`http://localhost:4200/getCart`, { userId });
-    console.log("Kojja");
-    
-    if (cartResponse.data.length > 0) {
-      console.log("Kojja munda kodakaaaa");
-      
-      console.log(cartResponse.data);
-      for (const cartItem of cartResponse.data) {
-        console.log(cartItem.dishId, dishId);
-        if (cartItem.dishId === dishId) {
-          
-          const newQuantity = cartItem.quantity + 1;
-          console.log(cartItem.cartItemId);
-          const response = await axios.put(`http://localhost:4200/cart/${cartItem.cartItemId}`, {
-            quantity: newQuantity,
-            price: parseFloat(price) * newQuantity,
-          });
-          if (response.status === 200) {
-            // Redirect to Order page or update UI accordingly
-          }
-          return;
-        }
-      }
-    } 
-      const response = await axios.post("http://localhost:4200/cart", {
-        userId: userId,
-        dishId: dishId,
-        name: title,
-        price: parseFloat(price),
-        image: imageUrl,
-        description: description,
-        quantity: 1,
-        addOns: addOns,
-      });
-      console.log(response.status);
-      if (response.status === 201) {
-        // Redirect to Order page or update UI accordingly
-      }
+
+    const response = await axios.post("https://api.darbaarkitchen.com/cart", {
+      userId: userId,
+      dishId: dishId,
+      name: title ,
+      addons: addOns,
+      price: price,
+      image: imageUrl,
+      description: description,
+      quantity: quantity,
+    });
+    console.log(response.status);
+    if (response.status === 201) {
+      setIsModalOpen(true); // Open modal on successful add to cart
+    }
     
   };
 
@@ -66,16 +56,23 @@ const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, price
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2">
-        {prices.map((price, index) => (
-          <button
-            key={index}
-            className="bg-green-500 text-white py-1 px-2 rounded-md font-semibold hover:bg-green-600"
-            onClick={() => handleAddToCart(price.price)}
-          >
-            {price.size} ${price.price}
+        <div className="flex items-center">
+          <button onClick={() => updateQuantity(dishId, -1)}>
+            <Minus className="w-4 h-4" />
           </button>
-        ))}
+          <span className="mx-2">{quantities[dishId] || 1}</span>
+          <button onClick={() => updateQuantity(dishId, 1)}>
+            <Plus className="w-4 h-4" />
+          </button>
+        </div>
+        <button
+          className="bg-green-500 text-white py-1 px-2 rounded-md font-semibold hover:bg-green-600"
+          onClick={() => handleAddToCart(price, quantities[dishId] || 1)}
+        >
+          ${price * (quantities[dishId] || 1)}
+        </button>
       </div>
+      {isModalOpen && <CartModal onClose={() => setIsModalOpen(false)} />} 
     </div>
   );
 };
