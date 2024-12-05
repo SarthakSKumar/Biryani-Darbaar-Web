@@ -1,3 +1,3 @@
 git add .
-git commit -m "Orders, cart and payment gateway feature integrated"
+git commit -m "Migrated from local server to aws server"
 git push

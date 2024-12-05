@@ -33,7 +33,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const userId = sessionStorage.getItem("sessionUserId");
   useEffect(() => {
     const fetchCartItems = async () => {
-      const response = await axios.post("http://localhost:3000/getCart");
+      const response = await axios.post("https://api.darbaarkitchen.com/getCart");
       console.log(response.data);
       setCartItems(response.data);
 
@@ -60,7 +60,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   };
 
   const handleDeleteItem = async (itemId: string) => {
-    await axios.delete(`http://localhost:3000/cart/${itemId}`);
+    await axios.delete(`https://api.darbaarkitchen.com/cart/${itemId}`);
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.cartItemId !== itemId)
     );
@@ -77,7 +77,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
   const discountedTotal = grandTotal * (1 - discount);
   const fetchUser = async () => {
-    const response = await axios.get(`http://localhost:3000/user/${userId}`);
+    const response = await axios.get(`https://api.darbaarkitchen.com/user/${userId}`);
     console.log(response.data);
     setUser({
       customerName: response.data.fullName,

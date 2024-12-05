@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
                     onClick={async () => {
                       const auth = getAuth();
                       await signOut(auth);
-                      const res = await axios.post("http://localhost:3000/logout");
+                      const res = await axios.post("https://api.darbaarkitchen.com/logout");
                       console.log("Sign out response:", res);
                       sessionStorage.clear();
                     }}
@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
                     onClick={async () => {
                       const auth = getAuth();
                       await signOut(auth);
-                      const res = await axios.post("http://localhost:3000/logout");
+                      const res = await axios.post("https://api.darbaarkitchen.com/logout");
                       console.log("Sign out response:", res);
                       sessionStorage.clear();
                     }}

@@ -30,7 +30,7 @@ const MainOrderLayout: React.FC = () => {
 
   const handleCategorySelect = (category: string) => {
     axios
-      .get(`http://localhost:3000/dishes/category/${category}`)
+      .get(`https://api.darbaarkitchen.com/dishes/category/${category}`)
       .then((response) => {
         const data = response.data;
         console.log(data);

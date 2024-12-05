@@ -22,7 +22,7 @@ const SpecialOffer = () => {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/specialOffers");
+        const response = await axios.get("https://api.darbaarkitchen.com/specialOffers");
         setDishes(response.data);
       } catch (error) {
         console.error("Error fetching dishes:", error);

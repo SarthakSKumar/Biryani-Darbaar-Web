@@ -1,11 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import {
+  Elements,
+  useStripe,
+  useElements,
+  CardElement,
+} from "@stripe/react-stripe-js";
 import axios from "axios";
 import { X } from "lucide-react";
 
 // Load Stripe instance with your public key
-const stripePromise = loadStripe("pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7");
+const stripePromise = loadStripe(
+  "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
+);
 
 interface OrderItem {
   cartItemId: string;
@@ -28,7 +36,13 @@ interface CheckoutProps {
   };
 }
 
-const Checkout: React.FC<CheckoutProps> = ({ amount, order, onClose, user }) => {
+const Checkout: React.FC<CheckoutProps> = ({
+  amount,
+  order,
+  onClose,
+  user,
+}) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentError, setPaymentError] = useState<string | null>(null);
@@ -46,22 +60,27 @@ const Checkout: React.FC<CheckoutProps> = ({ amount, order, onClose, user }) => 
       setLoading(true);
 
       // Create payment intent on backend
-      const response = await axios.post("https://api.darbaarkitchen.com/create-payment-intent", {
-        amount,
-        currency: "AUD",
-      });
+      const response = await axios.post(
+        "https://api.darbaarkitchen.com/create-payment-intent",
+        {
+          amount,
+          currency: "AUD",
+        }
+      );
       console.log("Kojja munda");
-      
+
       setClientSecret(response.data.clientSecret);
       console.log(response.data.clientSecret);
-      
-      const result = await stripe.confirmCardPayment(response.data.clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)!,
-        },
-      });
+
+      const result = await stripe.confirmCardPayment(
+        response.data.clientSecret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement)!,
+          },
+        }
+      );
       console.log("lanjam");
-      
 
       if (result.error) {
         setPaymentError(result.error.message || "An unknown error occurred.");
@@ -91,43 +110,44 @@ const Checkout: React.FC<CheckoutProps> = ({ amount, order, onClose, user }) => 
         console.log("Order created successfully");
       }
     } catch (err) {
-        console.log("Payment successful!");
-        setToastState(true);
-        // Create order after payment
-        const orderDetails = {
-          customerName: user.data.userName,
-          customerAddress: user.data.address,
-          customerPhone: user.data.phoneNumber,
-          orderDate: new Date().toISOString(),
-          orderStatus: "Pending",
-          totalPrice: amount,
-          orderItems: order.map((orderItem) => ({
-            ...orderItem,
-            dishName: orderItem.name,
-            quantity: orderItem.quantity,
-            userId: user.data.userId
-          })),
-          userId: user.data.userId
-        };
+      console.log("Payment successful!");
+      setToastState(true);
+      // Create order after payment
+      const orderDetails = {
+        customerName: user.data.userName,
+        customerAddress: user.data.address,
+        customerPhone: user.data.phoneNumber,
+        orderDate: new Date().toISOString(),
+        orderStatus: "Pending",
+        totalPrice: amount,
+        orderItems: order.map((orderItem) => ({
+          ...orderItem,
+          dishName: orderItem.name,
+          quantity: orderItem.quantity,
+          userId: user.data.userId,
+        })),
+        userId: user.data.userId,
+      };
 
-        const response = await axios.post("https://api.darbaarkitchen.com/orders", {
+      const response = await axios.post(
+        "https://api.darbaarkitchen.com/orders",
+        {
           ...orderDetails,
-        });
-
-        if (response.status === 201) {
-            console.log("Order created successfully");
-            for (const item of order) {
-              const cartItemId = item.cartItemId;
-              console.log("Cart Item ID:", cartItemId);
-              const response = await axios.delete(
-                `https://api.darbaarkitchen.com/cart/${cartItemId}`
-              );
-              console.log("Cart Item deleted:", response);
-            }
-
         }
+      );
 
-
+      if (response.status === 201) {
+        console.log("Order created successfully");
+        for (const item of order) {
+          const cartItemId = item.cartItemId;
+          console.log("Cart Item ID:", cartItemId);
+          const response = await axios.delete(
+            `https://api.darbaarkitchen.com/cart/${cartItemId}`
+          );
+          console.log("Cart Item deleted:", response);
+        }
+        navigate("/order");
+      }
     } finally {
       setLoading(false);
     }
@@ -168,7 +188,9 @@ const Checkout: React.FC<CheckoutProps> = ({ amount, order, onClose, user }) => 
           onClick={handlePayment}
           disabled={!stripe || loading}
           className={`w-full px-4 py-2 text-white rounded-md transition ${
-            loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
           }`}
         >
           {loading ? "Processing..." : `Pay $${amount}`}
@@ -186,10 +208,13 @@ const Checkout: React.FC<CheckoutProps> = ({ amount, order, onClose, user }) => 
   );
 };
 
-const CheckoutPage: React.FC<Omit<CheckoutProps, 'onClose'>> = ({ amount, order, user }) => {
+const CheckoutPage: React.FC<Omit<CheckoutProps, "onClose">> = ({
+  amount,
+  order,
+  user,
+}) => {
   const [showCheckoutModal, setShowCheckoutModal] = useState(true);
   console.log(amount, order, user);
-  
 
   return (
     <>
@@ -201,7 +226,12 @@ const CheckoutPage: React.FC<Omit<CheckoutProps, 'onClose'>> = ({ amount, order,
       </button> */}
       {showCheckoutModal && (
         <Elements stripe={stripePromise}>
-          <Checkout amount={amount} order={order} onClose={() => setShowCheckoutModal(false)} user={user} />
+          <Checkout
+            amount={amount}
+            order={order}
+            onClose={() => setShowCheckoutModal(false)}
+            user={user}
+          />
         </Elements>
       )}
     </>

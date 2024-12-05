@@ -13,7 +13,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
 
   const handleApplyPromo = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/validate-promo", { promoCode });
+      const response = await axios.post("https://api.darbaarkitchen.com/validate-promo", { promoCode });
       if (response.data.success) {
         onApplyPromo(response.data.finalDiscount);
         onClose();

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaClock, FaShoppingCart, FaMotorcycle } from "react-icons/fa";
+import { FaShoppingCart, FaMotorcycle } from "react-icons/fa";
 import biryani from "../assets/biryani.png";
 import "./css/special.css";
 interface SpecialProps {
@@ -48,16 +48,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
           </motion.div>
         </div>
 
-        {/* Open Status */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="open bg-red-600 text-white md:px-6 md:py-3 px-3 py-1 rounded-br-lg rounded-tr-lg shadow-md inline-block fixed -bottom-28 -left-20 ml-14 md:ml-0"
-        >
-          <FaClock className="inline-block mr-2" />
-          Open until 3:00 AM
-        </motion.div>
+        
         </motion.div>
 
       {/* Right Section */}
