@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSel
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://api.darbaarkitchen.com/categories");
+        const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/categories`);
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSel
   }, []);
 
   return (
-    <div className="w-64 h-screen bg-white shadow-lg hidden lg:block">
+    <div className="sm:w-44 md:w-64 h-screen bg-white">
       <div className="p-6 text-xl font-bold">Menu</div>
       <ul className="space-y-6 p-6 text-lg">
         {categories.map((category, index) => (
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ handleCategorySelect, handleOrdersSel
         ))}
       </ul>
       <div
-        className="p-6 bg-red-500 text-white rounded-lg mt-10 mx-6 cursor-pointer"
+        className="p-3 bg-red-500 text-white rounded-lg mt-5 cursor-pointer mx-2"
         onClick={handleOrdersSelect} // Add onClick handler for orders
       >
         <p className="font-bold">Orders</p>

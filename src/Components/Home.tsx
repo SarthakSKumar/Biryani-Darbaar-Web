@@ -31,7 +31,9 @@ const Home = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://api.darbaarkitchen.com/categories");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_ENDPOINT}/categories`
+        );
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -52,7 +54,9 @@ const Home = () => {
     const fetchDishes = async () => {
       try {
         const response = await axios.get(
-          `https://api.darbaarkitchen.com/dishes/category/${activeCategory}`
+          `${
+            import.meta.env.VITE_API_ENDPOINT
+          }/dishes/category/${activeCategory}`
         );
         setDishes(response.data);
       } catch (error) {
@@ -79,7 +83,9 @@ const Home = () => {
   useEffect(() => {
     const fetchSpecialDishes = async () => {
       try {
-        const response = await axios.get("https://api.darbaarkitchen.com/specialOffers");
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_ENDPOINT}/specialOffers`
+        );
         setSpecialDishes(response.data);
       } catch (error) {
         console.error("Error fetching special dishes:", error);
@@ -103,7 +109,7 @@ const Home = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div className="hometext text-left text-4xl md:text-6xl  font-bold md:mt-0  laptop:mt-8 laptop:-ml-20 desktop:ml-0 desktop:text-6xl laptop:text-5xl dp:text-7xl dp1:text-7xl dp2:text-8xl dp3:text-8xl">
+          <motion.div className="hometext text-left text-4xl md:text-6xl  font-bold md:mt-0  laptop:mt-8 laptop:-ml-20 desktop:ml-0 desktop:text-6xl laptop:text-5xl dp:text-7xl dp1:text-7xl dp2:text-8xl dp3:text-8xl tablet:text-4xl tablet:-ml-24 samsung:text-4xl samsung:-ml-24">
             <div className="textinhome">
               Experience The <br /> Ultimate Taste Best
             </div>
@@ -115,7 +121,7 @@ const Home = () => {
           </motion.div>
           <RedWhip className=" md:ml-80 mt-2 desktop:ml-72 laptop:ml-32 dp:ml-96 dp1:ml-96 dp2:ml-96" />
           <motion.div
-            className="hometext text-left text-2xl md:text-3xl mt-2 laptop:-ml-20 desktop:ml-0 dp:text-4xl dp:mt-5 dp1:text-5xl dp2:text-5xl dp3:text-5xl"
+            className="hometext text-left text-2xl md:text-3xl mt-2 laptop:-ml-20 desktop:ml-0 dp:text-4xl dp:mt-5 dp1:text-5xl dp2:text-5xl dp3:text-5xl tablet:text-2xl tablet:-ml-24 samsung:text-2xl samsung:-ml-24"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -123,7 +129,7 @@ const Home = () => {
             Specializing in Mughlai cuisine
           </motion.div>
           <motion.div
-            className="hometext flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 laptop:-ml-20 desktop:ml-0 dp:w-48 dp:h-10 dp2:w-52 dp2:h-8 dp3:w-52 dp3:h-8 dp3:mt-10 "
+            className="hometext flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 laptop:-ml-20 desktop:ml-0 dp:w-48 dp:h-10 dp2:w-52 dp2:h-8 dp3:w-52 dp3:h-8 dp3:mt-10 tablet:-ml-24 samsung:-ml-24"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -146,7 +152,7 @@ const Home = () => {
               People Trust us
             </div>
           </motion.div>
-          <motion.div className="hometext mt-3 laptop:-ml-20 desktop:ml-0 dp:mt-16">
+          <motion.div className="hometext mt-3 laptop:-ml-20 desktop:ml-0 dp:mt-16 tablet:-ml-24 samsung:-ml-24">
             <InputSearch placeholder="Search Food" />
           </motion.div>
           <motion.div
@@ -157,15 +163,15 @@ const Home = () => {
           >
             <div className="flex md:flex-row md:gap-4 laptop:mt-12 desktop:mt-0">
               <RedButton
-                className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6"
+                className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6 tablet:-ml-24 samsung:-ml-24 samsung:text-xs samsung:w-44 "
                 image={order}
                 alt="order"
                 name="ORDER FOOD"
                 variant="active"
               />
-              <div className="ml-4">
+              <div className="ml-4 ">
                 <RedButton
-                  className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs desktop:w-60 laptop:w-56 dp:mt-10 dp1:mt-6"
+                  className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs desktop:w-60 laptop:w-56 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-44 "
                   image={cater}
                   alt="cater"
                   name="BOOK-CATERING"
@@ -182,7 +188,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <br />
-          <div className="relative w-44 h-10 bg-white md:ml-72 lg:ml-72 rounded-3xl flex justify-between items-center dp1:w-48 dp2:w-48">
+          <div className="relative w-44 h-10 bg-white md:ml-72 lg:ml-72 rounded-3xl flex justify-between items-center dp1:w-48 dp2:w-48 tablet:-ml-1 samsung:ml-32">
             <img className="w-9 " src={smily} alt="" />
             <div className="flex flex-col">
               <div className="text-xs mr-2 font-semibold dp1:mr-6 dp2:mr-6">
@@ -195,10 +201,14 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="desktpo:w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -mb-28 laptop:w-44 laptop:-ml-10 desktop:-ml-16 dp1:w-48 dp2:w-52 dp2:h-18">
-            <img className="desktop:w-10 w-12 ml-2" src={card1} alt="" />
+          <div className="desktpo:w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -mb-28 laptop:w-44 laptop:-ml-10 desktop:-ml-16 dp1:w-48 dp2:w-52 dp2:h-18 tablet:w-40 samsung:w-44 samsung:mb-64 samsung:-ml-40">
+            <img
+              className="desktop:w-10 w-12 ml-2 tablet:w-10"
+              src={card1}
+              alt=""
+            />
             <div className="flex flex-col ">
-              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold desktop:-ml-0 laptop:-ml-0 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5">
+              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold desktop:-ml-0 laptop:-ml-0 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5 tablet:-ml-1">
                 CHICKEN BIRYANI
               </span>
               <div className="ml-4 mt-1">
@@ -210,37 +220,37 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="desktop:h-[410px] desktop:w-[410px] laptop:h-[370px] laptop:w-[370px] rounded-full bg-primary z-10 overflow-hidden md:mx-0 laptop:ml-6 desktop:ml-0 dp:h-[440px] dp:w-[440px] dp:mr-20 dp1:h-[480px] dp1:w-[480px] dp2:h-[500px] dp2:w-[500px] dp3:h-[500px]  dp3:w-[500px]">
+          <div className="desktop:h-[410px] desktop:w-[410px] laptop:h-[370px] laptop:w-[370px] rounded-full bg-primary z-10 overflow-hidden md:mx-0 laptop:ml-6 desktop:ml-0 dp:h-[440px] dp:w-[440px] dp:mr-20 dp1:h-[480px] dp1:w-[480px] dp2:h-[500px] dp2:w-[500px] dp3:h-[500px]  dp3:w-[500px] tablet:h-[300px]  tablet:w-[300px] tablet:-mt-80 tablet:-ml-12 samsung:w-[300px] samsung:h-[300px] samsung:-ml-16 samsung:-mt-80">
             <img
               src={girl}
               alt=""
-              className="max-w-55 max-h-[500px] desktop:ml-5 -mt-24 dp:max-h-[530px] dp1:max-h-[580px] dp2:max-h-[600px] dp2:ml-10 dp3:max-h-[590px]"
+              className="max-w-55 max-h-[500px] desktop:ml-5 -mt-24 dp:max-h-[530px] dp1:max-h-[580px] dp2:max-h-[600px] dp2:ml-10 dp3:max-h-[590px] tablet:max-h-[400px]"
             />
           </div>
-          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 dp:w-[510px] dp:h-[225px] dp1:w-[550px] dp2:w-[570px] dp3:w-[560px]"></div>
+          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 dp:w-[510px] dp:h-[225px] dp1:w-[550px] dp2:w-[570px] dp3:w-[560px] tablet:w-[375px] tablet:-ml-20 samsung:w-[375px] samsung:-ml-24"></div>
           <motion.img
-            className="-mt-56 -ml-20 w-32 dp:w-36 dp1:w-40 dp2:w-40 dp3:w-44"
+            className="-mt-56 -ml-20 w-32 dp:w-36 dp1:w-40 dp2:w-40 dp3:w-44 tablet:w-28 samsung:w-28 samsung:-ml-32"
             src={circle1}
             alt=""
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
           <motion.img
-            className=" w-44 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 "
+            className=" w-44 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 tablet:w-36 samsung:w-40 samsung:-ml-16 "
             src={circle2}
             alt=""
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
           <motion.img
-            className="w-44  ml-48 -mt-32 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 dp3:-mt-48"
+            className="w-44  ml-48 -mt-32 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 dp3:-mt-48 tablet:w-36 samsung:w-40 samsung:ml-28"
             src={circle3}
             alt=""
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
           <motion.img
-            className="w-40 ml-80 -mt-72 -mr-5 dp:w-48 dp1:w-52 dp1:-mt-80 dp2:w-52 dp2:-mt-80 dp3:w-56 dp3:-mt-96 dp3:ml-96"
+            className="w-40 ml-80 -mt-72 -mr-5 dp:w-48 dp1:w-52 dp1:-mt-80 dp2:w-52 dp2:-mt-80 dp3:w-56 dp3:-mt-96 dp3:ml-96 tablet:w-32 tablet:ml-64 tablet:-mt-64 samsung:w-32 samsung:ml-44"
             src={circle4}
             alt=""
             animate={{ rotate: 360 }}
@@ -304,11 +314,11 @@ const Home = () => {
       </div>
 
       <div className="segment flex flex-col md:flex-row justify-between">
-        <div className="hidden  md:block desktop:mr-28 laptop:-ml-20 desktop:ml-0 dp3:-mt-10 ">
+        <div className="hidden  md:block desktop:mr-28 laptop:-ml-20 desktop:ml-0 dp3:-mt-10 samsung:-ml-">
           <img src={homechef1} alt=" " className=" homechef1" />
         </div>
-        <div className="flex flex-col md:mr-44  mt-10">
-          <div className=" text-4xl md:text-6xl font-bold text-center  lg:text-left  lg:mt-40  desktop:ml-24  laptop:ml-48 desktop:text-5xl laptop:text-4xl dp:text-6xl dp:mt-10 dp1:text-7xl dp2:text-7xl dp3:text-8xl dp3:mt-10">
+        <div className="flex flex-col md:mr-44  mt-10 samsung:ml-3">
+          <div className=" text-4xl md:text-6xl font-bold text-center  lg:text-left  lg:mt-40  desktop:ml-24  laptop:ml-48 desktop:text-5xl laptop:text-4xl dp:text-6xl dp:mt-10 dp1:text-7xl dp2:text-7xl dp3:text-8xl dp3:mt-10 ipad:text-4xl ipad:mt-28 samsung:text-3xl ">
             We are <span className="text-primary">more</span> than <br />
             <span className="text-primary">multiple</span> service
           </div>
@@ -317,7 +327,7 @@ const Home = () => {
             in addition to light <br /> refreshments such as baked goods or
             snacks. The term comes frome the rench <br /> word meaning food
           </div>
-          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 desktop:ml-24 lg:gap-8 lg:mt-8 laptop:ml-48 dp:text-2xl dp:gap-12 dp:mt-10 dp2:text-2xl dp3:text-3xl">
+          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 desktop:ml-24 lg:gap-8 lg:mt-8 laptop:ml-48 dp:text-2xl dp:gap-12 dp:mt-10 dp2:text-2xl dp3:text-3xl ipad:-mr-16">
             <div className="flex justify-between items-center w-32 font-medium dp:w-44 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-52">
               <img src={orderB} alt="" />
               Online Order
@@ -326,13 +336,13 @@ const Home = () => {
               <img src={img247} alt="" />
               24/7 Services
             </div>
-            <div className="flex justify-between items-center w-36 font-medium dp:w-52 dp1:text-2xl dp1:w-52 dp2:w-52 dp3:w-64">
+            <div className="flex justify-between items-center w-36 font-medium dp:w-52 dp1:text-2xl dp1:w-52 dp2:w-52 dp3:w-64 ipad:w-48">
               <img src={booking} alt="" />
-              <div className="ml-9">Pre-Reservation</div>
+              <div className="">Pre-Reservation</div>
             </div>
             <div className="flex justify-between items-center md:w-56 md:font-medium dp:w-80 dp1:text-2xl dp1:w-80 dp2:w-80 dp3:w-96">
               <img src={booking} alt="" />
-              Organized Foodhut Place
+              <div className="mr-4">Organized Foodhut Place</div>
             </div>
             <div className="flex justify-between items-center w-32 font-medium dp:w-40 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-52">
               <img src={booking} alt="" />
@@ -347,7 +357,7 @@ const Home = () => {
       </div>
 
       <div className="flex justify-center items-center mt-10">
-        <div className="text-center text-4xl font-bold dp1:text-5xl dp2:text-5xl">
+        <div className="text-center text-4xl font-bold dp1:text-5xl dp2:text-5xl ipad:-mt-96">
           <span className="text-primary">Menu</span> That{" "}
           <span className="text-primary">Always</span> Make You <br />
           Fall In <span className="text-primary">Love</span>
@@ -403,7 +413,7 @@ const Home = () => {
           )}
 
           {/* Show grid on larger screens */}
-          <div className=" hidden lg:grid lg:grid-cols-3 gap-6">
+          <div className=" hidden lg:grid lg:grid-cols-3 gap-6 laptop:mr-10">
             {dishes.map((dish, index) => (
               <ArchedCard
                 key={index}
@@ -422,12 +432,12 @@ const Home = () => {
       </div>
 
       <div className="segment flex flex-col justify-around">
-        <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 desktop:text-5xl laptop:text-4xl dp:text-6xl dp1:text-7xl dp2:text-7xl dp3:text-8xl ">
+        <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 desktop:text-5xl laptop:text-4xl dp:text-6xl dp1:text-7xl dp2:text-7xl dp3:text-8xl ipad:text-5xl">
           It's Now <span className="text-primary">More Easy </span> to{" "}
           <span className="text-primary">Order</span> <br />
           by Our Mobile <span className="text-primary">App</span>
         </div>
-        <div className=" ml-8 mr-8 mt-10 text-center md:text-left md:text-xl md:mt-16 md:ml-16   desktop:text-xl laptop:text-sm  laptop:-mt-32 dp:mt-1 dp:text-2xl dp1:text-2xl dp1:mt-10 dp2:text-2xl dp2:mt-10 dp3:text-3xl dp3:mt-10">
+        <div className=" ml-8 mr-8 mt-10 text-center md:text-left md:text-xl md:mt-16 md:ml-16   desktop:text-xl laptop:text-sm  laptop:-mt-32 dp:mt-1 dp:text-2xl dp1:text-2xl dp1:mt-10 dp2:text-2xl dp2:mt-10 dp3:text-3xl dp3:mt-10 ipad:text-lg ipad:-mt-60">
           All you need to do is download one of the best delivery apps, <br />
           make a and most companies are opting for mobile app <br />
           devlopment for food delivery

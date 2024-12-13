@@ -29,7 +29,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
       const auth = getAuth();
       const res = await signInWithEmailAndPassword(auth, email, password);
       const accessToken = await res.user.getIdToken();
-      const response = await axios.post("https://api.darbaarkitchen.com/login", { idToken: accessToken });
+      const response = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/login`, { idToken: accessToken });
       const { sessionId, sessionUserId } = response.data;
       sessionStorage.setItem("sessionId", sessionId);
       sessionStorage.setItem("sessionUserId", sessionUserId);
@@ -50,7 +50,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
     const fullName = `${firstName} ${lastName}`;
 
     try {
-      await axios.post("https://api.darbaarkitchen.com/signup", {
+      await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/signup`, {
         userName: fullName,
         email,
         password,

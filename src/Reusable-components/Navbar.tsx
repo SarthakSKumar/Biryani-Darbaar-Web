@@ -37,43 +37,43 @@ const Navbar: React.FC = () => {
       </div>
       <div className="bg-[linear-gradient(180deg,rgba(234,31,39,0.06)_0%,rgba(234,31,39,0)_100%)]">
         <div className="flex items-center justify-between p-4 sticky h-48">
-          <div className="h-36 mb-8 md:h-48 lg:ml-32 lg:mt-8 desktop: lp:ml-50 ">
+          <div className="h-36 mb-8 md:h-48 lg:ml-32 lg:mt-8 desktop: lp:ml-50  tablet:mt-10 ipad:-mr-10 ">
             <Link to="/">
               <img
                 src={logo}
                 alt="Product Logo"
-                className="h-full dp1:w-56 dp1:h-56 dp2:w-60 dp2:h-60 dp3:w-60 dp3:h-60"
+                className="h-full dp1:w-56 dp1:h-56 dp2:w-60 dp2:h-60 dp3:w-60 dp3:h-60 tablet:h-40 ipad:-ml-24 ipad:w-64"
               />
             </Link>
           </div>
-          <div className="hidden md:flex space-x-11 mb-20 ">
+          <div className="hidden md:flex space-x-11 mb-20 tablet:space-x-8 samsung:mr-4">
             <Link
               to="/"
-              className={`${getNavItemClass("/")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
+              className={`${getNavItemClass("/")} dp1:text-2xl dp2:text-3xl dp3:text-3xl tablet:text-sm samsung:text-lg`}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className={`${getNavItemClass("/about")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
+              className={`${getNavItemClass("/about")} dp1:text-2xl dp2:text-3xl dp3:text-3xl tablet:text-sm samsung:text-lg`}
             >
               About
             </Link>
             <Link
               to="/menu"
-              className={`${getNavItemClass("/menu")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
+              className={`${getNavItemClass("/menu")} dp1:text-2xl dp2:text-3xl dp3:text-3xl tablet:text-sm samsung:text-lg`}
             >
               Menu
             </Link>
             <Link
               to="/specialoffer"
-              className={`${getNavItemClass("/specialoffer")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
+              className={`${getNavItemClass("/specialoffer")} dp1:text-2xl dp2:text-3xl dp3:text-3xl tablet:text-sm tablet:w-24 samsung:text-lg samsung:w-28`}
             >
               Special Offer
             </Link>
             <Link
               to="/order"
-              className={`${getNavItemClass("/order")} dp1:text-2xl dp2:text-3xl dp3:text-3xl`}
+              className={`${getNavItemClass("/order")} dp1:text-2xl dp2:text-3xl dp3:text-3xl tablet:text-sm samsung:text-lg`}
             >
               Order
             </Link>
@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
                     onClick={async () => {
                       const auth = getAuth();
                       await signOut(auth);
-                      const res = await axios.post("https://api.darbaarkitchen.com/logout");
+                      const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
                       console.log("Sign out response:", res);
                       sessionStorage.clear();
                     }}
@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
                     onClick={async () => {
                       const auth = getAuth();
                       await signOut(auth);
-                      const res = await axios.post("https://api.darbaarkitchen.com/logout");
+                      const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
                       console.log("Sign out response:", res);
                       sessionStorage.clear();
                     }}

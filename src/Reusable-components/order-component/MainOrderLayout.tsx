@@ -27,10 +27,11 @@ const MainOrderLayout: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // Add state for modal
   const [orders, setOrders] = useState<Order[]>([]); // Add state for orders
+  
 
   const handleCategorySelect = (category: string) => {
     axios
-      .get(`https://api.darbaarkitchen.com/dishes/category/${category}`)
+      .get(`${import.meta.env.VITE_API_ENDPOINT}/dishes/category/${category}`)
       .then((response) => {
         const data = response.data;
         console.log(data);
@@ -75,7 +76,7 @@ const MainOrderLayout: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `https://api.darbaarkitchen.com/ordersByUser/${userId}`
+        `${import.meta.env.VITE_API_ENDPOINT}/ordersByUser/${userId}`
       );
       const sortedOrders = response.data.sort(
         (a: Order, b: Order) =>
@@ -101,7 +102,7 @@ const MainOrderLayout: React.FC = () => {
       />
 
       <div className="flex-1 p-6 lg:p-12 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-6">
+        <h1 className="sm-text-lg md:text-3xl font-bold mb-6">
           Order from Biryani in Australia
         </h1>
         {orders.length > 0 ? (

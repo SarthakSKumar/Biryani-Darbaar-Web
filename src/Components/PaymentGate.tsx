@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -61,7 +61,7 @@ const Checkout: React.FC<CheckoutProps> = ({
 
       // Create payment intent on backend
       const response = await axios.post(
-        "https://api.darbaarkitchen.com/create-payment-intent",
+        `${import.meta.env.VITE_API_ENDPOINT}/create-payment-intent`,
         {
           amount,
           currency: "AUD",
@@ -94,7 +94,7 @@ const Checkout: React.FC<CheckoutProps> = ({
           customerAddress: sessionStorage.getItem("address"),
           customerPhone: user.data.phoneNumber,
           orderDate: new Date().toISOString(),
-          orderStatus: "Pending",
+          orderStatus: "Order Recieved",
           totalPrice: amount,
           orderItems: order.map((orderItem) => ({
             ...orderItem,
@@ -103,7 +103,7 @@ const Checkout: React.FC<CheckoutProps> = ({
           })),
         };
 
-        await axios.post("https://api.darbaarkitchen.com/orders", {
+        await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/orders`, {
           ...orderDetails,
         });
 
@@ -130,7 +130,7 @@ const Checkout: React.FC<CheckoutProps> = ({
       };
 
       const response = await axios.post(
-        "https://api.darbaarkitchen.com/orders",
+        `${import.meta.env.VITE_API_ENDPOINT}/orders`,
         {
           ...orderDetails,
         }
@@ -142,16 +142,25 @@ const Checkout: React.FC<CheckoutProps> = ({
           const cartItemId = item.cartItemId;
           console.log("Cart Item ID:", cartItemId);
           const response = await axios.delete(
-            `https://api.darbaarkitchen.com/cart/${cartItemId}`
+            `${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`
           );
           console.log("Cart Item deleted:", response);
         }
-        navigate("/order");
+        setToastState(true);
       }
     } finally {
       setLoading(false);
     }
   };
+
+  // UseEffect hook to navigate after the toast is shown
+  useEffect(() => {
+    if (toastState) {
+      setTimeout(() => {
+        navigate("/orders"); // Redirect to the orders page
+      }, 2000); // Wait 2 seconds before redirecting
+    }
+  }, [toastState, navigate]);
 
   return (
     <div

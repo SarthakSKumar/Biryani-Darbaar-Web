@@ -4,13 +4,13 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD0iODZIMyuOJ19pVp6HHOflV1IzPq7goI",
-  authDomain: "biryani-darbar-770a5.firebaseapp.com",
-  projectId: "biryani-darbar-770a5",
-  storageBucket: "biryani-darbar-770a5.appspot.com",
-  messagingSenderId: "90536512568",
-  appId: "1:90536512568:web:654acbb0e3efcfcaf1aacd",
-  measurementId: "G-869Y2HDKNN"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

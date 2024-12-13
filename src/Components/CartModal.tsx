@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { X, Plus, Minus, Trash } from "lucide-react";
+import { X, Plus, Minus, Trash, Coins } from "lucide-react";
 import PromoModal from "./PromoModal";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "./PaymentGate";
 
 // Load Stripe instance with your public key
-const stripePromise = loadStripe("pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7");
+const stripePromise = loadStripe(
+  "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
+);
 
 interface CartModalProps {
   onClose: () => void;
@@ -29,11 +31,24 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [discount, setDiscount] = useState(0);
   const [promoMessage, setPromoMessage] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
-  const [user, setUser] = useState({customerName: "", customerPhone: "", customerAddress: ""});
+  const [user, setUser] = useState({
+    customerName: "",
+    customerPhone: "",
+    customerAddress: "",
+  });
+  const [reward, setReward] = useState(0);
+  const [rewardDiscount, setRewardDiscount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [applyRewardDiscount, setApplyRewardDiscount] = useState(false);
+  const [finalTotal, setFinalTotal] = useState(0);
+  console.log("Reward:", reward, rewardDiscount);
+
   const userId = sessionStorage.getItem("sessionUserId");
   useEffect(() => {
     const fetchCartItems = async () => {
-      const response = await axios.post("https://api.darbaarkitchen.com/getCart");
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/getCart`
+      );
       console.log(response.data);
       setCartItems(response.data);
 
@@ -47,10 +62,19 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
       );
       setQuantities(initialQuantities);
     };
+
+    const fetchUser = async () => {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_ENDPOINT}/user/${userId}`
+      );
+      console.log("User Response", response.data);
+      setReward(response.data.reward);
+      setRewardDiscount(response.data.discount);
+    };
+
+    fetchUser();
     fetchCartItems();
   }, []);
-
-  
 
   const updateQuantity = (orderId: string, change: number) => {
     setQuantities((prevQuantities) => ({
@@ -60,7 +84,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   };
 
   const handleDeleteItem = async (itemId: string) => {
-    await axios.delete(`https://api.darbaarkitchen.com/cart/${itemId}`);
+    await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${itemId}`);
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.cartItemId !== itemId)
     );
@@ -76,15 +100,53 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   }, 0);
 
   const discountedTotal = grandTotal * (1 - discount);
+
+  useEffect(() => {
+    setFinalTotal(applyRewardDiscount ? discountedTotal - rewardDiscount : discountedTotal);
+  }, [applyRewardDiscount, discountedTotal, rewardDiscount]);
+
   const fetchUser = async () => {
-    const response = await axios.get(`https://api.darbaarkitchen.com/user/${userId}`);
-    console.log(response.data);
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_ENDPOINT}/user/${userId}`
+    );
+    console.log("User Response", response.data);
     setUser({
       customerName: response.data.fullName,
       customerPhone: response.data.phoneNumber,
-      customerAddress: response.data.address
+      customerAddress: response.data.address,
     });
-  }
+  };
+  
+  const handleRewardDiscount = async (
+    reward: number,
+    userId: string,
+    dollar: number
+  ) => {
+    console.log(reward, userId, dollar);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/apply-reward`,
+        {
+          reward: reward,
+          userId: userId,
+          dollar: dollar,
+        }
+      );
+      if (response.status === 200) {
+        const newReward = response.data.reward;
+        console.log("New reward after applying reward:", newReward);
+        setReward(newReward);
+        const newTotal = response.data.totalPrice;
+        console.log("New total after applying reward:", newTotal);
+        setTotal(newTotal);
+        setFinalTotal(newTotal);
+      } else {
+        console.log("Error applying reward");
+      }
+    } catch (error) {
+      console.error("Error applying reward:", error);
+    }
+  };
 
   return (
     <>
@@ -117,18 +179,24 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                       <h3 className="text-xl font-bold text-gray-800">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-gray-500">{item.description}</p>
+                      <p className="text-sm text-gray-500">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                   <div className="mt-4 grid grid-cols-3 gap-2">
                     <div className="flex items-center">
-                      <button onClick={() => updateQuantity(item.cartItemId, -1)}>
+                      <button
+                        onClick={() => updateQuantity(item.cartItemId, -1)}
+                      >
                         <Minus className="w-4 h-4" />
                       </button>
                       <span className="mx-2">
                         {quantities[item.cartItemId] || item.quantity}
                       </span>
-                      <button onClick={() => updateQuantity(item.cartItemId, 1)}>
+                      <button
+                        onClick={() => updateQuantity(item.cartItemId, 1)}
+                      >
                         <Plus className="w-4 h-4" />
                       </button>
                     </div>
@@ -159,26 +227,49 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               >
                 Apply Promo
               </div>
-              {discount > 0 ? (
+              {discount > 0 && grandTotal >= 100 && (
                 <div className="text-md font-semibold text-green-600">
                   Discount Applied: {discount * 100}%
                 </div>
-              ) : (
-                promoMessage && (
-                  <div className="text-md font-semibold text-red-600">
-                    {promoMessage}
-                  </div>
-                )
+              )}
+              {reward &&
+                grandTotal >= 100 &&
+                reward > 10 && (
+                  <h5
+                    onClick={() =>
+                      userId &&
+                      handleRewardDiscount(reward, userId, discountedTotal)
+                    }
+                    className="flex w-56 items-center justify-between cursor-pointer text-red-600"
+                  >
+                    Apply Reward {" "}
+                    <span className="flex ">
+                      {reward}
+                      <Coins size={28} color="#f1c40f" />
+                    </span>
+                  </h5>
+                )}
+              {rewardDiscount > 0 && finalTotal >= 100 && (
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={applyRewardDiscount}
+                    onChange={() => setApplyRewardDiscount(!applyRewardDiscount)}
+                  />
+                  <span className="ml-2 text-md font-semibold text-green-600">
+                    Apply Reward Discount: ${rewardDiscount}
+                  </span>
+                </div>
               )}
               <div className="text-xl font-bold mt-4">
-                Grand Total: ${discountedTotal + 2}
+                Grand Total: ${finalTotal + 2}
               </div>
               <button
                 className="bg-blue-500 text-white py-2 px-4 rounded "
-                onClick={() => 
-                  {setShowCheckout(true);
-                    fetchUser();
-                  }}
+                onClick={() => {
+                  setShowCheckout(true);
+                  fetchUser();
+                }}
               >
                 Checkout
               </button>
@@ -199,13 +290,20 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
         <Elements stripe={stripePromise}>
           <CheckoutPage
             amount={discountedTotal + 2}
-            order={cartItems.map(item => ({
+            order={cartItems.map((item) => ({
               cartItemId: item.cartItemId,
               name: item.name,
               quantity: quantities[item.cartItemId] || item.quantity,
-              price: item.price
+              price: item.price,
             }))}
-            user={{ data: { userName: user.customerName, phoneNumber: user.customerPhone, address: user.customerAddress, userId: userId || "Ppj6w2GfgMb2JMNBC9Isq96XfVs2" } }} // Example user data
+            user={{
+              data: {
+                userName: user.customerName,
+                phoneNumber: user.customerPhone,
+                address: user.customerAddress,
+                userId: userId || "Ppj6w2GfgMb2JMNBC9Isq96XfVs2",
+              },
+            }} // Example user data
           />
         </Elements>
       )}

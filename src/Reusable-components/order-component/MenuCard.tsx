@@ -29,7 +29,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, price
     const userId = sessionStorage.getItem("sessionUserId");
     console.log(userId);
 
-    const response = await axios.post("https://api.darbaarkitchen.com/cart", {
+    const response = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/cart`, {
       userId: userId,
       dishId: dishId,
       name: title ,
@@ -48,11 +48,11 @@ const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, price
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4 mb-6">
-      <div className="flex items-center">
+      <div className="flex flex-col md:flex-row md:items-center">
         <img src={imageUrl} alt={title} className="w-24 h-24 rounded-full object-cover mr-4" />
         <div>
           <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-          <p className="text-sm text-gray-500">{description}</p>
+          <p className="text-sm text-gray-500 w-full">{description}</p>
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2">
@@ -66,7 +66,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ title, description, imageUrl, price
           </button>
         </div>
         <button
-          className="bg-green-500 text-white py-1 px-2 rounded-md font-semibold hover:bg-green-600"
+          className="bg-green-500 text-white min-w-5 rounded-md font-semibold hover:bg-green-600"
           onClick={() => handleAddToCart(price, quantities[dishId] || 1)}
         >
           ${price * (quantities[dishId] || 1)}

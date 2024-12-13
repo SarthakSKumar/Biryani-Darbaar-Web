@@ -18,7 +18,7 @@ const Menu = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://api.darbaarkitchen.com/categories"
+          `${import.meta.env.VITE_API_ENDPOINT}/categories`
         );
         setCategories(response.data);
       } catch (error) {
@@ -43,7 +43,7 @@ const Menu = () => {
       for (const category of categories) {
         try {
           const response = await axios.get(
-            `https://api.darbaarkitchen.com/dishes/category/${category}`
+            `${import.meta.env.VITE_API_ENDPOINT}/dishes/category/${category}`
           );
           dishesData[category] = response.data;
         } catch (error) {

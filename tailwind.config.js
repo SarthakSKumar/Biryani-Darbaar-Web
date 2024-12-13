@@ -25,11 +25,15 @@ export default {
         69:'400px'
       },
       screens: {
-        'tablet': '640px',
-        // => @media (min-width: 640px) { ... }
+        'tablet': {min:'768px',max:'798px'},
+        't1': {min:'799px',max:'810px'},
+
   
         'laptop': '1024px',
-        // => @media (min-width: 1024px) { ... }
+        'ipad': {raw:'(min-width:1024px) and (min-height:1366px)'},
+        'ipad1': {raw:'(min-width:1194px) and (min-height:834px)'},
+        'samsung': {raw:'(min-width:800px) and (min-height:1280px)'},
+
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
         'dp':{min:'1500px',max:'1700px'},

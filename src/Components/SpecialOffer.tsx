@@ -22,7 +22,7 @@ const SpecialOffer = () => {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await axios.get("https://api.darbaarkitchen.com/specialOffers");
+        const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/specialOffers`);
         setDishes(response.data);
       } catch (error) {
         console.error("Error fetching dishes:", error);
