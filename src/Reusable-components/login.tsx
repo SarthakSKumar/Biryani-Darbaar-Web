@@ -17,6 +17,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -55,6 +56,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
         email,
         password,
         phoneNumber,
+        address, // Address field included here
       });
       setIsSignUp(false); // Switch to sign-in mode after successful sign-up
     } catch (error) {
@@ -91,6 +93,13 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="w-full px-4 py-2 mb-4 border rounded"
+            />
+            <input
+            type="text"
+            placeholder="Address"
+            value = {address}
+            onChange={(e) => setAddress(e.target.value)}  
+            className="w-full px-4 py-2 mb-4 border rounded"
             />
           </>
         )}

@@ -91,7 +91,7 @@ const Checkout: React.FC<CheckoutProps> = ({
         // Create order after payment
         const orderDetails = {
           customerName: user.data.userName,
-          customerAddress: sessionStorage.getItem("address"),
+          customerAddress: user.data.address,
           customerPhone: user.data.phoneNumber,
           orderDate: new Date().toISOString(),
           orderStatus: "Order Recieved",
@@ -102,6 +102,8 @@ const Checkout: React.FC<CheckoutProps> = ({
             quantity: orderItem.quantity,
           })),
         };
+        console.log("Kojja mundaa kodakaaa",orderDetails);
+        
 
         await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/orders`, {
           ...orderDetails,
@@ -128,6 +130,7 @@ const Checkout: React.FC<CheckoutProps> = ({
         })),
         userId: user.data.userId,
       };
+      console.log("Erri puuku lanja",orderDetails);
 
       const response = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/orders`,

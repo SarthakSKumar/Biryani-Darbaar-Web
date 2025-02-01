@@ -111,7 +111,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
     );
     console.log("User Response", response.data);
     setUser({
-      customerName: response.data.fullName,
+      customerName: response.data.userName,
       customerPhone: response.data.phoneNumber,
       customerAddress: response.data.address,
     });

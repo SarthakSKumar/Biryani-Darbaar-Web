@@ -47,7 +47,7 @@ const Home = () => {
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
-  const [activeCategory, setActiveCategory] = useState<string>("Chicken Curry");
+  const [activeCategory, setActiveCategory] = useState<string>("Biryani's");
   const [dishes, setDishes] = useState<Dish[]>([]);
 
   useEffect(() => {
@@ -171,7 +171,7 @@ const Home = () => {
               />
               <div className="ml-4 ">
                 <RedButton
-                  className="md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base py-2 text-xs desktop:w-60 laptop:w-56 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-44 "
+                  className="md:mt-0 mt-3 h-12 md:w-56 md:py-2 md:text-base py-2 text-xs desktop:w-56 laptop:w-52 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-40 "
                   image={cater}
                   alt="cater"
                   name="BOOK-CATERING"
@@ -208,12 +208,12 @@ const Home = () => {
               alt=""
             />
             <div className="flex flex-col ">
-              <span className="whitespace-nowrap text-xs ml-3 -mt-0 font-bold desktop:-ml-0 laptop:-ml-0 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5 tablet:-ml-1">
+              <span className="whitespace-nowrap text-xs ml-5 -mt-0 font-bold desktop:ml-1 laptop:ml-1 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5 tablet:ml-1">
                 CHICKEN BIRYANI
               </span>
-              <div className="ml-4 mt-1">
-                <span className=" text-xs mt-4 ml-3 dp1:text-lg dp2:text-lg">
-                  $
+              <div className="">
+                <span className=" text-lg mt-4 ml-3 dp1:text-lg dp2:text-lg">
+                  $&nbsp;
                 </span>
                 9.50
               </div>
@@ -424,7 +424,7 @@ const Home = () => {
                 }
                 buttonTitle="Order Now"
                 price={`$${dish.price}`}
-                className="h-79"
+                className="h-69 w-[310px]"
               />
             ))}
           </div>

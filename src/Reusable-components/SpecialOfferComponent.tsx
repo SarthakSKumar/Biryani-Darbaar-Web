@@ -1,18 +1,43 @@
 import { motion } from "framer-motion";
-import { FaShoppingCart, FaMotorcycle } from "react-icons/fa";
-import biryani from "../assets/biryani.png";
+import {FaMotorcycle } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import image1 from "../assets/1.jpg";
+import image2 from "../assets/2.jpg";
+import image3 from "../assets/3.jpg";
+import image4 from "../assets/4.jpg";
+import image5 from "../assets/5.jpg";
+import image6 from "../assets/6.jpg";
 import "./css/special.css";
+
 interface SpecialProps {
   title: string;
   description: string;
 }
-const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) => {
+
+const images = [image1, image2, image3, image4, image5, image6];
+
+const SpecialOfferComponent: React.FC<SpecialProps> = ({ title, description }) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+        setFade(true);
+      }, 500);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="card ml-5 mr-5 md:ml-10 md:mr-10 mb-4 py-1 px-6 md:px-16 laptop:px-20 rounded-lg shadow-lg relative flex flex-wrap  justify-between items-center opacity-5 dp3:mt-12 ipad:h-80"
+      className={`card ml-5 mr-5 md:ml-10 md:mr-10 mb-4 py-1 px-6 md:px-16 laptop:px-20 rounded-lg shadow-lg relative flex flex-wrap justify-between items-center opacity-5 dp3:mt-12 ipad:h-80 ${fade ? 'bg-fade-in' : 'bg-fade-out'}`}
+      style={{ backgroundImage: `url(${images[currentImage]})` }}
     >
       {/* Left Section */}
       <motion.div
@@ -28,15 +53,7 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
 
         {/* Order Information */}
         <div className="flex items-center space-x-6">
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center text-white bg-black md:px-4 md:py-2 lg:h-12 rounded-full mt-12 lg:text-base lg:mb-20 "
-          >
-            <FaShoppingCart className="mr-2" />
-            <p className="text-sm md:text-lg ipad:text-sm" >Minimum Order: 12 GBP</p>
-          </motion.div>
+          
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -59,11 +76,13 @@ const SpecialOfferComponent: React.FC<SpecialProps>  = ({title, description}) =>
         className="relative flex justify-center md:w-1/3 mt-6 md:mt-0 mb-5"
       >
         <motion.img
-          src={biryani}
+          src={images[currentImage]}
           alt="Special Offer Dish"
-          className="dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60  lg:ml-28 dp:mt-5 dp1:mt-5 dp3:mt-5 ipad:h-64 ipad:mt-4 "
+          className={`dish rounded-lg shadow-lg md:w-full md:h-auto md:ml-4 ml-44 md:mt-0 -mt-60  lg:ml-28 dp:mt-5 dp1:mt-5 dp3:mt-5 ipad:h-64 ipad:mt-4 ${fade ? 'opacity-100' : 'opacity-0'}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: fade ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
           whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
         />
         <motion.div
           initial={{ opacity: 0, y: 20 }}

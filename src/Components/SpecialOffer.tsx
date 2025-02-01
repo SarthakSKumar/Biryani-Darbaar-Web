@@ -12,7 +12,7 @@ import axios from "axios";
 const SpecialOffer = () => {
   interface Dish {
     image: string;
-    title: string;
+    dishName: string;
     description: string;
     price: number;
   }
@@ -68,7 +68,7 @@ const SpecialOffer = () => {
                 {/* Fixed width to scroll one by one */}
                 <ArchedCard
                   image={dish.image}
-                  title={dish.title || "Chicken Biryani"}
+                  title={dish.dishName || "Chicken Biryani"}
                   description={dish.description || "Delicious dishes"}
                   buttonTitle="Order Now"
                   price={`$${dish.price.toString()}`}
@@ -84,7 +84,7 @@ const SpecialOffer = () => {
               <ArchedCard
                 key={index}
                 image={dish.image}
-                title={dish.title || "Chicken Biryani"}
+                title={dish.dishName || "Chicken Biryani"}
                 description={dish.description || "Delicious dishes"}
                 buttonTitle="Order Now"
                 price={`$${dish.price.toString()}`}

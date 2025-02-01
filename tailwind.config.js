@@ -22,7 +22,8 @@ export default {
       },
       width:{
         11:'22px',
-        69:'400px'
+        69:'400px',
+        59:'500px',
       },
       screens: {
         'tablet': {min:'768px',max:'798px'},

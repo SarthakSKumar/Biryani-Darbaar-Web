@@ -74,7 +74,7 @@ const Menu = () => {
   {categories.map((category, index) => (
     <RedButton
       key={index}
-      className="w-60 flex-shrink-0 "
+      className="w-60 flex-shrink-0 mt-10"
       name={category}
       variant={activeCategory === category ? "active" : "inactive"}
       onClick={() => {
