@@ -42,6 +42,8 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [applyRewardDiscount, setApplyRewardDiscount] = useState(false);
   const [finalTotal, setFinalTotal] = useState(0);
   console.log("Reward:", reward, rewardDiscount);
+  console.log("Total:", total);
+  console.log("Promo Message:", promoMessage);
 
   const userId = sessionStorage.getItem("sessionUserId");
   useEffect(() => {
