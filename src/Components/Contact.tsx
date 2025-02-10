@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import backgroundImage from '../assets/background.png'; // Adjust the path as necessary
+import backgroundImage from '../assets/background.png'; // Adjusted the path
 
 const Contact = () => {
     const [formData, setFormData] = useState({

@@ -1,4 +1,3 @@
 git add .
-git commit -m "FIX: Updated changes inregards of the ui" 
-git branch -M main
+git commit -m "FIX: Background image issue" 
 git push upstream main
