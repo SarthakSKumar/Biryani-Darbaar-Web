@@ -1,6 +1,4 @@
 import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
-import { motion } from "framer-motion";
-import InputSearch from "../Reusable-components/InputSearch";
 
 import ArchedCard from "../Reusable-components/ArchedCard";
 import "./home.css";
@@ -22,7 +20,9 @@ const SpecialOffer = () => {
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/specialOffers`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_ENDPOINT}/specialOffers`
+        );
         setDishes(response.data);
       } catch (error) {
         console.error("Error fetching dishes:", error);
@@ -38,15 +38,6 @@ const SpecialOffer = () => {
         title="SPECIAL OFFER"
         description="I'm Lovin' it!"
       />
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="search1  ml-6 md:ml-10  pt-10 md:w-1/2 w-3/4 desktop:mt-32 laptop:mt-32 dp1:mt-10 dp3:mt-10"
-      >
-        <InputSearch placeholder="Search Delicious Food" />
-      </motion.div>
 
       <div className="tso md:mt-24 text-center">
         <h1 className="text-4xl font-bold dp3:text-6xl">
