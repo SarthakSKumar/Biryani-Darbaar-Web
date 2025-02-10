@@ -1,3 +1,4 @@
 git add .
 git commit -m "FIX: Updated changes inregards of the ui" 
-git push upstream main
+git branch -M dev
+git push upstream dev
