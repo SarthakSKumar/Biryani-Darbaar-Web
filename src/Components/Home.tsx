@@ -24,6 +24,7 @@ import android from "../assets/android.png";
 import apple from "../assets/download2.png";
 import homechef1 from "../assets/homechef1.png";
 import homechef2 from "../assets/homechef2.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -95,6 +96,12 @@ const Home = () => {
     fetchSpecialDishes();
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleSearch = (query: string) => {
+    navigate(`/menu?search=${query}`);
+  };
+
   return (
     <>
       <motion.div
@@ -153,7 +160,7 @@ const Home = () => {
             </div>
           </motion.div>
           <motion.div className="hometext mt-3 laptop:-ml-20 desktop:ml-0 dp:mt-16 tablet:-ml-24 samsung:-ml-24">
-            <InputSearch placeholder="Search Food" />
+            <InputSearch placeholder="Search Food" onSearch={handleSearch} />
           </motion.div>
           <motion.div
             className="hometext flex md:flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
@@ -162,6 +169,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex md:flex-row md:gap-4 laptop:mt-12 desktop:mt-0">
+              <Link to="/Order">
               <RedButton
                 className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6 tablet:-ml-24 samsung:-ml-24 samsung:text-xs samsung:w-44 "
                 image={order}
@@ -169,7 +177,9 @@ const Home = () => {
                 name="ORDER FOOD"
                 variant="active"
               />
+              </Link>
               <div className="ml-4 ">
+                <Link to="/Contact">
                 <RedButton
                   className="md:mt-0 mt-3 h-12 md:w-56 md:py-2 md:text-base py-2 text-xs desktop:w-56 laptop:w-52 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-40 "
                   image={cater}
@@ -177,6 +187,7 @@ const Home = () => {
                   name="BOOK-CATERING"
                   variant="active"
                 />
+                </Link>
               </div>
             </div>
           </motion.div>

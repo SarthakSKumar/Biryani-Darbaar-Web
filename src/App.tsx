@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "./lib/firebase";
 import SignInSignUpModal from "./Reusable-components/login";
+import Contact from "./Components/Contact";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -37,6 +38,7 @@ function App() {
               <Route path="/About" element={<About />} />
               <Route path="/Menu" element={<Menu />} />
               <Route path="/SpecialOffer" element={<SpecialOffer />} />
+              <Route path="/Contact" element={<Contact />} />
               <Route
                 path="/Order"
                 element={

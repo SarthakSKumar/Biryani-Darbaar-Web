@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MenuCard from "./MenuCard";
 import Sidebar from "./SideBar";
@@ -30,6 +30,7 @@ const MainOrderLayout: React.FC = () => {
   
 
   const handleCategorySelect = (category: string) => {
+    console.log("Category selected:", category);
     axios
       .get(`${import.meta.env.VITE_API_ENDPOINT}/dishes/category/${category}`)
       .then((response) => {
@@ -92,6 +93,10 @@ const MainOrderLayout: React.FC = () => {
   const handleClearOrders = () => {
     setOrders([]); // Clear orders
   };
+
+  useEffect(() => {
+    handleCategorySelect("Biryani's"); // Set default category to "biryani" on load
+  }, []);
 
   return (
     <div className="flex mt-20">

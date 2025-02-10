@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import ArchedCard from "../Reusable-components/ArchedCard";
 import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
@@ -9,10 +9,13 @@ import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import { motion } from "framer-motion";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
+import { useLocation } from "react-router-dom";
 import "./Menu.css";
+
 const Menu = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("Chicken");
+  const location = useLocation();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,6 +31,28 @@ const Menu = () => {
 
     fetchCategories();
   }, []);
+
+  const handleSearch = useCallback((query: string) => {
+    const category = categories.find((cat) =>
+      cat.toLowerCase().includes(query.toLowerCase())
+    );
+    if (category) {
+      setActiveCategory(category);
+      const element = document.getElementById(category);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [categories]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const searchQuery = params.get("search");
+    if (searchQuery) {
+      handleSearch(searchQuery);
+    }
+  }, [location.search, handleSearch]);
+
   interface Dish {
     image: string;
     dishName: string;
@@ -55,6 +80,7 @@ const Menu = () => {
 
     fetchDishes();
   }, [categories]);
+
   return (
     <>
       <SpecialOfferComponent
@@ -68,65 +94,64 @@ const Menu = () => {
         className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
       <div className="search md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4 desktop:mt-28 laptop:mt-28 dp1:mt-10 dp3:mt-10">
-        <InputSearch placeholder="Search Delicious Food" />
+        <InputSearch placeholder="Search Delicious Food" onSearch={handleSearch} />
       </div>
       <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
-  {categories.map((category, index) => (
-    <RedButton
-      key={index}
-      className="w-60 flex-shrink-0 mt-10"
-      name={category}
-      variant={activeCategory === category ? "active" : "inactive"}
-      onClick={() => {
-        setActiveCategory(category);
-        console.log("Category clicked:", category);
-        const element = document.getElementById(category);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }}
-    />
-  ))}
-</div>
-
-{categories.map((category: string) => (
-  <div key={category} className="mt-24">
-    <div className="text-4xl font-bold ml-28 -mb-20">
-      <span id={category} className="text-primary">{category}</span>
-    </div>
-
-    {/* For mobile scrolling */}
-    <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10"> 
-      {dishes[category]?.map((dish, index) => (
-        <div key={index} className="min-w-[270px]">
-          <ArchedCard
-            image={dish.image}
-            title={dish.dishName}
-            description={dish.description || "Delicious dishes"}
-            buttonTitle="Order Now"
-            price={`$${dish.price}`}
-            className="h-79"
+        {categories.map((category, index) => (
+          <RedButton
+            key={index}
+            className="w-60 flex-shrink-0 mt-10"
+            name={category}
+            variant={activeCategory === category ? "active" : "inactive"}
+            onClick={() => {
+              setActiveCategory(category);
+              console.log("Category clicked:", category);
+              const element = document.getElementById(category);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
           />
+        ))}
+      </div>
+
+      {categories.map((category: string) => (
+        <div key={category} className="mt-24">
+          <div className="text-4xl font-bold ml-28 -mb-20">
+            <span id={category} className="text-primary">{category}</span>
+          </div>
+
+          {/* For mobile scrolling */}
+          <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10"> 
+            {dishes[category]?.map((dish, index) => (
+              <div key={index} className="min-w-[270px]">
+                <ArchedCard
+                  image={dish.image}
+                  title={dish.dishName}
+                  description={dish.description || "Delicious dishes"}
+                  buttonTitle="Order Now"
+                  price={`$${dish.price}`}
+                  className="h-79"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Show grid on larger screens */}
+          <div className=" hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24 desktop:ml-24 laptop:ml-8 dp1:ml-48 dp2:ml-48 dp3:ml-48">
+            {dishes[category]?.map((dish, index) => (
+              <ArchedCard
+                key={index}
+                image={dish.image}
+                title={dish.dishName}
+                description={dish.description || "Delicious dishes"}
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-79"
+              />
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-
-    {/* Show grid on larger screens */}
-    <div className=" hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24 desktop:ml-24 laptop:ml-8 dp1:ml-48 dp2:ml-48 dp3:ml-48">
-      {dishes[category]?.map((dish, index) => (
-        <ArchedCard
-          key={index}
-          image={dish.image}
-          title={dish.dishName}
-          description={dish.description || "Delicious dishes"}
-          buttonTitle="Order Now"
-          price={`$${dish.price}`}
-          className="h-79"
-        />
-      ))}
-    </div>
-  </div>
-
       ))}
       <InfoPage />
       <LocationInfo />

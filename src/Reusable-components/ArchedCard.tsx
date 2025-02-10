@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 import RedButton from "./RedButton"; // Assuming RedButton is already created
 import clsx from "clsx";
@@ -22,11 +22,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
   price,
   className,
 }) => {
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    navigate("/order");
-  };
+ 
 
   return (
     <div
@@ -67,13 +63,13 @@ const CardComponent: React.FC<CardComponentProps> = ({
       </div>
       <div className="relative z-30 -mt-6 laptop:mr-10 desktop:mr-0 laptop:-mt-28 desktop:-mt-6">
         {/* <RedButton className="mx-auto" variant="active" name={buttonTitle} /> */}
-
+        <Link to="/order">
         <RedButton
           className="mx-auto"
           variant="active"
           name={buttonTitle}
-          onClick={handleButtonClick}
         />
+        </Link>
       </div>
     </div>
   );
