@@ -1,3 +1,4 @@
+// PaymentGate.tsx
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -9,8 +10,9 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { X } from "lucide-react";
+import { motion } from "framer-motion";
+import { useCart } from "./CartContext";
 
-// Load Stripe instance with your public key
 const stripePromise = loadStripe(
   "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
 );
@@ -43,11 +45,10 @@ const Checkout: React.FC<CheckoutProps> = ({
   user,
 }) => {
   const navigate = useNavigate();
+  const { clearCart } = useCart();
   const [loading, setLoading] = useState(false);
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const [toastState, setToastState] = useState(false);
-  console.log(clientSecret);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -58,126 +59,85 @@ const Checkout: React.FC<CheckoutProps> = ({
     setPaymentError(null);
     try {
       setLoading(true);
-
-      // Create payment intent on backend
       const response = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/create-payment-intent`,
-        {
-          amount,
-          currency: "AUD",
-        }
+        { amount, currency: "AUD" }
       );
-      console.log("Kojja munda");
-
-      setClientSecret(response.data.clientSecret);
-      console.log(response.data.clientSecret);
 
       const result = await stripe.confirmCardPayment(
         response.data.clientSecret,
         {
-          payment_method: {
-            card: elements.getElement(CardElement)!,
-          },
+          payment_method: { card: elements.getElement(CardElement)! },
         }
       );
-      console.log("lanjam");
 
       if (result.error) {
         setPaymentError(result.error.message || "An unknown error occurred.");
       } else if (result.paymentIntent?.status === "succeeded") {
-        console.log("Payment successful!");
-        setToastState(true);
-
-        // Create order after payment
         const orderDetails = {
           customerName: user.data.userName,
           customerAddress: user.data.address,
           customerPhone: user.data.phoneNumber,
           orderDate: new Date().toISOString(),
-          orderStatus: "Order Recieved",
+          orderStatus: "Order Received",
           totalPrice: amount,
           orderItems: order.map((orderItem) => ({
             ...orderItem,
             dishName: orderItem.name,
             quantity: orderItem.quantity,
           })),
-        };
-        console.log("Kojja mundaa kodakaaa",orderDetails);
-        
-
-        await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/orders`, {
-          ...orderDetails,
-        });
-
-        console.log("Order created successfully");
-      }
-    } catch (err) {
-      console.log("Payment successful!");
-      setToastState(true);
-      // Create order after payment
-      const orderDetails = {
-        customerName: user.data.userName,
-        customerAddress: user.data.address,
-        customerPhone: user.data.phoneNumber,
-        orderDate: new Date().toISOString(),
-        orderStatus: "Pending",
-        totalPrice: amount,
-        orderItems: order.map((orderItem) => ({
-          ...orderItem,
-          dishName: orderItem.name,
-          quantity: orderItem.quantity,
           userId: user.data.userId,
-        })),
-        userId: user.data.userId,
-      };
-      console.log("Erri puuku lanja",orderDetails);
+        };
 
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/orders`,
-        {
-          ...orderDetails,
-        }
-      );
-
-      if (response.status === 201) {
-        console.log("Order created successfully");
+        await axios.post(
+          `${import.meta.env.VITE_API_ENDPOINT}/orders`,
+          orderDetails
+        );
         for (const item of order) {
-          const cartItemId = item.cartItemId;
-          console.log("Cart Item ID:", cartItemId);
-          const response = await axios.delete(
-            `${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`
+          await axios.delete(
+            `${import.meta.env.VITE_API_ENDPOINT}/cart/${item.cartItemId}`
           );
-          console.log("Cart Item deleted:", response);
         }
+        clearCart();
         setToastState(true);
       }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      setPaymentError("An error occurred while processing your payment.");
     } finally {
       setLoading(false);
     }
   };
 
-  // UseEffect hook to navigate after the toast is shown
   useEffect(() => {
     if (toastState) {
       setTimeout(() => {
-        navigate("/orders"); // Redirect to the orders page
-      }, 2000); // Wait 2 seconds before redirecting
+        navigate("/orders");
+      }, 2000);
     }
   }, [toastState, navigate]);
 
   return (
-    <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+    <motion.div
+      className="payment-modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
       onClick={onClose}
     >
-      <div
-        className="bg-white p-4 rounded-lg relative w-96 h-56"
+      <motion.div
+        className="payment-modal-content bg-white p-6 rounded-lg relative w-96"
         onClick={(e) => e.stopPropagation()}
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.4 }}
       >
-        <button onClick={onClose} className="absolute top-2 right-2">
-          <X className="w-6 h-6" />
+        <button onClick={onClose} className="absolute top-4 right-4">
+          <X className="w-6 h-6 text-gray-600 hover:text-red-500 transition" />
         </button>
-        <h2 className="text-2xl font-bold text-center mb-4">Checkout</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-black">
+          Checkout
+        </h2>
         <div className="mb-6">
           <CardElement
             options={{
@@ -185,13 +145,9 @@ const Checkout: React.FC<CheckoutProps> = ({
                 base: {
                   fontSize: "16px",
                   color: "#32325d",
-                  "::placeholder": {
-                    color: "#a0aec0",
-                  },
+                  "::placeholder": { color: "#a0aec0" },
                 },
-                invalid: {
-                  color: "#fa755a",
-                },
+                invalid: { color: "#fa755a" },
               },
             }}
           />
@@ -199,13 +155,13 @@ const Checkout: React.FC<CheckoutProps> = ({
         <button
           onClick={handlePayment}
           disabled={!stripe || loading}
-          className={`w-full px-4 py-2 text-white rounded-md transition ${
+          className={`w-full px-4 py-2 text-white rounded-lg transition ${
             loading
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-blue-500 hover:bg-blue-600"
           }`}
         >
-          {loading ? "Processing..." : `Pay $${amount}`}
+          {loading ? "Processing..." : `Pay $${amount.toFixed(2)}`}
         </button>
         {paymentError && (
           <div className="mt-4 text-red-500 text-sm">{paymentError}</div>
@@ -215,8 +171,8 @@ const Checkout: React.FC<CheckoutProps> = ({
             Payment successful! Your order has been placed.
           </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -226,16 +182,9 @@ const CheckoutPage: React.FC<Omit<CheckoutProps, "onClose">> = ({
   user,
 }) => {
   const [showCheckoutModal, setShowCheckoutModal] = useState(true);
-  console.log(amount, order, user);
 
   return (
     <>
-      {/* <button
-        className="bg-blue-500 text-white py-2 px-4 rounded"
-        onClick={() => setShowCheckoutModal(true)}
-      >
-        Open Checkout
-      </button> */}
       {showCheckoutModal && (
         <Elements stripe={stripePromise}>
           <Checkout

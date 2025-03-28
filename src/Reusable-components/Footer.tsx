@@ -9,12 +9,20 @@ const Footer: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-0">
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start">
-          <img src={logo} alt="Biryani Darbaar Logo" className="logo h-36  md:mr-0" />
+          <img
+            src={logo}
+            alt="Biryani Darbaar Logo"
+            className="logo h-36  md:mr-0"
+          />
           <div className="flex mt-4 space-x-4 mr-60 md:mr-0">
             <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
               <Facebook color="#000" />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               <Instagram color="#000" />
             </a>
             <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
@@ -25,65 +33,55 @@ const Footer: React.FC = () => {
 
         {/* About Us Section */}
         <div className="flex md:gap-40 md:ml-0 ml-40 gap-2 md:mt-0 -mt-44 laptop:gap-4 desktop:gap-20">
-        <div className="text-center md:text-left">
-          <h4 className="md:text-lg font-semibold mb-2 text-red-600">About Us</h4>
-          <ul>
-            <li>
-              <Link to="/about" className="text-base hover:text-red-600">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/menu" className="text-base hover:text-red-600">
-                Menu
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="text-base hover:text-red-600">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link to="/company" className="text-base hover:text-red-600">
-                Company
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Company Section */}
-        <div className="text-center md:text-left">
-          <h4 className="md:text-lg font-semibold mb-2 text-red-600">Company</h4>
-          <ul>
-            <li>
-              <Link to="/partnership" className="text-base hover:text-red-600">
-                Partnership
-              </Link>
-            </li>
-            <li>
-              <Link to="/terms" className="text-base hover:text-red-600">
-                Terms of Use
-              </Link>
-            </li>
-            <li>
-              <Link to="/privacy" className="text-base hover:text-red-600">
-                Privacy
-              </Link>
-            </li>
-            <li>
-              <Link to="/sitemap" className="text-base hover:text-red-600">
-                Sitemap
-              </Link>
-            </li>
-          </ul>
-        </div>
+          <div className="text-center md:text-left">
+            <h4 className="md:text-lg font-semibold mb-2 text-red-600">
+              Links
+            </h4>
+            <ul>
+              <li>
+                <Link to="/about" className="text-base hover:text-red-600">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/menu" className="text-base hover:text-red-600">
+                  Menu
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-base hover:text-red-600">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/privacypolicy"
+                  className="text-base hover:text-red-600"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/termsandconditions"
+                  className="text-base hover:text-red-600"
+                >
+                  Terms and Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Get in Touch Section */}
         <div className="ml-36 md:ml-0 md:text-left">
-          <h4 className="text-lg font-semibold mb-2 text-red-600">Get in touch</h4>
+          <h4 className="text-lg font-semibold mb-2 text-red-600">
+            Get in touch
+          </h4>
           <p className="text-base mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            Stay connected with us! Subscribe to our newsletter for exclusive
+            updates, delicious recipes, and special promotions delivered
+            straight to your inbox.
           </p>
           <form className="flex gap-4 md:gap-0 md:flex-row items-center md:items-start mt-4">
             <input

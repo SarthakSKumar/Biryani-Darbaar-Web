@@ -6,6 +6,8 @@ import Menu from "./Components/Menu";
 import Order from "./Components/Order";
 import About from "./Components/About";
 import SpecialOffer from "./Components/SpecialOffer";
+import PrivacyPolicy from "./Components/privacyPolicy";
+import TermsAndConditions from "./Components/termsAndConditions";
 import Footer from "./Reusable-components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -17,7 +19,7 @@ import Contact from "./Components/Contact";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
@@ -39,10 +41,22 @@ function App() {
               <Route path="/Menu" element={<Menu />} />
               <Route path="/SpecialOffer" element={<SpecialOffer />} />
               <Route path="/Contact" element={<Contact />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route
+                path="/termsandconditions"
+                element={<TermsAndConditions />}
+              />
               <Route
                 path="/Order"
                 element={
-                  isAuthenticated ? <Order /> : <SignInSignUpModal onClose={() => {}} onSuccess={() => {}} />
+                  isAuthenticated ? (
+                    <Order />
+                  ) : (
+                    <SignInSignUpModal
+                      onClose={() => {}}
+                      onSuccess={() => {}}
+                    />
+                  )
                 }
               />
               {/* <Route path="/Order" element={<Order />} /> */}

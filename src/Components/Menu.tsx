@@ -3,9 +3,9 @@ import axios from "axios";
 import ArchedCard from "../Reusable-components/ArchedCard";
 import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
 import InfoPage from "../Reusable-components/InfoPage";
-import LocationInfo from "../Reusable-components/LocationInfo";
+// import LocationInfo from "../Reusable-components/LocationInfo";
 import CustomerReviews from "../Reusable-components/CustomerReview";
-import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
+// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
 import { motion } from "framer-motion";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
@@ -32,18 +32,21 @@ const Menu = () => {
     fetchCategories();
   }, []);
 
-  const handleSearch = useCallback((query: string) => {
-    const category = categories.find((cat) =>
-      cat.toLowerCase().includes(query.toLowerCase())
-    );
-    if (category) {
-      setActiveCategory(category);
-      const element = document.getElementById(category);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+  const handleSearch = useCallback(
+    (query: string) => {
+      const category = categories.find((cat) =>
+        cat.toLowerCase().includes(query.toLowerCase())
+      );
+      if (category) {
+        setActiveCategory(category);
+        const element = document.getElementById(category);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    }
-  }, [categories]);
+    },
+    [categories]
+  );
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -94,7 +97,10 @@ const Menu = () => {
         className="ml-10 mt-10 pt-10 w-1/2"
       ></motion.div>
       <div className="search md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4 desktop:mt-28 laptop:mt-28 dp1:mt-10 dp3:mt-10">
-        <InputSearch placeholder="Search Delicious Food" onSearch={handleSearch} />
+        <InputSearch
+          placeholder="Search Delicious Food"
+          onSearch={handleSearch}
+        />
       </div>
       <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
         {categories.map((category, index) => (
@@ -118,11 +124,13 @@ const Menu = () => {
       {categories.map((category: string) => (
         <div key={category} className="mt-24">
           <div className="text-4xl font-bold ml-28 -mb-20">
-            <span id={category} className="text-primary">{category}</span>
+            <span id={category} className="text-primary">
+              {category}
+            </span>
           </div>
 
           {/* For mobile scrolling */}
-          <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10"> 
+          <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10">
             {dishes[category]?.map((dish, index) => (
               <div key={index} className="min-w-[270px]">
                 <ArchedCard
@@ -154,9 +162,9 @@ const Menu = () => {
         </div>
       ))}
       <InfoPage />
-      <LocationInfo />
+      {/* <LocationInfo /> */}
       <CustomerReviews />
-      <DineInMenuSlider />
+      {/* <DineInMenuSlider /> */}
     </>
   );
 };

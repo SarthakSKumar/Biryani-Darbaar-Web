@@ -25,6 +25,7 @@ import apple from "../assets/download2.png";
 import homechef1 from "../assets/homechef1.png";
 import homechef2 from "../assets/homechef2.png";
 import { Link, useNavigate } from "react-router-dom";
+import LocationInfo from "../Reusable-components/LocationInfo";
 
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -170,23 +171,23 @@ const Home = () => {
           >
             <div className="flex md:flex-row md:gap-4 laptop:mt-12 desktop:mt-0">
               <Link to="/Order">
-              <RedButton
-                className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6 tablet:-ml-24 samsung:-ml-24 samsung:text-xs samsung:w-44 "
-                image={order}
-                alt="order"
-                name="ORDER FOOD"
-                variant="active"
-              />
+                <RedButton
+                  className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6 tablet:-ml-24 samsung:-ml-24 samsung:text-xs samsung:w-44 "
+                  image={order}
+                  alt="order"
+                  name="ORDER FOOD"
+                  variant="active"
+                />
               </Link>
               <div className="ml-4 ">
                 <Link to="/Contact">
-                <RedButton
-                  className="md:mt-0 mt-3 h-12 md:w-56 md:py-2 md:text-base py-2 text-xs desktop:w-56 laptop:w-52 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-40 "
-                  image={cater}
-                  alt="cater"
-                  name="BOOK-CATERING"
-                  variant="active"
-                />
+                  <RedButton
+                    className="md:mt-0 mt-3 h-12 md:w-56 md:py-2 md:text-base py-2 text-xs desktop:w-56 laptop:w-52 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-40 "
+                    image={cater}
+                    alt="cater"
+                    name="BOOK-CATERING"
+                    variant="active"
+                  />
                 </Link>
               </div>
             </div>
@@ -269,14 +270,15 @@ const Home = () => {
           />
         </motion.div>
       </motion.div>
+
       <div className="mt-20 text-center">
         <div className="text-4xl font-bold dp1:text-5xl dp2:text-5xl dp3:text-5xl">
           Today <span className="text-primary">Special</span> Offers
         </div>
         <div className="mt-5 text-sm md:text-base lg:ml-10 lg:mr-10 dp1:text-xl dp2:text-2xl dp3:text-2xl ">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s.
+          Chicken Biryani is a delicious savory rice dish that is loaded with
+          spicy marinated chicken, caramelized onions, and flavorful saffron
+          rice.
         </div>
         <div className="mt-5 md:ml-10">
           {specialDishes.length > 0 ? (
@@ -469,7 +471,7 @@ const Home = () => {
           <img src={homechef2} alt="" className="homechef2" />
         </div>
       </div>
-
+      <LocationInfo />
       <CustomerReviews />
     </>
   );
