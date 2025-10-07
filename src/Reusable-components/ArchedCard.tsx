@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import RedButton from "./RedButton"; // Assuming RedButton is already created
 import clsx from "clsx";
-import arch from "../assets/archy.png";
-import priceb from "../assets/price.png";
 
 interface CardComponentProps {
   image: string;
@@ -11,7 +8,7 @@ interface CardComponentProps {
   description: string;
   buttonTitle: string;
   price: string;
-  className?: string; // Optional external className
+  className?: string;
 }
 
 const CardComponent: React.FC<CardComponentProps> = ({
@@ -22,53 +19,59 @@ const CardComponent: React.FC<CardComponentProps> = ({
   price,
   className,
 }) => {
- 
-
   return (
     <div
       className={clsx(
-        "relative p-4 rounded-lg  text-center h-54 w-72 z-0 dp:ml-10",
+        "relative w-full max-w-sm mx-auto transition-transform opacity-90 hover:opacity-100 duration-300",
         className
       )}
     >
-      <img
-        src={arch}
-        alt=""
-        className="absolute inset-0  w-full desktop:w-full desktop:h-full object-cover z-10  laptop:w-60 "
-      />
-      <div className="relative z-20 flex flex-col items-center justify-center h-full">
-        <div className="flex justify-center mt-0 mb-4">
+      {/* Card with SVG Arch Border for accurate shape */}
+      <div className="relative bg-white pb-8 pt-12 px-6 flex flex-col items-center rounded-b-xl overflow-hidden">
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 400 560"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M20,540 L20,180 C20,150 60,130 100,125 L100,118 C100,98 120,80 200,60 C280,80 300,98 300,118 L300,125 C340,130 380,150 380,180 L380,540 L20,540 Z"
+            fill="none"
+            stroke="#f4a261"
+            strokeWidth="2.5"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+        {/* Product Image */}
+        <div className="relative w-40 h-40 mt-">
           <img
             src={image}
             alt={title}
-            className="rounded-full  w-40 h-40 desktop:w-40 desktop:h-40 object-cover laptop:w-32 laptop:h-32 laptop:mr-12 laptop:-mt-20 desktop:mr-0 desktop:mt-0 "
+            className="w-full h-full object-cover rounded-full border-4 border-white"
           />
         </div>
-        <div className="relative text-2xl font-bold desktop:mb-2 desktop:ml-0 laptop:-ml-12">
-          <img
-            src={priceb}
-            alt=""
-            className="desktop:w-40 desktop:h-14 laptop:w-36 w-40 h-14 z-20"
-          />
-          <span className="absolute inset-0 flex items-center justify-center text-black mb-1 z-30 desktop:text-2xl laptop:text-xl ">
-            {price}
-          </span>
-        </div>
-        <h2 className="text-xl desktop:text-xl laptop:text-lg font-semibold text-primary mb-2 desktop:mr-0 laptop:mr-12">
+
+        {/* Price Badge with CSS Shape */}
+        <div className="relative mb-4 flex justify-center"></div>
+        <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-300 via-orange-200 to-yellow-400 shadow-md text-neutral-900 font-extrabold text-xl border-2 border-yellow-500">
+          {price}
+        </span>
+
+        {/* Title */}
+        <h2 className="text-xl font-bold text-red-600 mt-3 mb-2 text-center line-clamp-1">
           {title}
         </h2>
-        <p className="text-gray-500 mb-4 laptop:-ml-12 laptop:w-56 desktop:w-auto laptop:text-sm desktop:ml-0 desktop:text-base">
+
+        {/* Description */}
+        <p className="text-sm text-neutral-600 text-center mb-4 line-clamp-2 px-2">
           {description}
         </p>
-      </div>
-      <div className="relative z-30 -mt-6 laptop:mr-10 desktop:mr-0 laptop:-mt-28 desktop:-mt-6">
-        {/* <RedButton className="mx-auto" variant="active" name={buttonTitle} /> */}
-        <Link to="/order">
-        <RedButton
-          className="mx-auto"
-          variant="active"
-          name={buttonTitle}
-        />
+
+        {/* Order Button */}
+        <Link to="/Order" className="w-full py-2 px-4">
+          <button className="w-full px-6 py-3 bg-primary text-white rounded-full hover:bg-red-600 transition-all font-semibold border border-primary">
+            {buttonTitle}
+          </button>
         </Link>
       </div>
     </div>
