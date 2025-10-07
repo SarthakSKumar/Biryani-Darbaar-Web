@@ -37,7 +37,6 @@ const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDish
                     {specialDishes.length > 0 ? (
                         <Swiper
                             modules={[Navigation, Pagination]}
-                            spaceBetween={16}
                             slidesPerView={1}
                             breakpoints={{
                                 640: { slidesPerView: 2 },

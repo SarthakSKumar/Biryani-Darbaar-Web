@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import RedButton from "./RedButton";
-import logo from "../../assets/DABAAR.png";
-import { Instagram, Phone, Mail, Menu, X, ShoppingCart } from "lucide-react";
+import { Instagram, Phone, Menu, X, ShoppingCart } from "lucide-react";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useCart } from "../contexts/CartContext";
@@ -44,8 +43,8 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 ${isScrolled
-        ? "backdrop-blur-md"
-        : "backdrop-blur-none"
+        ? "bg-white/90 backdrop-blur-md"
+        : "transparent backdrop-blur-none"
         }`}
     >
       {/* Top bar with contact info */}
@@ -53,15 +52,12 @@ const Navbar: React.FC = () => {
         <div className="container-custom">
           <div className="flex justify-end items-center h-10 space-x-4">
             <a href="tel:+61460747490" className="flex items-center text-neutral-100 hover:text-neutral-300 transition-colors" aria-label="Call Biryani Darbaar">
-              <Phone size={24} className="mr-1" />
+              <Phone size={22} className="mr-1" />
               <span className="text-md font-medium hidden sm:inline">+61460747490</span>
-            </a>
-            <a href="mailto:info@biryanidarbaar.com" className="flex items-center text-neutral-100 hover:text-neutral-300 transition-colors" aria-label="Email Biryani Darbaar">
-              <Mail size={24} className="mr-1" /> Email
             </a>
             <a href="https://www.instagram.com/biryanidarbaar_au/" target="_blank" rel="noreferrer" className="flex gap-1 items-center text-neutral-100 hover:text-neutral-300 transition-colors" aria-label="Follow us on Instagram">
               <Instagram size={21} className="mr-1" />
-              <span className="text-sm font-medium hidden sm:inline">Follow us</span>
+              <span className="text-md font-medium hidden sm:inline">Follow us</span>
             </a>
           </div>
         </div>
@@ -79,7 +75,7 @@ const Navbar: React.FC = () => {
           >
             <Link to="/" className="flex items-center">
               <img
-                src={logo}
+                src="/assets/DABAAR.png"
                 alt="Biryani Darbar"
                 className="h-[165px] w-auto object-contain relative -top-4"
               />
@@ -184,7 +180,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white/95 backdrop-blur-md border-t border-neutral-200 shadow-lg"
+            className="lg:hidden bg-white/90- backdrop-blur-md border-t border-neutral-200 shadow-lg"
           >
             <div className="container-custom py-4 space-y-2">
               <Link

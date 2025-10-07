@@ -1,26 +1,23 @@
 "use client";
 import React from "react";
-import slider1 from "../../../assets/slider1.png";
-import slider2 from "../../../assets/slider2.jpg";
-import slider3 from "../../../assets/slider3.jpg";
 import { Plus } from "lucide-react";
 
 const ImageSlider: React.FC = () => {
   const offers = [
     {
-      image: slider1,
+      image: "/assets/slider1.png",
       title: "First Order Discount",
       subtitle: "Biryani Darbaar in Atol Park",
       discount: "-20%",
     },
     {
-      image: slider2,
+      image: "/assets/slider2.jpg",
       title: "Biryani Discount",
       subtitle: "Biryani Darbaar in Atol Park",
       discount: "-20%",
     },
     {
-      image: slider3,
+      image: "/assets/slider3.jpg",
       title: "Haleem Offer",
       subtitle: "Biryani Darbaar in Atol Park",
       discount: "-15%",

@@ -3,18 +3,6 @@ import { Link } from "react-router-dom";
 import InputSearch from "@/components/InputSearch";
 import RedButton from "@/components/RedButton";
 import RedWhip from "@/components/atoms/RedWhip";
-import order from "../../../assets/ordericon.png";
-import cater from "../../../assets/cateringicon.png";
-import girl from "../../../assets/Girl.png";
-import circle1 from "../../../assets/mealcircle1.png";
-import circle2 from "../../../assets/mealcircle2.png";
-import circle3 from "../../../assets/mealcircle3.png";
-import circle4 from "../../../assets/mealcircle4.png";
-import android from "../../../assets/android.png";
-import apple from "../../../assets/download2.png";
-import smily from "../../../assets/smilyicon.svg";
-import star from "../../../assets/Star.svg";
-import card1 from "../../../assets/card1.png";
 
 interface HeroSectionProps {
     onSearch: (query: string) => void;
@@ -107,7 +95,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <Link to="/Order">
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
-                                    image={order}
+                                    image="/assets/ordericon.png"
                                     alt="order"
                                     name="Order Food"
                                     variant="active"
@@ -116,7 +104,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <Link to="/Contact">
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
-                                    image={cater}
+                                    image="/assets/cateringicon.png"
                                     alt="cater"
                                     name="Book Catering Services"
                                     variant="active"
@@ -125,8 +113,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         </motion.div>
 
                         <div className="flex justify-start items-center gap-4 mt-8">
-                            <img className="w-40" src={android} alt="Download on Android" />
-                            <img className="w-64" src={apple} alt="Download on iOS" />
+                            <img className="w-40" src="/assets/images/google-play.png" alt="Download on Android" />
+                            <img className="w-64" src="/assets/images/app-store.png" alt="Download on iOS" />
                         </div>
                     </motion.div>
 
@@ -140,11 +128,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         <div className="relative">
                             {/* Happy Customer Badge */}
                             <div className="absolute top-0 right-0 w-fit gap-2 h-fit py-2 bg-white rounded-3xl flex items-center justify-between px-4 border border-neutral-200 z-20">
-                                <img className="w-9" src={smily} alt="" />
+                                <img className="w-9" src="/assets/smilyicon.svg" alt="" />
                                 <div className="flex flex-col">
                                     <div className="text-xs font-semibold">Our Happy Customer</div>
                                     <div className="flex items-center">
-                                        <img className="h-3" src={star} alt="" />
+                                        <img className="h-3" src="/assets/Star.svg" alt="" />
                                         <span className="text-xs ml-1">4.9</span>
                                         <span className="text-xs ml-1">(1989 Reviews)</span>
                                     </div>
@@ -153,7 +141,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
                             {/* Chicken Biryani Card */}
                             <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-neutral-200 z-20">
-                                <img className="w-10 ml-2" src={card1} alt="" />
+                                <img className="w-10 ml-2" src="/assets/card1.png" alt="" />
                                 <div className="flex flex-col ml-2">
                                     <span className="text-xs font-bold">Chicken Biryani</span>
                                     <div className="text-md font-medium text-red-700">@ Just $9.50</div>
@@ -163,7 +151,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             {/* Girl Image with Circle */}
                             <div className="w-[410px] h-[410px] rounded-full bg-primary overflow-hidden relative z-10">
                                 <img
-                                    src={girl}
+                                    src="/assets/Girl.png"
                                     alt="Food delivery"
                                     className="max-h-[500px] ml-5 -mt-24 object-cover"
                                 />
@@ -175,28 +163,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             {/* Rotating Meal Circles */}
                             <motion.img
                                 className="absolute -bottom-8 -left-32 w-44 z-10"
-                                src={circle1}
+                                src="/assets/mealcircle1.png"
                                 alt=""
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 left-4 w-56 z-10"
-                                src={circle2}
+                                src="/assets/mealcircle2.png"
                                 alt=""
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 right-2 w-52 z-10"
-                                src={circle3}
+                                src="/assets/mealcircle3.png"
                                 alt=""
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute top-56 -right-32 w-54 z-10"
-                                src={circle4}
+                                src="/assets/mealcircle4.png"
                                 alt=""
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

@@ -1,8 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import kebab from "../../../assets/kebab.png";
-import chickencurries from "../../../assets/chickencurries.png";
-import starters from "../../../assets/starters.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Custom arrow components
@@ -43,19 +40,19 @@ interface MenuItem {
 // Menu items data (Replace image paths with real image URLs)
 const menuItems: MenuItem[] = [
   {
-    image: starters, // Update with your actual image paths
+    image: "/assets/starters.png",
     label: "STARTERS",
   },
   {
-    image: kebab,
+    image: "/assets/kebab.png",
     label: "CHARCOAL KEBABS",
   },
   {
-    image: chickencurries,
+    image: "/assets/chickencurries.png",
     label: "CHICKEN CURRIES",
   },
   {
-    image: chickencurries,
+    image: "/assets/chickencurries.png",
     label: "BIRYANI'S",
   },
 ];

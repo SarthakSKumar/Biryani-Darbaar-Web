@@ -9,6 +9,7 @@ This directory contains custom React hooks that consolidate repeated logic acros
 Manages authentication state using Firebase.
 
 **Usage:**
+
 ```tsx
 import { useAuth } from "@/hooks/useAuth";
 
@@ -19,17 +20,14 @@ function MyComponent() {
 
   return (
     <div>
-      {isAuthenticated ? (
-        <p>Welcome, {user?.email}</p>
-      ) : (
-        <p>Please sign in</p>
-      )}
+      {isAuthenticated ? <p>Welcome, {user?.email}</p> : <p>Please sign in</p>}
     </div>
   );
 }
 ```
 
 **Returns:**
+
 - `isAuthenticated: boolean` - Whether user is logged in
 - `user: User | null` - Firebase user object
 - `loading: boolean` - Auth state loading status
@@ -41,6 +39,7 @@ function MyComponent() {
 Fetches menu categories from the API.
 
 **Usage:**
+
 ```tsx
 import { useCategories } from "@/hooks/useCategories";
 
@@ -61,6 +60,7 @@ function CategoryList() {
 ```
 
 **Returns:**
+
 - `categories: string[]` - Array of category names
 - `loading: boolean` - Loading state
 - `error: Error | null` - Error object if request failed
@@ -72,6 +72,7 @@ function CategoryList() {
 Fetches dishes for a specific category.
 
 **Usage:**
+
 ```tsx
 import { useDishes } from "@/hooks/useDishes";
 
@@ -92,9 +93,11 @@ function DishList({ category }: { category: string }) {
 ```
 
 **Parameters:**
+
 - `category: string` - The category to fetch dishes for
 
 **Returns:**
+
 - `dishes: Dish[]` - Array of dishes (see `@/types/index.ts` for `Dish` type)
 - `loading: boolean` - Loading state
 - `error: Error | null` - Error object if request failed
@@ -104,6 +107,7 @@ function DishList({ category }: { category: string }) {
 ## Migration Guide
 
 ### Before (Repeated Logic)
+
 ```tsx
 const [categories, setCategories] = useState<string[]>([]);
 
@@ -123,6 +127,7 @@ useEffect(() => {
 ```
 
 ### After (Using Hook)
+
 ```tsx
 import { useCategories } from "@/hooks/useCategories";
 
@@ -130,6 +135,7 @@ const { categories, loading, error } = useCategories();
 ```
 
 **Benefits:**
+
 - ✅ Less code
 - ✅ Consistent error handling
 - ✅ Type-safe
@@ -141,13 +147,17 @@ const { categories, loading, error } = useCategories();
 ## Future Hooks to Consider
 
 ### `useCart()`
+
 Consolidate cart operations (already have `useCart` from context, but could enhance with better error handling).
 
 ### `useOrders(userId)`
+
 Fetch user orders with proper loading/error states.
 
 ### `useSpecialOffers()`
+
 Fetch special offers/promotions.
 
 ### `useDebounce(value, delay)`
+
 Debounce search inputs and other frequent updates.

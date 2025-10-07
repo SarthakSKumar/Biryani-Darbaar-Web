@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import orderSpoon from "../../../assets/Order-spoon.png";
-import orderGirl from "../../../assets/order-girl.png";
 
 interface SidebarProps {
   handleCategorySelect: (category: string) => void;
@@ -48,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
         <img
-          src={orderSpoon}
+          src="/assets/Order-spoon.png"
           alt="Menu Icon"
           className="w-14 h-14"
         />
@@ -81,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Promotional Card */}
       <div className="relative rounded-lg overflow-hidden border border-neutral-200 group">
         <img
-          src={orderGirl}
+          src="/assets/order-girl.png"
           alt="First Order Discount"
           className="w-full h-80 object-cover"
         />

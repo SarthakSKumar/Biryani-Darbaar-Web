@@ -14,7 +14,7 @@ const About: React.FC = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Hero Section */}
-        <section className="container-custom text-center section-spacing">
+        <section className="container-custom section-spacing mt-12">
           <motion.h1
             className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6"
             initial={{ opacity: 0, y: 30 }}
@@ -32,7 +32,7 @@ const About: React.FC = () => {
             Bringing the True Taste of Hyderabadi Biryani to Australia
           </motion.h3>
           <motion.p
-            className="text-lg text-neutral-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg text-neutral-600 w-full leading-relaxed"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -46,7 +46,7 @@ const About: React.FC = () => {
         </section>
 
         {/* What Makes Our Biryani Special - Left/Right Layout */}
-        <section className="container-custom section-spacing">
+        <section className="container-custom flex flex-col gap-12">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -79,7 +79,7 @@ const About: React.FC = () => {
         </section>
 
         {/* More Than Just Biryani - Right/Left Layout */}
-        <section className="container-custom section-spacing">
+        <section className="container-custom">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.img
               src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800"
@@ -113,7 +113,7 @@ const About: React.FC = () => {
         </section>
 
         {/* For Our Aussie Food Lovers - Left/Right Layout */}
-        <section className="container-custom section-spacing">
+        <section className="container-custom">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}

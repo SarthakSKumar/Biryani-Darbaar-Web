@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import locationmap from "../../../assets/locationmap.png";
 
 const LocationInfo = () => {
     return (
@@ -22,7 +21,7 @@ const LocationInfo = () => {
             <div className="py-12">
                 <div className="relative flex justify-center items-center bg-white rounded-lg border">
                     <img
-                        src={locationmap}
+                        src="/assets/locationmap.png"
                         alt="Map"
                         className="md:w-full md:h-auto md:object-cover rounded-lg w-[400px] h-[300px] cursor-pointer"
                         onClick={() =>

@@ -8,9 +8,11 @@
 ## ✅ **COMPLETED CLEANUPS**
 
 ### 1. **Removed Duplicate CSS Media Queries** ✨
+
 **File:** `src/styles/sections.css`
 
 **What was fixed:**
+
 - Consolidated **8 duplicate media query blocks** into 4 unified blocks
 - Removed 50+ lines of repeated CSS code
 - Merged `.dish` and `.tso` styles into single media queries
@@ -21,9 +23,11 @@
 ---
 
 ### 2. **Removed Debug Code** 🐛
+
 **File:** `src/App.tsx`
 
 **What was fixed:**
+
 - Removed `console.log(isAuthenticated)` from production code
 - Cleaned up unnecessary comments
 
@@ -32,18 +36,22 @@
 ---
 
 ### 3. **Removed TODO Comment** 📝
+
 **File:** `src/components/Navbar.tsx`
 
 **What was fixed:**
+
 - Removed orphaned `{/* TODO */}` comment
 - No functionality was missing - it was just a dead marker
 
 ---
 
 ### 4. **All Fonts Now Use Geist** 🎨
+
 **Files:** `src/styles/sections.css`, `src/styles/components.css`
 
 **What was fixed:**
+
 - Removed all Google Fonts (Lato) imports
 - Replaced all `font-family: "Lato"` with `font-family: "Geist"`
 - Single font family throughout entire app
@@ -57,24 +65,33 @@
 ### Created Reusable Hooks
 
 #### 1. **`src/hooks/useAuth.ts`**
+
 Centralized authentication state management:
+
 ```tsx
 const { isAuthenticated, user, loading } = useAuth();
 ```
+
 **Replaces repeated code in:** `App.tsx`, `Navbar.tsx`
 
 #### 2. **`src/hooks/useCategories.ts`**
+
 Centralized category fetching:
+
 ```tsx
 const { categories, loading, error } = useCategories();
 ```
+
 **Replaces repeated code in:** `home/index.tsx`, `menu/index.tsx`, `order/MainOrderLayout.tsx`
 
 #### 3. **`src/hooks/useDishes.ts`**
+
 Centralized dish fetching by category:
+
 ```tsx
 const { dishes, loading, error } = useDishes(category);
 ```
+
 **Replaces repeated code in:** `home/index.tsx`, `order/MainOrderLayout.tsx`
 
 ---
@@ -82,7 +99,9 @@ const { dishes, loading, error } = useDishes(category);
 ### Created Shared Constants
 
 #### **`src/config/constants.ts`**
+
 Centralized magic numbers and config:
+
 ```typescript
 export const POLLING_INTERVAL = 10 * 60 * 1000;
 export const MIN_ORDER_AMOUNT = 20;
@@ -97,7 +116,9 @@ export const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 ### Created Type Definitions
 
 #### **`src/types/index.ts`**
+
 Centralized TypeScript interfaces:
+
 - `Dish`
 - `CartItem`
 - `Order`
@@ -114,15 +135,18 @@ Centralized TypeScript interfaces:
 ### High Priority
 
 #### 1. **Replace Polling with Better Data Fetching**
+
 **Location:** `src/pages/home/index.tsx` lines 30, 52
 
 **Current Problem:**
+
 ```tsx
 const intervalId = setInterval(fetchCategories, 10 * 60 * 1000);
 ```
 
 **Recommended Solution:**
 Install and use **React Query** or **SWR**:
+
 ```bash
 pnpm add @tanstack/react-query
 ```
@@ -134,7 +158,9 @@ pnpm add @tanstack/react-query
 #### 2. **Extract Large Components**
 
 ##### **Navbar.tsx (271 lines)**
+
 **Recommended split:**
+
 ```
 src/components/navbar/
   ├── Navbar.tsx (main orchestrator)
@@ -144,7 +170,9 @@ src/components/navbar/
 ```
 
 ##### **Checkout.tsx (339 lines)**
+
 **Recommended split:**
+
 ```
 src/pages/checkout/
   ├── index.tsx (main orchestrator)
@@ -158,16 +186,24 @@ src/pages/checkout/
 #### 3. **Excessive JSX Comments**
 
 **Files with unnecessary structural comments:**
+
 - `src/pages/checkout/index.tsx` (12 comments)
 - `src/pages/order/MainOrderLayout.tsx` (6 comments)
 - `src/components/Navbar.tsx` (10 comments)
 - `src/components/LargeImageView.tsx` (6 comments)
 
 **Examples of removable comments:**
+
 ```tsx
-{/* Header */}
-{/* Left: Shipping Information */}
-{/* Cart Items */}
+{
+  /* Header */
+}
+{
+  /* Left: Shipping Information */
+}
+{
+  /* Cart Items */
+}
 ```
 
 **Recommendation:** Remove comments that just restate what's obvious from the code structure. Keep only non-obvious business logic comments.
@@ -179,6 +215,7 @@ src/pages/checkout/
 #### 4. **Unused CSS Classes in `global.css`**
 
 **Classes to audit:**
+
 - `.nav-button` - Defined but possibly not used
 - `.price-badge` - Defined but usage unclear
 - `.logo` selector at bottom - May conflict with component styles
@@ -190,21 +227,17 @@ src/pages/checkout/
 #### 5. **Empty Callback Anti-pattern**
 
 **Location:** `src/App.tsx` lines 88-89
+
 ```tsx
-<SignInSignUpModal
-  onClose={() => { }}
-  onSuccess={() => { }}
-/>
+<SignInSignUpModal onClose={() => {}} onSuccess={() => {}} />
 ```
 
 **Better approach:**
+
 ```tsx
 const noop = () => {};
 
-<SignInSignUpModal
-  onClose={noop}
-  onSuccess={noop}
-/>
+<SignInSignUpModal onClose={noop} onSuccess={noop} />;
 ```
 
 ---
@@ -218,6 +251,7 @@ const noop = () => {};
 **Current state:** 223 lines with complex localStorage + backend sync logic
 
 **Recommendation:** Consider using a state machine library (XState) or splitting into:
+
 - `useCartStorage.ts` (localStorage logic)
 - `useCartAPI.ts` (backend sync logic)
 - `CartProvider.tsx` (orchestration)
@@ -227,6 +261,7 @@ const noop = () => {};
 ## 📊 **IMPACT SUMMARY**
 
 ### Code Quality Improvements
+
 - ✅ Removed **~60 lines** of duplicate CSS
 - ✅ Removed 1 debug `console.log`
 - ✅ Removed 1 TODO comment
@@ -236,12 +271,14 @@ const noop = () => {};
 - ✅ Created 1 types file
 
 ### Maintainability Gains
+
 - 🎯 Centralized auth logic → easier to add features
 - 🎯 Centralized data fetching → easier to add caching
 - 🎯 Type-safe interfaces → catch bugs at compile time
 - 🎯 Constants file → single source of truth for config
 
 ### Build Impact
+
 - ✨ CSS file reduced by ~0.5 KB (71.95 KB vs 72.44 KB previously)
 - ✨ No external font requests (Geist loaded locally)
 - ✨ TypeScript compilation successful with no errors
@@ -251,17 +288,20 @@ const noop = () => {};
 ## 🎯 **NEXT STEPS TO IMPLEMENT**
 
 ### Immediate (Can do now)
+
 1. ✅ Use new hooks in existing components
 2. ✅ Use constants file instead of magic numbers
 3. ✅ Remove excessive JSX comments
 4. ✅ Audit and remove unused CSS classes
 
 ### Short-term (This week)
+
 1. Install React Query and replace polling
 2. Split large components (Navbar, Checkout)
 3. Refactor CartProvider for better testability
 
 ### Long-term (Future sprints)
+
 1. Consider code-splitting for bundle size
 2. Add unit tests for new hooks
 3. Add Storybook for component documentation
@@ -273,13 +313,16 @@ const noop = () => {};
 ### Example: Refactor home page to use new hooks
 
 **Before:**
+
 ```tsx
 const [categories, setCategories] = useState<string[]>([]);
 
 useEffect(() => {
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/categories`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_ENDPOINT}/categories`
+      );
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -292,6 +335,7 @@ useEffect(() => {
 ```
 
 **After:**
+
 ```tsx
 import { useCategories } from "@/hooks/useCategories";
 
@@ -306,20 +350,21 @@ const { categories, loading, error } = useCategories();
 
 ## 📈 **METRICS**
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| CSS duplicates | 8 blocks | 0 blocks | ✅ 100% |
-| Debug code | 1 console.log | 0 | ✅ 100% |
-| External fonts | 2 (Geist + Lato) | 1 (Geist) | ✅ 50% |
-| Reusable hooks | 0 | 3 | ✅ +300% |
-| Type definitions | Scattered | Centralized | ✅ Better DX |
-| Build warnings | 2 (CSS + fonts) | 1 (bundle size) | ✅ 50% |
+| Metric           | Before           | After           | Improvement  |
+| ---------------- | ---------------- | --------------- | ------------ |
+| CSS duplicates   | 8 blocks         | 0 blocks        | ✅ 100%      |
+| Debug code       | 1 console.log    | 0               | ✅ 100%      |
+| External fonts   | 2 (Geist + Lato) | 1 (Geist)       | ✅ 50%       |
+| Reusable hooks   | 0                | 3               | ✅ +300%     |
+| Type definitions | Scattered        | Centralized     | ✅ Better DX |
+| Build warnings   | 2 (CSS + fonts)  | 1 (bundle size) | ✅ 50%       |
 
 ---
 
 ## ✨ **CONCLUSION**
 
 Your codebase is now significantly cleaner with:
+
 - ✅ No duplicate CSS
 - ✅ No debug code
 - ✅ Consistent font usage

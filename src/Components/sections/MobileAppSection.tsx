@@ -1,6 +1,3 @@
-import android from "../../../assets/android.png";
-import apple from "../../../assets/download2.png";
-import homechef2 from "../../../assets/homechef2.png";
 
 const MobileAppSection: React.FC = () => {
     return (
@@ -21,14 +18,14 @@ const MobileAppSection: React.FC = () => {
                         </p>
 
                         <div className="flex items-center justify-center md:justify-start gap-4 mt-8">
-                            <img className="w-40" src={android} alt="Download on Android" />
-                            <img className="w-40" src={apple} alt="Download on iOS" />
+                            <img className="w-40" src="/assets/images/play-store.png" alt="Download on Android" />
+                            <img className="w-40" src="/assets/images/app-store.png" alt="Download on iOS" />
                         </div>
                     </div>
 
                     {/* Right Image */}
                     <div className="hidden md:block left-8 relative md:w-1/2">
-                        <img src={homechef2} alt="Mobile App" className="w-full h-auto" />
+                        <img src="/assets/homechef2.png" alt="Mobile App" className="w-full h-auto" />
                     </div>
                 </div>
             </div>

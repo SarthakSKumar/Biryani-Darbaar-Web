@@ -2,7 +2,6 @@ import React from "react";
 import { useCart } from "@/contexts/CartContext";
 import { motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
-import chilliIcon from "../../../assets/chilli-icon.png";
 
 interface MenuCardProps {
   title: string;
@@ -62,7 +61,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
 
           {/* Spice level indicator */}
           <div className="flex items-center gap-2 mb-3">
-            <img src={chilliIcon} alt="Spice Level" className="w-5 h-5" />
+            <img src="/assets/chilli-icon.png" alt="Spice Level" className="w-5 h-5" />
             <span className="text-sm text-orange-600 font-medium">Medium Spicy</span>
           </div>
 

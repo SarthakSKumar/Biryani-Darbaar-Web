@@ -21,38 +21,42 @@ const InputSearch: React.FC<InputSearchProps> = ({
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
   return (
-    <div
+    <form
       className={clsx(
-        "flex items-center border-2 border-neutral-300 z-50 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
+        "flex items-center gap-2 border border-neutral-200 rounded-lg bg-white shadow-sm focus-within:ring-2 focus-within:ring-primary transition-all w-full max-w-xl px-3 py-2",
         className
       )}
+      onSubmit={e => {
+        e.preventDefault();
+        handleSearch();
+      }}
     >
-      <div className="pl-5 pr-3 py-3">
-        <Search size={22} className="text-neutral-400" />
-      </div>
+      <Search size={20} className="text-neutral-400" />
       <input
         placeholder={placeholder}
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={handleKeyPress}
-        className="flex-1 py-3 px-2 rounded-full outline-none text-neutral-700 placeholder:text-neutral-400"
+        onKeyDown={handleKeyDown}
+        className="flex-1 bg-transparent outline-none text-neutral-800 placeholder:text-neutral-400 text-base"
+        autoComplete="off"
       />
       <button
-        className="bg-primary text-white px-6 py-3 rounded-full mr-2 hover:bg-red-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-        onClick={handleSearch}
+        type="submit"
+        className="bg-primary hover:bg-primary/90 text-white rounded-md px-4 py-2 transition-colors duration-200 disabled:opacity-50 font-medium"
         disabled={!query.trim()}
+        aria-label="Search"
       >
-        <Search size={22} color="#fff" />
+        <Search size={18} color="#fff" />
       </button>
-    </div>
+    </form>
   );
 };
 

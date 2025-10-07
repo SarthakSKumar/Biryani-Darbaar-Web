@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/DABAAR.png";
 import { Instagram, Mail, Phone } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -11,7 +10,7 @@ const Footer: React.FC = () => {
           {/* Logo & Social Section */}
           <div className="flex flex-col items-center md:items-start">
             <img
-              src={logo}
+              src="/assets/DABAAR.png"
               alt="Biryani Darbaar Logo"
               className="h-32 md:h-36 mb-6"
             />
@@ -48,7 +47,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/About"
-                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
                 >
                   About Us
                 </Link>
@@ -56,7 +55,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/Menu"
-                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
                 >
                   Menu
                 </Link>
@@ -64,7 +63,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/Contact"
-                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
                 >
                   Contact
                 </Link>
@@ -72,7 +71,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/PrivacyPolicy"
-                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
                 >
                   Privacy Policy
                 </Link>
@@ -80,7 +79,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/TC"
-                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
                 >
                   Terms and Conditions
                 </Link>
