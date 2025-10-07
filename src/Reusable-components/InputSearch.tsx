@@ -16,31 +16,41 @@ const InputSearch: React.FC<InputSearchProps> = ({
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
-    onSearch(query);
+    if (query.trim()) {
+      onSearch(query);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
     <div
       className={clsx(
-        "flex items-center border border-gray-800 md:border-gray-800 rounded-full bg-white md:w-1/2 mt-10 dp:w-3/5",
+        "flex items-center border-2 border-gray-300 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
         className
       )}
     >
-      <div className="p-2">
-        <Search size={20} color="#000" />
+      <div className="pl-5 pr-3 py-3">
+        <Search size={22} className="text-gray-400" />
       </div>
       <input
         placeholder={placeholder}
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-1 py-2 md:px-4 px-1 rounded-full outline-none"
+        onKeyPress={handleKeyPress}
+        className="flex-1 py-3 px-2 rounded-full outline-none text-gray-700 placeholder:text-gray-400"
       />
       <button
-        className="bg-primary text-white p-2 rounded-full mr-2"
+        className="bg-primary text-white px-6 py-3 rounded-full mr-2 hover:bg-red-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={handleSearch}
+        disabled={!query.trim()}
       >
-        <Search size={20} color="#fff" />
+        <Search size={22} color="#fff" />
       </button>
     </div>
   );
