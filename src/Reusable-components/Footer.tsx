@@ -5,101 +5,125 @@ import { Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primaryYellow p-6 md:p-10 text-red-900">
-      <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-0">
-        {/* Logo Section */}
-        <div className="flex flex-col items-center md:items-start">
-          <img
-            src={logo}
-            alt="Biryani Darbaar Logo"
-            className="logo h-36  md:mr-0"
-          />
-          <div className="flex mt-4 space-x-4 mr-60 md:mr-0">
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-              <Facebook color="#000" />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Instagram color="#000" />
-            </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
-              <Twitter color="#000" />
-            </a>
+    <footer className="bg-[#f4c145] text-neutral-900 border-t border-gray-200">
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Logo & Social Section */}
+          <div className="flex flex-col items-center md:items-start">
+            <img
+              src={logo}
+              alt="Biryani Darbaar Logo"
+              className="h-32 md:h-36 mb-6"
+            />
+            <div className="flex gap-4">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
+              >
+                <Facebook size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/biryanidarbaar_au/"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
+              >
+                <Twitter size={20} />
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* About Us Section */}
-        <div className="flex md:gap-40 md:ml-0 ml-40 gap-2 md:mt-0 -mt-44 laptop:gap-4 desktop:gap-20">
+          {/* Links Section */}
           <div className="text-center md:text-left">
-            <h4 className="md:text-lg font-semibold mb-2 text-red-600">
-              Links
-            </h4>
-            <ul>
+            <h4 className="text-xl font-bold mb-6 text-primary">Quick Links</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-base hover:text-red-600">
+                <Link
+                  to="/About"
+                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/menu" className="text-base hover:text-red-600">
+                <Link
+                  to="/Menu"
+                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                >
                   Menu
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-base hover:text-red-600">
+                <Link
+                  to="/Contact"
+                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
+                >
                   Contact
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/privacypolicy"
-                  className="text-base hover:text-red-600"
+                  to="/PrivacyPolicy"
+                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
                 >
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/termsandconditions"
-                  className="text-base hover:text-red-600"
+                  to="/TC"
+                  className="text-neutral-700 hover:text-primary transition-colors font-medium"
                 >
                   Terms and Conditions
                 </Link>
               </li>
             </ul>
           </div>
-        </div>
 
-        {/* Get in Touch Section */}
-        <div className="ml-36 md:ml-0 md:text-left">
-          <h4 className="text-lg font-semibold mb-2 text-red-600">
-            Get in touch
-          </h4>
-          <p className="text-base mb-4">
-            Stay connected with us! Subscribe to our newsletter for exclusive
-            updates, delicious recipes, and special promotions delivered
-            straight to your inbox.
-          </p>
-          <form className="flex gap-4 md:gap-0 md:flex-row items-center md:items-start mt-4">
-            <input
-              type="email"
-              placeholder="Email"
-              className="p-2 rounded-full bg-yellow-600 text-white placeholder:text-zinc-300 focus:outline-none mb-3 md:mb-0 md:mr-3 w-full md:w-auto"
-            />
-            <button
-              type="submit"
-              className="bg-primary text-white p-2 rounded-full hover:bg-red-700 md:w-auto"
-            >
-              Subscribe
-            </button>
-          </form>
+          {/* Newsletter Section */}
+          <div className="text-center md:text-left">
+            <h4 className="text-xl font-bold mb-6 text-primary">
+              Stay Connected
+            </h4>
+            <p className="text-neutral-600 mb-6 leading-relaxed">
+              Subscribe to our newsletter for exclusive updates, delicious
+              recipes, and special promotions delivered straight to your inbox.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 w-36 rounded-lg bg-white border border-gray-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                required
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-red-600 transition-colors border border-primary"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-      <div className=" text-xs md:text-lg text-center mt-6 text-black">
-        &copy; 2024 BIRYANI DARBAAR. All rights reserved.
+
+      {/* Copyright */}
+      <div className="border-t border-gray-200 py-6">
+        <div className="container-custom">
+          <p className="text-center text-neutral-600 text-sm md:text-base">
+            &copy; {new Date().getFullYear()} Biryani Darbaar. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
