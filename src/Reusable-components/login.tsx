@@ -95,11 +95,11 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
               className="w-full px-4 py-2 mb-4 border rounded"
             />
             <input
-            type="text"
-            placeholder="Address"
-            value = {address}
-            onChange={(e) => setAddress(e.target.value)}  
-            className="w-full px-4 py-2 mb-4 border rounded"
+              type="text"
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="w-full px-4 py-2 mb-4 border rounded"
             />
           </>
         )}
@@ -120,7 +120,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
           />
           <button
             onClick={togglePasswordVisibility}
-            className="absolute top-2 right-2 text-gray-500"
+            className="absolute top-2 right-2 text-neutral-500"
           >
             {showPassword ? "Hide" : "Show"}
           </button>
@@ -147,7 +147,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
         </button>
         <button
           onClick={() => setIsSignUp(!isSignUp)}
-          className="w-full mt-2 text-gray-600 underline"
+          className="w-full mt-2 text-neutral-600 underline"
         >
           {isSignUp
             ? "Already have an account? Sign In"
@@ -156,7 +156,7 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
         <Link to={"/"}>
           <button
             onClick={onClose}
-            className="w-full mt-2 text-gray-600 underline"
+            className="w-full mt-2 text-neutral-600 underline"
           >
             Cancel
           </button>
