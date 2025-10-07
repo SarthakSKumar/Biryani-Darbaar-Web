@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 interface RedButtonProps {
   name: string;
@@ -7,7 +8,7 @@ interface RedButtonProps {
   className?: string;
   image?: string;
   alt?: string;
-  onClick?: () => void; // Adding the onClick prop
+  onClick?: () => void;
 }
 
 const RedButton: React.FC<RedButtonProps> = ({
@@ -16,38 +17,49 @@ const RedButton: React.FC<RedButtonProps> = ({
   className,
   image,
   alt,
-  onClick, // Destructure onClick prop
+  onClick,
 }) => {
   const baseClasses =
-    "px-4 py-2 w-36 cursor-pointer transition-colors duration-300 rounded-full";
-  const activeClasses = "bg-primary text-white hover:bg-yellow-500";
+    "px-6 py-3 cursor-pointer transition-all duration-300 rounded-lg active:scale-95 font-medium border-2";
+  const activeClasses = "bg-primary text-white hover:bg-red-600 border-primary";
   const inactiveClasses =
-    "bg-white text-gray-500 border border-gray-500 hover:bg-white";
+    "bg-white text-neutral-600 hover:bg-gray-50 border-gray-300 hover:border-gray-400";
 
   const buttonClasses = clsx(
     baseClasses,
     variant === "active" ? activeClasses : inactiveClasses,
-    className // Merge with external className
+    className
   );
 
-  // Conditionally render button based on whether image is provided
+  // Render button without image
   if (!image) {
     return (
-      <button className={buttonClasses} onClick={onClick}>
+      <motion.button
+        className={buttonClasses}
+        onClick={onClick}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
         {name}
-      </button>
+      </motion.button>
     );
   }
 
+  // Render button with image
   return (
-    <div className={buttonClasses} onClick={onClick}>
-      <div className="flex md:flex-wrap">
-        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full lg:mr-21 mr-5 -ml-3 -mt-[2px]">
-          <img src={image} alt={alt} className=""/>
+    <motion.div
+      className={buttonClasses}
+      onClick={onClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full shadow-sm">
+          <img src={image} alt={alt} className="w-6 h-6 object-contain" />
         </div>
-        <div className=" md:mt-1 samsung:mt-2 samsung:ml-2">{name}</div>
+        <span className="font-medium">{name}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
