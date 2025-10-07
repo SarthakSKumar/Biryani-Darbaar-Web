@@ -6,7 +6,7 @@ import logo from "../assets/DABAAR.png";
 import { Instagram, Phone, Mail, Menu, X, ShoppingCart } from "lucide-react";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../contexts/CartContext";
 import axios from "axios";
 
 const Navbar: React.FC = () => {

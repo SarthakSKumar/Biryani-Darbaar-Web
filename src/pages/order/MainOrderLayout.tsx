@@ -1,10 +1,10 @@
 // MainOrderLayout.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MenuCard from "./MenuCard";
+import MenuCard from "../../Reusable-components/order-component/MenuCard";
 import Sidebar from "./SideBar";
-import Cart from "./Cart"; // Import Cart as a popup component
-import Loading from "../Loading";
+import Cart from "../../Reusable-components/order-component/Cart"; // Import Cart as a popup component
+import Loading from "../../components/Loading";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
 

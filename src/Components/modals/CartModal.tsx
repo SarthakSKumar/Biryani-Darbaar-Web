@@ -5,8 +5,8 @@ import { X, Plus, Minus, Trash, Coins } from "lucide-react";
 import PromoModal from "./PromoModal";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutPage from "./PaymentGate";
-import { useCart } from "../context/CartContext";
+import CheckoutPage from "../PaymentGate";
+import { useCart } from "../../contexts/CartContext";
 import { motion } from "framer-motion";
 
 const stripePromise = loadStripe(
