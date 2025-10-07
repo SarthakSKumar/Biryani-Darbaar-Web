@@ -1,20 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { heroImages } from "../constants";
 
 interface LargeImageViewProps {
   title: string;
   description: string;
 }
-
-const images = [
-  "/assets/1.jpg",
-  "/assets/2.jpg",
-  "/assets/3.jpg",
-  "/assets/4.jpg",
-  "/assets/5.jpg",
-  "/assets/6.jpg"
-];
 
 const LargeImageView: React.FC<LargeImageViewProps> = ({
   title,
@@ -30,7 +22,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
 
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentImage((prev) => (prev + 1) % images.length);
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -38,12 +30,12 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
 
   const goToNext = () => {
     setDirection(1);
-    setCurrentImage((prev) => (prev + 1) % images.length);
+    setCurrentImage((prev) => (prev + 1) % heroImages.length);
   };
 
   const goToPrevious = () => {
     setDirection(-1);
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImage((prev) => (prev - 1 + heroImages.length) % heroImages.length);
   };
 
   const goToImage = (index: number) => {
@@ -91,7 +83,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
           className="absolute inset-0 w-full h-full"
         >
           <img
-            src={images[currentImage]}
+            src={heroImages[currentImage]}
             alt={`Biryani Darbaar - Slide ${currentImage + 1}`}
             className="w-full h-full object-cover"
           />
@@ -139,7 +131,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
 
       {/* Dot Indicators */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {images.map((_, index) => (
+        {heroImages.map((_, index) => (
           <button
             key={index}
             onClick={() => goToImage(index)}

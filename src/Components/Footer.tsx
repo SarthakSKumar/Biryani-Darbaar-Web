@@ -1,6 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
+import { footerLinks, socialLinks } from "../constants/FooterLinks";
+
+const iconMap = {
+  instagram: Instagram,
+  mail: Mail,
+  phone: Phone,
+};
 
 const Footer: React.FC = () => {
   return (
@@ -15,28 +22,21 @@ const Footer: React.FC = () => {
               className="h-32 md:h-36 mb-6"
             />
             <div className="flex gap-4">
-              <a
-                href="https://www.instagram.com/biryanidarbaar_au/"
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://www.twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
-              >
-                <Mail size={20} />
-              </a>
-              <a href="tel:+61460747490"
-                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
-
-                aria-label="Call Biryani Darbaar">
-                <Phone size={20} />
-              </a>
+              {socialLinks.map((social) => {
+                const Icon = iconMap[social.icon];
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target={social.icon !== "phone" ? "_blank" : undefined}
+                    rel={social.icon !== "phone" ? "noreferrer" : undefined}
+                    className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
+                    aria-label={social.ariaLabel}
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -44,46 +44,16 @@ const Footer: React.FC = () => {
           <div className="text-center md:text-left">
             <h4 className="text-xl font-bold mb-6 text-primary">Quick Links</h4>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  to="/About"
-                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/Menu"
-                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
-                >
-                  Menu
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/Contact"
-                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/PrivacyPolicy"
-                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/TC"
-                  className="text-neutral-900 hover:text-primary transition-colors font-medium"
-                >
-                  Terms and Conditions
-                </Link>
-              </li>
+              {footerLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-neutral-900 hover:text-primary transition-colors font-medium"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

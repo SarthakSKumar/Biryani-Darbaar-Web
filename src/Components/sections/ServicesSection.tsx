@@ -1,4 +1,6 @@
 
+import { services } from "../../constants";
+
 const ServicesSection: React.FC = () => {
     return (
         <div className="w-full bg-yellow-100 py-14">
@@ -24,30 +26,12 @@ const ServicesSection: React.FC = () => {
                         </p>
 
                         <div className="grid grid-cols-2 gap-6 mt-12 mx-auto md:mx-0">
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/order.png" alt="Biryani Darbaar - Online Order" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">Online Ordering</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/24.7.png" alt="Biryani Darbaar - 24/7 Services" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">24/7 Services</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Biryani Darbaar - Pre-Reservation" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">Pre-Reservations</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Biryani Darbaar - Organized Place" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">Organizing FoodHuts</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Biryani Darbaar - Super Chef" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">Super Chefs</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Biryani Darbaar - Clean Kitchen" className="w-10 h-10" />
-                                <span className="font-medium text-base md:text-lg">Clean Kitchens</span>
-                            </div>
+                            {services.map((service, index) => (
+                                <div key={index} className="flex items-center gap-3">
+                                    <img src={service.image} alt={service.alt} className="w-10 h-10" />
+                                    <span className="font-medium text-base md:text-lg">{service.name}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

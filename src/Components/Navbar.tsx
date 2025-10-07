@@ -7,6 +7,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useCart } from "../contexts/CartContext";
 import axios from "axios";
+import { navbarLinks } from "../constants/NavbarLinks";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -19,36 +20,47 @@ const Navbar: React.FC = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
     });
-
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getNavItemClass = (path: string) => {
-    return location.pathname === path
-      ? "relative text-red-600 font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600 after:transform after:scale-x-100 transition-all duration-300"
-      : "relative text-neutral-700 hover:text-red-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600 after:transform after:scale-x-0 hover:after:scale-x-100 transition-all duration-300";
-  };
+  const isActive = (path: string) => location.pathname.toLowerCase() === path.toLowerCase();
+
+  const getNavItemClass = (path: string) =>
+    `${isActive(path)
+      ? "text-red-600 font-semibold after:scale-x-100"
+      : "text-neutral-700 hover:text-red-600 after:scale-x-0 hover:after:scale-x-100"
+    } relative px-4 py-2 text-lg font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600 after:transform transition-all duration-300`;
+
+  const getMobileNavClass = (path: string) =>
+    `block py-3 px-4 rounded-lg text-base font-medium transition-colors ${isActive(path)
+      ? "bg-red-50 text-red-600"
+      : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
+    }`;
 
   const totalItems = cartItems.reduce((sum: number, item) => sum + item.quantity, 0);
 
+  const handleSignOut = async () => {
+    const auth = getAuth();
+    await signOut(auth);
+    const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
+    console.log("Sign out response:", res);
+    sessionStorage.clear();
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 ${isScrolled
-        ? "bg-white/90 backdrop-blur-md"
-        : "transparent backdrop-blur-none"
+      className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
         }`}
     >
-      {/* Top bar with contact info */}
-      <div className={`transition-all duration-300 bg-red-700`}>
+      {/* Top bar */}
+      <div className="bg-red-700">
         <div className="container-custom">
           <div className="flex justify-end items-center h-10 space-x-4">
             <a href="tel:+61460747490" className="flex items-center text-neutral-100 hover:text-neutral-300 transition-colors" aria-label="Call Biryani Darbaar">
@@ -67,53 +79,21 @@ const Navbar: React.FC = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <motion.div
-            className="flex items-center"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link to="/" className="flex items-center">
-              <img
-                src="/assets/DABAAR.png"
-                alt="Biryani Darbaar - Logo"
-                className="h-[165px] w-auto object-contain relative -top-4"
-              />
-            </Link>
-          </motion.div>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/assets/DABAAR.png"
+              alt="Biryani Darbaar - Logo"
+              className="h-[165px] w-auto object-contain relative -top-4"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8 text-neutral-900">
-            <Link
-              to="/"
-              className={`${getNavItemClass("/")} px-4 py-2 text-lg font-medium`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/About"
-              className={`${getNavItemClass("/about")} px-4 py-2 text-lg font-medium`}
-            >
-              About
-            </Link>
-            <Link
-              to="/Menu"
-              className={`${getNavItemClass("/menu")} px-4 py-2 text-lg font-medium`}
-            >
-              Menu
-            </Link>
-            <Link
-              to="/SpecialOffer"
-              className={`${getNavItemClass("/specialoffer")} px-4 py-2 text-lg font-medium`}
-            >
-              Special Offers
-            </Link>
-            <Link
-              to="/Order"
-              className={`${getNavItemClass("/order")} px-4 py-2 text-lg font-medium`}
-            >
-              Order Now
-            </Link>
+            {navbarLinks.map((link) => (
+              <Link key={link.path} to={link.path} className={getNavItemClass(link.path)}>
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* Actions */}
@@ -138,36 +118,24 @@ const Navbar: React.FC = () => {
               </motion.button>
             </Link>
 
-            {/* Auth Button */}
+            {/* Auth Button - Desktop */}
             <div className="hidden lg:block">
-              {!isAuthenticated ? (
-                <RedButton variant="active" name="Download App" />
-              ) : (
-                <RedButton
-                  variant="active"
-                  name="Sign Out"
-                  onClick={async () => {
-                    const auth = getAuth();
-                    await signOut(auth);
-                    const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
-                    console.log("Sign out response:", res);
-                    sessionStorage.clear();
-                  }}
-                />
-              )}
+              <RedButton
+                variant="active"
+                name={isAuthenticated ? "Sign Out" : "Download App"}
+                onClick={isAuthenticated ? handleSignOut : undefined}
+              />
             </div>
 
             {/* Mobile Menu Toggle */}
-            <div className="lg:hidden">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-md text-neutral-600 hover:text-red-600 hover:bg-red-50 transition-colors"
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.button>
-            </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-md text-neutral-600 hover:text-red-600 hover:bg-red-50 transition-colors"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
           </div>
         </div>
       </div>
@@ -180,79 +148,28 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white/90- backdrop-blur-md border-t border-neutral-200 shadow-lg"
+            className="lg:hidden bg-white/90 backdrop-blur-md border-t border-neutral-200 shadow-lg"
           >
             <div className="container-custom py-4 space-y-2">
-              <Link
-                to="/"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${location.pathname === "/"
-                  ? "bg-red-50 text-red-600"
-                  : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
-                  }`}
-              >
-                Home
-              </Link>
-              <Link
-                to="/About"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${location.pathname === "/about"
-                  ? "bg-red-50 text-red-600"
-                  : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
-                  }`}
-              >
-                About
-              </Link>
-              <Link
-                to="/Menu"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${location.pathname === "/menu"
-                  ? "bg-red-50 text-red-600"
-                  : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
-                  }`}
-              >
-                Menu
-              </Link>
-              <Link
-                to="/SpecialOffer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${location.pathname === "/specialoffer"
-                  ? "bg-red-50 text-red-600"
-                  : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
-                  }`}
-              >
-                Special Offers
-              </Link>
-              <Link
-                to="/Order"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${location.pathname === "/order"
-                  ? "bg-red-50 text-red-600"
-                  : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
-                  }`}
-              >
-                Order Now
-              </Link>
+              {navbarLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={getMobileNavClass(link.path)}
+                >
+                  {link.label}
+                </Link>
+              ))}
 
               {/* Mobile Auth Button */}
               <div className="pt-4 border-t border-neutral-200">
-                {!isAuthenticated ? (
-                  <RedButton variant="active" name="Download App" className="w-full" />
-                ) : (
-                  <RedButton
-                    variant="active"
-                    name="Sign Out"
-                    className="w-full"
-                    onClick={async () => {
-                      const auth = getAuth();
-                      await signOut(auth);
-                      const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
-                      console.log("Sign out response:", res);
-                      sessionStorage.clear();
-                      setIsMobileMenuOpen(false);
-                    }}
-                  />
-                )}
+                <RedButton
+                  variant="active"
+                  name={isAuthenticated ? "Sign Out" : "Download App"}
+                  className="w-full"
+                  onClick={isAuthenticated ? handleSignOut : undefined}
+                />
               </div>
             </div>
           </motion.div>

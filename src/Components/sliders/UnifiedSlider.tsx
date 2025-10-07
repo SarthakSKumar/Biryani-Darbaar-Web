@@ -70,7 +70,7 @@ const UnifiedSlider: React.FC<UnifiedSliderProps> = ({
                 className="pb-12"
             >
                 {items.map((item, index) => (
-                    <SwiperSlide key={index}>{item.content}</SwiperSlide>
+                    <SwiperSlide key={index} className="flex items-center justify-center">{item.content}</SwiperSlide>
                 ))}
             </Swiper>
 

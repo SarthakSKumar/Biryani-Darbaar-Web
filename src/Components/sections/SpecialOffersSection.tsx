@@ -48,6 +48,8 @@ const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDish
                     <UnifiedSlider
                         items={sliderItems}
                         slidesPerView={1}
+                        autoplayDelay={3000}
+                        autoplay={true}
                         spaceBetween={24}
                         loop={true}
                         pagination={true}
