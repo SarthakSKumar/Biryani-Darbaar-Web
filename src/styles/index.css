@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Geist Font */
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/GeistVF.woff") format("woff-variations");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Design Tokens & Root Variables */
+:root {
+  --container-padding: 1rem;
+  --container-max-width: 1280px;
+  --section-spacing: 5rem;
+  --card-spacing: 1.5rem;
+
+  /* Typography Scale - Standardized */
+  --text-xs: 0.75rem; /* 12px - Small labels, captions */
+  --text-sm: 0.875rem; /* 14px - Secondary text, small body */
+  --text-base: 1rem; /* 16px - Normal body text, paragraphs */
+  --text-lg: 1.125rem; /* 18px - Large body text, subtitles */
+  --text-xl: 1.25rem; /* 20px - Card titles, section subtitles */
+  --text-2xl: 1.5rem; /* 24px - Small headings, card headers */
+  --text-3xl: 1.875rem; /* 30px - Medium headings */
+  --text-4xl: 2.25rem; /* 36px - Large headings, section titles */
+  --text-5xl: 3rem; /* 48px - Hero headings, page titles */
+  --text-6xl: 3.75rem; /* 60px - Extra large hero text */
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+    --section-spacing: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 3rem;
+    --section-spacing: 8rem;
+  }
+}
+
+/* Custom CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1a202c;
+  background: #ffffff;
+}
+
+/* Consistent Container */
+.container-custom {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Section Spacing */
+.section-spacing {
+  padding-top: var(--section-spacing);
+  padding-bottom: var(--section-spacing);
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* Better button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Better input styles */
+input,
+textarea,
+select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Better image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Consistent headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a202c;
+}
+
+h1 {
+  font-size: var(--text-5xl);
+}
+h2 {
+  font-size: var(--text-4xl);
+}
+h3 {
+  font-size: var(--text-3xl);
+}
+h4 {
+  font-size: var(--text-2xl);
+}
+h5 {
+  font-size: var(--text-xl);
+}
+h6 {
+  font-size: var(--text-lg);
+}
+
+/* Consistent paragraph */
+p {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+/* Remove custom CSS files imports */
+.nav-button {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+}
+
+/* Arched frame drawn via inline SVG in component for exact shape */
+
+/* Price Badge with CSS Shape */
+.price-badge {
+  position: relative;
+  padding: 12px 24px;
+  background: transparent;
+  border: 3px solid #f4a261;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Utility: line clamp for multi-line truncation without plugin */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
