@@ -1,6 +1,6 @@
-import RedButton from "../components/RedButton";
-import ArchedCard from "../components/ArchedCard";
-import Loading from "../components/Loading";
+import RedButton from "../RedButton";
+import ArchedCard from "../cards/ArchedCard";
+import Loading from "../Loading";
 
 interface Dish {
     image: string;

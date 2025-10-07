@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import LocationInfo from "../sections/LocationSection";
-import CustomerReviews from "../sections/CustomerReviewSection";
-import InfoPage from "../sections/InfoSection";
+import LocationInfo from "../components/sections/LocationSection";
+import CustomerReviews from "../components/sections/CustomerReviewSection";
+import InfoPage from "../components/sections/InfoSection";
 import { FileText, ShieldCheck, CreditCard, Truck, Copyright, Scale, Calendar, Mail, Phone } from "lucide-react";
 
 const TermsAndConditions: React.FC = () => {

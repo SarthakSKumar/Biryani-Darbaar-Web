@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import ArchedCard from "../components/ArchedCard";
-import Loading from "../components/Loading";
+import ArchedCard from "../cards/ArchedCard";
+import Loading from "../Loading";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

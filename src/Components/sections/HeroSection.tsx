@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import InputSearch from "../components/InputSearch";
-import RedButton from "../components/RedButton";
-import RedWhip from "../components/RedWhip";
+import InputSearch from "../InputSearch";
+import RedButton from "../RedButton";
+import RedWhip from "../atoms/RedWhip";
 import order from "../assets/ordericon.png";
 import cater from "../assets/cateringicon.png";
 import girl from "../assets/Girl.png";
