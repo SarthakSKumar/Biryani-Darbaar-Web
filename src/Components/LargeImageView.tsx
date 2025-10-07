@@ -92,7 +92,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
         >
           <img
             src={images[currentImage]}
-            alt={`Slide ${currentImage + 1}`}
+            alt={`Biryani Darbaar - Slide ${currentImage + 1}`}
             className="w-full h-full object-cover"
           />
         </motion.div>

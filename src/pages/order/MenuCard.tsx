@@ -61,7 +61,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
 
           {/* Spice level indicator */}
           <div className="flex items-center gap-2 mb-3">
-            <img src="/assets/chilli-icon.png" alt="Spice Level" className="w-5 h-5" />
+            <img src="/assets/chilli-icon.png" alt="Biryani Darbaar - Spice Level" className="w-5 h-5" />
             <span className="text-sm text-orange-600 font-medium">Medium Spicy</span>
           </div>
 
@@ -73,7 +73,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
         <div className="relative">
           <img
             src={imageUrl}
-            alt={title}
+            alt={`Biryani Darbaar - ${title}`}
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-md"
           />
           {currentQuantity > 0 && (

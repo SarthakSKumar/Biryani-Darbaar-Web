@@ -22,7 +22,7 @@ const LocationInfo = () => {
                 <div className="relative flex justify-center items-center bg-white rounded-lg border">
                     <img
                         src="/assets/locationmap.png"
-                        alt="Map"
+                        alt="Biryani Darbaar - Map"
                         className="md:w-full md:h-auto md:object-cover rounded-lg w-[400px] h-[300px] cursor-pointer"
                         onClick={() =>
                         (window.location.href =

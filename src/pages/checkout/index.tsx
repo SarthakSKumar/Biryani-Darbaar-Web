@@ -245,7 +245,7 @@ const Checkout: React.FC = () => {
                                 cartItems.map((item) => (
                                     <div key={item.cartItemId} className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg">
                                         {item.image ? (
-                                            <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover" />
+                                            <img src={item.image} alt={`Biryani Darbaar - ${item.name}`} className="w-12 h-12 rounded-full object-cover" />
                                         ) : (
                                             <div className="w-12 h-12 bg-neutral-200 rounded-full" />
                                         )}

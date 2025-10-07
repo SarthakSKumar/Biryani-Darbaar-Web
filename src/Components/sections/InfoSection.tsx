@@ -1,4 +1,4 @@
-import { FaTruck, FaPhone, FaClock } from "react-icons/fa";
+import { Truck, Phone, Clock } from "lucide-react";
 
 const InfoPage = () => {
     return (
@@ -7,8 +7,8 @@ const InfoPage = () => {
                 {/* Delivery Information */}
                 <div className="bg-white p-8 rounded-lg border border-neutral-200">
                     <div className="flex items-center mb-6">
-                        <FaTruck className="text-primary text-3xl mr-3" />
-                        <h2 className="text-2xl font-bold text-neutral-900">Delivery Information</h2>
+                        <Truck className="text-primary" size={28} strokeWidth={2} />
+                        <h2 className="text-2xl font-bold text-neutral-900 ml-3">Delivery Information</h2>
                     </div>
                     <ul className="text-base text-neutral-700 space-y-3 leading-relaxed">
                         <li><strong>Monday:</strong> 12:00 AM–3:00 AM, 8:00 AM–3:00 AM</li>
@@ -27,8 +27,8 @@ const InfoPage = () => {
                 {/* Contact Information */}
                 <div className="bg-white p-8 rounded-lg border border-neutral-200">
                     <div className="flex items-center mb-6">
-                        <FaPhone className="text-primary text-3xl mr-3" />
-                        <h2 className="text-2xl font-bold text-neutral-900">Contact Information</h2>
+                        <Phone className="text-primary" size={28} strokeWidth={2} />
+                        <h2 className="text-2xl font-bold text-neutral-900 ml-3">Contact Information</h2>
                     </div>
                     <p className="text-base text-neutral-700 mb-6 leading-relaxed">
                         If you have any questions or concerns, feel free to reach out to the us.
@@ -50,8 +50,8 @@ const InfoPage = () => {
                 {/* Operational Times */}
                 <div className="bg-[#f4c145] text-neutral-900 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
-                        <FaClock className="text-primary text-3xl mr-3" />
-                        <h2 className="text-2xl font-bold text-neutral-900">Working Hours</h2>
+                        <Clock className="text-primary" size={28} strokeWidth={2} />
+                        <h2 className="text-2xl font-bold text-neutral-900 ml-3">Working Hours</h2>
                     </div>
                     <ul className="text-base text-neutral-900 space-y-3 leading-relaxed">
                         <li><strong>Monday:</strong> 8:00 AM–3:00 AM</li>

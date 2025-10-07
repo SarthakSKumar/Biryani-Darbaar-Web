@@ -1,10 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import UnifiedSlider from "@/components/sliders/UnifiedSlider";
 
 interface Dish {
     image: string;
@@ -19,6 +15,21 @@ interface SpecialOffersSectionProps {
 }
 
 const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDishes }) => {
+    const sliderItems = specialDishes.map((dish) => ({
+        content: (
+            <ArchedCard
+                image={dish.image}
+                title={dish.dishName || dish.name || "Delicious Dish"}
+                description={
+                    dish.description || "Delicious dish available now!"
+                }
+                buttonTitle="Order Now"
+                price={`$${dish.price}`}
+                className="h-fit w-[310px]"
+            />
+        ),
+    }));
+
     return (
         <div className="container-custom">
             <div className="text-center">
@@ -34,40 +45,19 @@ const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDish
 
             <div className="mt-12 mb-4">
                 {specialDishes.length > 0 ? (
-                    <Swiper
-                        modules={[Navigation, Pagination]}
+                    <UnifiedSlider
+                        items={sliderItems}
                         slidesPerView={1}
+                        spaceBetween={24}
+                        loop={true}
+                        pagination={true}
                         breakpoints={{
-                            640: { slidesPerView: 2 },
-                            768: { slidesPerView: 3 },
-                            1024: { slidesPerView: 4 },
+                            640: { slidesPerView: 2, spaceBetween: 24 },
+                            768: { slidesPerView: 3, spaceBetween: 24 },
+                            1024: { slidesPerView: 4, spaceBetween: 24 },
                         }}
-                        pagination={{ clickable: true }}
-                        navigation
                         className="arched"
-                        style={{
-                            "--swiper-navigation-color": "#d3d3d3",
-                            "--swiper-navigation-size": "30px",
-                            "--swiper-pagination-color": "#d3d3d3",
-                            "--swiper-pagination-bullet-inactive-color": "#f0f0f0",
-                            "--swiper-pagination-bottom": "-25px",
-                        } as React.CSSProperties}
-                    >
-                        {specialDishes.map((dish, index) => (
-                            <SwiperSlide key={index}>
-                                <ArchedCard
-                                    image={dish.image}
-                                    title={dish.dishName || dish.name || "Delicious Dish"}
-                                    description={
-                                        dish.description || "Delicious dish available now!"
-                                    }
-                                    buttonTitle="Order Now"
-                                    price={`$${dish.price}`}
-                                    className="h-fit w-[310px]"
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                    />
                 ) : (
                     <Loading text="Loading special offers..." />
                 )}

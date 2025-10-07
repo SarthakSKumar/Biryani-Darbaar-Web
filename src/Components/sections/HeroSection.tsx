@@ -96,7 +96,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
                                     image="/assets/ordericon.png"
-                                    alt="order"
+                                    alt="Biryani Darbaar - Order"
                                     name="Order Food"
                                     variant="active"
                                 />
@@ -105,7 +105,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
                                     image="/assets/cateringicon.png"
-                                    alt="cater"
+                                    alt="Biryani Darbaar - Catering"
                                     name="Book Catering Services"
                                     variant="active"
                                 />
@@ -113,8 +113,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         </motion.div>
 
                         <div className="flex justify-start items-center gap-4 mt-8">
-                            <img className="w-40" src="/assets/images/play-store.png" alt="Download on Android" />
-                            <img className="w-40" src="/assets/images/app-store.png" alt="Download on iOS" />
+                            <img className="w-40" src="/assets/images/play-store.png" alt="Biryani Darbaar - Download on Android" />
+                            <img className="w-40" src="/assets/images/app-store.png" alt="Biryani Darbaar - Download on iOS" />
                         </div>
                     </motion.div>
 
@@ -128,11 +128,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         <div className="relative">
                             {/* Happy Customer Badge */}
                             <div className="absolute top-0 right-0 w-fit gap-2 h-fit py-2 bg-white rounded-3xl flex items-center justify-between px-4 border border-neutral-200 z-20">
-                                <img className="w-9" src="/assets/smilyicon.svg" alt="" />
+                                <img className="w-9" src="/assets/smilyicon.svg" alt="Biryani Darbaar" />
                                 <div className="flex flex-col">
                                     <div className="text-xs font-semibold">Our Happy Customer</div>
                                     <div className="flex items-center">
-                                        <img className="h-3" src="/assets/Star.svg" alt="" />
+                                        <img className="h-3" src="/assets/Star.svg" alt="Biryani Darbaar" />
                                         <span className="text-xs ml-1">4.9</span>
                                         <span className="text-xs ml-1">(1989 Reviews)</span>
                                     </div>
@@ -141,7 +141,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
                             {/* Chicken Biryani Card */}
                             <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-neutral-200 z-20">
-                                <img className="w-10 ml-2" src="/assets/card1.png" alt="" />
+                                <img className="w-10 ml-2" src="/assets/card1.png" alt="Biryani Darbaar" />
                                 <div className="flex flex-col ml-2">
                                     <span className="text-xs font-bold">Chicken Biryani</span>
                                     <div className="text-md font-medium text-red-700">@ Just $9.50</div>
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <div className="w-[410px] h-[410px] rounded-full bg-primary overflow-hidden relative z-10">
                                 <img
                                     src="/assets/Girl.png"
-                                    alt="Food delivery"
+                                    alt="Biryani Darbaar - Food delivery"
                                     className="max-h-[500px] ml-5 -mt-24 object-cover"
                                 />
                             </div>
@@ -164,28 +164,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <motion.img
                                 className="absolute -bottom-8 -left-32 w-44 z-10"
                                 src="/assets/mealcircle1.png"
-                                alt=""
+                                alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 left-4 w-56 z-10"
                                 src="/assets/mealcircle2.png"
-                                alt=""
+                                alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 right-2 w-52 z-10"
                                 src="/assets/mealcircle3.png"
-                                alt=""
+                                alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute top-56 -right-32 w-54 z-10"
                                 src="/assets/mealcircle4.png"
-                                alt=""
+                                alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />

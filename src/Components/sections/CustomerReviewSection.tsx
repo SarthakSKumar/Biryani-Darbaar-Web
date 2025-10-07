@@ -121,7 +121,6 @@ const CustomerReviews = () => {
                 autoplayDelay={5000}
                 loop={true}
                 pagination={true}
-                navigation={true}
                 breakpoints={{
                     640: { slidesPerView: 1 },
                     768: { slidesPerView: 2 },

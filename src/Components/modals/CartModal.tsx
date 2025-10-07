@@ -116,7 +116,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 <div className="flex items-center">
                   <img
                     src={item.image}
-                    alt={item.name}
+                    alt={`Biryani Darbaar - ${item.name}`}
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div className="flex-1">

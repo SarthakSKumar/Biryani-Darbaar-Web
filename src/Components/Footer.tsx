@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-start">
             <img
               src="/assets/DABAAR.png"
-              alt="Biryani Darbaar Logo"
+              alt="Biryani Darbaar - Logo"
               className="h-32 md:h-36 mb-6"
             />
             <div className="flex gap-4">

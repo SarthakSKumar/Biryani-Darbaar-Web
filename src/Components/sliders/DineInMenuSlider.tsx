@@ -34,7 +34,7 @@ const DineInMenuSlider: React.FC = () => {
         <div className="bg-red-600 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
           <img
             src={item.image}
-            alt={item.label}
+            alt={`Biryani Darbaar - ${item.label}`}
             className="w-full h-48 object-cover"
           />
           <div className="p-4 text-center">
@@ -59,7 +59,6 @@ const DineInMenuSlider: React.FC = () => {
         autoplay={false}
         loop={true}
         pagination={true}
-        navigation={true}
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },

@@ -29,7 +29,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
       <div className="relative bg-white pb-8 pt-12 px-6 flex flex-col items-center rounded-b-xl overflow-hidden">
         <svg
           className="absolute left-0 top-0 w-full h-full pointer-events-none"
-          style={{ height: "100%", width: "100%", top: 0}}
+          style={{ height: "100%", width: "100%", top: 0 }}
           viewBox="0 0 400 600"
           preserveAspectRatio="none"
           aria-hidden="true"
@@ -46,7 +46,7 @@ const CardComponent: React.FC<CardComponentProps> = ({
         <div className="relative w-40 h-40 mt-">
           <img
             src={image}
-            alt={title}
+            alt={`Biryani Darbaar - ${title}`}
             className="w-full h-full object-cover rounded-full border-4 border-white"
           />
         </div>

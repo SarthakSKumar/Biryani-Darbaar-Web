@@ -20,8 +20,6 @@ import Contact from "@/components/Contact";
 
 import { CartProvider } from "@/providers/CartProvider";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import './styles/global.css'
 import './styles/components.css'
 import './styles/sections.css'

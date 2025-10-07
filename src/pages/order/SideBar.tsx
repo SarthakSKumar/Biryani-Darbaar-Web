@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="flex items-center gap-3 mb-8">
         <img
           src="/assets/Order-spoon.png"
-          alt="Menu Icon"
+          alt="Biryani Darbaar - Menu"
           className="w-14 h-14"
         />
         <h2 className="text-2xl font-bold text-neutral-900">
@@ -80,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="relative rounded-lg overflow-hidden border border-neutral-200 group">
         <img
           src="/assets/order-girl.png"
-          alt="First Order Discount"
+          alt="Biryani Darbaar - First Order Discount"
           className="w-full h-80 object-cover"
         />
 

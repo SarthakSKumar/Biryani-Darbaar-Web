@@ -32,7 +32,7 @@ const ImageSlider: React.FC = () => {
         <div className="relative">
           <img
             src={offer.image}
-            alt={offer.title}
+            alt={`Biryani Darbaar - ${offer.title}`}
             className="w-full h-auto object-cover"
           />
           {/* Dark gradient overlay for text readability */}
@@ -69,12 +69,11 @@ const ImageSlider: React.FC = () => {
     <div className="container-custom">
       <UnifiedSlider
         items={sliderItems}
-        slidesPerView={1}
+        slidesPerView={3}
         spaceBetween={24}
         autoplay={false}
         loop={true}
         pagination={true}
-        navigation={true}
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },

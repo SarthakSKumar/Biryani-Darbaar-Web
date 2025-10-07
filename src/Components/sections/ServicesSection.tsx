@@ -6,7 +6,7 @@ const ServicesSection: React.FC = () => {
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     {/* Left Image */}
                     <div className="hidden md:block md:w-2/5">
-                        <img src="/assets/homechef1.png" alt="Chef" className="w-full h-auto" />
+                        <img src="/assets/homechef1.png" alt="Biryani Darbaar - Chef" className="w-full h-auto" />
                     </div>
 
                     {/* Right Content */}
@@ -25,27 +25,27 @@ const ServicesSection: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-6 mt-12 mx-auto md:mx-0">
                             <div className="flex items-center gap-3">
-                                <img src="/assets/order.png" alt="Online Order" className="w-10 h-10" />
+                                <img src="/assets/order.png" alt="Biryani Darbaar - Online Order" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">Online Ordering</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <img src="/assets/24.7.png" alt="24/7 Services" className="w-10 h-10" />
+                                <img src="/assets/24.7.png" alt="Biryani Darbaar - 24/7 Services" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">24/7 Services</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Pre-Reservation" className="w-10 h-10" />
+                                <img src="/assets/booking.png" alt="Biryani Darbaar - Pre-Reservation" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">Pre-Reservations</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Organized Place" className="w-10 h-10" />
+                                <img src="/assets/booking.png" alt="Biryani Darbaar - Organized Place" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">Organizing FoodHuts</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Super Chef" className="w-10 h-10" />
+                                <img src="/assets/booking.png" alt="Biryani Darbaar - Super Chef" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">Super Chefs</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <img src="/assets/booking.png" alt="Clean Kitchen" className="w-10 h-10" />
+                                <img src="/assets/booking.png" alt="Biryani Darbaar - Clean Kitchen" className="w-10 h-10" />
                                 <span className="font-medium text-base md:text-lg">Clean Kitchens</span>
                             </div>
                         </div>
