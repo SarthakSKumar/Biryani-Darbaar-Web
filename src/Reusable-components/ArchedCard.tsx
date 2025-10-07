@@ -10,7 +10,6 @@ interface CardComponentProps {
   price: string;
   className?: string;
 }
-
 const CardComponent: React.FC<CardComponentProps> = ({
   image,
   title,
@@ -22,20 +21,21 @@ const CardComponent: React.FC<CardComponentProps> = ({
   return (
     <div
       className={clsx(
-        "relative w-full max-w-sm mx-auto transition-transform opacity-90 hover:opacity-100 duration-300",
+        "relative w-full max-w-sm transition-transform opacity-90 hover:opacity-100 duration-300",
         className
       )}
     >
       {/* Card with SVG Arch Border for accurate shape */}
       <div className="relative bg-white pb-8 pt-12 px-6 flex flex-col items-center rounded-b-xl overflow-hidden">
         <svg
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          viewBox="0 0 400 560"
+          className="absolute left-0 top-0 w-full h-full pointer-events-none"
+          style={{ height: "100%", width: "100%", top: 0}}
+          viewBox="0 0 400 600"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
           <path
-            d="M20,540 L20,180 C20,150 60,130 100,125 L100,118 C100,98 120,80 200,60 C280,80 300,98 300,118 L300,125 C340,130 380,150 380,180 L380,540 L20,540 Z"
+            d="M20,595 L20,180 C20,150 60,130 100,125 L100,110 C100,90 120,30 200,5 C280,30 300,90 300,110 L300,125 C340,130 380,150 380,180 L380,595 L20,595 Z"
             fill="none"
             stroke="#f4a261"
             strokeWidth="2.5"

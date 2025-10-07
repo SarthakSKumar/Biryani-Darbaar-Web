@@ -116,14 +116,19 @@ const Menu = () => {
   return (
     <div className="flex flex-col gap-20 md:gap-28">
       <div className="container-custom section-spacing mt-12">
+        <div
+          className="absolute inset-0 max-h-screen"
+          style={{
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: `url("/background.png")`,
+          }}
+        />
         <LargeImageView
-          title="Briyani Darbaar in Atol Park"
+          title="Biyyani Darbaar in Athol Park"
           description="Enjoy authentic biryani with fresh ingredients!"
         />
-      </div>
-      <ImageSlider />
-
-      <div className="container-custom py-12">
         <div className="flex justify-center">
           <InputSearch
             placeholder="Search for categories or dishes..."
@@ -151,6 +156,11 @@ const Menu = () => {
             ))}
           </div>
         )}
+      </div>
+      <ImageSlider />
+
+      <div className="container-custom py-12">
+       
 
         {isLoadingDishes ? (
           <Loading text="Loading delicious dishes..." />
@@ -181,7 +191,7 @@ const Menu = () => {
               </div>
 
               {/* Show grid on larger screens */}
-              <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-4 gap-10">
+              <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-4">
                 {dishes[category]?.map((dish, index) => (
                   <ArchedCard
                     key={index}

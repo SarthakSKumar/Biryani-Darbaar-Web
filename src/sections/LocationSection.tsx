@@ -20,8 +20,7 @@ const LocationInfo = () => {
                 </p>
             </motion.div>
             <div className="py-12">
-                <div className="container-custom">
-                    <div className="relative flex justify-center items-center bg-white p-4 rounded-lg border">
+                    <div className="relative flex justify-center items-center bg-white rounded-lg border">
                         <img
                             src={locationmap}
                             alt="Map"
@@ -33,20 +32,26 @@ const LocationInfo = () => {
                         />
 
                         {/* Overlay Card */}
-                        <div className="absolute top-10 md:left-10 -left-4 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-700 text-white p-6 rounded-lg md:w-80 w-64 shadow-2xl border border-primary/40">
-                            <h2 className="md:text-2xl text-xl font-extrabold text-primary drop-shadow">
-                                Biryani Darbaar <span className="text-yellow-400 block text-base">Athol Park</span>
-                            </h2>
-                            <p className="mt-2 md:mt-3 md:text-sm text-neutral-200">
+                        <div className="absolute top-10 md:left-10 -left-4 bg-white/90 backdrop-blur-md shadow-xl border border-neutral-200 p-6 rounded-lg md:w-80 w-64 flex flex-col gap-2">
+                            <div className="space-y-1">
+                                <h2 className="text-lg font-bold tracking-tight text-neutral-900">
+                                    Biryani Darbaar
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    Athol Park
+                                </p>
+                            </div>
+                            <p className="text-neutral-700 text-base mt-1 leading-relaxed">
                                 183 Hanson Rd,<br /> Athol Park SA 5012, Australia
                             </p>
-                            <p className="md:mt-3 mt-2">
-                                <span className="font-bold text-neutral-200">Phone</span>
-                                <br />
-                                <a href="tel:+61460747490" className="text-primary font-semibold hover:underline hover:text-neutral-400 transition-colors">
+                            <div className="flex items-center gap-2 mt-2">
+                                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 008.48 19h7.04a2 2 0 001.83-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7"></path>
+                                </svg>
+                                <a href="tel:+61460747490" className="text-primary font-semibold hover:underline hover:text-orange-500 transition-colors">
                                     +61 460 747 490
                                 </a>
-                            </p>
+                            </div>
                         </div>
 
                         {/* Map Location Marker */}
@@ -54,7 +59,6 @@ const LocationInfo = () => {
                             <span className="text-sm">Find us on Google Maps</span>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     );

@@ -30,7 +30,7 @@ const InputSearch: React.FC<InputSearchProps> = ({
   return (
     <div
       className={clsx(
-        "flex items-center border-2 border-neutral-300 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
+        "flex items-center border-2 border-neutral-300 z-50 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
         className
       )}
     >

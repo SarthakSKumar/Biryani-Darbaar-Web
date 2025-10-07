@@ -71,7 +71,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative mx-5 md:mx-10 mb-4 rounded-2xl shadow-2xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px]"
+      className="relative w-full mb-4 rounded-2xl shadow-2xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
