@@ -1,100 +1,8 @@
-// // MenuCard.tsx
-// import React, { useState } from "react";
-// import { Plus, Minus, ShoppingCart } from "lucide-react";
-// import { useCart } from "../../Components/CartContext"; // Adjusted the path to match the likely location
-// import { motion } from "framer-motion";
-
-// interface MenuCardProps {
-//   title: string;
-//   description: string;
-//   imageUrl: string;
-//   price: number;
-//   dishId: string;
-// }
-
-// const MenuCard: React.FC<MenuCardProps> = ({
-//   title,
-//   description,
-//   imageUrl,
-//   price,
-//   dishId,
-// }) => {
-//   const { cartItems, addToCart, updateQuantity } = useCart();
-//   const [localQuantity, setLocalQuantity] = useState(0);
-
-//   const handleAddToCart = async () => {
-//     const newQuantity = localQuantity === 0 ? 1 : localQuantity;
-//     setLocalQuantity(newQuantity);
-//     await addToCart(
-//       { dishId, name: title, description, image: imageUrl, price },
-//       newQuantity
-//     );
-//   };
-
-//   const handleUpdateQuantity = (change: number) => {
-//     const newQuantity = Math.max(localQuantity + change, 0);
-//     setLocalQuantity(newQuantity);
-
-//     const cartItem = cartItems.find((item) => item.dishId === dishId);
-//     if (cartItem) {
-//       updateQuantity(cartItem.cartItemId, change);
-//     }
-//   };
-
-//   const displayQuantity =
-//     cartItems.find((item) => item.dishId === dishId)?.quantity || localQuantity;
-
-//   return (
-//     <motion.div
-//       className="menu-card bg-white shadow-md rounded-lg p-4 mb-6 hover:shadow-lg transition"
-//       whileHover={{ scale: 1.02 }}
-//     >
-//       <div className="flex flex-col md:flex-row md:items-center">
-//         <img
-//           src={imageUrl}
-//           alt={title}
-//           className="w-24 h-24 rounded-full object-cover mr-4"
-//         />
-//         <div>
-//           <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-//           <p className="text-sm text-gray-500">{description}</p>
-//         </div>
-//       </div>
-//       <div className="mt-4 flex justify-between items-center">
-//         <div className="flex items-center space-x-2">
-//           <button
-//             onClick={() => handleUpdateQuantity(-1)}
-//             className="p-1 rounded-full hover:bg-gray-200"
-//           >
-//             <Minus className="w-4 h-4 text-red-500" />
-//           </button>
-//           <span className="text-lg font-semibold">{displayQuantity}</span>
-//           <button
-//             onClick={() => handleUpdateQuantity(1)}
-//             className="p-1 rounded-full hover:bg-gray-200"
-//           >
-//             <Plus className="w-4 h-4 text-red-500" />
-//           </button>
-//         </div>
-//         <button
-//           className="menu-card-btn bg-green-500 text-white px-4 py-2 rounded-md font-semibold flex items-center hover:bg-green-600 transition"
-//           onClick={handleAddToCart}
-//         >
-//           <ShoppingCart className="w-5 h-5 mr-2" />$
-//           {price * (displayQuantity || 1)}
-//         </button>
-//       </div>
-//     </motion.div>
-//   );
-// };
-
-// export default MenuCard;
-
-// MenuCard.tsx
-import React, { useState } from "react";
-import { Plus, Minus, ShoppingCart } from "lucide-react";
+import React from "react";
 import { useCart } from "../../Components/CartContext";
 import { motion } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
+import chilliIcon from "../../assets/chilli-icon.png";
 
 interface MenuCardProps {
   title: string;
@@ -108,75 +16,137 @@ const MenuCard: React.FC<MenuCardProps> = ({
   title,
   description,
   imageUrl,
-  price,
   dishId,
 }) => {
-  const { cartItems, addToCart, updateQuantity } = useCart();
-  const [localQuantity, setLocalQuantity] = useState(0);
+  const { cartItems, updateQuantity, addToCart } = useCart();
 
-  const handleAddToCart = async () => {
-    const newQuantity = localQuantity === 0 ? 1 : localQuantity;
-    setLocalQuantity(newQuantity);
-    await addToCart(
-      { dishId, name: title, description, image: imageUrl, price },
-      newQuantity
-    );
-  };
+  // Get current quantity in cart
+  const cartItem = cartItems.find((item) => item.dishId === dishId);
+  const currentQuantity = cartItem?.quantity || 0;
 
-  const handleUpdateQuantity = (change: number) => {
-    const newQuantity = Math.max(localQuantity + change, 0);
-    setLocalQuantity(newQuantity);
-
+  const handleUpdateQuantity = async (change: number, price: number, imageUrl: string) => {
     const cartItem = cartItems.find((item) => item.dishId === dishId);
+
     if (cartItem) {
+      // update existing item quantity
       updateQuantity(cartItem.cartItemId, change);
+    } else if (change > 0) {
+      // add new item to cart
+      await addToCart(
+        { dishId, name: title, description, image: imageUrl, price },
+        change
+      );
     }
   };
 
-  const displayQuantity =
-    cartItems.find((item) => item.dishId === dishId)?.quantity || localQuantity;
+  const sizeOptions = [
+    { size: "Small", price: 21.9, popular: false },
+    { size: "Medium", price: 25.9, popular: true },
+    { size: "Large", price: 27.9, popular: false },
+  ];
 
   return (
     <motion.div
-      className="menu-card bg-white shadow-md rounded-lg p-4 mb-6 hover:shadow-lg transition"
-      whileHover={{ scale: 1.02 }}
+      className="bg-white rounded-2xl border transition-all duration-300 p-6 w-full max-w-lg border-gray-100"
+      whileHover={{ scale: 1.02, y: -4 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="flex flex-col md:flex-row md:items-center">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-24 h-24 rounded-full object-cover mr-4"
-        />
-        <div>
-          <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-          <p className="text-sm text-gray-500">{description}</p>
+      {/* Header with image and info */}
+      <div className="flex gap-4 mb-6">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold text-neutral-800 mb-2 leading-tight">
+            {title}
+          </h3>
+
+          {/* Spice level indicator */}
+          <div className="flex items-center gap-2 mb-3">
+            <img src={chilliIcon} alt="Spice Level" className="w-5 h-5" />
+            <span className="text-sm text-orange-600 font-medium">Medium Spicy</span>
+          </div>
+
+          <p className="text-sm text-neutral-600 leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+        <div className="relative">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shadow-md"
+          />
+          {currentQuantity > 0 && (
+            <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+              {currentQuantity}
+            </div>
+          )}
         </div>
       </div>
-      <div className="mt-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => handleUpdateQuantity(-1)}
-            className="p-1 rounded-full hover:bg-gray-200"
+
+      {/* Size options */}
+      <div className="space-y-2">
+        <p className="text-sm font-medium text-neutral-700 mb-3">Choose your size:</p>
+        {sizeOptions.map((option) => (
+          <motion.button
+            key={option.size}
+            className={`w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-200 ${option.popular
+              ? 'border-green-500 bg-green-50 hover:bg-green-100'
+              : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+              }`}
+            onClick={() => handleUpdateQuantity(1, option.price, imageUrl)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Minus className="w-4 h-4 text-red-500" />
-          </button>
-          <span className="text-lg font-semibold">{displayQuantity}</span>
-          <button
-            onClick={() => handleUpdateQuantity(1)}
-            className="p-1 rounded-full hover:bg-gray-200"
-          >
-            <Plus className="w-4 h-4 text-red-500" />
-          </button>
-        </div>
-        <button
-          className="menu-card-btn bg-green-500 text-white px-4 py-2 rounded-md font-semibold flex items-center hover:bg-green-600 transition"
-          onClick={handleAddToCart}
+            <div className="flex items-center gap-3">
+              <span className="font-medium text-neutral-800">{option.size}</span>
+              {option.popular && (
+                <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                  Popular
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="bg-green-600 text-white text-sm font-bold px-3 py-1 rounded-lg">
+                ${option.price.toFixed(2)}
+              </span>
+              <Plus className="w-4 h-4 text-green-600" />
+            </div>
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Quick add section if item already in cart */}
+      {currentQuantity > 0 && (
+        <motion.div
+          className="mt-4 pt-4 border-t border-gray-200"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          transition={{ duration: 0.3 }}
         >
-          <ShoppingCart className="w-5 h-5 mr-2" />$
-          {(price * (displayQuantity || 1)).toFixed(2)}{" "}
-          {/* Fix decimal places */}
-        </button>
-      </div>
+          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+            <span className="text-sm font-medium text-neutral-700">In cart:</span>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => cartItem && updateQuantity(cartItem.cartItemId, -1)}
+                className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors"
+              >
+                <Minus className="w-4 h-4 text-red-600" />
+              </button>
+              <span className="font-bold text-lg text-neutral-800 min-w-[2rem] text-center">
+                {currentQuantity}
+              </span>
+              <button
+                onClick={() => cartItem && updateQuantity(cartItem.cartItemId, 1)}
+                className="w-8 h-8 rounded-full bg-green-100 hover:bg-green-200 flex items-center justify-center transition-colors"
+              >
+                <Plus className="w-4 h-4 text-green-600" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </motion.div>
   );
 };
