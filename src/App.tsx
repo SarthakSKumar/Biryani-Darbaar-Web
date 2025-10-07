@@ -84,7 +84,7 @@ function App() {
                     )
                   }
                 />
-                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/Checkout" element={<Checkout />} />
               </Routes>
             </div>
             <Footer />

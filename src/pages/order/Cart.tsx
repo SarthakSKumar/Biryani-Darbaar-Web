@@ -24,7 +24,7 @@ const Cart: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   };
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate("/Checkout");
     if (onClose) onClose();
   };
 

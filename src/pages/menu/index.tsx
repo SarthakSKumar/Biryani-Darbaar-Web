@@ -125,7 +125,7 @@ const Menu = () => {
                     }}
                 />
                 <LargeImageView
-                    title="Biyyani Darbaar in Athol Park"
+                    title="Biryani Darbaar in Athol Park"
                     description="Enjoy authentic biryani with fresh ingredients!"
                 />
                 <div className="flex justify-center">

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const LocationInfo = () => {
     return (
-        <div className="container-custom py-12">
+        <div className="container-custom">
             {/* Header Section */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -18,7 +18,7 @@ const LocationInfo = () => {
                     Visit our restaurant in the heart of Athol Park. Authentic flavors await you!
                 </p>
             </motion.div>
-            <div className="py-12">
+            <div className="pt-12">
                 <div className="relative flex justify-center items-center bg-white rounded-lg border">
                     <img
                         src="/assets/locationmap.png"

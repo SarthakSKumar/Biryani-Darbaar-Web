@@ -26,7 +26,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                 }}
             />
             {/* Content Container */}
-            <div className="container-custom">
+            <div className="container-custom section-spacing">
                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
                     {/* Left side content */}
                     <motion.div
@@ -113,8 +113,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         </motion.div>
 
                         <div className="flex justify-start items-center gap-4 mt-8">
-                            <img className="w-40" src="/assets/images/google-play.png" alt="Download on Android" />
-                            <img className="w-64" src="/assets/images/app-store.png" alt="Download on iOS" />
+                            <img className="w-40" src="/assets/images/play-store.png" alt="Download on Android" />
+                            <img className="w-40" src="/assets/images/app-store.png" alt="Download on iOS" />
                         </div>
                     </motion.div>
 

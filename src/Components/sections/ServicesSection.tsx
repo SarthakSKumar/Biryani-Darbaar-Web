@@ -1,7 +1,7 @@
 
 const ServicesSection: React.FC = () => {
     return (
-        <div className="w-full bg-yellow-100 py-12">
+        <div className="w-full bg-yellow-100 py-14">
             <div className="container-custom">
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     {/* Left Image */}

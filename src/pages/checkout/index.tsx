@@ -55,8 +55,8 @@ const Checkout: React.FC = () => {
     };
 
     return (
-        <div className="pt-24 ">
-            <div className="container-custom">
+        <div className="flex flex-col gap-20 md:gap-28 pt-12">
+            <div className="container-custom section-spacing">
                 {/* Header */}
                 <motion.div
                     className="flex items-center gap-4 mb-8"
