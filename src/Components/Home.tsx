@@ -1,31 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import InputSearch from "../Reusable-components/InputSearch";
-import RedButton from "../Reusable-components/RedButton";
-import RedWhip from "../Reusable-components/RedWhip";
-import ArchedCard from "../Reusable-components/ArchedCard";
-import order from "../assets/ordericon.png";
-import cater from "../assets/cateringicon.png";
-import girl from "../assets/Girl.png";
-import circle1 from "../assets/mealcircle1.png";
-import circle2 from "../assets/mealcircle2.png";
-import circle3 from "../assets/mealcircle3.png";
-import circle4 from "../assets/mealcircle4.png";
-import img247 from "../assets/24.7.png";
-import booking from "../assets/booking.png";
-import orderB from "../assets/order.png";
-import "./home.css";
-import { motion } from "framer-motion";
-import CustomerReviews from "../Reusable-components/CustomerReview";
-import smily from "../assets/smilyicon.svg";
-import star from "../assets/Star.svg";
-import card1 from "../assets/card1.png";
-import android from "../assets/android.png";
-import apple from "../assets/download2.png";
-import homechef1 from "../assets/homechef1.png";
-import homechef2 from "../assets/homechef2.png";
-import { Link, useNavigate } from "react-router-dom";
-import LocationInfo from "../Reusable-components/LocationInfo";
+import { useNavigate } from "react-router-dom";
+import CustomerReviews from "../sections/CustomerReviewSection";
+import LocationInfo from "../sections/LocationSection";
+import HeroSection from "../sections/HeroSection";
+import SpecialOffersSection from "../sections/SpecialOffersSection";
+import ServicesSection from "../sections/ServicesSection";
+import MenuCategoriesSection from "../sections/MenuCategoriesSection";
+import MobileAppSection from "../sections/MobileAppSection";
+import InfoPage from "../sections/InfoSection";
 
 const Home = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -56,8 +39,7 @@ const Home = () => {
     const fetchDishes = async () => {
       try {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_API_ENDPOINT
+          `${import.meta.env.VITE_API_ENDPOINT
           }/dishes/category/${activeCategory}`
         );
         setDishes(response.data);
@@ -104,376 +86,21 @@ const Home = () => {
   };
 
   return (
-    <>
-      <motion.div
-        className="flex flex-col md:flex-row justify-between items-center p-6 md:p-12"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <motion.div
-          className=" w-full md:w-1/2 text-center md:text-left md:ml-20 mb-20 -mt-20"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div className="hometext text-left text-4xl md:text-6xl  font-bold md:mt-0  laptop:mt-8 laptop:-ml-20 desktop:ml-0 desktop:text-6xl laptop:text-5xl dp:text-7xl dp1:text-7xl dp2:text-8xl dp3:text-8xl tablet:text-4xl tablet:-ml-24 samsung:text-4xl samsung:-ml-24">
-            <div className="textinhome">
-              Experience The <br /> Ultimate Taste Best
-            </div>
-            <div>
-              <span className="textinhome2 text-primary ">
-                Biryani In Adelaide
-              </span>
-            </div>
-          </motion.div>
-          <RedWhip className=" md:ml-80 mt-2 desktop:ml-72 laptop:ml-32 dp:ml-96 dp1:ml-96 dp2:ml-96" />
-          <motion.div
-            className="hometext text-left text-2xl md:text-3xl mt-2 laptop:-ml-20 desktop:ml-0 dp:text-4xl dp:mt-5 dp1:text-5xl dp2:text-5xl dp3:text-5xl tablet:text-2xl tablet:-ml-24 samsung:text-2xl samsung:-ml-24"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            Specializing in Mughlai cuisine
-          </motion.div>
-          <motion.div
-            className="hometext flex items-center md:justify-start bg-primary bg-opacity-10 rounded-2xl w-40 h-7 mt-3 laptop:-ml-20 desktop:ml-0 dp:w-48 dp:h-10 dp2:w-52 dp2:h-8 dp3:w-52 dp3:h-8 dp3:mt-10 tablet:-ml-24 samsung:-ml-24"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            <div className="flex items-center justify-center bg-primary rounded-full w-5 h-5 mr-3 dp:w-9 dp:h-9 dp2:h-9 dp2:w-9 dp3:h-9 dp3:w-9">
-              <svg
-                className="w-6 h-6 text-white dp:w-8 dp:h-8"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3.172 5.172a4.004 4.004 0 015.656 0L10 6.343l1.172-1.171a4.004 4.004 0 015.656 5.656l-6.343 6.343a.75.75 0 01-1.06 0L3.172 10.83a4.004 4.004 0 010-5.656z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <div className="text-black text-xs font-medium dp:text-lg dp3:text-lg ">
-              People Trust us
-            </div>
-          </motion.div>
-          <motion.div className="hometext mt-3 laptop:-ml-20 desktop:ml-0 dp:mt-16 tablet:-ml-24 samsung:-ml-24">
-            <InputSearch placeholder="Search Food" onSearch={handleSearch} />
-          </motion.div>
-          <motion.div
-            className="hometext flex md:flex-wrap justify-center md:justify-start items-center gap-4 mt-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex md:flex-row md:gap-4 laptop:mt-12 desktop:mt-0">
-              <Link to="/Order">
-                <RedButton
-                  className=" md:mt-0 mt-3 h-12 md:w-60 md:py-2 md:text-base text-xs laptop:-ml-20 desktop:ml-0 desktop:w-60 laptop:w-48 dp:mt-10 dp1:mt-6 tablet:-ml-24 samsung:-ml-24 samsung:text-xs samsung:w-44 "
-                  image={order}
-                  alt="order"
-                  name="ORDER FOOD"
-                  variant="active"
-                />
-              </Link>
-              <div className="ml-4 ">
-                <Link to="/Contact">
-                  <RedButton
-                    className="md:mt-0 mt-3 h-12 md:w-56 md:py-2 md:text-base py-2 text-xs desktop:w-56 laptop:w-52 dp:mt-10 dp1:mt-6 samsung:text-xs samsung:w-40 "
-                    image={cater}
-                    alt="cater"
-                    name="BOOK-CATERING"
-                    variant="active"
-                  />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className="girl hidden md:block laptop:-ml-20 desktop:ml-0 dp:-mt-48 dp1:-mt-64 dp1:mr-10 dp2:mr-10 dp3:mr-48"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <br />
-          <div className="relative w-44 h-10 bg-white md:ml-72 lg:ml-72 rounded-3xl flex justify-between items-center dp1:w-48 dp2:w-48 tablet:-ml-1 samsung:ml-32">
-            <img className="w-9 " src={smily} alt="" />
-            <div className="flex flex-col">
-              <div className="text-xs mr-2 font-semibold dp1:mr-6 dp2:mr-6">
-                Our Happy Customer
-              </div>
-              <div className="flex  ">
-                <img className="h-3 text-xs mt-0" src={star} alt="" />
-                <span className="text-xs ml-1">4.9</span>
-                <span className="text-xs ml-1">(1.989 Reviews)</span>
-              </div>
-            </div>
-          </div>
-          <div className="desktpo:w-44 relative bg-white h-14 flex justify-start items-center flex-shrink-0 rounded-lg md:-ml-20 -mb-28 laptop:w-44 laptop:-ml-10 desktop:-ml-16 dp1:w-48 dp2:w-52 dp2:h-18 tablet:w-40 samsung:w-44 samsung:mb-64 samsung:-ml-40">
-            <img
-              className="desktop:w-10 w-12 ml-2 tablet:w-10"
-              src={card1}
-              alt=""
-            />
-            <div className="flex flex-col ">
-              <span className="whitespace-nowrap text-xs ml-5 -mt-0 font-bold desktop:ml-1 laptop:ml-1 dp1:ml-3 dp1:text-sm dp2:text-sm dp2:ml-5 tablet:ml-1">
-                CHICKEN BIRYANI
-              </span>
-              <div className="">
-                <span className=" text-lg mt-4 ml-3 dp1:text-lg dp2:text-lg">
-                  $&nbsp;
-                </span>
-                9.50
-              </div>
-            </div>
-          </div>
-
-          <div className="desktop:h-[410px] desktop:w-[410px] laptop:h-[370px] laptop:w-[370px] rounded-full bg-primary z-10 overflow-hidden md:mx-0 laptop:ml-6 desktop:ml-0 dp:h-[440px] dp:w-[440px] dp:mr-20 dp1:h-[480px] dp1:w-[480px] dp2:h-[500px] dp2:w-[500px] dp3:h-[500px]  dp3:w-[500px] tablet:h-[300px]  tablet:w-[300px] tablet:-mt-80 tablet:-ml-12 samsung:w-[300px] samsung:h-[300px] samsung:-ml-16 samsung:-mt-80">
-            <img
-              src={girl}
-              alt=""
-              className="max-w-55 max-h-[500px] desktop:ml-5 -mt-24 dp:max-h-[530px] dp1:max-h-[580px] dp2:max-h-[600px] dp2:ml-10 dp3:max-h-[590px] tablet:max-h-[400px]"
-            />
-          </div>
-          <div className="w-[485px] h-[225px] border-[23px] border-shade  rounded-b-full border-t-0 -mt-48 md:-ml-9 dp:w-[510px] dp:h-[225px] dp1:w-[550px] dp2:w-[570px] dp3:w-[560px] tablet:w-[375px] tablet:-ml-20 samsung:w-[375px] samsung:-ml-24"></div>
-          <motion.img
-            className="-mt-56 -ml-20 w-32 dp:w-36 dp1:w-40 dp2:w-40 dp3:w-44 tablet:w-28 samsung:w-28 samsung:-ml-32"
-            src={circle1}
-            alt=""
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.img
-            className=" w-44 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 tablet:w-36 samsung:w-40 samsung:-ml-16 "
-            src={circle2}
-            alt=""
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.img
-            className="w-44  ml-48 -mt-32 dp:w-48 dp1:w-52 dp2:w-52 dp3:w-56 dp3:-mt-48 tablet:w-36 samsung:w-40 samsung:ml-28"
-            src={circle3}
-            alt=""
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.img
-            className="w-40 ml-80 -mt-72 -mr-5 dp:w-48 dp1:w-52 dp1:-mt-80 dp2:w-52 dp2:-mt-80 dp3:w-56 dp3:-mt-96 dp3:ml-96 tablet:w-32 tablet:ml-64 tablet:-mt-64 samsung:w-32 samsung:ml-44"
-            src={circle4}
-            alt=""
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-        </motion.div>
-      </motion.div>
-
-      <div className="mt-20 text-center">
-        <div className="text-4xl font-bold dp1:text-5xl dp2:text-5xl dp3:text-5xl">
-          Today <span className="text-primary">Special</span> Offers
-        </div>
-        <div className="mt-5 text-sm md:text-base lg:ml-10 lg:mr-10 dp1:text-xl dp2:text-2xl dp3:text-2xl ">
-          Chicken Biryani is a delicious savory rice dish that is loaded with
-          spicy marinated chicken, caramelized onions, and flavorful saffron
-          rice.
-        </div>
-        <div className="mt-5 md:ml-10">
-          {specialDishes.length > 0 ? (
-            <div className="flex overflow-x-auto gap-4 lg:hidden">
-              {" "}
-              {/* Flex for mobile scrolling */}
-              {specialDishes.map((dish, index) => (
-                <div className="min-w-[270px]">
-                  {" "}
-                  {/* Fixed width for scrolling one by one */}
-                  <ArchedCard
-                    key={index}
-                    image={dish.image}
-                    title={dish.dishName || dish.name || "Delicious Dish"}
-                    description={
-                      dish.description || "Delicious dish available now!"
-                    }
-                    buttonTitle="Order Now"
-                    price={`$${dish.price}`}
-                    className="h-79"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div>Loading special offers...</div>
-          )}
-          <div className="arched hidden lg:grid lg:grid-cols-4 desktop:gap-6 desktop:-ml-8 laptop:mr-24 laptop:-ml-8 desktop:mr-0 laptop:gap-12 dp1:ml-20 dp2:ml-28 dp3:ml-28">
-            {" "}
-            {/* Show grid on larger screens */}
-            {specialDishes.map((dish, index) => (
-              <ArchedCard
-                key={index}
-                image={dish.image}
-                title={dish.dishName || dish.name || "Delicious Dish"}
-                description={
-                  dish.description || "Delicious dish available now!"
-                }
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-79"
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="segment flex flex-col md:flex-row justify-between">
-        <div className="hidden  md:block desktop:mr-28 laptop:-ml-20 desktop:ml-0 dp3:-mt-10 samsung:-ml-">
-          <img src={homechef1} alt=" " className=" homechef1" />
-        </div>
-        <div className="flex flex-col md:mr-44  mt-10 samsung:ml-3">
-          <div className=" text-4xl md:text-6xl font-bold text-center  lg:text-left  lg:mt-40  desktop:ml-24  laptop:ml-48 desktop:text-5xl laptop:text-4xl dp:text-6xl dp:mt-10 dp1:text-7xl dp2:text-7xl dp3:text-8xl dp3:mt-10 ipad:text-4xl ipad:mt-28 samsung:text-3xl ">
-            We are <span className="text-primary">more</span> than <br />
-            <span className="text-primary">multiple</span> service
-          </div>
-          <div className="mt-8 text-center md:mr-0 md:ml-0 mr-8 ml-8 lg:text-left desktop:ml-24 laptop:ml-48 dp:text-2xl dp:mt-10 dp1:text-2xl dp2:text-2xl dp3:text-3xl ">
-            This is a type of resturent which typically serves food and drink,
-            in addition to light <br /> refreshments such as baked goods or
-            snacks. The term comes frome the rench <br /> word meaning food
-          </div>
-          <div className="md:ml-2 ml-4 grid md:gap-4 grid-cols-2 md:grid-cols-2 grid-rows-3 md:mt-20 mt-8 desktop:ml-24 lg:gap-8 lg:mt-8 laptop:ml-48 dp:text-2xl dp:gap-12 dp:mt-10 dp2:text-2xl dp3:text-3xl ipad:-mr-16">
-            <div className="flex justify-between items-center w-32 font-medium dp:w-44 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-52">
-              <img src={orderB} alt="" />
-              Online Order
-            </div>
-            <div className="flex justify-between items-center w-32 font-medium dp:w-44 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-52">
-              <img src={img247} alt="" />
-              24/7 Services
-            </div>
-            <div className="flex justify-between items-center w-36 font-medium dp:w-52 dp1:text-2xl dp1:w-52 dp2:w-52 dp3:w-64 ipad:w-48">
-              <img src={booking} alt="" />
-              <div className="">Pre-Reservation</div>
-            </div>
-            <div className="flex justify-between items-center md:w-56 md:font-medium dp:w-80 dp1:text-2xl dp1:w-80 dp2:w-80 dp3:w-96">
-              <img src={booking} alt="" />
-              <div className="mr-4">Organized Foodhut Place</div>
-            </div>
-            <div className="flex justify-between items-center w-32 font-medium dp:w-40 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-52">
-              <img src={booking} alt="" />
-              Super Chef
-            </div>
-            <div className="flex justify-between items-center w-32 font-medium dp:w-44 dp1:text-2xl dp1:w-48 dp2:w-44 dp3:w-56">
-              <img src={booking} alt="" />
-              Clean Kitchen
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex justify-center items-center mt-10">
-        <div className="text-center text-4xl font-bold dp1:text-5xl dp2:text-5xl ipad:-mt-96">
-          <span className="text-primary">Menu</span> That{" "}
-          <span className="text-primary">Always</span> Make You <br />
-          Fall In <span className="text-primary">Love</span>
-        </div>
-      </div>
-      <br />
-
-      <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 mt-4">
-        {categories.map((category, index) => (
-          <RedButton
-            key={index}
-            className="w-60 flex-shrink-0" // Keeps the button size consistent in the scrollable view
-            name={category}
-            variant={activeCategory === category ? "active" : "inactive"}
-            onClick={() => {
-              setActiveCategory(category);
-              console.log("Category clicked:", category); // Log the clicked category
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="mt-14 text-center">
-        <div className="text-4xl font-bold">
-          {activeCategory} <span className="text-primary">Dishes</span>
-        </div>
-
-        <div className="mt-5 ml-5 lg:ml-36">
-          {/* For mobile scrolling */}
-          {dishes.length > 0 ? (
-            <div className="flex overflow-x-auto gap-6 lg:hidden">
-              {" "}
-              {/* Flex container for horizontal scrolling */}
-              {dishes.map((dish, index) => (
-                <div key={index} className="min-w-[270px]">
-                  {" "}
-                  {/* Fixed width to scroll one by one */}
-                  <ArchedCard
-                    image={dish.image}
-                    title={dish.dishName || dish.name || "Delicious Dish"}
-                    description={
-                      dish.description || "Delicious dish available now!"
-                    }
-                    buttonTitle="Order Now"
-                    price={`$${dish.price}`}
-                    className="h-79"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div>Loading dishes...</div>
-          )}
-
-          {/* Show grid on larger screens */}
-          <div className=" hidden lg:grid lg:grid-cols-3 gap-6 laptop:mr-10">
-            {dishes.map((dish, index) => (
-              <ArchedCard
-                key={index}
-                image={dish.image}
-                title={dish.dishName || dish.name || "Delicious Dish"}
-                description={
-                  dish.description || "Delicious dish available now!"
-                }
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-69 w-[310px]"
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="segment flex flex-col justify-around">
-        <div className="mt-10 text-center text-2xl md:text-left md:text-6xl font-bold md:mt-32 md:ml-16 desktop:text-5xl laptop:text-4xl dp:text-6xl dp1:text-7xl dp2:text-7xl dp3:text-8xl ipad:text-5xl">
-          It's Now <span className="text-primary">More Easy </span> to{" "}
-          <span className="text-primary">Order</span> <br />
-          by Our Mobile <span className="text-primary">App</span>
-        </div>
-        <div className=" ml-8 mr-8 mt-10 text-center md:text-left md:text-xl md:mt-16 md:ml-16   desktop:text-xl laptop:text-sm  laptop:-mt-32 dp:mt-1 dp:text-2xl dp1:text-2xl dp1:mt-10 dp2:text-2xl dp2:mt-10 dp3:text-3xl dp3:mt-10 ipad:text-lg ipad:-mt-60">
-          All you need to do is download one of the best delivery apps, <br />
-          make a and most companies are opting for mobile app <br />
-          devlopment for food delivery
-        </div>
-        <div className="flex justify-start items-center mt-8 md:w-96 md:mt-10 md:ml-10">
-          <img
-            className=" w-40 md:w-40 laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10"
-            src={android}
-            alt=""
-          />
-          <img
-            className=" w-40 md:w-96 md:mt-2  laptop:-mt-60 dp:mt-1 dp1:mt-10 dp2:mt-10 dp3:mt-10"
-            src={apple}
-            alt=""
-          />
-        </div>
-        <div className="hidden md:block  laptop:w-1/2">
-          <img src={homechef2} alt="" className="homechef2" />
-        </div>
-      </div>
+    <div className="flex flex-col gap-20 md:gap-28">
+      <HeroSection onSearch={handleSearch} />
+      <SpecialOffersSection specialDishes={specialDishes} />
+      <ServicesSection />
+      <MenuCategoriesSection
+        categories={categories}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+        dishes={dishes}
+      />
+      <MobileAppSection />
       <LocationInfo />
+      <InfoPage />
       <CustomerReviews />
-    </>
+    </div>
   );
 };
 
