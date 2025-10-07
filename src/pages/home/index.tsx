@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CustomerReviews from "../sections/CustomerReviewSection";
-import LocationInfo from "../sections/LocationSection";
-import HeroSection from "../sections/HeroSection";
-import SpecialOffersSection from "../sections/SpecialOffersSection";
-import ServicesSection from "../sections/ServicesSection";
-import MenuCategoriesSection from "../sections/MenuCategoriesSection";
-import MobileAppSection from "../sections/MobileAppSection";
-import InfoPage from "../sections/InfoSection";
+import CustomerReviews from "@/components/sections/CustomerReviewSection";
+import LocationInfo from "@/components/sections/LocationSection";
+import HeroSection from "@/components/sections/HeroSection";
+import SpecialOffersSection from "@/components/sections/SpecialOffersSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import MenuCategoriesSection from "@/components/sections/MenuCategoriesSection";
+import MobileAppSection from "@/components/sections/MobileAppSection";
+import InfoPage from "@/components/sections/InfoSection";
 
 const Home = () => {
     const [categories, setCategories] = useState<string[]>([]);

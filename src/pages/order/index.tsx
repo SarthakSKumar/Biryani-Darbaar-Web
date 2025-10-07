@@ -1,9 +1,9 @@
 // Orders.tsx
-import LargeImageView from "../Reusable-components/LargeImageView.tsx";
-import MainOrderLayout from "../Reusable-components/order-component/MainOrderLayout.tsx";
-import InfoPage from "../sections/InfoSection.tsx";
-import LocationInfo from "../sections/LocationSection.tsx";
-import { CartProvider } from "./CartProvider.tsx";
+import LargeImageView from "@/components/LargeImageView";
+import MainOrderLayout from "@/pages/order/MainOrderLayout";
+import InfoPage from "@/components/sections/InfoSection";
+import LocationInfo from "@/components/sections/LocationSection";
+import { CartProvider } from "@/providers/CartProvider";
 import { motion } from "framer-motion";
 
 const Order = () => {

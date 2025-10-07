@@ -1,7 +1,7 @@
-import homechef1 from "../assets/homechef1.png";
-import orderB from "../assets/order.png";
-import img247 from "../assets/24.7.png";
-import booking from "../assets/booking.png";
+import homechef1 from "@/assets/homechef1.png";
+import orderB from "@/assets/order.png";
+import img247 from "@/assets/24.7.png";
+import booking from "@/assets/booking.png";
 
 const ServicesSection: React.FC = () => {
     return (

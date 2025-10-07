@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
-import kebab from "../assets/kebab.png";
-import chickencurries from "../assets/chickencurries.png";
-import starters from "../assets/starters.png";
+import kebab from "@/assets/kebab.png";
+import chickencurries from "@/assets/chickencurries.png";
+import starters from "@/assets/starters.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Custom arrow components

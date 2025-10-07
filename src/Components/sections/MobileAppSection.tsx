@@ -1,6 +1,6 @@
-import android from "../assets/android.png";
-import apple from "../assets/download2.png";
-import homechef2 from "../assets/homechef2.png";
+import android from "@/assets/android.png";
+import apple from "@/assets/download2.png";
+import homechef2 from "@/assets/homechef2.png";
 
 const MobileAppSection: React.FC = () => {
     return (

@@ -1,13 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import ArchedCard from "../Reusable-components/ArchedCard";
-import LargeImageView from "../Reusable-components/LargeImageView";
-import InfoPage from "../sections/InfoSection";
-import CustomerReviews from "../sections/CustomerReviewSection";
-import ImageSlider from "../Reusable-components/ImageSlider";
-import InputSearch from "../Reusable-components/InputSearch";
-import RedButton from "../Reusable-components/RedButton";
-import Loading from "../Reusable-components/Loading";
+import ArchedCard from "@/components/cards/ArchedCard";
+import LargeImageView from "@/components/LargeImageView";
+import InfoPage from "@/components/sections/InfoSection";
+import CustomerReviews from "@/components/sections/CustomerReviewSection";
+import ImageSlider from "@/components/sliders/ImageSlider";
+import InputSearch from "@/components/InputSearch";
+import RedButton from "@/components/RedButton";
+import Loading from "@/components/Loading";
 import { useLocation } from "react-router-dom";
 import "../styles/Menu.css";
 

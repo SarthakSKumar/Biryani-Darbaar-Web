@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import LocationInfo from "../components/sections/LocationSection";
-import CustomerReviews from "../components/sections/CustomerReviewSection";
-import InfoPage from "../components/sections/InfoSection";
+import LocationInfo from "@/components/sections/LocationSection";
+import CustomerReviews from "@/components/sections/CustomerReviewSection";
+import InfoPage from "@/components/sections/InfoSection";
 
 const About: React.FC = () => {
   return (

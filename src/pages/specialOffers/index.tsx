@@ -1,9 +1,9 @@
-import LargeImageView from "../Reusable-components/LargeImageView";
-import ArchedCard from "../Reusable-components/ArchedCard";
+import LargeImageView from "@/components/LargeImageView";
+import ArchedCard from "@/components/cards/ArchedCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
-import ImageSlider from "../Reusable-components/ImageSlider";
+import DineInMenuSlider from "@/components/sliders/DineInMenuSlider";
+import ImageSlider from "@/components/sliders/ImageSlider";
 
 const SpecialOffer = () => {
     interface Dish {

@@ -1,23 +1,23 @@
-import "./styles/App.css";
+import "./styles/global.css";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Menu from "./components/Menu";
-import Order from "./components/Order";
-import About from "./pages/About";
-import SpecialOffer from "./components/SpecialOffer";
-import PrivacyPolicy from "./pages/privacyPolicy";
-import TermsAndConditions from "./pages/termsAndConditions";
-import Footer from "./components/Footer";
+import Navbar from "@/components/Navbar";
+import Home from "@/pages/home";
+import Menu from "@/pages/menu";
+import Order from "@/pages/order";
+import About from "@/pages/About";
+import SpecialOffer from "@/pages/specialOffers";
+import PrivacyPolicy from "@/pages/privacyPolicy";
+import TermsAndConditions from "@/pages/termsAndConditions";
+import Footer from "@/components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "./lib/firebase";
-import SignInSignUpModal from "./components/login";
-import Contact from "./components/Contact";
-import Checkout from "./Reusable-components/order-component/Checkout";
-import { CartProvider } from "./providers/CartProvider";
+import SignInSignUpModal from "@/components/login";
+import Contact from "@/components/Contact";
+import Checkout from "@/pages/checkout";
+import { CartProvider } from "@/providers/CartProvider";
 
 // Scroll to top component
 function ScrollToTop() {
