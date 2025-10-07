@@ -72,6 +72,17 @@ for ((c=0; c<commits; c++)); do
 
   # stage and commit (use -- to be safe with leading dashes, pass array to preserve spaces)
   git add -- "${batch[@]}"
+
+  # if nothing was staged (files may have been deleted or already committed), skip this commit
+  staged=$(git diff --cached --name-only -- "${batch[@]}" || true)
+  if [ -z "$staged" ]; then
+    echo "No staged changes for this batch (skipping commit): $msg_files"
+    # ensure we don't leave any stale index entries for these paths
+    git reset -- "${batch[@]}" >/dev/null 2>&1 || true
+    echo
+    continue
+  fi
+
   git commit -m "$commit_msg"
 
   echo "Committed: $commit_msg"
