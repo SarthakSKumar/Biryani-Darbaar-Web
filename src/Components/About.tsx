@@ -1,135 +1,157 @@
-//import ArchedCard from "../Reusable-components/ArchedCard";
-//import chickenbiryani from "../assets/chickenbiryani.svg";
-//import InputSearch from "../Reusable-components/InputSearch";
-//import RedButton from "../Reusable-components/RedButton";
-
 import React from "react";
-import "./about.css"; // Import the CSS file
-import { motion } from "framer-motion"; // Import Framer Motion
-import LocationInfo from "../Reusable-components/LocationInfo";
-import CustomerReviews from "../Reusable-components/CustomerReview";
-import InfoPage from "../Reusable-components/InfoPage";
+import { motion } from "framer-motion";
+import LocationInfo from "../sections/LocationSection";
+import CustomerReviews from "../sections/CustomerReviewSection";
+import InfoPage from "../sections/InfoSection";
 
 const About: React.FC = () => {
   return (
     <>
       <motion.div
-        className="about-container"
-        initial={{ opacity: 0, y: 50 }} // Start with opacity 0 and 50px below
-        animate={{ opacity: 1, y: 0 }} // Fade in and move to final position
-        transition={{ duration: 0.6, ease: "easeOut" }} // 0.6s duration with easeOut
+        className="relative min-h-screen pt-"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <section className="hero">
+        {/* Hero Section */}
+        <section className="container-custom text-center section-spacing">
           <motion.h1
-            initial={{ opacity: 0, x: -100 }} // Start invisible and 100px to the left
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
+            className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
             About Us
           </motion.h1>
           <motion.h3
-            initial={{ opacity: 0 }} // Start invisible
-            animate={{ opacity: 1 }} // Fade in
-            transition={{ delay: 0.5 }} // Start after 0.5s delay
+            className="text-2xl md:text-3xl font-bold text-primary mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
           >
             Bringing the True Taste of Hyderabadi Biryani to Australia
           </motion.h3>
-          <motion.h4
-            initial={{ opacity: 0, scale: 0.8 }} // Start invisible and scaled down
-            animate={{ opacity: 1, scale: 1 }} // Fade in and scale to full size
-            transition={{ duration: 0.6 }} // 0.6s duration
+          <motion.p
+            className="text-lg text-neutral-600 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             At Biryani Darbaar, we bring you the authentic taste of Hyderabad
             right here in Australia! If you love bold flavors, aromatic spices,
             and melt-in-your-mouth biryani, you're in for a treat. Our biryani
             isn't just food—it's an experience, a royal feast that has been
             enjoyed for centuries in the land of the Nizams.
-          </motion.h4>
+          </motion.p>
         </section>
 
-        <section className="content">
-          <motion.h3
-            initial={{ opacity: 0, x: -100 }} // Start invisible and 100px to the left
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
-          >
-            What Makes Our Biryani Special?
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.8 }} // Start invisible and scaled down
-            animate={{ opacity: 1, scale: 1 }} // Fade in and scale to full size
-            transition={{ duration: 0.6 }} // 0.6s duration
-          >
-            Hyderabadi Biryani is not your regular rice dish—it's a slow-cooked
-            masterpiece. We use the finest basmati rice, juicy meat, and a
-            unique blend of handpicked spices, all layered and cooked to
-            perfection using the traditional Dum Pukht method. The result? A
-            rich, aromatic, and flavor-packed biryani that will transport you
-            straight to the streets of Hyderabad.
-          </motion.p>
+        {/* What Makes Our Biryani Special - Left/Right Layout */}
+        <section className="container-custom section-spacing">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+                What Makes Our Biryani Special?
+              </h3>
+              <p className="text-lg text-neutral-600 leading-relaxed">
+                Hyderabadi Biryani is not your regular rice dish—it's a slow-cooked
+                masterpiece. We use the finest basmati rice, juicy meat, and a
+                unique blend of handpicked spices, all layered and cooked to
+                perfection using the traditional Dum Pukht method. The result? A
+                rich, aromatic, and flavor-packed biryani that will transport you
+                straight to the streets of Hyderabad.
+              </p>
+            </motion.div>
+            <motion.img
+              src="https://static.vecteezy.com/system/resources/thumbnails/024/650/050/small_2x/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai-free-photo.jpg"
+              alt="Delicious Hyderabadi Biryani"
+              className="w-full h-auto max-h-[400px] object-cover rounded-2xl shadow-xl"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            />
+          </div>
+        </section>
 
-          <motion.img
-            src="https://lh3.googleusercontent.com/p/AF1QipODwck4_Y4UsH3IAoWOuf_W7LB2fW_cmZ3zKrYU=s1360-w1360-h1020"
-            alt="Hyderabadi Dish"
-            className="full-width-image"
-            initial={{ opacity: 0, x: 100 }} // Start invisible and 100px to the right
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
-          />
+        {/* More Than Just Biryani - Right/Left Layout */}
+        <section className="container-custom section-spacing">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.img
+              src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800"
+              alt="Variety of Indian Dishes"
+              className="w-full h-auto max-h-[400px] object-cover rounded-2xl shadow-xl order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            />
+            <motion.div
+              className="order-1 md:order-2"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+                More Than Just Biryani
+              </h3>
+              <p className="text-lg text-neutral-600 leading-relaxed">
+                While our biryani is the star, we also serve various classic
+                Hyderabadi dishes. Every dish is made with love and authenticity,
+                from the creamy Haleem and spicy Mirchi Ka Salan to delicious
+                curries and sizzling kebabs. And for those with a sweet tooth, our
+                Qubani Ka Meetha (a traditional apricot dessert) is the perfect way
+                to end your meal.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-          <motion.h3
-            initial={{ opacity: 0, x: -100 }} // Start invisible and 100px to the left
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
-          >
-            More Than Just Biryani
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.8 }} // Start invisible and scaled down
-            animate={{ opacity: 1, scale: 1 }} // Fade in and scale to full size
-            transition={{ duration: 0.6 }} // 0.6s duration
-          >
-            While our biryani is the star, we also serve various classic
-            Hyderabadi dishes. Every dish is made with love and authenticity,
-            from the creamy Haleem and spicy Mirchi Ka Salan to delicious
-            curries and sizzling kebabs. And for those with a sweet tooth, our
-            Qubani Ka Meetha (a traditional apricot dessert) is the perfect way
-            to end your meal.
-          </motion.p>
-          <motion.img
-            src="https://static.vecteezy.com/system/resources/thumbnails/024/650/050/small_2x/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai-free-photo.jpg"
-            alt="Hyderabadi Dish"
-            className="full-width-image"
-            initial={{ opacity: 0, x: 100 }} // Start invisible and 100px to the right
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
-          />
-
-          <motion.h3
-            initial={{ opacity: 0, x: -100 }} // Start invisible and 100px to the left
-            animate={{ opacity: 1, x: 0 }} // Fade in and slide to final position
-            transition={{ duration: 0.8 }} // 0.8s duration
-          >
-            For Our Aussie Food Lovers
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, scale: 0.8 }} // Start invisible and scaled down
-            animate={{ opacity: 1, scale: 1 }} // Fade in and scale to full size
-            transition={{ duration: 0.6 }} // 0.6s duration
-          >
-            We know Australia loves good food, and if you're a fan of Indian
-            cuisine, you'll love our Hyderabadi flavors. Whether you're a
-            die-hard biryani lover or trying it for the first time, we promise a
-            hearty, flavorful, and unforgettable meal. So come over and enjoy a
-            plate of real Hyderabadi Biryani—because great food is meant to be
-            shared, and we can't wait to share ours with you! 🍛🔥 Visit us
-            today and taste the magic.
-          </motion.p>
+        {/* For Our Aussie Food Lovers - Left/Right Layout */}
+        <section className="container-custom section-spacing">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+                For Our Aussie Food Lovers
+              </h3>
+              <p className="text-lg text-neutral-600 leading-relaxed">
+                We know Australia loves good food, and if you're a fan of Indian
+                cuisine, you'll love our Hyderabadi flavors. Whether you're a
+                die-hard biryani lover or trying it for the first time, we promise a
+                hearty, flavorful, and unforgettable meal. So come over and enjoy a
+                plate of real Hyderabadi Biryani—because great food is meant to be
+                shared, and we can't wait to share ours with you! 🍛🔥 Visit us
+                today and taste the magic.
+              </p>
+            </motion.div>
+            <motion.img
+              src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800"
+              alt="Restaurant Ambience"
+              className="w-full h-auto max-h-[400px] object-cover rounded-2xl shadow-xl"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            />
+          </div>
         </section>
       </motion.div>
-      <InfoPage />
-      <LocationInfo />
-      <CustomerReviews />
+
+      <div className="flex flex-col gap-20 md:gap-28">
+        <InfoPage />
+        <LocationInfo />
+        <CustomerReviews />
+      </div>
     </>
   );
 };
