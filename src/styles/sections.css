@@ -1,3 +1,5 @@
+
+
 @media (max-width: 359px) {
   body::before {
     height: 90vh;
@@ -50,9 +52,6 @@
     height: 160px;
   }
 }
-
-/* Import Google Font (Lato) */
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 /* Existing styles */
 .search1 {
@@ -114,7 +113,7 @@
 
 /* Updated styles for the multiple-service-section */
 .multiple-service-section {
-  font-family: "Lato", sans-serif; /* Use Lato font */
+  font-family: "Geist", sans-serif;
   background-color: #f7f2e7; /* Light beige background */
 }
 

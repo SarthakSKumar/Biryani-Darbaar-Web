@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/DABAAR.png";
+import logo from "../../assets/DABAAR.png";
 import { Instagram, Mail, Phone } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -32,10 +32,10 @@ const Footer: React.FC = () => {
               >
                 <Mail size={20} />
               </a>
-              <a href="tel:+61460747490" 
+              <a href="tel:+61460747490"
                 className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
 
-              aria-label="Call Biryani Darbaar">
+                aria-label="Call Biryani Darbaar">
                 <Phone size={20} />
               </a>
             </div>

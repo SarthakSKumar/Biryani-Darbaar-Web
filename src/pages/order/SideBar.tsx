@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import orderSpoon from "@/assets/Order-spoon.png";
-import orderGirl from "@/assets/order-girl.png";
+import orderSpoon from "../../../assets/Order-spoon.png";
+import orderGirl from "../../../assets/order-girl.png";
 
 interface SidebarProps {
   handleCategorySelect: (category: string) => void;

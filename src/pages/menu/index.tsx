@@ -9,7 +9,6 @@ import InputSearch from "@/components/InputSearch";
 import RedButton from "@/components/RedButton";
 import Loading from "@/components/Loading";
 import { useLocation } from "react-router-dom";
-import "../styles/Menu.css";
 
 const Menu = () => {
     const [categories, setCategories] = useState<string[]>([]);

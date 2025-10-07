@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import RedButton from "./RedButton";
-import logo from "../assets/DABAAR.png";
+import logo from "../../assets/DABAAR.png";
 import { Instagram, Phone, Mail, Menu, X, ShoppingCart } from "lucide-react";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";

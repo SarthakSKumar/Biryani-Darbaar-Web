@@ -1,23 +1,30 @@
-import "./styles/global.css";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import Navbar from "@/components/Navbar";
+import { useEffect, useState } from "react";
+
 import Home from "@/pages/home";
 import Menu from "@/pages/menu";
 import Order from "@/pages/order";
+import Checkout from "@/pages/checkout";
 import About from "@/pages/About";
 import SpecialOffer from "@/pages/specialOffers";
 import PrivacyPolicy from "@/pages/privacyPolicy";
 import TermsAndConditions from "@/pages/termsAndConditions";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./lib/firebase";
+
+import SignInSignUpModal from "@/components/login";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+
+import { CartProvider } from "@/providers/CartProvider";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { auth } from "./lib/firebase";
-import SignInSignUpModal from "@/components/login";
-import Contact from "@/components/Contact";
-import Checkout from "@/pages/checkout";
-import { CartProvider } from "@/providers/CartProvider";
+import './styles/global.css'
+import './styles/components.css'
+import './styles/sections.css'
 
 // Scroll to top component
 function ScrollToTop() {

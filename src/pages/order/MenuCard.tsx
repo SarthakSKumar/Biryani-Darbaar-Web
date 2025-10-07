@@ -2,7 +2,7 @@ import React from "react";
 import { useCart } from "@/contexts/CartContext";
 import { motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
-import chilliIcon from "@/assets/chilli-icon.png";
+import chilliIcon from "../../../assets/chilli-icon.png";
 
 interface MenuCardProps {
   title: string;

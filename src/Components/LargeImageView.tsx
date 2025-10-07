@@ -1,13 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import image1 from "../assets/1.jpg";
-import image2 from "../assets/2.jpg";
-import image3 from "../assets/3.jpg";
-import image4 from "../assets/4.jpg";
-import image5 from "../assets/5.jpg";
-import image6 from "../assets/6.jpg";
-import "../styles/special.css";
+import image1 from "../../assets/1.jpg";
+import image2 from "../../assets/2.jpg";
+import image3 from "../../assets/3.jpg";
+import image4 from "../../assets/4.jpg";
+import image5 from "../../assets/5.jpg";
+import image6 from "../../assets/6.jpg";
 
 interface LargeImageViewProps {
   title: string;
@@ -144,8 +143,8 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
             key={index}
             onClick={() => goToImage(index)}
             className={`transition-all rounded-full ${index === currentImage
-                ? "w-8 h-2 bg-white"
-                : "w-2 h-2 bg-white/50 hover:bg-white/75"
+              ? "w-8 h-2 bg-white"
+              : "w-2 h-2 bg-white/50 hover:bg-white/75"
               }`}
             aria-label={`Go to image ${index + 1}`}
           />
