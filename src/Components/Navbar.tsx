@@ -56,7 +56,6 @@ const Navbar: React.FC = () => {
               <Phone size={24} className="mr-1" />
               <span className="text-md font-medium hidden sm:inline">+61460747490</span>
             </a>
-            {/* TODO */}
             <a href="mailto:info@biryanidarbaar.com" className="flex items-center text-neutral-100 hover:text-neutral-300 transition-colors" aria-label="Email Biryani Darbaar">
               <Mail size={24} className="mr-1" /> Email
             </a>

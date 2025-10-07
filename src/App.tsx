@@ -49,9 +49,8 @@ function App() {
       setIsAuthenticated(!!user);
     });
 
-    return () => unsubscribe(); // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
-  console.log(isAuthenticated);
 
   return (
     <>

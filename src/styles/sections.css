@@ -1,69 +1,23 @@
-
-
-@media (max-width: 359px) {
-  body::before {
-    height: 90vh;
-  }
-  body.menu-open::before {
-    height: 120vh;
-  }
-  .dish {
-    margin-right: 10px;
-
-    width: 50%;
-    height: 160px;
-  }
-}
-@media (min-width: 360px) and (max-width: 380px) {
-  body::before {
-    height: 110vh;
-  }
-  body.menu-open::before {
-    height: 150vh;
-  }
-  .dish {
-    margin-right: 10px;
-    width: 50%;
-    height: 160px;
-  }
-}
-
-@media (min-width: 381px) and (max-width: 425px) {
-  body::before {
-    height: 90vh;
-  }
-  body.menu-open::before {
-    height: 120vh;
-  }
-  .dish {
-    width: 50%;
-    height: 160px;
-  }
-}
-@media (min-width: 425px) and (max-width: 435px) {
-  body::before {
-    height: 80vh;
-  }
-  body.menu-open::before {
-    height: 110vh;
-  }
-  .dish {
-    width: 50%;
-    height: 160px;
-  }
-}
-
-/* Existing styles */
+/* Consolidated mobile styles */
 .search1 {
   margin-top: 3%;
 }
 
+.dish {
+  width: 50%;
+  height: 160px;
+}
+
+/* Mobile breakpoints - consolidated to avoid duplication */
 @media (max-width: 359px) {
   body::before {
     height: 80vh;
   }
   body.menu-open::before {
     height: 110vh;
+  }
+  .dish {
+    margin-right: 10px;
   }
   .tso {
     margin-top: 10%;
@@ -76,6 +30,9 @@
   }
   body.menu-open::before {
     height: 150vh;
+  }
+  .dish {
+    margin-right: 10px;
   }
   .tso {
     margin-top: 10%;
