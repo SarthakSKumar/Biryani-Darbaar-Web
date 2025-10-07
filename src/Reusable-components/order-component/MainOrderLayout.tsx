@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MenuCard from "./MenuCard";
 import Sidebar from "./SideBar";
-import CartModal from "../../Components/CartModal";
+import Cart from "./Cart"; // Import Cart as a popup component
+import Loading from "../Loading";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -32,13 +33,19 @@ const MainOrderLayout: React.FC = () => {
   }
 
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const [showCart, setShowCart] = useState(false); // State to toggle cart visibility
+  const [showCart, setShowCart] = useState(false); // State to toggle cart popup visibility
   const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>("Biryani's");
 
   const handleCategorySelect = (category: string) => {
-    console.log("Category selected:", category);
+    setActiveCategory(category);
+    setLoading(true);
     axios
-      .get(`${import.meta.env.VITE_API_ENDPOINT}/dishes/category/${category}`)
+      .get(
+        `${import.meta.env.VITE_API_ENDPOINT
+        }/dishes/category/${encodeURIComponent(category)}`
+      )
       .then((response) => {
         const data = response.data;
         const menuItems = data.map(
@@ -63,6 +70,9 @@ const MainOrderLayout: React.FC = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -96,129 +106,141 @@ const MainOrderLayout: React.FC = () => {
   }, []);
 
   return (
-    <motion.div
-      className="orders-layout flex flex-col md:flex-row mt-20"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <Sidebar
-        handleCategorySelect={handleCategorySelect}
-        handleOrdersSelect={handleOrdersSelect}
-        handleClearOrders={handleClearOrders}
-      />
+    <div className="container-custom">
+      <motion.div
+        className="flex flex-col md:flex-row py-20 gap-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Sidebar
+          handleCategorySelect={handleCategorySelect}
+          handleOrdersSelect={handleOrdersSelect}
+          handleClearOrders={handleClearOrders}
+          activeCategory={activeCategory}
+        />
 
-      <div className="flex-1 flex flex-col md:flex-row">
-        <motion.div
-          className="orders-content flex-1 p-6 lg:p-12 bg-gray-100"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-2xl md:text-3xl font-bold mb-6 text-black">
-            Order from Biryani in Australia
-          </h1>
-          {orders.length > 0 ? (
-            <div className="space-y-6">
-              {orders.map((order) => (
-                <motion.div
-                  key={order.orderId}
-                  className="order-card bg-white p-6 rounded-lg shadow-md"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-xl font-semibold text-black">
-                      Order ID: {order.orderId}
-                    </h4>
-                    <p className="order-status">
-                      {order.orderStatus === "Completed" ? (
-                        <CheckCheck size={30} color="#318CE7" />
-                      ) : (
-                        <Check size={30} color="#318CE7" />
-                      )}
-                    </p>
-                  </div>
-                  <div className="mb-4 text-gray-600">
-                    <p>
-                      <strong>Order Status:</strong> {order.orderStatus}
-                    </p>
-                    <p>
-                      <strong>Delivery Address:</strong> {order.customerAddress}
-                    </p>
-                    <p>
-                      <strong>Order Date:</strong>{" "}
-                      {new Date(order.orderDate).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="mb-4">
-                    <h4 className="text-lg font-semibold text-black">Items:</h4>
-                    <ul className="list-disc list-inside text-gray-600">
-                      {order.orderItems &&
-                        order.orderItems.map((item) => (
-                          <li key={item.dishId}>
-                            {item.dishName} - {item.quantity} x ${item.price}
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                  <div className="mt-4 text-gray-600">
-                    <p>
-                      <strong>Total Price:</strong> ${order.totalPrice}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {menuItems.map((item, index) => (
-                <motion.div
-                  key={item.dishId}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <MenuCard
-                    dishId={item.dishId}
-                    title={item.name}
-                    description={item.description}
-                    imageUrl={item.image}
-                    price={item.price}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          )}
-
+        <div className="flex-1 flex flex-col">
           <motion.div
-            className="flex justify-center mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <button
-              className="orders-basket-btn bg-red-500 text-white py-3 px-8 rounded-lg font-bold text-xl hover:bg-red-600 transition"
-              onClick={() => setShowCart(!showCart)}
-            >
-              {showCart ? "Hide Basket" : "My Basket"}
-            </button>
-          </motion.div>
-        </motion.div>
-
-        {showCart && !orders.length && (
-          <motion.div
-            className="cart-sidebar w-full md:w-1/3 p-6 bg-white shadow-md"
+            className="flex-1 p-6 lg:p-12 rounded-2xl border"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <CartModal onClose={() => setShowCart(false)} />
+            <div className="">
+              <h1 className="text-3xl md:text-4xl font-bold mb-8 text-neutral-900 ">
+                Order from Biryani Darbaar
+              </h1>
+              {orders.length > 0 ? (
+                <div className="space-y-6">
+                  {orders.map((order) => (
+                    <motion.div
+                      key={order.orderId}
+                      className="bg-white p-6 rounded-lg border border-gray-200"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <div className="flex justify-between items-center mb-4">
+                        <h4 className="text-xl font-semibold text-neutral-900">
+                          Order ID: {order.orderId}
+                        </h4>
+                        <div>
+                          {order.orderStatus === "Completed" ? (
+                            <CheckCheck size={30} color="#318CE7" />
+                          ) : (
+                            <Check size={30} color="#318CE7" />
+                          )}
+                        </div>
+                      </div>
+                      <div className="mb-4 text-neutral-600 space-y-1">
+                        <p>
+                          <strong>Order Status:</strong> {order.orderStatus}
+                        </p>
+                        <p>
+                          <strong>Delivery Address:</strong> {order.customerAddress}
+                        </p>
+                        <p>
+                          <strong>Order Date:</strong>{" "}
+                          {new Date(order.orderDate).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div className="mb-4">
+                        <h4 className="text-lg font-semibold text-neutral-900 mb-2">Items:</h4>
+                        <ul className="list-disc list-inside text-neutral-600 space-y-1">
+                          {order.orderItems &&
+                            order.orderItems.map((item) => (
+                              <li key={item.dishId}>
+                                {item.dishName} - {item.quantity} x ${item.price}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className="mt-4 text-neutral-600">
+                        <p className="text-lg font-semibold">
+                          <strong>Total Price:</strong> ${order.totalPrice}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : loading ? (
+                <Loading text="Loading delicious dishes..." />
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {menuItems.map((item, index) => (
+                    <motion.div
+                      key={item.dishId}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <MenuCard
+                        dishId={item.dishId}
+                        title={item.name}
+                        description={item.description}
+                        imageUrl={item.image}
+                        price={item.price}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Button to display cart */}
+              <motion.div
+                className="flex justify-center mt-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <button
+                  className="bg-primary text-white py-3 px-8 rounded-lg font-bold text-xl hover:bg-red-600 transition-all border border-primary"
+                  onClick={() => setShowCart(!showCart)}
+                >
+                  {showCart ? "Hide Cart" : "View Cart"}
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
+        </div>
+
+        {/* Cart Popup - More horizontal with max height */}
+        {showCart && !orders.length && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 z-[2000] flex justify-center items-center p-4"
+            onClick={() => setShowCart(false)}
+          >
+            <div
+              className="w-full max-w-4xl max-h-[75vh] overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Cart onClose={() => setShowCart(false)} />
+            </div>
+          </div>
         )}
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
