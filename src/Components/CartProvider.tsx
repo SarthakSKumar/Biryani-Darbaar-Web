@@ -19,19 +19,34 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  // Try to fetch cart items from backend; fall back to localStorage if unavailable
   useEffect(() => {
     const fetchCartItems = async () => {
+      const userId = sessionStorage.getItem("sessionUserId");
+      // If no backend endpoint configured, load local cart
+      if (!import.meta.env.VITE_API_ENDPOINT) {
+        const local = localStorage.getItem("local_cart");
+        if (local) setCartItems(JSON.parse(local));
+        return;
+      }
+
       try {
-        const userId = sessionStorage.getItem("sessionUserId");
-        if (!userId) return;
+        if (!userId) {
+          // no user id -> load local
+          const local = localStorage.getItem("local_cart");
+          if (local) setCartItems(JSON.parse(local));
+          return;
+        }
 
         const response = await axios.post(
           `${import.meta.env.VITE_API_ENDPOINT}/getCart`,
           { userId }
         );
-        setCartItems(response.data);
+        setCartItems(response.data || []);
       } catch (error) {
         console.error("Error fetching cart items:", error);
+        const local = localStorage.getItem("local_cart");
+        if (local) setCartItems(JSON.parse(local));
       }
     };
     fetchCartItems();
@@ -41,8 +56,54 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     item: Omit<CartItem, "cartItemId" | "quantity">,
     quantity: number
   ) => {
+    if (quantity <= 0) return;
+
+    // If no backend is configured, operate purely in localStorage
+    if (!import.meta.env.VITE_API_ENDPOINT) {
+      setCartItems((prevItems) => {
+        const existing = prevItems.find((i) => i.dishId === item.dishId);
+        let updated: CartItem[];
+        if (existing) {
+          updated = prevItems.map((i) =>
+            i.dishId === item.dishId ? { ...i, quantity: i.quantity + quantity } : i
+          );
+        } else {
+          const newItem: CartItem = {
+            ...item,
+            cartItemId: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+            quantity,
+          };
+          updated = [...prevItems, newItem];
+        }
+        localStorage.setItem("local_cart", JSON.stringify(updated));
+        return updated;
+      });
+      return;
+    }
+
     const userId = sessionStorage.getItem("sessionUserId");
-    if (!userId || quantity <= 0) return;
+    if (!userId) {
+      // If there is a backend configured but no user, fallback to local
+      const newItem: CartItem = {
+        ...item,
+        cartItemId: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        quantity,
+      };
+      setCartItems((prev) => {
+        const existing = prev.find((i) => i.dishId === item.dishId);
+        let updated: CartItem[];
+        if (existing) {
+          updated = prev.map((i) =>
+            i.dishId === item.dishId ? { ...i, quantity: i.quantity + quantity } : i
+          );
+        } else {
+          updated = [...prev, newItem];
+        }
+        localStorage.setItem("local_cart", JSON.stringify(updated));
+        return updated;
+      });
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -59,10 +120,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         const newItem = {
           ...item,
-          cartItemId: response.data.cartItemId,
+          cartItemId: response.data.cartItemId || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
           quantity,
         };
         setCartItems((prevItems) => {
@@ -92,14 +153,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         )
         .filter((item) => item.quantity > 0);
 
-      // Update the backend
+      // Update the backend if available, otherwise persist locally
       const item = updatedItems.find((i) => i.cartItemId === cartItemId);
-      if (item) {
-        axios.put(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`, {
-          quantity: item.quantity,
-        });
+      if (!import.meta.env.VITE_API_ENDPOINT) {
+        localStorage.setItem("local_cart", JSON.stringify(updatedItems));
       } else {
-        axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`);
+        if (item) {
+          axios.put(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`, {
+            quantity: item.quantity,
+          }).catch((e) => console.error(e));
+        } else {
+          axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`).catch((e) => console.error(e));
+        }
       }
 
       return updatedItems;
@@ -108,12 +173,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const removeFromCart = async (cartItemId: string) => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`
-      );
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item.cartItemId !== cartItemId)
-      );
+      if (!import.meta.env.VITE_API_ENDPOINT) {
+        setCartItems((prevItems) => {
+          const updated = prevItems.filter((item) => item.cartItemId !== cartItemId);
+          localStorage.setItem("local_cart", JSON.stringify(updated));
+          return updated;
+        });
+      } else {
+        await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`);
+        setCartItems((prevItems) =>
+          prevItems.filter((item) => item.cartItemId !== cartItemId)
+        );
+      }
     } catch (error) {
       console.error("Error removing from cart:", error);
     }
@@ -121,12 +192,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const clearCart = async () => {
     try {
-      for (const item of cartItems) {
-        await axios.delete(
-          `${import.meta.env.VITE_API_ENDPOINT}/cart/${item.cartItemId}`
-        );
+      if (!import.meta.env.VITE_API_ENDPOINT) {
+        setCartItems([]);
+        localStorage.removeItem("local_cart");
+      } else {
+        for (const item of cartItems) {
+          await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${item.cartItemId}`);
+        }
+        setCartItems([]);
       }
-      setCartItems([]);
     } catch (error) {
       console.error("Error clearing cart:", error);
     }
