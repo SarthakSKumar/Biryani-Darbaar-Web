@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../Components/CartContext";
+import { useCart } from "../../context/CartContext";
 import { ShoppingBag, X, Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 
 interface CartItemType {

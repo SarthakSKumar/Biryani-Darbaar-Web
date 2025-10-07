@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../../Components/CartContext";
+import { useCart } from "../../context/CartContext";
 import { motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import chilliIcon from "../../assets/chilli-icon.png";

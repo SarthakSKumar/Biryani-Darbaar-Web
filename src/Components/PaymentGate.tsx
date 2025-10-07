@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useCart } from "./CartContext";
+import { useCart } from "../context/CartContext";
 
 const stripePromise = loadStripe(
   "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"

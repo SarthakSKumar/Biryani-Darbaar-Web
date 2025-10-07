@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/DABAAR.png";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Instagram, Mail, Phone } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -17,14 +17,6 @@ const Footer: React.FC = () => {
             />
             <div className="flex gap-4">
               <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
                 href="https://www.instagram.com/biryanidarbaar_au/"
                 target="_blank"
                 rel="noreferrer"
@@ -38,7 +30,13 @@ const Footer: React.FC = () => {
                 rel="noreferrer"
                 className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
               >
-                <Twitter size={20} />
+                <Mail size={20} />
+              </a>
+              <a href="tel:+61460747490" 
+                className="p-3 bg-white rounded-full shadow-md hover:shadow-lg hover:bg-primary hover:text-white transition-all"
+
+              aria-label="Call Biryani Darbaar">
+                <Phone size={20} />
               </a>
             </div>
           </div>

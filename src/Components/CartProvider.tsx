@@ -1,7 +1,7 @@
 // CartProvider.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../context/CartContext";
 
 // Define the CartItem type
 interface CartItem {
