@@ -1,24 +1,26 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import ArchedCard from "../Reusable-components/ArchedCard";
-import SpecialOfferComponent from "../Reusable-components/SpecialOfferComponent";
-import InfoPage from "../Reusable-components/InfoPage";
-// import LocationInfo from "../Reusable-components/LocationInfo";
-import CustomerReviews from "../Reusable-components/CustomerReview";
-// import DineInMenuSlider from "../Reusable-components/DineInMenuSlider";
-import { motion } from "framer-motion";
+import LargeImageView from "../Reusable-components/LargeImageView";
+import InfoPage from "../sections/InfoSection";
+import CustomerReviews from "../sections/CustomerReviewSection";
+import ImageSlider from "../Reusable-components/ImageSlider";
 import InputSearch from "../Reusable-components/InputSearch";
 import RedButton from "../Reusable-components/RedButton";
+import Loading from "../Reusable-components/Loading";
 import { useLocation } from "react-router-dom";
-import "./Menu.css";
+import "../styles/Menu.css";
 
 const Menu = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("Chicken");
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [isLoadingDishes, setIsLoadingDishes] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsLoadingCategories(true);
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_ENDPOINT}/categories`
@@ -26,6 +28,8 @@ const Menu = () => {
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
+      } finally {
+        setIsLoadingCategories(false);
       }
     };
 
@@ -56,6 +60,27 @@ const Menu = () => {
     }
   }, [location.search, handleSearch]);
 
+  // Add scroll listener to update active category based on viewport
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200; // Offset for better UX
+
+      for (const category of categories) {
+        const element = document.getElementById(category);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveCategory(category);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [categories]);
+
   interface Dish {
     image: string;
     dishName: string;
@@ -67,6 +92,7 @@ const Menu = () => {
 
   useEffect(() => {
     const fetchDishes = async () => {
+      setIsLoadingDishes(true);
       const dishesData: { [key: string]: Dish[] } = {};
       for (const category of categories) {
         try {
@@ -79,93 +105,103 @@ const Menu = () => {
         }
       }
       setDishes(dishesData);
+      setIsLoadingDishes(false);
     };
 
-    fetchDishes();
+    if (categories.length > 0) {
+      fetchDishes();
+    }
   }, [categories]);
 
   return (
-    <>
-      <SpecialOfferComponent
-        title="Briyani Darbaar in Atol Park"
-        description="I'm Lovin' it!"
-      />
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="ml-10 mt-10 pt-10 w-1/2"
-      ></motion.div>
-      <div className="search md:mb-20 md:ml-10 ml-6 md:w-1/2 w-3/4 desktop:mt-28 laptop:mt-28 dp1:mt-10 dp3:mt-10">
-        <InputSearch
-          placeholder="Search Delicious Food"
-          onSearch={handleSearch}
+    <div className="flex flex-col gap-20 md:gap-28">
+      <div className="container-custom section-spacing mt-12">
+        <LargeImageView
+          title="Briyani Darbaar in Atol Park"
+          description="Enjoy authentic biryani with fresh ingredients!"
         />
       </div>
-      <div className="flex overflow-x-auto gap-4 md:mt-28 mt-48 lg:flex-wrap lg:justify-center ">
-        {categories.map((category, index) => (
-          <RedButton
-            key={index}
-            className="w-60 flex-shrink-0 mt-10"
-            name={category}
-            variant={activeCategory === category ? "active" : "inactive"}
-            onClick={() => {
-              setActiveCategory(category);
-              console.log("Category clicked:", category);
-              const element = document.getElementById(category);
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+      <ImageSlider />
+
+      <div className="container-custom py-12">
+        <div className="flex justify-center">
+          <InputSearch
+            placeholder="Search for categories or dishes..."
+            onSearch={handleSearch}
           />
-        ))}
-      </div>
-
-      {categories.map((category: string) => (
-        <div key={category} className="mt-24">
-          <div className="text-4xl font-bold ml-28 -mb-20">
-            <span id={category} className="text-primary">
-              {category}
-            </span>
-          </div>
-
-          {/* For mobile scrolling */}
-          <div className="mt-24 flex overflow-x-auto gap-6 lg:hidden md:ml-10">
-            {dishes[category]?.map((dish, index) => (
-              <div key={index} className="min-w-[270px]">
-                <ArchedCard
-                  image={dish.image}
-                  title={dish.dishName}
-                  description={dish.description || "Delicious dishes"}
-                  buttonTitle="Order Now"
-                  price={`$${dish.price}`}
-                  className="h-79"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Show grid on larger screens */}
-          <div className=" hidden lg:grid lg:grid-cols-3 gap-6 ml-36 mt-24 desktop:ml-24 laptop:ml-8 dp1:ml-48 dp2:ml-48 dp3:ml-48">
-            {dishes[category]?.map((dish, index) => (
-              <ArchedCard
+        </div>
+        {isLoadingCategories ? (
+          <Loading text="Loading categories..." />
+        ) : (
+          <div className="flex flex-row justify-center items-center flex-wrap gap-3 mt-12">
+            {categories.map((category, index) => (
+              <RedButton
                 key={index}
-                image={dish.image}
-                title={dish.dishName}
-                description={dish.description || "Delicious dishes"}
-                buttonTitle="Order Now"
-                price={`$${dish.price}`}
-                className="h-79"
+                className="w-60 flex-shrink-0"
+                name={category}
+                variant={activeCategory === category ? "active" : "inactive"}
+                onClick={() => {
+                  setActiveCategory(category);
+                  const element = document.getElementById(category);
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
               />
             ))}
           </div>
-        </div>
-      ))}
+        )}
+
+        {isLoadingDishes ? (
+          <Loading text="Loading delicious dishes..." />
+        ) : (
+          categories.map((category: string) => (
+            <div key={category}>
+              <h2
+                id={category}
+                className="text-4xl md:text-5xl font-bold text-primary mb-12 scroll-mt-24"
+              >
+                {category}
+              </h2>
+
+              {/* For mobile scrolling */}
+              <div className="flex overflow-x-auto gap-6 lg:hidden pb-4">
+                {dishes[category]?.map((dish, index) => (
+                  <div key={index} className="min-w-[280px]">
+                    <ArchedCard
+                      image={dish.image}
+                      title={dish.dishName}
+                      description={dish.description || "Delicious dishes"}
+                      buttonTitle="Order Now"
+                      price={`$${dish.price}`}
+                      className="h-full"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Show grid on larger screens */}
+              <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-4 gap-10">
+                {dishes[category]?.map((dish, index) => (
+                  <ArchedCard
+                    key={index}
+                    image={dish.image}
+                    title={dish.dishName}
+                    description={dish.description || "Delicious dishes"}
+                    buttonTitle="Order Now"
+                    price={`$${dish.price}`}
+                    className="h-full"
+                  />
+                ))}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
       <InfoPage />
-      {/* <LocationInfo /> */}
       <CustomerReviews />
-      {/* <DineInMenuSlider /> */}
-    </>
+    </div>
+
   );
 };
 
