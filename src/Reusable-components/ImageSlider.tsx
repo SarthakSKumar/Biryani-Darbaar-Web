@@ -33,7 +33,7 @@ const ImageSlider: React.FC = () => {
         {offers.map((offer, index) => (
           <div
             key={index}
-            className="relative rounded-2xl overflow-hidden border border-gray-200 hover:border-primary transition-all group"
+            className="relative rounded-2xl overflow-hidden border border-neutral-200 hover:border-primary transition-all group"
           >
             {/* Image with overlay gradient for better text contrast */}
             <div className="relative">
@@ -63,7 +63,7 @@ const ImageSlider: React.FC = () => {
 
             {/* Add Button */}
             <button
-              className="absolute bottom-4 right-4 bg-white hover:bg-red-500 text-neutral-900 hover:text-white p-2 rounded-full border border-gray-200 hover:border-red-500 transition-all transform hover:scale-110"
+              className="absolute bottom-4 right-4 bg-white hover:bg-red-500 text-neutral-900 hover:text-white p-2 rounded-full border border-neutral-200 hover:border-red-500 transition-all transform hover:scale-110"
               aria-label="Add offer"
             >
               <Plus size={20} className="stroke-current" strokeWidth={3} />

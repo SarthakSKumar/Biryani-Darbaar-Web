@@ -186,7 +186,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg"
+            className="lg:hidden bg-white/95 backdrop-blur-md border-t border-neutral-200 shadow-lg"
           >
             <div className="container-custom py-4 space-y-2">
               <Link
@@ -241,7 +241,7 @@ const Navbar: React.FC = () => {
               </Link>
 
               {/* Mobile Auth Button */}
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-neutral-200">
                 {!isAuthenticated ? (
                   <RedButton variant="active" name="Download App" className="w-full" />
                 ) : (

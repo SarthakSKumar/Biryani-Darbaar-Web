@@ -14,7 +14,7 @@ const NextArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-primary hover:text-white text-neutral-900 rounded-full p-3 border border-gray-200 hover:border-primary transition-all duration-300"
+      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-primary hover:text-white text-neutral-900 rounded-full p-3 border border-neutral-200 hover:border-primary transition-all duration-300"
       aria-label="Next slide"
     >
       <ChevronRight size={24} />

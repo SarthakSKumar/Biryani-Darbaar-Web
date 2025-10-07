@@ -39,7 +39,7 @@ const Contact = () => {
         <>
             <div className="min-h-screen pt-24">
                 <div className="container-custom flex justify-center items-center min-h-screen py-12">
-                    <div className="w-full max-w-2xl bg-white p-8 rounded-2xl border border-gray-200">
+                    <div className="w-full max-w-2xl bg-white p-8 rounded-2xl border border-neutral-200">
                         <h2 className="text-4xl font-bold text-center text-neutral-900 mb-8">Contact Us</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -51,7 +51,7 @@ const Contact = () => {
                                         value={formData.firstName}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+                                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
                                         placeholder="Enter your first name"
                                     />
                                 </div>
@@ -63,7 +63,7 @@ const Contact = () => {
                                         value={formData.lastName}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+                                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
                                         placeholder="Enter your last name"
                                     />
                                 </div>
@@ -76,7 +76,7 @@ const Contact = () => {
                                     value={formData.phoneNumber}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+                                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
                                     placeholder="Enter your phone number"
                                 />
                             </div>
@@ -88,7 +88,7 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+                                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
                                     placeholder="Enter your email"
                                 />
                             </div>
@@ -100,7 +100,7 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     rows={5}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none shadow-sm"
+                                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none shadow-sm"
                                     placeholder="Tell us how we can help you"
                                 />
                             </div>

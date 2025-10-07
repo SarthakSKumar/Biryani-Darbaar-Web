@@ -130,7 +130,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => updateQuantity(item.cartItemId, -1)}
-                      className="p-1 rounded-full hover:bg-gray-200"
+                      className="p-1 rounded-full hover:bg-neutral-200"
                     >
                       <Minus className="w-4 h-4 text-red-500" />
                     </button>
@@ -139,7 +139,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     </span>
                     <button
                       onClick={() => updateQuantity(item.cartItemId, 1)}
-                      className="p-1 rounded-full hover:bg-gray-200"
+                      className="p-1 rounded-full hover:bg-neutral-200"
                     >
                       <Plus className="w-4 h-4 text-red-500" />
                     </button>
@@ -161,14 +161,14 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
             ))
           )}
         </div>
-        <div className="cart-summary flex flex-col gap-4 p-4 bg-gray-50 rounded-lg mt-4">
+        <div className="cart-summary flex flex-col gap-4 p-4 bg-neutral-50 rounded-lg mt-4">
           <div className="text-xl font-bold text-black">
             Total: ${grandTotal.toFixed(2)}
           </div>
           <div className="text-md font-semibold text-neutral-600">
             Delivery fees: $2
           </div>
-          <hr className="border-gray-300" />
+          <hr className="border-neutral-300" />
           <div
             className="text-red-500 cursor-pointer hover:text-red-600 transition"
             onClick={() => setShowPromoModal(true)}

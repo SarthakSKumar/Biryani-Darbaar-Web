@@ -5,7 +5,7 @@ const InfoPage = () => {
         <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Delivery Information */}
-                <div className="bg-white p-8 rounded-lg border border-gray-200">
+                <div className="bg-white p-8 rounded-lg border border-neutral-200">
                     <div className="flex items-center mb-6">
                         <FaTruck className="text-primary text-3xl mr-3" />
                         <h2 className="text-2xl font-bold text-neutral-900">Delivery Information</h2>
@@ -25,7 +25,7 @@ const InfoPage = () => {
                 </div>
 
                 {/* Contact Information */}
-                <div className="bg-white p-8 rounded-lg border border-gray-200">
+                <div className="bg-white p-8 rounded-lg border border-neutral-200">
                     <div className="flex items-center mb-6">
                         <FaPhone className="text-primary text-3xl mr-3" />
                         <h2 className="text-2xl font-bold text-neutral-900">Contact Information</h2>
@@ -48,12 +48,12 @@ const InfoPage = () => {
                 </div>
 
                 {/* Operational Times */}
-                <div className="bg-neutral-900 text-white p-8 rounded-lg border border-neutral-700">
+                <div className="bg-[#f4c145] text-neutral-900 p-8 rounded-lg">
                     <div className="flex items-center mb-6">
                         <FaClock className="text-primary text-3xl mr-3" />
-                        <h2 className="text-2xl font-bold text-neutral-100">Working Hours</h2>
+                        <h2 className="text-2xl font-bold text-neutral-900">Working Hours</h2>
                     </div>
-                    <ul className="text-base text-neutral-300 space-y-3 leading-relaxed">
+                    <ul className="text-base text-neutral-900 space-y-3 leading-relaxed">
                         <li><strong>Monday:</strong> 8:00 AM–3:00 AM</li>
                         <li><strong>Tuesday:</strong> 8:00 AM–3:00 AM</li>
                         <li><strong>Wednesday:</strong> 8:00 AM–3:00 AM</li>

@@ -24,7 +24,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
     return (
         <motion.div
             className="relative min-h-screen flex items-center justify-center overflow-hidden w-full pt-12"
-            initial={{ opacity: 0 }}    
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
@@ -139,7 +139,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                     >
                         <div className="relative">
                             {/* Happy Customer Badge */}
-                            <div className="absolute top-0 right-0 w-fit gap-2 h-fit py-2 bg-white rounded-3xl flex items-center justify-between px-4 border border-gray-200 z-20">
+                            <div className="absolute top-0 right-0 w-fit gap-2 h-fit py-2 bg-white rounded-3xl flex items-center justify-between px-4 border border-neutral-200 z-20">
                                 <img className="w-9" src={smily} alt="" />
                                 <div className="flex flex-col">
                                     <div className="text-xs font-semibold">Our Happy Customer</div>
@@ -152,7 +152,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             </div>
 
                             {/* Chicken Biryani Card */}
-                            <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-gray-200 z-20">
+                            <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-neutral-200 z-20">
                                 <img className="w-10 ml-2" src={card1} alt="" />
                                 <div className="flex flex-col ml-2">
                                     <span className="text-xs font-bold">Chicken Biryani</span>

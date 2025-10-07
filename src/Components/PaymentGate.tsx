@@ -156,8 +156,8 @@ const Checkout: React.FC<CheckoutProps> = ({
           onClick={handlePayment}
           disabled={!stripe || loading}
           className={`w-full px-4 py-2 text-white rounded-lg transition ${loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
+            ? "bg-neutral-400 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-blue-600"
             }`}
         >
           {loading ? "Processing..." : `Pay $${amount.toFixed(2)}`}

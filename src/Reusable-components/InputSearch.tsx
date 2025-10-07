@@ -30,12 +30,12 @@ const InputSearch: React.FC<InputSearchProps> = ({
   return (
     <div
       className={clsx(
-        "flex items-center border-2 border-gray-300 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
+        "flex items-center border-2 border-neutral-300 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-2xl",
         className
       )}
     >
       <div className="pl-5 pr-3 py-3">
-        <Search size={22} className="text-gray-400" />
+        <Search size={22} className="text-neutral-400" />
       </div>
       <input
         placeholder={placeholder}
@@ -43,7 +43,7 @@ const InputSearch: React.FC<InputSearchProps> = ({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyPress={handleKeyPress}
-        className="flex-1 py-3 px-2 rounded-full outline-none text-gray-700 placeholder:text-gray-400"
+        className="flex-1 py-3 px-2 rounded-full outline-none text-neutral-700 placeholder:text-neutral-400"
       />
       <button
         className="bg-primary text-white px-6 py-3 rounded-full mr-2 hover:bg-red-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"

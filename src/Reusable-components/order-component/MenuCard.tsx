@@ -47,7 +47,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
 
   return (
     <motion.div
-      className="bg-white rounded-2xl border transition-all duration-300 p-6 w-full max-w-lg border-gray-100"
+      className="bg-white rounded-2xl border transition-all duration-300 p-6 w-full max-w-lg border-neutral-100"
       whileHover={{ scale: 1.02, y: -4 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
             key={option.size}
             className={`w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all duration-200 ${option.popular
               ? 'border-green-500 bg-green-50 hover:bg-green-100'
-              : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+              : 'border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50'
               }`}
             onClick={() => handleUpdateQuantity(1, option.price, imageUrl)}
             whileHover={{ scale: 1.02 }}
@@ -120,12 +120,12 @@ const MenuCard: React.FC<MenuCardProps> = ({
       {/* Quick add section if item already in cart */}
       {currentQuantity > 0 && (
         <motion.div
-          className="mt-4 pt-4 border-t border-gray-200"
+          className="mt-4 pt-4 border-t border-neutral-200"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           transition={{ duration: 0.3 }}
         >
-          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+          <div className="flex items-center justify-between bg-neutral-50 rounded-lg p-3">
             <span className="text-sm font-medium text-neutral-700">In cart:</span>
             <div className="flex items-center gap-3">
               <button

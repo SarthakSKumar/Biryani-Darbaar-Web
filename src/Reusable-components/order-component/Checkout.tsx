@@ -76,13 +76,13 @@ const Checkout: React.FC = () => {
             transition={{ delay: 0.1 }}
           >
             {/* Shipping Method */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-200">
               <h2 className="text-xl font-semibold mb-4 text-neutral-800">Delivery Method</h2>
               <div className="grid grid-cols-2 gap-4">
                 <button
                   className={`p-4 rounded-lg border-2 transition-all duration-200 ${shippingMethod === "delivery"
                     ? "border-green-500 bg-green-50"
-                    : "border-gray-200 hover:border-gray-300"
+                    : "border-neutral-200 hover:border-neutral-300"
                     }`}
                   onClick={() => setShippingMethod("delivery")}
                 >
@@ -96,7 +96,7 @@ const Checkout: React.FC = () => {
                 <button
                   className={`p-4 rounded-lg border-2 transition-all duration-200 ${shippingMethod === "pickup"
                     ? "border-blue-500 bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
+                    : "border-neutral-200 hover:border-neutral-300"
                     }`}
                   onClick={() => setShippingMethod("pickup")}
                 >
@@ -110,7 +110,7 @@ const Checkout: React.FC = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
+            <div className="bg-white rounded-2xl p-6 border border-neutral-200">
               <h2 className="text-xl font-semibold mb-4 text-neutral-800">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -120,7 +120,7 @@ const Checkout: React.FC = () => {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -131,7 +131,7 @@ const Checkout: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                     placeholder="Enter your phone number"
                   />
                 </div>
@@ -142,7 +142,7 @@ const Checkout: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -152,7 +152,7 @@ const Checkout: React.FC = () => {
             {/* Address Information (only for delivery) */}
             {shippingMethod === "delivery" && (
               <motion.div
-                className="bg-white rounded-2xl p-6 border border-gray-200"
+                className="bg-white rounded-2xl p-6 border border-neutral-200"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.3 }}
@@ -166,7 +166,7 @@ const Checkout: React.FC = () => {
                       name="address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                       placeholder="Enter your street address"
                     />
                   </div>
@@ -178,7 +178,7 @@ const Checkout: React.FC = () => {
                         name="city"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                         placeholder="City"
                       />
                     </div>
@@ -189,7 +189,7 @@ const Checkout: React.FC = () => {
                         name="state"
                         value={formData.state}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                         placeholder="State"
                       />
                     </div>
@@ -200,7 +200,7 @@ const Checkout: React.FC = () => {
                         name="zipCode"
                         value={formData.zipCode}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                         placeholder="ZIP"
                       />
                     </div>
@@ -212,7 +212,7 @@ const Checkout: React.FC = () => {
 
           {/* Right: Order Summary */}
           <motion.div
-            className="bg-white rounded-2xl p-6 border border-gray-200 h-fit"
+            className="bg-white rounded-2xl p-6 border border-neutral-200 h-fit"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
@@ -243,11 +243,11 @@ const Checkout: React.FC = () => {
                 </div>
               ) : (
                 cartItems.map((item) => (
-                  <div key={item.cartItemId} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                  <div key={item.cartItemId} className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg">
                     {item.image ? (
                       <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover" />
                     ) : (
-                      <div className="w-12 h-12 bg-gray-200 rounded-full" />
+                      <div className="w-12 h-12 bg-neutral-200 rounded-full" />
                     )}
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-medium text-neutral-800 truncate">{item.name}</h4>
@@ -256,14 +256,14 @@ const Checkout: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.cartItemId, -1)}
-                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                        className="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center transition-colors"
                       >
                         <Minus className="w-4 h-4" />
                       </button>
                       <span className="w-8 text-center font-medium">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.cartItemId, 1)}
-                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
+                        className="w-8 h-8 rounded-full bg-neutral-200 hover:bg-neutral-300 flex items-center justify-center transition-colors"
                       >
                         <Plus className="w-4 h-4" />
                       </button>
@@ -282,7 +282,7 @@ const Checkout: React.FC = () => {
             {/* Order Totals */}
             {cartItems.length > 0 && (
               <>
-                <div className="space-y-3 pb-4 border-b border-gray-200">
+                <div className="space-y-3 pb-4 border-b border-neutral-200">
                   <div className="flex justify-between text-neutral-600">
                     <span>Subtotal ({cartItems.reduce((sum: number, item) => sum + item.quantity, 0)} items)</span>
                     <span>${subTotal.toFixed(2)}</span>
@@ -314,7 +314,7 @@ const Checkout: React.FC = () => {
                     disabled={subTotal < minOrder || cartItems.length === 0}
                     className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-200 ${subTotal >= minOrder && cartItems.length > 0
                       ? "bg-green-600 hover:bg-green-700 text-white border border-green-600"
-                      : "bg-gray-300 text-neutral-500 cursor-not-allowed border border-gray-300"
+                      : "bg-neutral-300 text-neutral-500 cursor-not-allowed border border-neutral-300"
                       }`}
                   >
                     {subTotal >= minOrder ? "Place Order" : `Add $${needsMore} to Order`}
@@ -322,7 +322,7 @@ const Checkout: React.FC = () => {
 
                   <button
                     onClick={() => clearCart()}
-                    className="w-full py-3 border border-gray-300 rounded-lg text-neutral-700 hover:bg-gray-50 transition-all duration-200"
+                    className="w-full py-3 border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-50 transition-all duration-200"
                   >
                     Clear Cart
                   </button>

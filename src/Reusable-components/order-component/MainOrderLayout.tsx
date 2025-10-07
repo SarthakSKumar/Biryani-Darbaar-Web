@@ -136,7 +136,7 @@ const MainOrderLayout: React.FC = () => {
                   {orders.map((order) => (
                     <motion.div
                       key={order.orderId}
-                      className="bg-white p-6 rounded-lg border border-gray-200"
+                      className="bg-white p-6 rounded-lg border border-neutral-200"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}

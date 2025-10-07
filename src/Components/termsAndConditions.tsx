@@ -268,14 +268,14 @@ const TermsAndConditions: React.FC = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               <a
                 href="mailto:support@biryanidarbaar.com"
-                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
+                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-neutral-200 hover:border-primary transition-colors"
               >
                 <Mail className="w-5 h-5 text-primary" />
                 <span className="font-semibold text-neutral-900">support@biryanidarbaar.com</span>
               </a>
               <a
                 href="tel:+61123456789"
-                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
+                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-neutral-200 hover:border-primary transition-colors"
               >
                 <Phone className="w-5 h-5 text-primary" />
                 <span className="font-semibold text-neutral-900">+61 123 456 789</span>

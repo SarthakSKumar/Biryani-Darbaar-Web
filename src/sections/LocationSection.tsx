@@ -12,10 +12,10 @@ const LocationInfo = () => {
                 viewport={{ once: true }}
                 className="text-center mb-12"
             >
-                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                <h2 className="text-4xl md:text-5xl font-extrabold text-neutral-900 mb-4">
                     Find Us Here
                 </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
                     Visit our restaurant in the heart of Athol Park. Authentic flavors await you!
                 </p>
             </motion.div>

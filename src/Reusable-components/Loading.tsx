@@ -40,7 +40,7 @@ const Loading: React.FC<LoadingProps> = ({ text = "Loading..." }) => {
                 {text}
             </motion.p>
             <motion.div
-                className="mt-4 w-64 h-1 bg-gray-200 rounded-full overflow-hidden"
+                className="mt-4 w-64 h-1 bg-neutral-200 rounded-full overflow-hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}

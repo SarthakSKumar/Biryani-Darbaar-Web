@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <motion.aside
-      className="w-full md:w-80 bg-white border border-gray-200 rounded-2xl p-6 flex flex-col justify-between h-fit md:h-screen md:sticky md:top-24 overflow-y-auto"
+      className="w-full md:w-80 bg-white border border-neutral-200 rounded-2xl p-6 flex flex-col justify-between h-fit md:h-screen md:sticky md:top-24 overflow-y-auto"
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => handleCategoryClick(category)}
             className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all ${activeCategory === category
               ? "bg-primary text-white border border-primary"
-              : "text-neutral-700 hover:bg-gray-100 hover:text-primary border border-transparent"
+              : "text-neutral-700 hover:bg-neutral-100 hover:text-primary border border-transparent"
               }`}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* Promotional Card */}
-      <div className="relative rounded-lg overflow-hidden border border-gray-200 group">
+      <div className="relative rounded-lg overflow-hidden border border-neutral-200 group">
         <img
           src={orderGirl}
           alt="First Order Discount"
@@ -106,7 +106,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Add Button */}
         <button
-          className="absolute bottom-4 right-4 bg-white hover:bg-primary text-neutral-900 hover:text-white p-2 rounded-full border border-gray-200 hover:border-primary transition-all transform hover:scale-110"
+          className="absolute bottom-4 right-4 bg-white hover:bg-primary text-neutral-900 hover:text-white p-2 rounded-full border border-neutral-200 hover:border-primary transition-all transform hover:scale-110"
           aria-label="Add offer"
         >
           <Plus size={20} className="stroke-current" strokeWidth={3} />

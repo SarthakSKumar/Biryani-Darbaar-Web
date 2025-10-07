@@ -129,7 +129,7 @@ const CustomerReviews = () => {
                                 .slice(currentIndex, currentIndex + reviewsPerPage)
                                 .map((review) => (
                                     <div
-                                        className="w-80 bg-white p-6 rounded-lg border border-gray-200 hover:border-red-300 transition flex-shrink-0"
+                                        className="w-80 bg-white p-6 rounded-lg border border-neutral-200 hover:border-red-300 transition flex-shrink-0"
                                         key={review.id}
                                     >
                                         <div className="mb-4">

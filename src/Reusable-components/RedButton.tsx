@@ -23,7 +23,7 @@ const RedButton: React.FC<RedButtonProps> = ({
     "px-6 py-3 cursor-pointer transition-all duration-300 rounded-lg active:scale-95 font-medium border-2";
   const activeClasses = "bg-primary text-white hover:bg-red-600 border-primary";
   const inactiveClasses =
-    "bg-white text-neutral-600 hover:bg-gray-50 border-gray-300 hover:border-gray-400";
+    "bg-white text-neutral-600 hover:bg-neutral-50 border-neutral-300 hover:border-neutral-400";
 
   const buttonClasses = clsx(
     baseClasses,

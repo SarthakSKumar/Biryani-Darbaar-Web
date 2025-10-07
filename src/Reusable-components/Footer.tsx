@@ -5,7 +5,7 @@ import { Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#f4c145] text-neutral-900 border-t border-gray-200">
+    <footer className="bg-[#f4c145] text-neutral-900 border-t border-neutral-200">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Logo & Social Section */}
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 w-36 rounded-lg bg-white border border-gray-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="flex-1 px-4 py-3 w-36 rounded-lg bg-white border border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
               <button
@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-gray-200 py-6">
+      <div className="border-t border-neutral-200 py-6">
         <div className="container-custom">
           <p className="text-center text-neutral-600 text-sm md:text-base">
             &copy; {new Date().getFullYear()} Biryani Darbaar. All rights reserved.
