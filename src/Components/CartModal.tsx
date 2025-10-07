@@ -18,7 +18,7 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
-  const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
   const [showPromoModal, setShowPromoModal] = useState(false);
   const [discount, setDiscount] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -96,14 +96,14 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
           <h1 className="text-2xl font-bold text-black">Cart Items</h1>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-red-500 transition"
+            className="text-neutral-600 hover:text-red-500 transition"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
         <div className="cart-items flex-1">
           {cartItems.length === 0 ? (
-            <p className="text-gray-600">Your cart is empty.</p>
+            <p className="text-neutral-600">Your cart is empty.</p>
           ) : (
             cartItems.map((item) => (
               <motion.div
@@ -120,10 +120,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     className="w-16 h-16 rounded-full object-cover mr-4"
                   />
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-lg font-bold text-neutral-800">
                       {item.name}
                     </h3>
-                    <p className="text-sm text-gray-500">{item.description}</p>
+                    <p className="text-sm text-neutral-500">{item.description}</p>
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
@@ -145,7 +145,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     </button>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="font-semibold text-gray-600">
+                    <span className="font-semibold text-neutral-600">
                       ${(item.price * item.quantity).toFixed(2)}{" "}
                       {/* Fix decimal places */}
                     </span>
@@ -165,7 +165,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
           <div className="text-xl font-bold text-black">
             Total: ${grandTotal.toFixed(2)}
           </div>
-          <div className="text-md font-semibold text-gray-600">
+          <div className="text-md font-semibold text-neutral-600">
             Delivery fees: $2
           </div>
           <hr className="border-gray-300" />
