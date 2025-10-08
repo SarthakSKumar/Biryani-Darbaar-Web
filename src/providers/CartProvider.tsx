@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { CartContext } from "@/contexts/CartContext";
-import { CartItem } from "@/types";
+import { CartItem } from "@/types/cart.types";
 
 interface CartProviderProps {
   children: ReactNode;
