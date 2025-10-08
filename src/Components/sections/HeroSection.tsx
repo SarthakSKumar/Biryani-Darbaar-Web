@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import InputSearch from "@/components/InputSearch";
 import RedButton from "@/components/RedButton";
 import RedWhip from "@/components/atoms/RedWhip";
+import { Smile, Star } from "lucide-react";
 
 interface HeroSectionProps {
     onSearch: (query: string) => void;
@@ -128,11 +129,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         <div className="relative">
                             {/* Happy Customer Badge */}
                             <div className="absolute top-0 right-0 w-fit gap-2 h-fit py-2 bg-white rounded-3xl flex items-center justify-between px-4 border border-neutral-200 z-20">
-                                <img className="w-9" src="/assets/smilyicon.svg" alt="Biryani Darbaar" />
+                                {/* Use Smile from lucide-react */}
+                                <Smile className="w-9 h-9 text-yellow-400 mr-2" />
                                 <div className="flex flex-col">
                                     <div className="text-xs font-semibold">Our Happy Customer</div>
                                     <div className="flex items-center">
-                                        <img className="h-3" src="/assets/Star.svg" alt="Biryani Darbaar" />
+                                        <Star className="h-3 w-3 text-yellow-500" fill="currentColor" />
                                         <span className="text-xs ml-1">4.9</span>
                                         <span className="text-xs ml-1">(1989 Reviews)</span>
                                     </div>
@@ -141,7 +143,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
                             {/* Chicken Biryani Card */}
                             <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-neutral-200 z-20">
-                                <img className="w-10 ml-2" src="/assets/card1.png" alt="Biryani Darbaar" />
+                                <img className="w-10 ml-2" src="/assets/biryani.png" alt="Biryani Darbaar" />
                                 <div className="flex flex-col ml-2">
                                     <span className="text-xs font-bold">Chicken Biryani</span>
                                     <div className="text-md font-medium text-red-700">@ Just $9.50</div>
