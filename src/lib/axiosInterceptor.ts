@@ -1,10 +1,10 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 import {
   getAccessToken,
   getRefreshToken,
   saveTokens,
   clearAuthData,
-} from "@/handlers/auth/authStorage";
+} from "@/lib/authStorage";
 
 // Request interceptor - Add auth token to requests
 axiosInstance.interceptors.request.use(

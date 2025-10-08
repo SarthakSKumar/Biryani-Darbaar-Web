@@ -1,23 +1,5 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface Dish {
-  dishId: string;
-  name?: string;
-  dishName?: string;
-  category?: string;
-  description: string;
-  image: string;
-  price: number;
-  goldPrice?: number;
-  available: boolean;
-  offerAvailable: boolean;
-  discount: number;
-  addons?: { addonName: string; price: string | number }[];
-}
+import type { ApiDish } from "@/types/api.types";
 
 // ============================================================================
 // API Functions
@@ -28,7 +10,7 @@ export interface Dish {
  */
 export const getDishesByCategory = async (
   category: string
-): Promise<Dish[]> => {
+): Promise<ApiDish[]> => {
   const response = await axiosInstance.get(
     `/dishes/category/${encodeURIComponent(category)}`
   );
@@ -38,7 +20,7 @@ export const getDishesByCategory = async (
 /**
  * Fetch special offer dishes
  */
-export const getSpecialOffers = async (): Promise<Dish[]> => {
+export const getSpecialOffers = async (): Promise<ApiDish[]> => {
   const response = await axiosInstance.get("/specialOffers");
   return response.data || [];
 };

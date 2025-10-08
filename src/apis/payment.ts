@@ -1,17 +1,8 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface CreatePaymentIntentData {
-  amount: number;
-  currency: string;
-}
-
-export interface CreatePaymentIntentResponse {
-  clientSecret: string;
-}
+import type {
+  CreatePaymentIntentData,
+  CreatePaymentIntentResponse,
+} from "@/types/api.types";
 
 // ============================================================================
 // API Functions

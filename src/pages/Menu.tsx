@@ -13,6 +13,7 @@ import ErrorFallback from "@/components/ErrorFallback";
 const Menu = () => {
     const [categories, setCategories] = useState<string[]>([]);
     const [activeCategory, setActiveCategory] = useState<string>("Chicken");
+    void activeCategory; // Used by scroll/click handlers, visual feedback to be implemented
     const [isLoadingCategories, setIsLoadingCategories] = useState(true);
     const [isLoadingDishes, setIsLoadingDishes] = useState(false);
     const [categoryError, setCategoryError] = useState(false);

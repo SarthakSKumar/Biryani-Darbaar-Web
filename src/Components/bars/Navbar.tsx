@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, Location } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import RedButton from "@/components/RedButton";
+import RedButton from "@/components/atoms/RedButton";
 import { Instagram, Phone, Menu, X, ShoppingCart, LogOut } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";

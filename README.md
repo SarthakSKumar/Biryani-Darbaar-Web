@@ -5,7 +5,7 @@ Fall in Love in home
 
 Menu page fix
 
-ordernow page fix. 
+ordernow page fix.
 
 email address for business
 
@@ -23,5 +23,4 @@ Organizing FoodHuts
 Biryani Darbaar - Super Chef
 Super Chefs
 Biryani Darbaar - Clean Kitchen
-Clean Kitchens Add customised icons. 
-
+Clean Kitchens Add customised icons.

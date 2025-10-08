@@ -30,7 +30,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         }
 
         const data = await cartAPI.getCartItems({ userId });
-        setCartItems(data);
+        // Map API cart items to local CartItem format
+        const mappedItems: CartItem[] = data.map((apiItem) => ({
+          ...apiItem,
+          description: "", // API doesn't return description, default to empty
+        }));
+        setCartItems(mappedItems);
       } catch (error) {
         console.error("Error fetching cart items:", error);
         const local = localStorage.getItem("local_cart");

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, User, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';

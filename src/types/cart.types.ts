@@ -10,6 +10,7 @@ export interface CartItem {
   image: string;
   description: string;
   quantity: number;
+  addons?: { name: string; price: number }[];
 }
 
 export interface CartContextType {

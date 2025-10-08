@@ -9,7 +9,7 @@ import {
     validatePhoneNumber,
     validateAddress,
     validateConfirmPassword,
-} from '@/handlers/auth/validation';
+} from '@/utils/validation';
 import { getErrorMessage } from '@/types';
 import toast from 'react-hot-toast';
 

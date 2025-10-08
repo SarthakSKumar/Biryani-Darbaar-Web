@@ -1,43 +1,9 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface OrderItem {
-  dishId: string;
-  dishName: string;
-  cartItemId: string;
-  quantity: number;
-  price: number;
-}
-
-export interface Order {
-  orderId: string;
-  orderItems: OrderItem[];
-  totalPrice: number;
-  orderDate: string;
-  orderStatus: string;
-  customerAddress: string;
-}
-
-export interface CreateOrderData {
-  userId: string;
-  userName: string;
-  phoneNumber: string;
-  address: string;
-  orderItems: {
-    cartItemId: string;
-    name: string;
-    quantity: number;
-    price: number;
-  }[];
-  totalPrice: number;
-}
-
-export interface CreateOrderResponse {
-  orderId: string;
-}
+import type {
+  ApiOrder,
+  CreateOrderData,
+  CreateOrderResponse,
+} from "@/types/api.types";
 
 // ============================================================================
 // API Functions
@@ -46,7 +12,7 @@ export interface CreateOrderResponse {
 /**
  * Fetch orders for a user
  */
-export const getOrders = async (userId: string): Promise<Order[]> => {
+export const getOrders = async (userId: string): Promise<ApiOrder[]> => {
   const response = await axiosInstance.get(`/orders/${userId}`);
   return response.data || [];
 };

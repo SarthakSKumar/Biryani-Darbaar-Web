@@ -1,18 +1,8 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface ValidatePromoData {
-  promoCode: string;
-}
-
-export interface ValidatePromoResponse {
-  success: boolean;
-  message?: string;
-  finalDiscount: number;
-}
+import type {
+  ValidatePromoData,
+  ValidatePromoResponse,
+} from "@/types/api.types";
 
 // ============================================================================
 // API Functions

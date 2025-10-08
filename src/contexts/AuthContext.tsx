@@ -8,9 +8,9 @@ import {
     getRefreshToken,
     clearAuthData,
     StoredUserData,
-} from '@/handlers/auth/authStorage';
+} from '@/lib/authStorage';
 import { getErrorMessage } from '@/types';
-import type { LoginData, RegisterData } from '@/apis/auth';
+import type { LoginData, RegisterData } from '@/types/api.types';
 
 interface AuthContextType {
     user: StoredUserData | null;

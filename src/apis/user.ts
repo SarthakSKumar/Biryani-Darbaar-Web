@@ -1,33 +1,9 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface User {
-  userId: string;
-  userName: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  role: string;
-  isGoldMember: boolean;
-  reward: number;
-  discount: number;
-}
-
-export interface ApplyRewardData {
-  reward: number;
-  userId: string;
-  dollar: number;
-}
-
-export interface ApplyRewardResponse {
-  reward: number;
-  totalPrice: number;
-}
+import type {
+  ApiUser,
+  ApplyRewardData,
+  ApplyRewardResponse,
+} from "@/types/api.types";
 
 // ============================================================================
 // API Functions
@@ -36,7 +12,7 @@ export interface ApplyRewardResponse {
 /**
  * Fetch user details by userId
  */
-export const getUserById = async (userId: string): Promise<User> => {
+export const getUserById = async (userId: string): Promise<ApiUser> => {
   const response = await axiosInstance.get(`/user/${userId}`);
   return response.data;
 };

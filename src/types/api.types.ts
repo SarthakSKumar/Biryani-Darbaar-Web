@@ -136,7 +136,7 @@ export interface ApiDish {
 // Orders API Types
 // ============================================================================
 
-export interface OrderItem {
+export interface ApiOrderItem {
   dishId: string;
   dishName: string;
   cartItemId: string;
@@ -146,7 +146,7 @@ export interface OrderItem {
 
 export interface ApiOrder {
   orderId: string;
-  orderItems: OrderItem[];
+  orderItems: ApiOrderItem[];
   totalPrice: number;
   orderDate: string;
   orderStatus: string;

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import InputSearch from "@/components/InputSearch";
-import RedButton from "@/components/RedButton";
+import RedButton from "@/components/atoms/RedButton";
 import RedWhip from "@/components/atoms/RedWhip";
 import { Smile, Star } from "lucide-react";
 

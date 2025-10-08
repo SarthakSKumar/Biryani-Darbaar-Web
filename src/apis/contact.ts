@@ -1,16 +1,5 @@
 import axiosInstance from "../lib/axiosInterceptor";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
-export interface ContactFormData {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  description: string;
-}
+import type { ContactFormData } from "@/types/api.types";
 
 // ============================================================================
 // API Functions

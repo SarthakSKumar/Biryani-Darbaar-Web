@@ -1,4 +1,4 @@
-import RedButton from "@/components/RedButton";
+import RedButton from "@/components/atoms/RedButton";
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
 

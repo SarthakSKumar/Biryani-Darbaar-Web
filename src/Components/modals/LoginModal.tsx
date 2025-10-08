@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { validateEmail, validatePassword } from '@/handlers/auth/validation';
+import { validateEmail, validatePassword } from '@/utils/validation';
 import { getErrorMessage } from '@/types';
 import toast from 'react-hot-toast';
 
