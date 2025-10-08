@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface Dish {
   dishId: string;
@@ -18,8 +18,12 @@ export interface Dish {
 /**
  * Fetch dishes by category
  */
-export const getDishesByCategory = async (category: string): Promise<Dish[]> => {
-  const response = await axiosInstance.get(`/dishes/category/${encodeURIComponent(category)}`);
+export const getDishesByCategory = async (
+  category: string
+): Promise<Dish[]> => {
+  const response = await axiosInstance.get(
+    `/dishes/category/${encodeURIComponent(category)}`
+  );
   return response.data || [];
 };
 
@@ -27,6 +31,6 @@ export const getDishesByCategory = async (category: string): Promise<Dish[]> => 
  * Fetch special offer dishes
  */
 export const getSpecialOffers = async (): Promise<Dish[]> => {
-  const response = await axiosInstance.get('/specialOffers');
+  const response = await axiosInstance.get("/specialOffers");
   return response.data || [];
 };

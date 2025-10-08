@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface ContactFormData {
   firstName: string;
@@ -11,6 +11,8 @@ export interface ContactFormData {
 /**
  * Submit contact form
  */
-export const submitContactForm = async (data: ContactFormData): Promise<void> => {
-  await axiosInstance.post('/contact', data);
+export const submitContactForm = async (
+  data: ContactFormData
+): Promise<void> => {
+  await axiosInstance.post("/contact", data);
 };

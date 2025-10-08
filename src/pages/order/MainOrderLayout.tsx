@@ -1,6 +1,5 @@
 // MainOrderLayout.tsx
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import MenuCard from "@/components/cards/MenuCard";
 import Sidebar from "@/components/bars/MenuBar"
 import Cart from "@/components/modals/CartModal";
@@ -8,6 +7,7 @@ import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { dishesAPI, ordersAPI } from "@/apis";
 
 interface Order {
   orderId: string;
@@ -40,44 +40,29 @@ const MainOrderLayout: React.FC = () => {
   const [error, setError] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>("Biryani's");
 
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = async (category: string) => {
     setActiveCategory(category);
     setLoading(true);
     setError(false);
-    axios
-      .get(
-        `${import.meta.env.VITE_API_ENDPOINT
-        }/dishes/category/${encodeURIComponent(category)}`
-      )
-      .then((response) => {
-        const data = response.data;
-        const menuItems = data.map(
-          (item: {
-            dishId: string;
-            name?: string;
-            dishName?: string;
-            description: string;
-            image: string;
-            price: number;
-            addons: { addonName: string; price: string | number }[];
-          }) => ({
-            dishId: item.dishId,
-            name: item.name || item.dishName,
-            description: item.description,
-            image: item.image,
-            price: item.price,
-            addons: item.addons,
-          })
-        );
-        setMenuItems(menuItems);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const data = await dishesAPI.getDishesByCategory(category);
+      const menuItems = data.map(
+        (item) => ({
+          dishId: item.dishId || "",
+          name: item.name || item.dishName || "Delicious Dish",
+          description: item.description || "",
+          image: item.image || "",
+          price: item.price || 0,
+          addons: item.addons || [],
+        })
+      );
+      setMenuItems(menuItems);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleOrdersSelect = async () => {
@@ -85,10 +70,8 @@ const MainOrderLayout: React.FC = () => {
     if (!userId) return;
 
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_ENDPOINT}/ordersByUser/${userId}`
-      );
-      const sortedOrders = response.data.sort(
+      const data = await ordersAPI.getOrders(userId);
+      const sortedOrders = data.sort(
         (a: Order, b: Order) =>
           new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
       );

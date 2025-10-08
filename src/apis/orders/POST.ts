@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface CreateOrderData {
   userId: string;
@@ -21,7 +21,9 @@ export interface CreateOrderResponse {
 /**
  * Create a new order
  */
-export const createOrder = async (data: CreateOrderData): Promise<CreateOrderResponse> => {
-  const response = await axiosInstance.post('/orders', data);
+export const createOrder = async (
+  data: CreateOrderData
+): Promise<CreateOrderResponse> => {
+  const response = await axiosInstance.post("/orders", data);
   return response.data;
 };

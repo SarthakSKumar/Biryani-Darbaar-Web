@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface AddToCartData {
   userId: string;
@@ -17,7 +17,9 @@ export interface AddToCartResponse {
 /**
  * Add item to cart
  */
-export const addToCart = async (data: AddToCartData): Promise<AddToCartResponse> => {
-  const response = await axiosInstance.post('/cart', data);
+export const addToCart = async (
+  data: AddToCartData
+): Promise<AddToCartResponse> => {
+  const response = await axiosInstance.post("/cart", data);
   return response.data;
 };

@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface CartItem {
   cartItemId: string;
@@ -18,6 +18,6 @@ export interface GetCartData {
  * Fetch cart items for a user
  */
 export const getCartItems = async (data: GetCartData): Promise<CartItem[]> => {
-  const response = await axiosInstance.post('/getCart', data);
+  const response = await axiosInstance.post("/getCart", data);
   return response.data || [];
 };

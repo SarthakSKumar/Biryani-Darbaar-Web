@@ -1,6 +1,7 @@
 # 🚀 API Refactoring Complete - Migration Guide
 
 ## Overview
+
 All API calls have been centralized into a structured `/apis` folder with proper organization by resource type and HTTP method.
 
 ## New Structure
@@ -48,18 +49,21 @@ src/apis/
 ## Key Features
 
 ### 1. Axios Instance (`axiosInstance.ts`)
+
 - Base URL configuration from environment
 - 15-second timeout
 - Default headers
 
 ### 2. Axios Interceptor (`axiosInterceptor.ts`)
+
 - **Request Interceptor**: Auto-attaches JWT tokens to requests
-- **Response Interceptor**: 
+- **Response Interceptor**:
   - Auto-extracts `data` from `{ success, statusCode, data }` API response format
   - Handles 401 errors with automatic token refresh
   - Redirects to home on auth failure
 
 ### 3. Type Safety
+
 - All API functions have proper TypeScript interfaces
 - Request and response types defined
 - Eliminates manual type casting
@@ -67,6 +71,7 @@ src/apis/
 ## Migration Status
 
 ### ✅ **Completed Files:**
+
 1. `src/hooks/useCategories.ts`
 2. `src/hooks/useDishes.ts`
 3. `src/pages/Home.tsx`
@@ -75,6 +80,7 @@ src/apis/
 6. `src/components/bars/MenuBar.tsx`
 
 ### 🔄 **Files Remaining to Update:**
+
 1. `src/pages/Contact.tsx` - submitContactForm
 2. `src/providers/CartProvider.tsx` - getCartItems, addToCart, updateCartItem, deleteCartItem
 3. `src/components/PaymentGate.tsx` - createPaymentIntent, createOrder, deleteCartItemsAfterOrder
@@ -89,16 +95,18 @@ src/apis/
 ## Usage Examples
 
 ### Before:
+
 ```typescript
 import axios from "axios";
 
 const response = await axios.get(
-    `${import.meta.env.VITE_API_ENDPOINT}/categories`
+  `${import.meta.env.VITE_API_ENDPOINT}/categories`
 );
 setCategories(response.data.data || []);
 ```
 
 ### After:
+
 ```typescript
 import { categoriesAPI } from "@/apis";
 
@@ -107,6 +115,7 @@ setCategories(data);
 ```
 
 ### Benefits:
+
 1. ✅ No manual `response.data.data` extraction
 2. ✅ Auto token refresh on 401
 3. ✅ Type-safe requests and responses
@@ -117,11 +126,19 @@ setCategories(data);
 ## API Functions Reference
 
 ### Auth API
+
 ```typescript
 import { authAPI } from "@/apis";
 
 // Register
-await authAPI.registerUser({ firstName, lastName, email, password, phoneNumber, address });
+await authAPI.registerUser({
+  firstName,
+  lastName,
+  email,
+  password,
+  phoneNumber,
+  address,
+});
 
 // Login
 await authAPI.loginUser({ email, password });
@@ -137,6 +154,7 @@ await authAPI.refreshAccessToken(refreshToken);
 ```
 
 ### Categories API
+
 ```typescript
 import { categoriesAPI } from "@/apis";
 
@@ -144,6 +162,7 @@ const categories = await categoriesAPI.getCategories();
 ```
 
 ### Dishes API
+
 ```typescript
 import { dishesAPI } from "@/apis";
 
@@ -152,6 +171,7 @@ const offers = await dishesAPI.getSpecialOffers();
 ```
 
 ### Cart API
+
 ```typescript
 import { cartAPI } from "@/apis";
 
@@ -162,6 +182,7 @@ await cartAPI.deleteCartItem(cartItemId);
 ```
 
 ### User API
+
 ```typescript
 import { userAPI } from "@/apis";
 
@@ -169,13 +190,18 @@ const user = await userAPI.getUserById(userId);
 ```
 
 ### Payment API
+
 ```typescript
 import { paymentAPI } from "@/apis";
 
-const { clientSecret } = await paymentAPI.createPaymentIntent({ amount: 100, currency: "AUD" });
+const { clientSecret } = await paymentAPI.createPaymentIntent({
+  amount: 100,
+  currency: "AUD",
+});
 ```
 
 ### Promo API
+
 ```typescript
 import { promoAPI } from "@/apis";
 
@@ -183,18 +209,33 @@ const result = await promoAPI.validatePromoCode({ promoCode: "SAVE10" });
 ```
 
 ### Contact API
+
 ```typescript
 import { contactAPI } from "@/apis";
 
-await contactAPI.submitContactForm({ firstName, lastName, phoneNumber, email, description });
+await contactAPI.submitContactForm({
+  firstName,
+  lastName,
+  phoneNumber,
+  email,
+  description,
+});
 ```
 
 ### Orders API
+
 ```typescript
 import { ordersAPI } from "@/apis";
 
 const orders = await ordersAPI.getOrders(userId);
-await ordersAPI.createOrder({ userId, userName, phoneNumber, address, orderItems, totalPrice });
+await ordersAPI.createOrder({
+  userId,
+  userName,
+  phoneNumber,
+  address,
+  orderItems,
+  totalPrice,
+});
 await ordersAPI.deleteCartItemsAfterOrder(cartItemIds);
 ```
 
@@ -222,6 +263,7 @@ try {
 ```
 
 The interceptor automatically:
+
 - Refreshes tokens on 401 errors
 - Redirects to home on auth failures
 - Extracts data from standard API response format

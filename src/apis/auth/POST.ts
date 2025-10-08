@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface RegisterData {
   firstName: string;
@@ -55,8 +55,10 @@ export interface RefreshTokenResponse {
 /**
  * Register a new user with email and password
  */
-export const registerUser = async (data: RegisterData): Promise<AuthResponse> => {
-  const response = await axiosInstance.post('/auth/register', data);
+export const registerUser = async (
+  data: RegisterData
+): Promise<AuthResponse> => {
+  const response = await axiosInstance.post("/auth/register", data);
   return response.data;
 };
 
@@ -64,21 +66,25 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
  * Login user with email and password
  */
 export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
-  const response = await axiosInstance.post('/auth/login', data);
+  const response = await axiosInstance.post("/auth/login", data);
   return response.data;
 };
 
 /**
  * Login user with Google OAuth
  */
-export const loginWithGoogle = async (data: LoginWithGoogleData): Promise<{ sessionId: string; sessionUserId: string }> => {
-  const response = await axiosInstance.post('/login', data);
+export const loginWithGoogle = async (
+  data: LoginWithGoogleData
+): Promise<{ sessionId: string; sessionUserId: string }> => {
+  const response = await axiosInstance.post("/login", data);
   return response.data;
 };
 
 /**
  * Signup user with Google OAuth
  */
-export const signupWithGoogle = async (data: SignupWithGoogleData): Promise<void> => {
-  await axiosInstance.post('/signup', data);
+export const signupWithGoogle = async (
+  data: SignupWithGoogleData
+): Promise<void> => {
+  await axiosInstance.post("/signup", data);
 };

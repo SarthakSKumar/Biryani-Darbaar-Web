@@ -1,10 +1,10 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 import {
   getAccessToken,
   getRefreshToken,
   saveTokens,
   clearAuthData,
-} from '@/handlers/auth/authStorage';
+} from "@/handlers/auth/authStorage";
 
 // Request interceptor - Add auth token to requests
 axiosInstance.interceptors.request.use(
@@ -25,7 +25,11 @@ axiosInstance.interceptors.response.use(
   (response) => {
     // Extract data from the standard API response format
     // If response has { success, statusCode, data } structure, return the data
-    if (response.data && 'data' in response.data && 'success' in response.data) {
+    if (
+      response.data &&
+      "data" in response.data &&
+      "success" in response.data
+    ) {
       return {
         ...response,
         data: response.data.data, // Return just the data property
@@ -47,12 +51,12 @@ axiosInstance.interceptors.response.use(
         if (!refreshToken) {
           // No refresh token available, clear auth and redirect to login
           clearAuthData();
-          window.location.href = '/';
+          window.location.href = "/";
           return Promise.reject(error);
         }
 
         // Try to refresh the access token
-        const response = await axiosInstance.post('/auth/refresh-token', {
+        const response = await axiosInstance.post("/auth/refresh-token", {
           refreshToken,
         });
 
@@ -72,9 +76,9 @@ axiosInstance.interceptors.response.use(
         }
       } catch (refreshError) {
         // Refresh token failed, clear auth and redirect to login
-        console.error('Token refresh failed:', refreshError);
+        console.error("Token refresh failed:", refreshError);
         clearAuthData();
-        window.location.href = '/';
+        window.location.href = "/";
         return Promise.reject(refreshError);
       }
     }

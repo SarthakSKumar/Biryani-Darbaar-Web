@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { authAPI } from "@/apis";
 
 interface SignInSignUpModalProps {
   onClose: () => void;
@@ -30,8 +30,8 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
       const auth = getAuth();
       const res = await signInWithEmailAndPassword(auth, email, password);
       const accessToken = await res.user.getIdToken();
-      const response = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/login`, { idToken: accessToken });
-      const { sessionId, sessionUserId } = response.data;
+      const response = await authAPI.loginWithGoogle({ idToken: accessToken });
+      const { sessionId, sessionUserId } = response;
       sessionStorage.setItem("sessionId", sessionId);
       sessionStorage.setItem("sessionUserId", sessionUserId);
       onSuccess(); // Notify parent of successful authentication
@@ -48,11 +48,10 @@ const SignInSignUpModal: React.FC<SignInSignUpModalProps> = ({
       return;
     }
 
-    const fullName = `${firstName} ${lastName}`;
-
     try {
-      await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/signup`, {
-        userName: fullName,
+      await authAPI.registerUser({
+        firstName,
+        lastName,
         email,
         password,
         phoneNumber,

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { X, Plus, Minus, Trash, Coins } from "lucide-react";
 import PromoModal from "./PromoModal";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
@@ -8,6 +7,7 @@ import CheckoutPage from "../PaymentGate";
 import { useCart } from "@/contexts/CartContext";
 import { motion } from "framer-motion";
 import { ModalProps } from "@/types/component.types";
+import { userAPI } from "@/apis";
 
 const stripePromise: Promise<Stripe | null> = loadStripe(
   "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
@@ -38,16 +38,15 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
 
   useEffect(() => {
     const fetchUser = async (): Promise<void> => {
+      if (!userId) return;
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_ENDPOINT}/user/${userId}`
-        );
-        setReward(response.data.reward);
-        setRewardDiscount(response.data.discount);
+        const response = await userAPI.getUserById(userId);
+        setReward(response.reward);
+        setRewardDiscount(response.discount);
         setUser({
-          customerName: response.data.userName,
-          customerPhone: response.data.phoneNumber,
-          customerAddress: response.data.address,
+          customerName: response.userName,
+          customerPhone: response.phoneNumber,
+          customerAddress: response.address,
         });
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -74,14 +73,9 @@ const CartModal: React.FC<ModalProps> = ({ onClose }) => {
     dollar: number
   ): Promise<void> => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/apply-reward`,
-        { reward, userId, dollar }
-      );
-      if (response.status === 200) {
-        setReward(response.data.reward);
-        setFinalTotal(response.data.totalPrice);
-      }
+      const response = await userAPI.applyReward({ reward, userId, dollar });
+      setReward(response.reward);
+      setFinalTotal(response.totalPrice);
     } catch (error) {
       console.error("Error applying reward:", error);
     }

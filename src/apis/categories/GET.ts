@@ -1,9 +1,9 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 /**
  * Fetch all available categories
  */
 export const getCategories = async (): Promise<string[]> => {
-  const response = await axiosInstance.get('/categories');
+  const response = await axiosInstance.get("/categories");
   return response.data || [];
 };

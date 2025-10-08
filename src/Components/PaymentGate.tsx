@@ -8,9 +8,9 @@ import {
   useElements,
   CardElement,
 } from "@stripe/react-stripe-js";
-import axios from "axios";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
+import { paymentAPI, ordersAPI } from "@/apis";
 import { useCart } from "../contexts/CartContext";
 
 const stripePromise = loadStripe(
@@ -59,14 +59,12 @@ const Checkout: React.FC<CheckoutProps> = ({
     setPaymentError(null);
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/create-payment-intent`,
-        { amount, currency: "AUD" }
-      );
+      const { clientSecret } = await paymentAPI.createPaymentIntent({
+        amount,
+        currency: "AUD"
+      });
 
-      const result = await stripe.confirmCardPayment(
-        response.data.clientSecret,
-        {
+      const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: { card: elements.getElement(CardElement)! },
         }
       );
@@ -75,29 +73,23 @@ const Checkout: React.FC<CheckoutProps> = ({
         setPaymentError(result.error.message || "An unknown error occurred.");
       } else if (result.paymentIntent?.status === "succeeded") {
         const orderDetails = {
-          customerName: user.data.userName,
-          customerAddress: user.data.address,
-          customerPhone: user.data.phoneNumber,
-          orderDate: new Date().toISOString(),
-          orderStatus: "Order Received",
-          totalPrice: amount,
-          orderItems: order.map((orderItem) => ({
-            ...orderItem,
-            dishName: orderItem.name,
-            quantity: orderItem.quantity,
-          })),
           userId: user.data.userId,
+          userName: user.data.userName,
+          phoneNumber: user.data.phoneNumber,
+          address: user.data.address,
+          orderItems: order.map((orderItem) => ({
+            cartItemId: orderItem.cartItemId,
+            name: orderItem.name,
+            quantity: orderItem.quantity,
+            price: orderItem.price,
+          })),
+          totalPrice: amount,
         };
 
-        await axios.post(
-          `${import.meta.env.VITE_API_ENDPOINT}/orders`,
-          orderDetails
+        await ordersAPI.createOrder(orderDetails);
+        await ordersAPI.deleteCartItemsAfterOrder(
+          order.map((item) => item.cartItemId)
         );
-        for (const item of order) {
-          await axios.delete(
-            `${import.meta.env.VITE_API_ENDPOINT}/cart/${item.cartItemId}`
-          );
-        }
         clearCart();
         setToastState(true);
       }

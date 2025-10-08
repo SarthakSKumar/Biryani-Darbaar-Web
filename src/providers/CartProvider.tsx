@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactNode } from "react";
-import axios from "axios";
+import { cartAPI } from "@/apis";
 import { CartContext } from "@/contexts/CartContext";
 import { CartItem } from "@/types/cart.types";
 
@@ -29,11 +29,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           return;
         }
 
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_ENDPOINT}/getCart`,
-          { userId }
-        );
-        setCartItems(response.data || []);
+        const data = await cartAPI.getCartItems({ userId });
+        setCartItems(data);
       } catch (error) {
         console.error("Error fetching cart items:", error);
         const local = localStorage.getItem("local_cart");
@@ -97,38 +94,33 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/cart`,
-        {
-          userId,
-          dishId: item.dishId,
-          name: item.name,
-          addons: [], // Addons not used in this context
-          price: item.price,
-          image: item.image,
-          description: item.description,
-          quantity,
-        }
-      );
+      const response = await cartAPI.addToCart({
+        userId,
+        dishId: item.dishId,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        quantity,
+        addons: item.addons,
+      });
 
-      if (response.status === 201 || response.status === 200) {
-        const newItem = {
-          ...item,
-          cartItemId: response.data.cartItemId || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-          quantity,
-        };
-        setCartItems((prevItems) => {
-          const existingItem = prevItems.find((i) => i.dishId === item.dishId);
-          if (existingItem) {
-            return prevItems.map((i) =>
-              i.dishId === item.dishId
-                ? { ...i, quantity: i.quantity + quantity }
-                : i
-            );
-          }
-          return [...prevItems, newItem];
-        });
-      }
+      const newItem: CartItem = {
+        ...item,
+        cartItemId: response.cartItemId || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        quantity,
+      };
+      
+      setCartItems((prevItems) => {
+        const existingItem = prevItems.find((i) => i.dishId === item.dishId);
+        if (existingItem) {
+          return prevItems.map((i) =>
+            i.dishId === item.dishId
+              ? { ...i, quantity: i.quantity + quantity }
+              : i
+          );
+        }
+        return [...prevItems, newItem];
+      });
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -146,15 +138,17 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
       // Update the backend if available, otherwise persist locally
       const item = updatedItems.find((i) => i.cartItemId === cartItemId);
+      const userId = sessionStorage.getItem("sessionUserId");
       if (!import.meta.env.VITE_API_ENDPOINT) {
         localStorage.setItem("local_cart", JSON.stringify(updatedItems));
-      } else {
+      } else if (userId) {
         if (item) {
-          axios.put(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`, {
+          cartAPI.updateCartItem(cartItemId, {
+            userId,
             quantity: item.quantity,
-          }).catch((e) => console.error(e));
+          }).catch((e: unknown) => console.error(e));
         } else {
-          axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`).catch((e) => console.error(e));
+          cartAPI.deleteCartItem(cartItemId).catch((e: unknown) => console.error(e));
         }
       }
 
@@ -171,7 +165,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           return updated;
         });
       } else {
-        await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${cartItemId}`);
+        await cartAPI.deleteCartItem(cartItemId);
         setCartItems((prevItems) =>
           prevItems.filter((item) => item.cartItemId !== cartItemId)
         );
@@ -187,9 +181,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setCartItems([]);
         localStorage.removeItem("local_cart");
       } else {
-        for (const item of cartItems) {
-          await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/cart/${item.cartItemId}`);
-        }
+        await Promise.all(
+          cartItems.map((item) => cartAPI.deleteCartItem(item.cartItemId))
+        );
         setCartItems([]);
       }
     } catch (error) {

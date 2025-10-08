@@ -1,4 +1,4 @@
-import axiosInstance from '../axiosInterceptor';
+import axiosInstance from "../axiosInterceptor";
 
 export interface UpdateCartData {
   userId: string;
@@ -8,6 +8,9 @@ export interface UpdateCartData {
 /**
  * Update cart item quantity
  */
-export const updateCartItem = async (cartItemId: string, data: UpdateCartData): Promise<void> => {
+export const updateCartItem = async (
+  cartItemId: string,
+  data: UpdateCartData
+): Promise<void> => {
   await axiosInstance.put(`/cart/${cartItemId}`, data);
 };

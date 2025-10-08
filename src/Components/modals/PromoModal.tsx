@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, MouseEvent } from "react";
-import axios from "axios";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { PromoModalProps } from "@/types/component.types";
+import { promoAPI } from "@/apis";
 
 const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
   const [promoCode, setPromoCode] = useState<string>("");
@@ -10,15 +10,12 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
 
   const handleApplyPromo = async (): Promise<void> => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/validate-promo`,
-        { promoCode }
-      );
-      if (response.data.success) {
-        onApplyPromo(response.data.finalDiscount);
+      const response = await promoAPI.validatePromoCode({ promoCode });
+      if (response.success) {
+        onApplyPromo(response.finalDiscount);
         onClose();
       } else {
-        setError(response.data.message);
+        setError(response.message || "Invalid promo code");
       }
     } catch (error) {
       console.error("Error applying promo:", error);
