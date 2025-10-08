@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { PromoModalProps } from "@/types/component.types";
 import { promoAPI } from "@/apis";
-
+//TODO: Refactor
 const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
   const [promoCode, setPromoCode] = useState<string>("");
   const [error, setError] = useState<string>("");

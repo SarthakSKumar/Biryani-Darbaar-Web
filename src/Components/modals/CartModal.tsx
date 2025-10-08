@@ -12,8 +12,8 @@ interface CartItemType {
   price: number;
   quantity: number;
 }
-
-const Cart: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
+//TODO: REFACTOR THIS LATER
+const CartModal: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
@@ -173,4 +173,4 @@ const Cart: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   );
 };
 
-export default Cart;
+export default CartModal;

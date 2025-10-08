@@ -9,7 +9,7 @@ import { navbarLinks } from "@/contents/NavbarLinks";
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";
 import toast from "react-hot-toast";
-
+//TODO: REFACTOR THIS LATER
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);

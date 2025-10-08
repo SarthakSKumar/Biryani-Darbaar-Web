@@ -86,7 +86,7 @@ const MenuCard: React.FC<MenuCardProps> = ({
 
       {/* Size options */}
       <div className="space-y-2">
-        <p className="text-sm font-medium text-neutral-700 mb-3">Choose your size:</p>
+        <p className="text-sm font-medium text-neutral-700 mb-3">Select Quantity:</p>
         {sizeOptions.map((option) => (
           <motion.button
             key={option.size}

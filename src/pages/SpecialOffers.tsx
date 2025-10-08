@@ -2,7 +2,7 @@ import LargeImageView from "@/components/LargeImageView";
 import ArchedCard from "@/components/cards/ArchedCard";
 import { useEffect, useState } from "react";
 import { dishesAPI } from "@/apis";
-import DineInMenuSlider from "@/components/sliders/DineInMenuSlider";
+import DineInMenuSection from "@/components/sections/specialOffer/DineInMenuSection";
 import ImageSlider from "@/components/sliders/ImageSlider";
 
 const SpecialOffer = () => {
@@ -18,7 +18,7 @@ const SpecialOffer = () => {
 
     useEffect(() => {
         const fetchDishes = async () => {
-            try {   
+            try {
                 const data = await dishesAPI.getSpecialOffers();
                 setDishes(data);
             } catch (error) {
@@ -84,7 +84,7 @@ const SpecialOffer = () => {
 
             {/* Dine In Menu Slider Section */}
             <div className="container-custom">
-                <DineInMenuSlider />
+                <DineInMenuSection />
             </div>
         </div>
     );

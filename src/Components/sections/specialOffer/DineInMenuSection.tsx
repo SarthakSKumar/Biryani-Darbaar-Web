@@ -1,8 +1,8 @@
 import React from "react";
-import UnifiedSlider from "./UnifiedSlider";
+import UnifiedSlider from "../../sliders/UnifiedSlider";
 import { DINE_IN_MENU_ITEMS } from "@/contents/SliderContent";
 
-const DineInMenuSlider: React.FC = () => {
+const DineInMenuSection: React.FC = () => {
   const sliderItems = DINE_IN_MENU_ITEMS.map((item) => ({
     content: (
       <div className="p-2">
@@ -45,4 +45,4 @@ const DineInMenuSlider: React.FC = () => {
   );
 };
 
-export default DineInMenuSlider;
+export default DineInMenuSection;

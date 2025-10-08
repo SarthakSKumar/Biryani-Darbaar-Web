@@ -58,6 +58,6 @@ export interface DineInMenuItem {
   description?: string;
 }
 
-export interface DineInMenuSliderProps {
+export interface DineInMenuSectionProps {
   items: DineInMenuItem[];
 }

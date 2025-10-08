@@ -6,8 +6,6 @@ const MobileAppSection: React.FC = () => {
                 {/* Left Content */}
                 <div className="w-full md:w-1/2">
                     <h2 className="text-4xl md:text-5xl font-bold text-center md:text-left">
-                        {/* Ordering is <span className="text-primary">easier than ever</span><br className="hidden md:block" />
-                            with our <span className="text-primary">mobile app</span> */}
                         Ordering is now <span className="text-primary">Easier</span> with <span className="text-primary">Biryani Darbar App</span><br className="hidden md:block" />
                     </h2>
 
@@ -21,8 +19,6 @@ const MobileAppSection: React.FC = () => {
                         <img className="w-40" src="/assets/images/app-store.png" alt="Biryani Darbaar - Download on iOS" />
                     </div>
                 </div>
-
-                {/* Right Image */}
                 <div className="hidden md:block left-8 relative md:w-1/2">
                     <img src="/assets/images/mobileappchef.png" alt="Biryani Darbaar - Mobile App" className="w-full h-auto" />
                 </div>

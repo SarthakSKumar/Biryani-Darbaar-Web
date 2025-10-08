@@ -6,12 +6,9 @@ const ServicesSection: React.FC = () => {
         <div className="w-full bg-yellow-100 py-14">
             <div className="container-custom">
                 <div className="flex flex-col md:flex-row items-center gap-12">
-                    {/* Left Image */}
                     <div className="hidden md:block md:w-2/5">
                         <img src="/assets/images/serviceschef.png" alt="Biryani Darbaar - Chef" className="w-full h-auto" />
                     </div>
-
-                    {/* Right Content */}
                     <div className="w-full md:w-2/3">
                         <h2 className="text-4xl md:text-5xl font-bold text-center md:text-left">
                             Offering <span className="text-primary">multiple</span> culinary experiences for every occasion

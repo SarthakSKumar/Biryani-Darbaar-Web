@@ -15,7 +15,6 @@ interface SpecialOffersSectionProps {
 }
 
 const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDishes }) => {
-    // Ensure specialDishes is always an array
     const dishes = Array.isArray(specialDishes) ? specialDishes : [];
 
     const sliderItems = dishes.map((dish) => ({
