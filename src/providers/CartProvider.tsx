@@ -1,22 +1,13 @@
-// CartProvider.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { CartContext } from "@/contexts/CartContext";
+import { CartItem } from "@/types";
 
-// Define the CartItem type
-interface CartItem {
-  cartItemId: string;
-  dishId: string;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  quantity: number;
+interface CartProviderProps {
+  children: ReactNode;
 }
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   // Try to fetch cart items from backend; fall back to localStorage if unavailable

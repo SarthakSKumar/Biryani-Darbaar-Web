@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, MouseEvent } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
-
-interface PromoModalProps {
-  onClose: () => void;
-  onApplyPromo: (discount: number) => void;
-}
+import { PromoModalProps } from "@/types";
 
 const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
-  const [promoCode, setPromoCode] = useState("");
-  const [error, setError] = useState("");
+  const [promoCode, setPromoCode] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-  const handleApplyPromo = async () => {
+  const handleApplyPromo = async (): Promise<void> => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/validate-promo`,
@@ -30,17 +26,29 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
     }
   };
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setPromoCode(e.target.value);
+  };
+
+  const handleBackdropClick = (): void => {
+    onClose();
+  };
+
+  const handleContentClick = (e: MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
+  };
+
   return (
     <motion.div
       className="promo-modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      onClick={onClose}
+      onClick={handleBackdropClick}
     >
       <motion.div
         className="promo-modal-content bg-white p-6 rounded-lg relative w-96"
-        onClick={(e) => e.stopPropagation()}
+        onClick={handleContentClick}
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.4 }}
@@ -52,7 +60,7 @@ const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
         <input
           type="text"
           value={promoCode}
-          onChange={(e) => setPromoCode(e.target.value)}
+          onChange={handleInputChange}
           className="border p-2 rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-red-500"
           placeholder="Enter promo code"
         />

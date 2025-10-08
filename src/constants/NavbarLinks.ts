@@ -1,7 +1,4 @@
-export interface NavLink {
-  path: string;
-  label: string;
-}
+import { NavLink } from "@/types";
 
 export const navbarLinks: NavLink[] = [
   { path: "/", label: "Home" },

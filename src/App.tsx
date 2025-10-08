@@ -5,7 +5,7 @@ import Home from "@/pages/home";
 import Menu from "@/pages/menu";
 import Order from "@/pages/order";
 import Checkout from "@/pages/checkout";
-import About from "@/pages/About";
+import About from "@/pages/about";
 import SpecialOffer from "@/pages/specialOffers";
 import PrivacyPolicy from "@/pages/privacyPolicy";
 import TermsAndConditions from "@/pages/termsAndConditions";

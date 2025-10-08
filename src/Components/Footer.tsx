@@ -1,20 +1,23 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Instagram, Mail, Phone, LucideIcon } from "lucide-react";
 import { footerLinks, socialLinks } from "../constants/FooterLinks";
 
-const iconMap = {
+const iconMap: Record<"instagram" | "mail" | "phone", LucideIcon> = {
   instagram: Instagram,
   mail: Mail,
   phone: Phone,
 };
 
 const Footer: React.FC = () => {
+  const handleNewsletterSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+  };
+
   return (
     <footer className="bg-[#f4c145] text-neutral-900 border-t border-neutral-200">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Logo & Social Section */}
           <div className="flex flex-col items-center md:items-start">
             <img
               src="/assets/DABAAR.png"
@@ -23,7 +26,7 @@ const Footer: React.FC = () => {
             />
             <div className="flex gap-4">
               {socialLinks.map((social) => {
-                const Icon = iconMap[social.icon];
+                const Icon: LucideIcon = iconMap[social.icon];
                 return (
                   <a
                     key={social.name}
@@ -40,7 +43,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Links Section */}
           <div className="text-center md:text-left">
             <h4 className="text-xl font-bold mb-6 text-primary">Quick Links</h4>
             <ul className="space-y-3">
@@ -57,7 +59,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Newsletter Section */}
           <div className="text-center md:text-left">
             <h4 className="text-xl font-bold mb-6 text-primary">
               Stay Connected
@@ -66,7 +67,7 @@ const Footer: React.FC = () => {
               Subscribe to our newsletter for exclusive updates, delicious
               recipes, and special promotions delivered straight to your inbox.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3">
+            <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleNewsletterSubmit}>
               <input
                 type="email"
                 placeholder="Enter your email"

@@ -1,49 +1,44 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { heroImages } from "../constants";
-
-interface LargeImageViewProps {
-  title: string;
-  description: string;
-}
+import { LargeImageViewProps } from "@/types/component.types";
 
 const LargeImageView: React.FC<LargeImageViewProps> = ({
   title,
   description,
 }) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [currentImage, setCurrentImage] = useState<number>(0);
+  const [direction, setDirection] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  // Auto-advance images
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+      setCurrentImage((prev: number) => (prev + 1) % heroImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const goToNext = () => {
+  const goToNext = (): void => {
     setDirection(1);
-    setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    setCurrentImage((prev: number) => (prev + 1) % heroImages.length);
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = (): void => {
     setDirection(-1);
-    setCurrentImage((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+    setCurrentImage((prev: number) => (prev - 1 + heroImages.length) % heroImages.length);
   };
 
-  const goToImage = (index: number) => {
+  const goToImage = (index: number): void => {
     setDirection(index > currentImage ? 1 : -1);
     setCurrentImage(index);
   };
 
-  const slideVariants = {
+  const slideVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,

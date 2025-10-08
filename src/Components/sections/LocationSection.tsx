@@ -1,6 +1,7 @@
+import React from "react";
 import { motion } from "framer-motion";
 
-const LocationInfo = () => {
+const LocationInfo: React.FC = () => {
     return (
         <div className="container-custom">
             {/* Header Section */}
@@ -51,7 +52,7 @@ const LocationInfo = () => {
                                 +61 460 747 490
                             </a>
                         </div>
-                        <a 
+                        <a
                             href="https://www.google.com/maps/dir//183+Hanson+Rd,+Athol+Park+SA+5012,+Australia"
                             target="_blank"
                             rel="noopener noreferrer"

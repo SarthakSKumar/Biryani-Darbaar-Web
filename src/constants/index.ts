@@ -1,8 +1,4 @@
-export interface Service {
-  name: string;
-  image: string;
-  alt: string;
-}
+import { Service } from "@/types";
 
 export const services: Service[] = [
   {

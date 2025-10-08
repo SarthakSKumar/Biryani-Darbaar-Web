@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Location } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import RedButton from "./RedButton";
 import { Instagram, Phone, Menu, X, ShoppingCart } from "lucide-react";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useCart } from "../contexts/CartContext";
 import axios from "axios";
@@ -11,41 +11,41 @@ import { navbarLinks } from "../constants/NavbarLinks";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { cartItems } = useCart();
-  const location = useLocation();
+  const location: Location = useLocation();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       setIsAuthenticated(!!user);
     });
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = (): void => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path: string) => location.pathname.toLowerCase() === path.toLowerCase();
+  const isActive = (path: string): boolean => location.pathname.toLowerCase() === path.toLowerCase();
 
-  const getNavItemClass = (path: string) =>
+  const getNavItemClass = (path: string): string =>
     `${isActive(path)
       ? "text-red-600 font-semibold after:scale-x-100"
       : "text-neutral-700 hover:text-red-600 after:scale-x-0 hover:after:scale-x-100"
     } relative px-4 py-2 text-lg font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-red-600 after:transform transition-all duration-300`;
 
-  const getMobileNavClass = (path: string) =>
+  const getMobileNavClass = (path: string): string =>
     `block py-3 px-4 rounded-lg text-base font-medium transition-colors ${isActive(path)
       ? "bg-red-50 text-red-600"
       : "text-neutral-700 hover:bg-red-50 hover:text-red-600"
     }`;
 
-  const totalItems = cartItems.reduce((sum: number, item) => sum + item.quantity, 0);
+  const totalItems: number = cartItems.reduce((sum: number, item) => sum + item.quantity, 0);
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (): Promise<void> => {
     const auth = getAuth();
     await signOut(auth);
     const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
@@ -59,7 +59,6 @@ const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
         }`}
     >
-      {/* Top bar */}
       <div className="bg-red-700">
         <div className="container-custom">
           <div className="flex justify-end items-center h-10 space-x-4">
@@ -75,10 +74,8 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main navigation */}
       <div className="container-custom">
         <div className="flex items-center justify-between h-24">
-          {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               src="/assets/DABAAR.png"

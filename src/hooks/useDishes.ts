@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_ENDPOINT } from "@/config/constants";
-import { Dish } from "@/types";
+import { Dish, UseDishesReturn } from "@/types";
 
 /**
  * Custom hook for fetching dishes by category
  * Consolidates dish-fetching logic across pages
  */
-export const useDishes = (category: string) => {
+export const useDishes = (category: string): UseDishesReturn => {
   const [dishes, setDishes] = useState<Dish[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     if (!category) return;
 
-    const fetchDishes = async () => {
+    const fetchDishes = async (): Promise<void> => {
       setLoading(true);
       try {
         const response = await axios.get(

@@ -19,19 +19,18 @@ const RedButton: React.FC<RedButtonProps> = ({
   alt,
   onClick,
 }) => {
-  const baseClasses =
+  const baseClasses: string =
     "px-6 py-3 cursor-pointer transition-all duration-300 rounded-lg active:scale-95 font-medium border-2";
-  const activeClasses = "bg-primary text-white hover:bg-red-600 border-primary";
-  const inactiveClasses =
+  const activeClasses: string = "bg-primary text-white hover:bg-red-600 border-primary";
+  const inactiveClasses: string =
     "bg-white text-neutral-600 hover:bg-neutral-50 border-neutral-300 hover:border-neutral-400";
 
-  const buttonClasses = clsx(
+  const buttonClasses: string = clsx(
     baseClasses,
     variant === "active" ? activeClasses : inactiveClasses,
     className
   );
 
-  // Render button without image
   if (!image) {
     return (
       <motion.button
@@ -39,19 +38,26 @@ const RedButton: React.FC<RedButtonProps> = ({
         onClick={onClick}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+        type="button"
       >
         {name}
       </motion.button>
     );
   }
 
-  // Render button with image
   return (
     <motion.div
       className={buttonClasses}
       onClick={onClick}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter" || e.key === " ") {
+          onClick?.();
+        }
+      }}
     >
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 bg-white flex justify-center items-center rounded-full shadow-sm">

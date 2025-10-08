@@ -1,7 +1,4 @@
-export interface FooterLink {
-  label: string;
-  path: string;
-}
+import { FooterLink, SocialLink } from "@/types";
 
 export const footerLinks: FooterLink[] = [
   { label: "About Us", path: "/About" },
@@ -10,13 +7,6 @@ export const footerLinks: FooterLink[] = [
   { label: "Privacy Policy", path: "/PrivacyPolicy" },
   { label: "Terms and Conditions", path: "/TC" },
 ];
-
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: "instagram" | "mail" | "phone";
-  ariaLabel: string;
-}
 
 export const socialLinks: SocialLink[] = [
   {

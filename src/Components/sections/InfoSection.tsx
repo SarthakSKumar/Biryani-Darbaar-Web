@@ -1,6 +1,7 @@
+import React from "react";
 import { Truck, Phone, Clock } from "lucide-react";
 
-const InfoPage = () => {
+const InfoPage: React.FC = () => {
     return (
         <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

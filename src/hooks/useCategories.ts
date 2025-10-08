@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_ENDPOINT } from "@/config/constants";
+import { UseCategoriesReturn } from "@/types";
 
 /**
  * Custom hook for fetching categories
  * Eliminates repeated category-fetching logic
  */
-export const useCategories = () => {
+export const useCategories = (): UseCategoriesReturn => {
   const [categories, setCategories] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategories = async (): Promise<void> => {
       setLoading(true);
       try {
         const response = await axios.get(`${API_ENDPOINT}/categories`);

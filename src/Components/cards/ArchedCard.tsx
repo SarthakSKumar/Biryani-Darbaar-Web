@@ -10,6 +10,7 @@ interface CardComponentProps {
   price: string;
   className?: string;
 }
+
 const CardComponent: React.FC<CardComponentProps> = ({
   image,
   title,
@@ -25,7 +26,6 @@ const CardComponent: React.FC<CardComponentProps> = ({
         className
       )}
     >
-      {/* Card with SVG Arch Border for accurate shape */}
       <div className="relative bg-white pb-8 pt-12 px-6 flex flex-col items-center rounded-b-xl overflow-hidden">
         <svg
           className="absolute left-0 top-0 w-full h-full pointer-events-none"
@@ -42,7 +42,6 @@ const CardComponent: React.FC<CardComponentProps> = ({
             vectorEffect="non-scaling-stroke"
           />
         </svg>
-        {/* Product Image */}
         <div className="relative w-40 h-40 mt-">
           <img
             src={image}
@@ -51,23 +50,19 @@ const CardComponent: React.FC<CardComponentProps> = ({
           />
         </div>
 
-        {/* Price Badge with CSS Shape */}
         <div className="relative mb-4 flex justify-center"></div>
         <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-300 via-orange-200 to-yellow-400 shadow-md text-neutral-900 font-extrabold text-xl border-2 border-yellow-500">
           {price}
         </span>
 
-        {/* Title */}
         <h2 className="text-xl font-bold text-red-600 mt-3 mb-2 text-center line-clamp-1">
           {title}
         </h2>
 
-        {/* Description */}
         <p className="text-sm text-neutral-600 text-center mb-4 line-clamp-2 px-2">
           {description}
         </p>
 
-        {/* Order Button */}
         <Link to="/Order" className="w-full py-2 px-4">
           <button className="w-full px-6 py-3 bg-primary text-white rounded-full hover:bg-red-600 transition-all font-semibold border border-primary">
             {buttonTitle}

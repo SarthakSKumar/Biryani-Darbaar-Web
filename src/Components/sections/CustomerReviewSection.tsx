@@ -1,8 +1,14 @@
+import React from "react";
 import UnifiedSlider from "../sliders/UnifiedSlider";
 import { reviews } from "../../constants/Reviews";
+import { Review } from "@/types";
 
-const CustomerReviews = () => {
-    const sliderItems = reviews.map((review) => ({
+interface SliderItem {
+    content: React.ReactNode;
+}
+
+const CustomerReviews: React.FC = () => {
+    const sliderItems: SliderItem[] = reviews.map((review: Review) => ({
         content: (
             <div className="w-80 bg-white p-6 rounded-lg border border-neutral-200 hover:border-red-300 transition flex-shrink-0">
                 <div className="mb-4">
@@ -16,7 +22,7 @@ const CustomerReviews = () => {
                     {review.review}
                 </p>
                 <div className="mt-4 flex">
-                    {[...Array(review.rating)].map((_star, index) => (
+                    {[...Array(review.rating)].map((_star: undefined, index: number) => (
                         <span key={index} className="text-yellow-400 text-xl">
                             ★
                         </span>
@@ -26,32 +32,39 @@ const CustomerReviews = () => {
         ),
     }));
 
+    const totalRating: number = 4.6;
+    const maxStars: number = 5;
+    const fullStars: number = 4;
+    const totalReviews: string = "1,360 reviews";
+
     return (
         <div className="container-custom pb-28">
-            {/* Header and Total Rating Section */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-12">
                 <h2 className="text-4xl font-bold text-neutral-900">Customer Reviews</h2>
                 <div className="flex items-center gap-3 mt-4 md:mt-0">
-                    <div className="text-5xl font-bold text-neutral-900">4.6</div>
+                    <div className="text-5xl font-bold text-neutral-900">{totalRating}</div>
                     <div>
                         <div className="flex">
-                            {[...Array(4)].map((_, index) => (
+                            {[...Array(fullStars)].map((_: undefined, index: number) => (
                                 <span key={index} className="text-2xl text-yellow-400">
                                     ★
                                 </span>
                             ))}
-                            <span className="text-2xl text-neutral-300">★</span>
+                            {[...Array(maxStars - fullStars)].map((_: undefined, index: number) => (
+                                <span key={`empty-${index}`} className="text-2xl text-neutral-300">
+                                    ★
+                                </span>
+                            ))}
                         </div>
-                        <p className="text-base text-neutral-600 mt-1">1,360 reviews</p>
+                        <p className="text-base text-neutral-600 mt-1">{totalReviews}</p>
                     </div>
                 </div>
             </div>
 
-            {/* Reviews Carousel */}
             <UnifiedSlider
                 items={sliderItems}
                 slidesPerView={3}
-                spaceBetween={24}   
+                spaceBetween={24}
                 autoplay={true}
                 autoplayDelay={5000}
                 loop={true}

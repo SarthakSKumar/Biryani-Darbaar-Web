@@ -6,3 +6,7 @@ Fall in Love in home
 Menu page fix
 
 ordernow page fix. 
+
+email address for business
+
+check on site also emails, social links, phone numbers

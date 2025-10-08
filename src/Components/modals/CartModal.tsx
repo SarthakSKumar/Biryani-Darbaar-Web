@@ -1,41 +1,43 @@
-// CartModal.tsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { X, Plus, Minus, Trash, Coins } from "lucide-react";
 import PromoModal from "./PromoModal";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe, Stripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutPage from "../PaymentGate";
 import { useCart } from "@/contexts/CartContext";
 import { motion } from "framer-motion";
+import { ModalProps } from "@/types/component.types";
 
-const stripePromise = loadStripe(
+const stripePromise: Promise<Stripe | null> = loadStripe(
   "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
 );
 
-interface CartModalProps {
-  onClose: () => void;
+interface UserData {
+  customerName: string;
+  customerPhone: string;
+  customerAddress: string;
 }
 
-const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
+const CartModal: React.FC<ModalProps> = ({ onClose }) => {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
-  const [showPromoModal, setShowPromoModal] = useState(false);
-  const [discount, setDiscount] = useState(0);
-  const [showCheckout, setShowCheckout] = useState(false);
-  const [user, setUser] = useState({
+  const [showPromoModal, setShowPromoModal] = useState<boolean>(false);
+  const [discount, setDiscount] = useState<number>(0);
+  const [showCheckout, setShowCheckout] = useState<boolean>(false);
+  const [user, setUser] = useState<UserData>({
     customerName: "",
     customerPhone: "",
     customerAddress: "",
   });
-  const [reward, setReward] = useState(0);
-  const [rewardDiscount, setRewardDiscount] = useState(0);
-  const [applyRewardDiscount, setApplyRewardDiscount] = useState(false);
-  const [finalTotal, setFinalTotal] = useState(0);
+  const [reward, setReward] = useState<number>(0);
+  const [rewardDiscount, setRewardDiscount] = useState<number>(0);
+  const [applyRewardDiscount, setApplyRewardDiscount] = useState<boolean>(false);
+  const [finalTotal, setFinalTotal] = useState<number>(0);
 
-  const userId = sessionStorage.getItem("sessionUserId");
+  const userId: string | null = sessionStorage.getItem("sessionUserId");
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUser = async (): Promise<void> => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_ENDPOINT}/user/${userId}`
@@ -54,11 +56,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
     fetchUser();
   }, [userId]);
 
-  const grandTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+  const grandTotal: number = cartItems.reduce(
+    (total: number, item) => total + item.price * item.quantity,
     0
   );
-  const discountedTotal = grandTotal * (1 - discount);
+  const discountedTotal: number = grandTotal * (1 - discount);
 
   useEffect(() => {
     setFinalTotal(
@@ -70,7 +72,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
     reward: number,
     userId: string,
     dollar: number
-  ) => {
+  ): Promise<void> => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/apply-reward`,
@@ -85,7 +87,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
     }
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = (): void => {
     setShowCheckout(true);
   };
 
