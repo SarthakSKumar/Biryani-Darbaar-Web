@@ -46,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
         <img
-          src="/assets/icons/spoon.png"
+          src="/assets/images/icons/spoon.png"
           alt="Biryani Darbaar - Menu"
           className="w-14 h-14"
         />

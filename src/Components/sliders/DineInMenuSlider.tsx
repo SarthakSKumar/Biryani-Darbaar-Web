@@ -10,19 +10,19 @@ interface MenuItem {
 // Menu items data
 const menuItems: MenuItem[] = [
   {
-    image: "/assets/starters.png",
+    image: "/assets/images/categories/starters.png",
     label: "STARTERS",
   },
   {
-    image: "/assets/kebab.png",
+    image: "/assets/images/categories/kebab.png",
     label: "CHARCOAL KEBABS",
   },
   {
-    image: "/assets/chickencurries.png",
+    image: "/assets/images/categories/chickencurries.png",
     label: "CHICKEN CURRIES",
   },
   {
-    image: "/assets/chickencurries.png",
+    image: "/assets/images/categories/chickenbiryani.png",
     label: "BIRYANI'S",
   },
 ];
