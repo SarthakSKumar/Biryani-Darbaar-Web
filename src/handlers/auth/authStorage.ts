@@ -1,7 +1,7 @@
 // LocalStorage keys
-const ACCESS_TOKEN_KEY = 'accessToken';
-const REFRESH_TOKEN_KEY = 'refreshToken';
-const USER_DATA_KEY = 'userData';
+const ACCESS_TOKEN_KEY = "accessToken";
+const REFRESH_TOKEN_KEY = "refreshToken";
+const USER_DATA_KEY = "userData";
 
 export interface StoredUserData {
   userId: string;

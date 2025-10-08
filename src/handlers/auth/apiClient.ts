@@ -1,6 +1,11 @@
-import axios from 'axios';
-import { getAccessToken, getRefreshToken, saveTokens, clearAuthData } from './authStorage';
-import { refreshAccessToken } from './authApi';
+import axios from "axios";
+import {
+  getAccessToken,
+  getRefreshToken,
+  saveTokens,
+  clearAuthData,
+} from "./authStorage";
+import { refreshAccessToken } from "./authApi";
 
 const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
@@ -35,21 +40,21 @@ apiClient.interceptors.response.use(
 
       try {
         const refreshToken = getRefreshToken();
-        
+
         if (!refreshToken) {
           // No refresh token, clear auth and redirect
           clearAuthData();
-          window.location.href = '/';
+          window.location.href = "/";
           return Promise.reject(error);
         }
 
         // Try to refresh the token
         const response = await refreshAccessToken(refreshToken);
-        
+
         if (response.success) {
           const { accessToken } = response.data;
           const currentRefresh = getRefreshToken();
-          
+
           if (currentRefresh) {
             saveTokens(accessToken, currentRefresh);
           }
@@ -61,7 +66,7 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         // Refresh failed, clear auth and redirect
         clearAuthData();
-        window.location.href = '/';
+        window.location.href = "/";
         return Promise.reject(refreshError);
       }
     }

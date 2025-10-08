@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
@@ -45,7 +45,9 @@ export interface RefreshTokenResponse {
 }
 
 // Register a new user
-export const registerUser = async (data: RegisterData): Promise<AuthResponse> => {
+export const registerUser = async (
+  data: RegisterData
+): Promise<AuthResponse> => {
   const response = await axios.post(`${API_BASE_URL}/auth/register`, data);
   return response.data;
 };
@@ -57,7 +59,9 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
 };
 
 // Refresh access token
-export const refreshAccessToken = async (refreshToken: string): Promise<RefreshTokenResponse> => {
+export const refreshAccessToken = async (
+  refreshToken: string
+): Promise<RefreshTokenResponse> => {
   const response = await axios.post(`${API_BASE_URL}/auth/refresh-token`, {
     refreshToken,
   });
