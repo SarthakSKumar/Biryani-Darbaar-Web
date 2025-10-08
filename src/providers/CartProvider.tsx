@@ -109,7 +109,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         cartItemId: response.cartItemId || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         quantity,
       };
-      
+
       setCartItems((prevItems) => {
         const existingItem = prevItems.find((i) => i.dishId === item.dishId);
         if (existingItem) {

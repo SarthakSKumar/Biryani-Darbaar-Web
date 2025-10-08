@@ -1,6 +1,6 @@
 // Export axios instance and interceptor
-export { default as axiosInstance } from "./axiosInstance";
-export { default as axiosInterceptor } from "./axiosInterceptor";
+export { default as axiosInstance } from "../lib/axiosInstance";
+export { default as axiosInterceptor } from "../lib/axiosInterceptor";
 
 // Export all API modules
 export * as authAPI from "./auth";

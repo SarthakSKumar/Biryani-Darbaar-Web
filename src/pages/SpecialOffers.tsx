@@ -18,7 +18,7 @@ const SpecialOffer = () => {
 
     useEffect(() => {
         const fetchDishes = async () => {
-            try {
+            try {   
                 const data = await dishesAPI.getSpecialOffers();
                 setDishes(data);
             } catch (error) {

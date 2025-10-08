@@ -65,8 +65,8 @@ const Checkout: React.FC<CheckoutProps> = ({
       });
 
       const result = await stripe.confirmCardPayment(clientSecret, {
-          payment_method: { card: elements.getElement(CardElement)! },
-        }
+        payment_method: { card: elements.getElement(CardElement)! },
+      }
       );
 
       if (result.error) {

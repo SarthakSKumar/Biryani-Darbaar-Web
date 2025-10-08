@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { loginUser, registerUser, logoutUser, refreshAccessToken } from '@/handlers/auth/authApi';
+import { authAPI } from '@/apis';
 import {
     saveTokens,
     saveUserData,
@@ -10,7 +10,7 @@ import {
     StoredUserData,
 } from '@/handlers/auth/authStorage';
 import { getErrorMessage } from '@/types';
-import type { LoginData, RegisterData } from '@/handlers/auth/authApi';
+import type { LoginData, RegisterData } from '@/apis/auth/POST';
 
 interface AuthContextType {
     user: StoredUserData | null;
@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const login = async (data: LoginData) => {
         try {
-            const response = await loginUser(data);
+            const response = await authAPI.loginUser(data);
 
             if (response.success) {
                 const { accessToken, refreshToken, user } = response.data;
@@ -76,7 +76,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const register = async (data: RegisterData) => {
         try {
-            const response = await registerUser(data);
+            const response = await authAPI.registerUser(data);
 
             if (response.success) {
                 const { accessToken, refreshToken, user } = response.data;
@@ -96,7 +96,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const logout = async () => {
         try {
             const accessToken = getAccessToken();
-            await logoutUser(accessToken || undefined);
+            if (accessToken) {
+                await authAPI.logoutUser(accessToken);
+            }
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
@@ -114,7 +116,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 throw new Error('No refresh token available');
             }
 
-            const response = await refreshAccessToken(currentRefreshToken);
+            const response = await authAPI.refreshAccessToken(currentRefreshToken);
 
             if (response.success) {
                 const { accessToken } = response.data;

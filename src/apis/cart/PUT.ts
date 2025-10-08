@@ -1,4 +1,4 @@
-import axiosInstance from "../axiosInterceptor";
+import axiosInstance from "../../lib/axiosInterceptor";
 
 export interface UpdateCartData {
   userId: string;

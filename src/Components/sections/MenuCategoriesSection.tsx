@@ -26,7 +26,7 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
     // Ensure categories and dishes are always arrays
     const safeCategories = Array.isArray(categories) ? categories : [];
     const safeDishes = Array.isArray(dishes) ? dishes : [];
-    
+
     return (
         <div className="container-custom">
             <div className="text-center">
