@@ -31,7 +31,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
         address: '',
     });
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     // Prevent body scroll when modal is open
@@ -145,14 +144,15 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                         exit={{ opacity: 0 }}
                         onClick={handleClose}
                         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4 overflow-y-auto"
+                        style={{ alignItems: 'center' }}
                     >
                         {/* Modal */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 relative max-h-[85vh] overflow-y-auto my-8"
+                            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 relative my-8 max-h-[90vh] overflow-y-auto"
                         >
                             {/* Close button */}
                             <button
@@ -285,25 +285,16 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                                         <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
                                             Confirm Password
                                         </label>
-                                        <div className="relative">
-                                            <input
-                                                id="confirmPassword"
-                                                name="confirmPassword"
-                                                type={showConfirmPassword ? 'text' : 'password'}
-                                                value={formData.confirmPassword}
-                                                onChange={handleChange}
-                                                placeholder="Re-enter password"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                                                disabled={isLoading}
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                                            >
-                                                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                            </button>
-                                        </div>
+                                        <input
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            type="password"
+                                            value={formData.confirmPassword}
+                                            onChange={handleChange}
+                                            placeholder="Re-enter password"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                                            disabled={isLoading}
+                                        />
                                     </div>
                                 </div>
 

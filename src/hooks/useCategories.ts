@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "@/config/constants";
+import { API_ENDPOINT } from "@/config";
 import { UseCategoriesReturn } from "@/types/hook.types";
 
 /**

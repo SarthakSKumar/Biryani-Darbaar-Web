@@ -27,7 +27,7 @@ const ImageSlider: React.FC = () => {
 
   const sliderItems = offers.map((offer) => ({
     content: (
-      <div className="relative rounded-2xl overflow-hidden border border-neutral-200 hover:border-primary transition-all group">
+      <div className="relative rounded-lg overflow-hidden border border-neutral-200 hover:border-primary transition-all group">
         {/* Image with overlay gradient for better text contrast */}
         <div className="relative">
           <img
@@ -66,21 +66,19 @@ const ImageSlider: React.FC = () => {
   }));
 
   return (
-    <div className="container-custom">
-      <UnifiedSlider
-        items={sliderItems}
-        slidesPerView={3}
-        spaceBetween={24}
-        autoplay={false}
-        loop={true}
-        pagination={true}
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-      />
-    </div>
+    <UnifiedSlider
+      items={sliderItems}
+      slidesPerView={3}
+      spaceBetween={24}
+      autoplay={false}
+      loop={true}
+      pagination={true}
+      breakpoints={{
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+    />
   );
 };
 

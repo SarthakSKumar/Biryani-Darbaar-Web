@@ -1,9 +1,9 @@
 // MainOrderLayout.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MenuCard from "@/pages/Order/MenuCard";
-import Sidebar from "@/pages/Order/SideBar"
-import Cart from "@/pages/Order/Cart";
+import MenuCard from "@/components/cards/MenuCard";
+import Sidebar from "@/components/MenuBar"
+import Cart from "@/components/modals/CartModal";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
 import { Check, CheckCheck } from "lucide-react";

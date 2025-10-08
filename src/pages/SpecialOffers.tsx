@@ -31,61 +31,54 @@ const SpecialOffer = () => {
     }, []);
 
     return (
-        <>
-            <div className="pt-24">
-                <div className="container-custom">
-                    <LargeImageView
-                        title="Special Offer"
-                        description="Discover our exclusive deals and limited-time promotions on your favorite dishes."
-                    />
-                </div>
+        <div className="flex flex-col gap-20 md:gap-28">
+            <div className="container-custom section-spacing mt-12">
+                <LargeImageView
+                    title="Special Offers"
+                    description="Discover our exclusive deals and limited-time promotions on your favorite dishes."
+                />
             </div>
 
-            {/* Image Slider */}
-            <div className="section-spacing">
-                <div className="container-custom">
-                    <ImageSlider />
-                </div>
+            <div className="container-custom">
+                <ImageSlider />
             </div>
 
             {/* Today Special Offers Section */}
-            <div className="py-20">
-                <div className="container-custom">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold">
-                            Today <span className="text-primary">special</span> offers
-                        </h1>
-                    </div>
+            <div className="container-custom">
+                <div className="text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold">
+                        Today <span className="text-primary">special</span> offers
+                    </h1>
+                </div>
 
-                    <div className="mt-12">
-                        {/* For mobile scrolling */}
-                        <div className="flex overflow-x-auto gap-6 lg:hidden pb-4">
-                            {dishes.map((dish, index) => (
-                                <div key={index} className="min-w-[270px]">
-                                    <ArchedCard
-                                        image={dish.image}
-                                        title={dish.name}
-                                        description={dish.description || "Delicious dishes"}
-                                        buttonTitle="Order Now"
-                                        price={`$${dish.price.toString()}`}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Show grid on larger screens */}
-                        <div className="hidden lg:grid lg:grid-cols-4 gap-4">
-                            {dishes.map((dish, index) => (
+                <div className="mt-12">
+                    {/* For mobile scrolling */}
+                    <div className="flex overflow-x-auto gap-6 lg:hidden pb-4">
+                        {dishes.map((dish, index) => (
+                            <div key={index} className="min-w-[270px]">
                                 <ArchedCard
-                                    key={index}
                                     image={dish.image}
                                     title={dish.name}
                                     description={dish.description || "Delicious dishes"}
                                     buttonTitle="Order Now"
                                     price={`$${dish.price.toString()}`}
                                 />
-                            ))}
-                        </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Show grid on larger screens */}
+                    <div className="hidden lg:grid lg:grid-cols-4 gap-4">
+                        {dishes.map((dish, index) => (
+                            <ArchedCard
+                                key={index}
+                                image={dish.image}
+                                title={dish.name}
+                                description={dish.description || "Delicious dishes"}
+                                buttonTitle="Order Now"
+                                price={`$${dish.price.toString()}`}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -94,7 +87,7 @@ const SpecialOffer = () => {
             <div className="container-custom">
                 <DineInMenuSlider />
             </div>
-        </>
+        </div>
     );
 };
 

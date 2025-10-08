@@ -82,14 +82,15 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
                         exit={{ opacity: 0 }}
                         onClick={handleClose}
                         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4 overflow-y-auto"
+                        style={{ alignItems: 'center' }}
                     >
                         {/* Modal */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative"
+                            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative my-8"
                         >
                             {/* Close button */}
                             <button

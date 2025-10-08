@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_ENDPOINT } from "@/config/constants";
+import { API_ENDPOINT } from "@/config";
 import { Dish } from "@/types/common.types";
 import { UseDishesReturn } from "@/types/hook.types";
 

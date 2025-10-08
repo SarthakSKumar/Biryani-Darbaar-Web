@@ -22,7 +22,7 @@ const menuItems: MenuItem[] = [
     label: "CHICKEN CURRIES",
   },
   {
-    image: "/assets/images/categories/chickenbiryani.png",
+    image: "/assets/images/categories/chickenbiryani.svg",
     label: "BIRYANI'S",
   },
 ];
