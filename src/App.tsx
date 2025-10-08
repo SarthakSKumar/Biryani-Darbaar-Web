@@ -1,19 +1,21 @@
 import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 
-import Home from "@/pages/home";
-import Menu from "@/pages/menu";
-import Order from "@/pages/order";
-import Checkout from "@/pages/checkout";
-import About from "@/pages/about";
-import SpecialOffer from "@/pages/specialOffers";
-import PrivacyPolicy from "@/pages/privacyPolicy";
-import TermsAndConditions from "@/pages/termsAndConditions";
+import Home from "@/pages/Home";
+import Menu from "@/pages/Menu";
+import Order from "@/pages/Order";
+import Checkout from "@/pages/Checkout";
+import About from "@/pages/About";
+import SpecialOffer from "@/pages/SpecialOffers";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import LoginModal from "@/components/modals/LoginModal";
+import RegisterModal from "@/components/modals/RegisterModal";
 
 import { CartProvider } from "@/providers/CartProvider";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
@@ -97,6 +99,25 @@ function App() {
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      // Show login modal when user tries to access protected route
+      setShowLoginModal(true);
+    }
+  }, [isLoading, isAuthenticated]);
+
+  useEffect(() => {
+    // If user successfully logs in, they should see the protected content
+    if (isAuthenticated && (showLoginModal || showRegisterModal)) {
+      setShowLoginModal(false);
+      setShowRegisterModal(false);
+      setShouldRedirect(false);
+    }
+  }, [isAuthenticated, showLoginModal, showRegisterModal]);
 
   if (isLoading) {
     return (
@@ -106,8 +127,50 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!isAuthenticated) {
+  // Handle modal close - redirect to home
+  const handleModalClose = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(false);
+    setShouldRedirect(true);
+  };
+
+  const handleSwitchToRegister = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
+  };
+
+  // If user closed modal without logging in, redirect to home
+  if (shouldRedirect) {
     return <Navigate to="/" replace />;
+  }
+
+  // If not authenticated, show the login modal
+  if (!isAuthenticated) {
+    return (
+      <>
+        <LoginModal
+          isOpen={showLoginModal}
+          onClose={handleModalClose}
+          onSwitchToRegister={handleSwitchToRegister}
+        />
+        <RegisterModal
+          isOpen={showRegisterModal}
+          onClose={handleModalClose}
+          onSwitchToLogin={handleSwitchToLogin}
+        />
+        {/* Show a placeholder or the home page content while modal is open */}
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <p className="text-gray-600">Please sign in to continue</p>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return <>{children}</>;

@@ -1,10 +1,11 @@
 // MainOrderLayout.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MenuCard from "@/pages/order/MenuCard";
-import Sidebar from "./SideBar";
-import Cart from "@/pages/order/Cart"; // Import Cart as a popup component
+import MenuCard from "@/pages/Order/MenuCard";
+import Sidebar from "@/pages/Order/SideBar"
+import Cart from "@/pages/Order/Cart";
 import Loading from "@/components/Loading";
+import ErrorFallback from "@/components/ErrorFallback";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -36,11 +37,13 @@ const MainOrderLayout: React.FC = () => {
   const [showCart, setShowCart] = useState(false); // State to toggle cart popup visibility
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>("Biryani's");
 
   const handleCategorySelect = (category: string) => {
     setActiveCategory(category);
     setLoading(true);
+    setError(false);
     axios
       .get(
         `${import.meta.env.VITE_API_ENDPOINT
@@ -70,6 +73,7 @@ const MainOrderLayout: React.FC = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setError(true);
       })
       .finally(() => {
         setLoading(false);
@@ -186,6 +190,11 @@ const MainOrderLayout: React.FC = () => {
                 </div>
               ) : loading ? (
                 <Loading text="Loading delicious dishes..." />
+              ) : error ? (
+                <ErrorFallback
+                  message="Failed to load dishes"
+                  onRetry={() => handleCategorySelect(activeCategory)}
+                />
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {menuItems.map((item, index) => (
@@ -228,7 +237,7 @@ const MainOrderLayout: React.FC = () => {
         {/* Cart Popup - More horizontal with max height */}
         {showCart && !orders.length && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-modal flex justify-center items-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4"
             onClick={() => setShowCart(false)}
           >
             <div

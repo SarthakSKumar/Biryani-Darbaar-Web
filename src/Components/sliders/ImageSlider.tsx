@@ -6,19 +6,19 @@ import UnifiedSlider from "./UnifiedSlider";
 const ImageSlider: React.FC = () => {
   const offers = [
     {
-      image: "/assets/slider/slider-image-image-1.png",
+      image: "/assets/images/slider/slider-image-1.png",
       title: "First Order Discount",
       subtitle: "Biryani Darbaar in Athol Park",
       discount: "-20%",
     },
     {
-      image: "/assets/slider/slider-image-image-2.jpg",
+      image: "/assets/images/slider/slider-image-2.jpg",
       title: "Biryani Discount",
       subtitle: "Biryani Darbaar in Athol Park",
       discount: "-20%",
     },
     {
-      image: "/assets/slider/slider-image-image-3.jpg",
+      image: "/assets/images/slider/slider-image-3.jpg",
       title: "Haleem Offer",
       subtitle: "Biryani Darbaar in Athol Park",
       discount: "-15%",

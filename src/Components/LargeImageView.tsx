@@ -44,14 +44,14 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-yellow-100 via-yellow-50 to-orange-50 p-6 md:p-12 z-top">
+    <div className="w-full bg-yellow-100 rounded-lg border p-6 md:p-12">
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Section - Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col h-full justify-center align-center">
             <p className="text-lg font-medium text-gray-700">{description}</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+            <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900">
               {title}
             </h1>
 
@@ -77,7 +77,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
           {/* Right Section - Image Carousel */}
           <div className="relative">
             {/* Rating Badge */}
-            <div className="absolute -top-4 -right-4 z-ui bg-white rounded-2xl shadow-xl p-6 text-center">
+            <div className="absolute -top-4 -right-4 z-10 bg-white rounded-2xl shadow-xl p-6 text-center">
               <div className="text-5xl font-bold text-gray-900 mb-1">3.4</div>
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(3)].map((_, i) => (
@@ -122,7 +122,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
               </AnimatePresence>
 
               {/* Dot Indicators */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-ui">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                 {heroImages.map((_, index) => (
                   <button
                     key={index}

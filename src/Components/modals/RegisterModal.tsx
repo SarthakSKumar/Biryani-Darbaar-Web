@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,6 +10,7 @@ import {
     validateAddress,
     validateConfirmPassword,
 } from '@/handlers/auth/validation';
+import { getErrorMessage } from '@/types';
 import toast from 'react-hot-toast';
 
 interface RegisterModalProps {
@@ -32,6 +33,19 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -85,7 +99,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
         setIsLoading(true);
 
         try {
-            const { confirmPassword, ...registerData } = formData;
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { confirmPassword: _, ...registerData } = formData;
             await register(registerData);
             toast.success('Account created successfully! Welcome to Biryani Darbaar.');
             onClose();
@@ -99,8 +114,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                 phoneNumber: '',
                 address: '',
             });
-        } catch (error: any) {
-            toast.error(error.message || 'Registration failed. Please try again.');
+        } catch (error: unknown) {
+            toast.error(getErrorMessage(error) || 'Registration failed. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -129,7 +144,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={handleClose}
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4 overflow-y-auto"
                     >
                         {/* Modal */}
                         <motion.div
@@ -137,7 +152,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 relative max-h-[90vh] overflow-y-auto"
+                            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-8 relative max-h-[85vh] overflow-y-auto my-8"
                         >
                             {/* Close button */}
                             <button

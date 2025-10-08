@@ -11,8 +11,17 @@ email address for business
 
 check on site also emails, social links, phone numbers
 
-only aussie phones?
+only aussie phones? placeholders
 
-what currency?
+what currency? placeholders
 
 fix review numbers
+
+Pre-Reservations
+Biryani Darbaar - Organized Place
+Organizing FoodHuts
+Biryani Darbaar - Super Chef
+Super Chefs
+Biryani Darbaar - Clean Kitchen
+Clean Kitchens Add customised icons. 
+

@@ -3,32 +3,32 @@ import { Service } from "@/types/common.types";
 export const services: Service[] = [
   {
     name: "Online Ordering",
-    image: "/assets/images/icons/order.png",
+    image: "/assets/icons/spoon.png",
     alt: "Biryani Darbaar - Online Order",
   },
   {
     name: "24/7 Services",
-    image: "/assets/images/icons/24.7.png",
+    image: "/assets/icons/247.png",
     alt: "Biryani Darbaar - 24/7 Services",
   },
   {
     name: "Pre-Reservations",
-    image: "/assets/images/icons/booking.png",
+    image: "/assets/icons/booking.png",
     alt: "Biryani Darbaar - Pre-Reservation",
   },
   {
     name: "Organizing FoodHuts",
-    image: "/assets/images/icons/booking.png",
+    image: "/assets/icons/booking.png",
     alt: "Biryani Darbaar - Organized Place",
   },
   {
     name: "Super Chefs",
-    image: "/assets/images/icons/booking.png",
+    image: "/assets/icons/booking.png",
     alt: "Biryani Darbaar - Super Chef",
   },
   {
     name: "Clean Kitchens",
-    image: "/assets/images/icons/booking.png",
+    image: "/assets/icons/booking.png",
     alt: "Biryani Darbaar - Clean Kitchen",
   },
 ];

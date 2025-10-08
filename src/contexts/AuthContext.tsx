@@ -9,6 +9,7 @@ import {
     clearAuthData,
     StoredUserData,
 } from '@/handlers/auth/authStorage';
+import { getErrorMessage } from '@/types';
 import type { LoginData, RegisterData } from '@/handlers/auth/authApi';
 
 interface AuthContextType {
@@ -68,8 +69,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             } else {
                 throw new Error(response.message || 'Login failed');
             }
-        } catch (error: any) {
-            throw new Error(error.response?.data?.message || error.message || 'Login failed');
+        } catch (error: unknown) {
+            throw new Error(getErrorMessage(error));
         }
     };
 
@@ -87,8 +88,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             } else {
                 throw new Error(response.message || 'Registration failed');
             }
-        } catch (error: any) {
-            throw new Error(error.response?.data?.message || error.message || 'Registration failed');
+        } catch (error: unknown) {
+            throw new Error(getErrorMessage(error));
         }
     };
 

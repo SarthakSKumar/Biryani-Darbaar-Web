@@ -6,8 +6,8 @@ import InfoPage from "@/components/sections/InfoSection";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import ImageSlider from "@/components/sliders/ImageSlider";
 import InputSearch from "@/components/InputSearch";
-import RedButton from "@/components/RedButton";
 import Loading from "@/components/Loading";
+import ErrorFallback from "@/components/ErrorFallback";
 import { useLocation } from "react-router-dom";
 
 const Menu = () => {
@@ -15,11 +15,14 @@ const Menu = () => {
     const [activeCategory, setActiveCategory] = useState<string>("Chicken");
     const [isLoadingCategories, setIsLoadingCategories] = useState(true);
     const [isLoadingDishes, setIsLoadingDishes] = useState(false);
+    const [categoryError, setCategoryError] = useState(false);
+    const [dishesError, setDishesError] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
         const fetchCategories = async () => {
             setIsLoadingCategories(true);
+            setCategoryError(false);
             try {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_ENDPOINT}/categories`
@@ -27,6 +30,7 @@ const Menu = () => {
                 setCategories(response.data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
+                setCategoryError(true);
             } finally {
                 setIsLoadingCategories(false);
             }
@@ -92,7 +96,10 @@ const Menu = () => {
     useEffect(() => {
         const fetchDishes = async () => {
             setIsLoadingDishes(true);
+            setDishesError(false);
             const dishesData: { [key: string]: Dish[] } = {};
+            let hasError = false;
+
             for (const category of categories) {
                 try {
                     const response = await axios.get(
@@ -101,9 +108,11 @@ const Menu = () => {
                     dishesData[category] = response.data;
                 } catch (error) {
                     console.error(`Error fetching data for category ${category}:`, error);
+                    hasError = true;
                 }
             }
             setDishes(dishesData);
+            setDishesError(hasError);
             setIsLoadingDishes(false);
         };
 
@@ -115,46 +124,43 @@ const Menu = () => {
     return (
         <div className="flex flex-col gap-20 md:gap-28">
             <div className="container-custom section-spacing mt-12">
-                <div
-                    className="absolute inset-0 max-h-screen z-10"
-                    style={{
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                        backgroundImage: `url("/assets/images/background.png")`,
-                    }}
-                />
                 <LargeImageView
                     title="Biryani Darbaar in Athol Park"
                     description="Enjoy authentic biryani with fresh ingredients!"
                 />
-                <div className="flex justify-center">
+                <div className="flex justify-center py-8">
                     <InputSearch
                         placeholder="Search for categories or dishes..."
                         onSearch={handleSearch}
                     />
                 </div>
-                {isLoadingCategories ? (
-                    <Loading text="Loading categories..." />
-                ) : (
-                    <div className="flex flex-row justify-center items-center flex-wrap gap-3 mt-12">
-                        {categories.map((category, index) => (
-                            <RedButton
-                                key={index}
-                                className="w-60 flex-shrink-0"
-                                name={category}
-                                variant={activeCategory === category ? "active" : "inactive"}
-                                onClick={() => {
-                                    setActiveCategory(category);
-                                    const element = document.getElementById(category);
-                                    if (element) {
-                                        element.scrollIntoView({ behavior: "smooth", block: "start" });
-                                    }
-                                }}
-                            />
-                        ))}
-                    </div>
-                )}
+                <div className="flex flex-row justify-center items-center flex-wrap gap-3 mt-12">
+                    {isLoadingCategories ? (
+                        <Loading text="Loading categories..." />
+                    ) : categoryError ? (
+                        <ErrorFallback
+                            message="Failed to load categories"
+                            onRetry={() => window.location.reload()}
+                        />
+                    ) : (
+                        <div className="flex flex-row justify-center items-center flex-wrap gap-3 mt-12">
+                            {categories.map((category, index) => (
+                                <button
+                                    key={index}
+                                    className="w-60 flex-shrink-0"
+                                    name={category}
+                                    onClick={() => {
+                                        setActiveCategory(category);
+                                        const element = document.getElementById(category);
+                                        if (element) {
+                                            element.scrollIntoView({ behavior: "smooth", block: "start" });
+                                        }
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
             <ImageSlider />
 
@@ -163,6 +169,11 @@ const Menu = () => {
 
                 {isLoadingDishes ? (
                     <Loading text="Loading delicious dishes..." />
+                ) : dishesError ? (
+                    <ErrorFallback
+                        message="Failed to load dishes"
+                        onRetry={() => window.location.reload()}
+                    />
                 ) : (
                     categories.map((category: string) => (
                         <div key={category}>

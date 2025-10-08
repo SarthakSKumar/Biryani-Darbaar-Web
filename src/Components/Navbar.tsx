@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, Location } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import RedButton from "./RedButton";
-import { Instagram, Phone, Menu, X, ShoppingCart, LogOut, User } from "lucide-react";
+import { Instagram, Phone, Menu, X, ShoppingCart, LogOut } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 import { navbarLinks } from "../constants/NavbarLinks";
@@ -46,7 +46,8 @@ const Navbar: React.FC = () => {
       await logout();
       toast.success("Successfully signed out");
       setIsMobileMenuOpen(false);
-    } catch (error) {
+    } catch (error: unknown) {
+      console.error("Logout error:", error);
       toast.error("Failed to sign out");
     }
   };
@@ -67,7 +68,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-navbar flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
+      className={`fixed top-0 left-0 right-0 z-40 flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
         }`}
     >
       <div className="bg-red-700">

@@ -1,6 +1,6 @@
 // Orders.tsx
 import LargeImageView from "@/components/LargeImageView";
-import MainOrderLayout from "@/pages/order/MainOrderLayout";
+import MainOrderLayout from "@/pages/Order/MainOrderLayout";
 import InfoPage from "@/components/sections/InfoSection";
 import LocationInfo from "@/components/sections/LocationSection";
 import { CartProvider } from "@/providers/CartProvider";

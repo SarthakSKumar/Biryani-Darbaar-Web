@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { validateEmail, validatePassword } from '@/handlers/auth/validation';
+import { getErrorMessage } from '@/types';
 import toast from 'react-hot-toast';
 
 interface LoginModalProps {
@@ -17,6 +18,19 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -44,8 +58,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
             // Reset form
             setEmail('');
             setPassword('');
-        } catch (error: any) {
-            toast.error(error.message || 'Login failed. Please try again.');
+        } catch (error: unknown) {
+            toast.error(getErrorMessage(error) || 'Login failed. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -67,7 +81,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={handleClose}
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-login flex items-center justify-center p-4 overflow-y-auto"
                     >
                         {/* Modal */}
                         <motion.div
