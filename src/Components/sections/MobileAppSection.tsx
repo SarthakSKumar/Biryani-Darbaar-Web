@@ -24,7 +24,7 @@ const MobileAppSection: React.FC = () => {
 
                 {/* Right Image */}
                 <div className="hidden md:block left-8 relative md:w-1/2">
-                    <img src="/assets/mobileappchef.png" alt="Biryani Darbaar - Mobile App" className="w-full h-auto" />
+                    <img src="/assets/images/mobileappchef.png" alt="Biryani Darbaar - Mobile App" className="w-full h-auto" />
                 </div>
             </div>
         </div>

@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-24">
           <Link to="/" className="flex items-center">
             <img
-              src="/assets/DABAAR.png"
+              src="/assets/images/logo.png"
               alt="Biryani Darbaar - Logo"
               className="h-[165px] w-auto object-contain relative -top-4"
             />

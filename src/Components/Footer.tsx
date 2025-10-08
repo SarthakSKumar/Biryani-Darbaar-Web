@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="flex flex-col items-center md:items-start">
             <img
-              src="/assets/DABAAR.png"
+              src="/assets/images/logo.png"
               alt="Biryani Darbaar - Logo"
               className="h-32 md:h-36 mb-6"
             />

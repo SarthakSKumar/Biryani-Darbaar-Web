@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    backgroundImage: `url("/assets/images/background.png")`,
+                    backgroundImage: `url("/assets/images/images/background.png")`,
                 }}
             />
             {/* Content Container */}
@@ -96,7 +96,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <Link to="/Order">
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
-                                    image="/assets/ordericon.png"
+                                    image="/assets/images/ordericon.png"
                                     alt="Biryani Darbaar - Order"
                                     name="Order Food"
                                     variant="active"
@@ -105,7 +105,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             <Link to="/Contact">
                                 <RedButton
                                     className="h-12 w-fit flex font-semibold"
-                                    image="/assets/cateringicon.png"
+                                    image="/assets/images/cateringicon.png"
                                     alt="Biryani Darbaar - Catering"
                                     name="Book Catering Services"
                                     variant="active"
@@ -114,8 +114,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                         </motion.div>
 
                         <div className="flex justify-start items-center gap-4 mt-8">
-                            <img className="w-40" src="/assets/images/play-store.png" alt="Biryani Darbaar - Download on Android" />
-                            <img className="w-40" src="/assets/images/app-store.png" alt="Biryani Darbaar - Download on iOS" />
+                            <img className="w-40" src="/assets/images/images/play-store.png" alt="Biryani Darbaar - Download on Android" />
+                            <img className="w-40" src="/assets/images/images/app-store.png" alt="Biryani Darbaar - Download on iOS" />
                         </div>
                     </motion.div>
 
@@ -143,7 +143,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
                             {/* Chicken Biryani Card */}
                             <div className="absolute -left-20 top-16 w-48 bg-white h-14 flex items-center rounded-lg border border-neutral-200 z-20">
-                                <img className="w-10 ml-2" src="/assets/biryani.png" alt="Biryani Darbaar" />
+                                <img className="w-10 ml-2" src="/assets/icons/biryani.png" alt="Biryani Darbaar" />
                                 <div className="flex flex-col ml-2">
                                     <span className="text-xs font-bold">Chicken Biryani</span>
                                     <div className="text-md font-medium text-red-700">@ Just $9.50</div>
@@ -153,7 +153,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             {/* Girl Image with Circle */}
                             <div className="w-[410px] h-[410px] rounded-full bg-primary overflow-hidden relative z-10">
                                 <img
-                                    src="/assets/Girl.png"
+                                    src="/assets/images/hero-model.png"
                                     alt="Biryani Darbaar - Food delivery"
                                     className="max-h-[500px] ml-5 -mt-24 object-cover"
                                 />
@@ -165,28 +165,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             {/* Rotating Meal Circles */}
                             <motion.img
                                 className="absolute -bottom-8 -left-32 w-44 z-10"
-                                src="/assets/rounded-meal-1.png"
+                                src="/assets/images/rounded-meal-1.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 left-4 w-56 z-10"
-                                src="/assets/rounded-meal-2.png"
+                                src="/assets/images/rounded-meal-2.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 right-2 w-52 z-10"
-                                src="/assets/rounded-meal-3.png"
+                                src="/assets/images/rounded-meal-3.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute top-56 -right-32 w-54 z-10"
-                                src="/assets/rounded-meal-4.png"
+                                src="/assets/images/rounded-meal-4.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
