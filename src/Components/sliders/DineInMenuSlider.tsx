@@ -1,34 +1,9 @@
 import React from "react";
 import UnifiedSlider from "./UnifiedSlider";
-
-// Interface for menu items
-interface MenuItem {
-  image: string;
-  label: string;
-}
-
-// Menu items data
-const menuItems: MenuItem[] = [
-  {
-    image: "/assets/images/categories/starters.png",
-    label: "STARTERS",
-  },
-  {
-    image: "/assets/images/categories/kebab.png",
-    label: "CHARCOAL KEBABS",
-  },
-  {
-    image: "/assets/images/categories/chickencurries.png",
-    label: "CHICKEN CURRIES",
-  },
-  {
-    image: "/assets/images/categories/chickenbiryani.svg",
-    label: "BIRYANI'S",
-  },
-];
+import { DINE_IN_MENU_ITEMS } from "@/constants/SliderContent";
 
 const DineInMenuSlider: React.FC = () => {
-  const sliderItems = menuItems.map((item) => ({
+  const sliderItems = DINE_IN_MENU_ITEMS.map((item) => ({
     content: (
       <div className="p-2">
         <div className="bg-red-600 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">

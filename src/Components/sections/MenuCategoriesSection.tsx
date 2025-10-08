@@ -23,6 +23,10 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
     setActiveCategory,
     dishes,
 }) => {
+    // Ensure categories and dishes are always arrays
+    const safeCategories = Array.isArray(categories) ? categories : [];
+    const safeDishes = Array.isArray(dishes) ? dishes : [];
+    
     return (
         <div className="container-custom">
             <div className="text-center">
@@ -35,18 +39,22 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
 
             {/* Category Buttons */}
             <div className="flex overflow-x-auto md:flex-wrap md:justify-center gap-4 mt-12">
-                {categories.map((category, index) => (
-                    <RedButton
-                        key={index}
-                        className="w-60 flex-shrink-0"
-                        name={category}
-                        variant={activeCategory === category ? "active" : "inactive"}
-                        onClick={() => {
-                            setActiveCategory(category);
-                            console.log("Category clicked:", category);
-                        }}
-                    />
-                ))}
+                {safeCategories.length > 0 ? (
+                    safeCategories.map((category, index) => (
+                        <RedButton
+                            key={index}
+                            className="w-60 flex-shrink-0"
+                            name={category}
+                            variant={activeCategory === category ? "active" : "inactive"}
+                            onClick={() => {
+                                setActiveCategory(category);
+                                console.log("Category clicked:", category);
+                            }}
+                        />
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500">No categories available.</p>
+                )}
             </div>
 
             {/* Dishes Section */}
@@ -55,11 +63,11 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
                     {activeCategory}
                 </h3>
 
-                {dishes.length > 0 ? (
+                {safeDishes.length > 0 ? (
                     <>
                         {/* Mobile scrolling */}
                         <div className="flex overflow-x-auto gap-6 mt-8 lg:hidden">
-                            {dishes.map((dish, index) => (
+                            {safeDishes.map((dish, index) => (
                                 <div key={index} className="min-w-[270px]">
                                     <ArchedCard
                                         image={dish.image}
@@ -76,7 +84,7 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
 
                         {/* Desktop grid */}
                         <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-8">
-                            {dishes.map((dish, index) => (
+                            {safeDishes.map((dish, index) => (
                                 <ArchedCard
                                     key={index}
                                     image={dish.image}

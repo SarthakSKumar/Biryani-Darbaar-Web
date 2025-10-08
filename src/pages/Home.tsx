@@ -19,9 +19,11 @@ const Home = () => {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_ENDPOINT}/categories`
                 );
-                setCategories(response.data);
+                // Extract the data array from the API response
+                setCategories(response.data.data || []);
             } catch (error) {
                 console.error("Error fetching categories:", error);
+                setCategories([]);
             }
         };
 
@@ -42,9 +44,11 @@ const Home = () => {
                     `${import.meta.env.VITE_API_ENDPOINT
                     }/dishes/category/${activeCategory}`
                 );
-                setDishes(response.data);
+                // Extract the data array from the API response
+                setDishes(response.data.data || []);
             } catch (error) {
                 console.error("Error fetching dishes:", error);
+                setDishes([]);
             }
         };
 
@@ -70,9 +74,11 @@ const Home = () => {
                 const response = await axios.get(
                     `${import.meta.env.VITE_API_ENDPOINT}/specialOffers`
                 );
-                setSpecialDishes(response.data);
+                // Extract the data array from the API response
+                setSpecialDishes(response.data.data || []);
             } catch (error) {
                 console.error("Error fetching special dishes:", error);
+                setSpecialDishes([]);
             }
         };
 

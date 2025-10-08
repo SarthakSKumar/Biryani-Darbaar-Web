@@ -10,6 +10,7 @@ import About from "@/pages/About";
 import SpecialOffer from "@/pages/SpecialOffers";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
+import NotFound from "@/pages/NotFound";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -59,6 +60,8 @@ function App() {
                   <Route path="/TC" element={<TermsAndConditions />} />
                   <Route path="/Order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
                   <Route path="/Checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+                  {/* 404 Route - Must be last */}
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </div>
               <Footer />

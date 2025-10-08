@@ -2,30 +2,10 @@
 import React from "react";
 import { Plus } from "lucide-react";
 import UnifiedSlider from "./UnifiedSlider";
+import { SPECIAL_OFFERS } from "@/constants/SliderContent";
 
 const ImageSlider: React.FC = () => {
-  const offers = [
-    {
-      image: "/assets/images/slider/slider-image-1.png",
-      title: "First Order Discount",
-      subtitle: "Biryani Darbaar in Athol Park",
-      discount: "-20%",
-    },
-    {
-      image: "/assets/images/slider/slider-image-2.jpg",
-      title: "Biryani Discount",
-      subtitle: "Biryani Darbaar in Athol Park",
-      discount: "-20%",
-    },
-    {
-      image: "/assets/images/slider/slider-image-3.jpg",
-      title: "Haleem Offer",
-      subtitle: "Biryani Darbaar in Athol Park",
-      discount: "-15%",
-    },
-  ];
-
-  const sliderItems = offers.map((offer) => ({
+  const sliderItems = SPECIAL_OFFERS.map((offer) => ({
     content: (
       <div className="relative rounded-lg overflow-hidden border border-neutral-200 hover:border-primary transition-all group">
         {/* Image with overlay gradient for better text contrast */}

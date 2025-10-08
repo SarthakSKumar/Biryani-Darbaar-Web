@@ -15,7 +15,10 @@ interface SpecialOffersSectionProps {
 }
 
 const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDishes }) => {
-    const sliderItems = specialDishes.map((dish) => ({
+    // Ensure specialDishes is always an array
+    const dishes = Array.isArray(specialDishes) ? specialDishes : [];
+    
+    const sliderItems = dishes.map((dish) => ({
         content: (
             <ArchedCard
                 image={dish.image}
@@ -44,7 +47,7 @@ const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDish
             </div>
 
             <div className="mt-12 mb-4">
-                {specialDishes.length > 0 ? (
+                {dishes.length > 0 ? (
                     <UnifiedSlider
                         items={sliderItems}
                         slidesPerView={1}
