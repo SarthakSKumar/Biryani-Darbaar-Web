@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import { Send, Mail, Phone, User, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { contactAPI } from '@/apis';
-import { getErrorMessage, ContactFormData } from '@/types';
+import { getErrorMessage } from '@/types';
+import type { ContactFormData } from '@/types/api.types';
 import {
     validateName,
     validateEmail,
     validatePhoneNumber,
     validateMessage,
 } from '@/utils/validation';
-import { contactFormFields } from '@/contents/FormFields';
 
 const Contact: React.FC = () => {
     const [formData, setFormData] = useState<ContactFormData>({

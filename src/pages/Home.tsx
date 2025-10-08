@@ -9,6 +9,7 @@ import ServicesSection from "@/components/sections/home/ServicesSection";
 import MenuCategoriesSection from "@/components/sections/home/MenuCategoriesSection";
 import MobileAppSection from "@/components/sections/home/MobileAppSection";
 import InfoPage from "@/components/sections/InfoSection";
+import { Dish } from "@/types";
 
 const Home = () => {
     const [categories, setCategories] = useState<string[]>([]);
@@ -50,14 +51,6 @@ const Home = () => {
 
         return () => clearInterval(intervalId);
     }, [activeCategory]);
-
-    interface Dish {
-        image: string;
-        dishName?: string;
-        name?: string;
-        description?: string;
-        price: number;
-    }
 
     const [specialDishes, setSpecialDishes] = useState<Dish[]>([]);
 

@@ -2,14 +2,9 @@ import RedButton from "@/components/atoms/RedButton";
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
-import { Dish, MenuCategoriesSectionProps } from "@/types";
+import { MenuCategoriesSectionProps } from "@/types";
 
-const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps & {
-    categories: string[];
-    activeCategory: string;
-    setActiveCategory: (category: string) => void;
-    dishes: Dish[];
-}> = ({
+const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
     categories,
     activeCategory,
     setActiveCategory,

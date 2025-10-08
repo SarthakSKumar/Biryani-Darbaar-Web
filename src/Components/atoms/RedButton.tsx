@@ -1,15 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-
-interface RedButtonProps {
-  name: string;
-  variant: "active" | "inactive";
-  className?: string;
-  image?: string;
-  alt?: string;
-  onClick?: () => void;
-}
+import { RedButtonProps } from "@/types";
 
 const RedButton: React.FC<RedButtonProps> = ({
   name,

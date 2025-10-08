@@ -2,11 +2,9 @@ import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
 import UnifiedSlider from "@/components/UnifiedSlider";
-import { Dish, SpecialOffersSectionProps } from "@/types";
+import { SpecialOffersSectionProps } from "@/types";
 
-const SpecialOffersSection: React.FC<SpecialOffersSectionProps & {
-    specialDishes: Dish[];
-}> = ({ 
+const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ 
     specialDishes,
     loading = false,
     error = false,

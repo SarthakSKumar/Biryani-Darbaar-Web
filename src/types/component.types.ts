@@ -71,6 +71,7 @@ export interface RedButtonProps {
 export interface InputSearchProps {
   placeholder?: string;
   onSearch: (query: string) => void;
+  className?: string;
 }
 
 // ============ Slider Props ============
@@ -111,12 +112,17 @@ export interface HeroSectionProps {
 }
 
 export interface MenuCategoriesSectionProps {
+  categories: string[];
+  activeCategory: string;
+  setActiveCategory: (category: string) => void;
+  dishes: import('./common.types').Dish[];
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;
 }
 
 export interface SpecialOffersSectionProps {
+  specialDishes: import('./common.types').Dish[];
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;

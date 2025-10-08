@@ -9,7 +9,7 @@ interface SliderItem {
     content: React.ReactNode;
 }
 
-interface UnifiedSliderProps {
+interface UnifiedSliderPropsExtended {
     items: SliderItem[];
     slidesPerView?: number;
     spaceBetween?: number;
@@ -26,7 +26,7 @@ interface UnifiedSliderProps {
     className?: string;
 }
 
-const UnifiedSlider: React.FC<UnifiedSliderProps> = ({
+const UnifiedSlider: React.FC<UnifiedSliderPropsExtended> = ({
     items,
     slidesPerView = 1,
     spaceBetween = 24,

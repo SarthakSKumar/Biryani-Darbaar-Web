@@ -8,7 +8,8 @@ import ErrorFallback from "@/components/ErrorFallback";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { dishesAPI, ordersAPI } from "@/apis";
-import { Order, MenuItem } from "@/types";
+import { MenuItem } from "@/types";
+import type { Order } from "@/types/order.types";
 
 const OrderSection: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);

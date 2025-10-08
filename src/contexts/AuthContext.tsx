@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authAPI } from '@/apis';
 import {
     saveTokens,
@@ -9,7 +9,7 @@ import {
     clearAuthData,
     StoredUserData,
 } from '@/lib/authStorage';
-import { getErrorMessage } from '@/types';
+import { getErrorMessage, AuthProviderProps } from '@/types';
 import type { LoginData, RegisterData } from '@/types/api.types';
 
 interface AuthContextType {
@@ -31,10 +31,6 @@ export const useAuth = () => {
     }
     return context;
 };
-
-interface AuthProviderProps {
-    children: ReactNode;
-}
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<StoredUserData | null>(null);

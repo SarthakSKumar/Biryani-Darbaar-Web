@@ -147,11 +147,10 @@ const Menu = () => {
                             {categories.map((category, index) => (
                                 <button
                                     key={index}
-                                    className={`w-60 flex-shrink-0 px-6 py-3 rounded-lg font-semibold transition-all ${
-                                        activeCategory === category
+                                    className={`w-60 flex-shrink-0 px-6 py-3 rounded-lg font-semibold transition-all ${activeCategory === category
                                             ? 'bg-primary text-white border-2 border-primary shadow-lg'
                                             : 'bg-white text-neutral-700 border-2 border-neutral-300 hover:border-primary hover:text-primary'
-                                    }`}
+                                        }`}
                                     onClick={() => {
                                         setActiveCategory(category);
                                         const element = document.getElementById(category);

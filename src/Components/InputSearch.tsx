@@ -1,15 +1,10 @@
 import React, { useState, ChangeEvent, KeyboardEvent, FormEvent } from "react";
 import { Search } from "lucide-react";
 import clsx from "clsx";
-
-interface InputSearchProps {
-  placeholder: string;
-  className?: string;
-  onSearch: (query: string) => void;
-}
+import { InputSearchProps } from "@/types";
 
 const InputSearch: React.FC<InputSearchProps> = ({
-  placeholder,
+  placeholder = "Search...",
   className,
   onSearch,
 }) => {

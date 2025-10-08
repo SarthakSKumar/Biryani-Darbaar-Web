@@ -1,13 +1,5 @@
 import { Plus } from "lucide-react";
-
-interface PromoCardProps {
-    image: string;
-    imageAlt: string;
-    discount: string;
-    offerTitle: string;
-    offerSubtitle: string;
-    onAddClick?: () => void;
-}
+import { PromoCardProps } from "@/types";
 
 const PromoCard: React.FC<PromoCardProps> = ({
     image,

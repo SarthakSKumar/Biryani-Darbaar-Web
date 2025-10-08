@@ -1,11 +1,8 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import { cartAPI } from "@/apis";
 import { CartContext } from "@/contexts/CartContext";
 import { CartItem } from "@/types/cart.types";
-
-interface CartProviderProps {
-  children: ReactNode;
-}
+import { CartProviderProps } from "@/types";
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
