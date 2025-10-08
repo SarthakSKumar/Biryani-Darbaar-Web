@@ -1,27 +1,22 @@
 import RedButton from "@/components/atoms/RedButton";
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
+import ErrorFallback from "@/components/ErrorFallback";
+import { Dish, MenuCategoriesSectionProps } from "@/types";
 
-interface Dish {
-    image: string;
-    dishName?: string;
-    name?: string;
-    description?: string;
-    price: number;
-}
-
-interface MenuCategoriesSectionProps {
+const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps & {
     categories: string[];
     activeCategory: string;
     setActiveCategory: (category: string) => void;
     dishes: Dish[];
-}
-
-const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
+}> = ({
     categories,
     activeCategory,
     setActiveCategory,
     dishes,
+    loading = false,
+    error = false,
+    onRetry,
 }) => {
     // Ensure categories and dishes are always arrays
     const safeCategories = Array.isArray(categories) ? categories : [];
@@ -63,7 +58,14 @@ const MenuCategoriesSection: React.FC<MenuCategoriesSectionProps> = ({
                     {activeCategory}
                 </h3>
 
-                {safeDishes.length > 0 ? (
+                {loading ? (
+                    <Loading text="Loading dishes..." />
+                ) : error ? (
+                    <ErrorFallback
+                        message="Failed to load dishes"
+                        onRetry={onRetry}
+                    />
+                ) : safeDishes.length > 0 ? (
                     <>
                         {/* Mobile scrolling */}
                         <div className="flex overflow-x-auto gap-6 mt-8 lg:hidden">

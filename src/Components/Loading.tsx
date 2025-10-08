@@ -1,9 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-interface LoadingProps {
-    text?: string;
-}
+import { LoadingProps } from "@/types";
 
 const Loading: React.FC<LoadingProps> = ({ text = "Loading..." }) => {
     return (

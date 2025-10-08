@@ -8,31 +8,9 @@ import ErrorFallback from "@/components/ErrorFallback";
 import { Check, CheckCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { dishesAPI, ordersAPI } from "@/apis";
-
-interface Order {
-  orderId: string;
-  orderItems: {
-    dishId: string;
-    dishName: string;
-    quantity: number;
-    price: number;
-  }[];
-  totalPrice: number;
-  orderDate: string;
-  orderStatus: string;
-  customerAddress: string;
-}
+import { Order, MenuItem } from "@/types";
 
 const OrderSection: React.FC = () => {
-  interface MenuItem {
-    dishId: string;
-    name: string;
-    description: string;
-    image: string;
-    price: number;
-    addons: { addonName: string; price: string | number }[];
-  }
-
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [showCart, setShowCart] = useState(false); // State to toggle cart popup visibility
   const [orders, setOrders] = useState<Order[]>([]);

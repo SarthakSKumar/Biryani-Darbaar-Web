@@ -1,20 +1,17 @@
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
+import ErrorFallback from "@/components/ErrorFallback";
 import UnifiedSlider from "@/components/UnifiedSlider";
+import { Dish, SpecialOffersSectionProps } from "@/types";
 
-interface Dish {
-    image: string;
-    dishName?: string;
-    name?: string;
-    description?: string;
-    price: number;
-}
-
-interface SpecialOffersSectionProps {
+const SpecialOffersSection: React.FC<SpecialOffersSectionProps & {
     specialDishes: Dish[];
-}
-
-const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDishes }) => {
+}> = ({ 
+    specialDishes,
+    loading = false,
+    error = false,
+    onRetry,
+}) => {
     const dishes = Array.isArray(specialDishes) ? specialDishes : [];
 
     const sliderItems = dishes.map((dish) => ({
@@ -46,7 +43,14 @@ const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ specialDish
             </div>
 
             <div className="mt-12 mb-4">
-                {dishes.length > 0 ? (
+                {loading ? (
+                    <Loading text="Loading special offers..." />
+                ) : error ? (
+                    <ErrorFallback
+                        message="Failed to load special offers"
+                        onRetry={onRetry}
+                    />
+                ) : dishes.length > 0 ? (
                     <UnifiedSlider
                         items={sliderItems}
                         slidesPerView={1}

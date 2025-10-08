@@ -4,10 +4,7 @@ import InputSearch from "@/components/InputSearch";
 import RedButton from "@/components/atoms/RedButton";
 import RedWhip from "@/components/atoms/RedWhip";
 import { Smile, Star } from "lucide-react";
-
-interface HeroSectionProps {
-    onSearch: (query: string) => void;
-}
+import { HeroSectionProps } from "@/types";
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
     return (

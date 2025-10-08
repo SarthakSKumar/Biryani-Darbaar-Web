@@ -2,14 +2,7 @@ import React from "react";
 import { useCart } from "@/contexts/CartContext";
 import { motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
-
-interface MenuCardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-  dishId: string;
-}
+import { MenuCardProps } from "@/types";
 
 const MenuCard: React.FC<MenuCardProps> = ({
   title,

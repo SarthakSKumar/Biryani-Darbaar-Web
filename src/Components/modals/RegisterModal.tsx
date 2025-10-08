@@ -10,14 +10,9 @@ import {
     validateAddress,
     validateConfirmPassword,
 } from '@/utils/validation';
-import { getErrorMessage } from '@/types';
+import { getErrorMessage, RegisterModalProps } from '@/types';
 import toast from 'react-hot-toast';
-
-interface RegisterModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    onSwitchToLogin: () => void;
-}
+import { registerFormFields } from '@/contents/FormFields';
 
 const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitchToLogin }) => {
     const { register } = useAuth();
@@ -172,130 +167,96 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 {/* Name fields */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                                            First Name
-                                        </label>
-                                        <input
-                                            id="firstName"
-                                            name="firstName"
-                                            type="text"
-                                            value={formData.firstName}
-                                            onChange={handleChange}
-                                            placeholder="John"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                                            disabled={isLoading}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                                            Last Name
-                                        </label>
-                                        <input
-                                            id="lastName"
-                                            name="lastName"
-                                            type="text"
-                                            value={formData.lastName}
-                                            onChange={handleChange}
-                                            placeholder="Doe"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                                            disabled={isLoading}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Email */}
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Email Address
-                                    </label>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder="john.doe@example.com"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                                        disabled={isLoading}
-                                    />
-                                </div>
-
-                                {/* Phone */}
-                                <div>
-                                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Phone Number
-                                    </label>
-                                    <input
-                                        id="phoneNumber"
-                                        name="phoneNumber"
-                                        type="tel"
-                                        value={formData.phoneNumber}
-                                        onChange={handleChange}
-                                        placeholder="0412345678"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                                        disabled={isLoading}
-                                    />
-                                </div>
-
-                                {/* Address */}
-                                <div>
-                                    <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
-                                        Address
-                                    </label>
-                                    <textarea
-                                        id="address"
-                                        name="address"
-                                        value={formData.address}
-                                        onChange={handleChange}
-                                        placeholder="123 Main Street, City, State, 12345"
-                                        rows={2}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-none"
-                                        disabled={isLoading}
-                                    />
-                                </div>
-
-                                {/* Password fields */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                                            Password
-                                        </label>
-                                        <div className="relative">
+                                    {registerFormFields.slice(0, 2).map((field) => (
+                                        <div key={field.name}>
+                                            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+                                                {field.label}
+                                            </label>
                                             <input
-                                                id="password"
-                                                name="password"
-                                                type={showPassword ? 'text' : 'password'}
-                                                value={formData.password}
+                                                id={field.name}
+                                                name={field.name}
+                                                type={field.type}
+                                                value={formData[field.name as keyof typeof formData]}
                                                 onChange={handleChange}
-                                                placeholder="Min 8 chars, 1 uppercase, 1 number"
+                                                placeholder={field.placeholder}
+                                                autoComplete={field.autoComplete}
                                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                                                 disabled={isLoading}
                                             />
-                                            <button
-                                                type="button"
-                                                onClick={() => setShowPassword(!showPassword)}
-                                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                                            >
-                                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                            </button>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                                            Confirm Password
+                                    ))}
+                                </div>
+
+                                {/* Email and Phone */}
+                                {registerFormFields.slice(2, 4).map((field) => (
+                                    <div key={field.name}>
+                                        <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+                                            {field.label}
                                         </label>
                                         <input
-                                            id="confirmPassword"
-                                            name="confirmPassword"
-                                            type="password"
-                                            value={formData.confirmPassword}
+                                            id={field.name}
+                                            name={field.name}
+                                            type={field.type}
+                                            value={formData[field.name as keyof typeof formData]}
                                             onChange={handleChange}
-                                            placeholder="Re-enter password"
+                                            placeholder={field.placeholder}
+                                            autoComplete={field.autoComplete}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                                             disabled={isLoading}
                                         />
                                     </div>
+                                ))}
+
+                                {/* Address */}
+                                {registerFormFields.slice(4, 5).map((field) => (
+                                    <div key={field.name}>
+                                        <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+                                            {field.label}
+                                        </label>
+                                        <textarea
+                                            id={field.name}
+                                            name={field.name}
+                                            value={formData[field.name as keyof typeof formData]}
+                                            onChange={handleChange}
+                                            placeholder={field.placeholder}
+                                            rows={field.rows || 2}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-none"
+                                            disabled={isLoading}
+                                        />
+                                    </div>
+                                ))}
+
+                                {/* Password fields */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {registerFormFields.slice(5, 7).map((field) => (
+                                        <div key={field.name}>
+                                            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-2">
+                                                {field.label}
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    id={field.name}
+                                                    name={field.name}
+                                                    type={field.name === 'password' && showPassword ? 'text' : field.type}
+                                                    value={formData[field.name as keyof typeof formData]}
+                                                    onChange={handleChange}
+                                                    placeholder={field.placeholder}
+                                                    autoComplete={field.autoComplete}
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                                                    disabled={isLoading}
+                                                />
+                                                {field.name === 'password' && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setShowPassword(!showPassword)}
+                                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                                    >
+                                                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
 
                                 {/* Submit button */}

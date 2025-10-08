@@ -12,8 +12,7 @@ import ErrorFallback from "@/components/ErrorFallback";
 
 const Menu = () => {
     const [categories, setCategories] = useState<string[]>([]);
-    const [activeCategory, setActiveCategory] = useState<string>("Chicken");
-    void activeCategory; // Used by scroll/click handlers, visual feedback to be implemented
+    const [activeCategory, setActiveCategory] = useState<string>("");
     const [isLoadingCategories, setIsLoadingCategories] = useState(true);
     const [isLoadingDishes, setIsLoadingDishes] = useState(false);
     const [categoryError, setCategoryError] = useState(false);
@@ -27,6 +26,10 @@ const Menu = () => {
             try {
                 const data = await categoriesAPI.getCategories();
                 setCategories(data);
+                // Set first category as active by default
+                if (data.length > 0) {
+                    setActiveCategory(data[0]);
+                }
             } catch (error) {
                 console.error("Error fetching categories:", error);
                 setCategoryError(true);
@@ -144,8 +147,11 @@ const Menu = () => {
                             {categories.map((category, index) => (
                                 <button
                                     key={index}
-                                    className="w-60 flex-shrink-0"
-                                    name={category}
+                                    className={`w-60 flex-shrink-0 px-6 py-3 rounded-lg font-semibold transition-all ${
+                                        activeCategory === category
+                                            ? 'bg-primary text-white border-2 border-primary shadow-lg'
+                                            : 'bg-white text-neutral-700 border-2 border-neutral-300 hover:border-primary hover:text-primary'
+                                    }`}
                                     onClick={() => {
                                         setActiveCategory(category);
                                         const element = document.getElementById(category);
@@ -153,7 +159,9 @@ const Menu = () => {
                                             element.scrollIntoView({ behavior: "smooth", block: "start" });
                                         }
                                     }}
-                                />
+                                >
+                                    {category}
+                                </button>
                             ))}
                         </div>
                     )}

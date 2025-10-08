@@ -1,6 +1,6 @@
 import React from "react";
 import UnifiedSlider from "../UnifiedSlider";
-import { reviews } from "../../contents/Reviews";
+import { reviews, ratingStats } from "../../contents/Reviews";
 import { Review } from "@/types/common.types";
 
 interface SliderItem {
@@ -32,10 +32,7 @@ const CustomerReviews: React.FC = () => {
         ),
     }));
 
-    const totalRating: number = 4.6;
-    const maxStars: number = 5;
-    const fullStars: number = 4;
-    const totalReviews: string = "1,360 reviews";
+    const { totalRating, maxStars, fullStars, totalReviews } = ratingStats;
 
     return (
         <div className="container-custom pb-28">

@@ -51,3 +51,10 @@ export const validateConfirmPassword = (
   if (password !== confirmPassword) return "Passwords do not match";
   return null;
 };
+
+export const validateMessage = (message: string): string | null => {
+  if (!message || !message.trim()) return "Message is required";
+  if (message.trim().length < 10)
+    return "Message must be at least 10 characters long";
+  return null;
+};

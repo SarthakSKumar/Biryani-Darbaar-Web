@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
-
-interface SidebarProps {
-  handleCategorySelect: (category: string) => void;
-  handleOrdersSelect: () => void;
-  handleClearOrders: () => void;
-  activeCategory: string;
-}
+import { categoriesAPI } from "@/apis";
+import PromoCard from "@/components/cards/PromoCard";
+import { SidebarProps } from "@/types";
 
 const Sidebar: React.FC<SidebarProps> = ({
   handleCategorySelect,
@@ -20,11 +14,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_ENDPOINT}/categories`
-        );
-        // Extract the data array from the API response
-        setCategories(response.data.data || []);
+        const data = await categoriesAPI.getCategories();
+        setCategories(data || []);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -78,39 +69,13 @@ const Sidebar: React.FC<SidebarProps> = ({
       </nav>
 
       {/* Promotional Card */}
-      <div className="relative rounded-lg overflow-hidden border border-neutral-200 group">
-        <img
-          src="/assets/images/order-girl.png"
-          alt="Biryani Darbaar - First Order Discount"
-          className="w-full h-80 object-cover"
-        />
-
-        {/* Dark gradient overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-        {/* Discount Badge */}
-        <div className="absolute top-4 right-4 bg-black/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-2 rounded-lg border border-neutral-700">
-          -20%
-        </div>
-
-        {/* Text Content */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-red-500 text-sm font-semibold mb-1 drop-shadow-lg">
-            Special Offer
-          </p>
-          <h3 className="text-white text-2xl font-bold drop-shadow-2xl">
-            First Order Discount
-          </h3>
-        </div>
-
-        {/* Add Button */}
-        <button
-          className="absolute bottom-4 right-4 bg-white hover:bg-primary text-neutral-900 hover:text-white p-2 rounded-full border border-neutral-200 hover:border-primary transition-all transform hover:scale-110"
-          aria-label="Add offer"
-        >
-          <Plus size={20} className="stroke-current" strokeWidth={3} />
-        </button>
-      </div>
+      <PromoCard
+        image="/assets/images/order-girl.png"
+        imageAlt="Biryani Darbaar - First Order Discount"
+        discount="-20%"
+        offerTitle="Special Offer"
+        offerSubtitle="First Order Discount"
+      />
     </motion.aside>
   );
 };

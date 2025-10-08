@@ -3,15 +3,14 @@ import { motion } from 'framer-motion';
 import { Send, Mail, Phone, User, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { contactAPI } from '@/apis';
-import { getErrorMessage } from '@/types';
-
-interface ContactFormData {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    email: string;
-    description: string;
-}
+import { getErrorMessage, ContactFormData } from '@/types';
+import {
+    validateName,
+    validateEmail,
+    validatePhoneNumber,
+    validateMessage,
+} from '@/utils/validation';
+import { contactFormFields } from '@/contents/FormFields';
 
 const Contact: React.FC = () => {
     const [formData, setFormData] = useState<ContactFormData>({
@@ -31,36 +30,30 @@ const Contact: React.FC = () => {
     };
 
     const validateForm = (): boolean => {
-        if (!formData.firstName.trim()) {
-            toast.error('First name is required');
+        const firstNameError = validateName(formData.firstName, 'First name');
+        const lastNameError = validateName(formData.lastName, 'Last name');
+        const phoneError = validatePhoneNumber(formData.phoneNumber);
+        const emailError = validateEmail(formData.email);
+        const messageError = validateMessage(formData.description);
+
+        if (firstNameError) {
+            toast.error(firstNameError);
             return false;
         }
-        if (!formData.lastName.trim()) {
-            toast.error('Last name is required');
+        if (lastNameError) {
+            toast.error(lastNameError);
             return false;
         }
-        if (!formData.phoneNumber.trim()) {
-            toast.error('Phone number is required');
+        if (phoneError) {
+            toast.error(phoneError);
             return false;
         }
-        if (!/^\d{10,15}$/.test(formData.phoneNumber.replace(/\s+/g, ''))) {
-            toast.error('Please enter a valid phone number');
+        if (emailError) {
+            toast.error(emailError);
             return false;
         }
-        if (!formData.email.trim()) {
-            toast.error('Email is required');
-            return false;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            toast.error('Please enter a valid email address');
-            return false;
-        }
-        if (!formData.description.trim()) {
-            toast.error('Message is required');
-            return false;
-        }
-        if (formData.description.trim().length < 10) {
-            toast.error('Message must be at least 10 characters long');
+        if (messageError) {
+            toast.error(messageError);
             return false;
         }
         return true;

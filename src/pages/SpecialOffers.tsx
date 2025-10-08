@@ -48,10 +48,10 @@ const SpecialOffer = () => {
                 </div>
 
                 <div className="mt-12">
-                    {/* For mobile scrolling */}
-                    <div className="flex overflow-x-auto gap-6 lg:hidden pb-4">
+                    {/* Responsive grid: scrollable on mobile, grid on larger screens */}
+                    <div className="flex overflow-x-auto gap-6 lg:grid lg:grid-cols-4 lg:overflow-visible pb-4">
                         {dishes.map((dish, index) => (
-                            <div key={index} className="min-w-[270px]">
+                            <div key={index} className="min-w-[270px] lg:min-w-0">
                                 <ArchedCard
                                     image={dish.image}
                                     title={dish.dishName || dish.name || "Delicious Dish"}
@@ -60,20 +60,6 @@ const SpecialOffer = () => {
                                     price={`$${dish.price.toString()}`}
                                 />
                             </div>
-                        ))}
-                    </div>
-
-                    {/* Show grid on larger screens */}
-                    <div className="hidden lg:grid lg:grid-cols-4 gap-4">
-                        {dishes.map((dish, index) => (
-                            <ArchedCard
-                                key={index}
-                                image={dish.image}
-                                title={dish.dishName || dish.name || "Delicious Dish"}
-                                description={dish.description || "Delicious dishes"}
-                                buttonTitle="Order Now"
-                                price={`$${dish.price.toString()}`}
-                            />
                         ))}
                     </div>
                 </div>

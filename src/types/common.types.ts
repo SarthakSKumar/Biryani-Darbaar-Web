@@ -13,9 +13,41 @@ export interface Dish {
   addons?: Addon[];
 }
 
+export interface MenuItem {
+  dishId: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  addons: { addonName: string; price: string | number }[];
+}
+
 export interface Addon {
   addonName: string;
   price: string | number;
+}
+
+// ============ Order Types ============
+export interface Order {
+  orderId: string;
+  orderItems: {
+    dishId: string;
+    dishName: string;
+    quantity: number;
+    price: number;
+  }[];
+  totalPrice: number;
+  orderDate: string;
+  orderStatus: string;
+  customerAddress: string;
+}
+
+export interface OrderItem {
+  dishId: string;
+  dishName: string;
+  quantity: number;
+  price: number;
+  addons?: string[];
 }
 
 // ============ User Types ============
@@ -36,6 +68,15 @@ export interface UserData {
     address: string;
     userId: string;
   };
+}
+
+// ============ Contact Form Types ============
+export interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  description: string;
 }
 
 // ============ Review Types ============
