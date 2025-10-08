@@ -108,7 +108,7 @@ Implemented error handling in pages with three states: loading, error, success
 - Shows `ErrorFallback` when dishes fetch fails with retry button
 - Retry button reloads the page
 
-#### Order Page (`src/pages/order/MainOrderLayout.tsx`)
+#### Order Page (`src/pages/order/OrderSection.tsx`)
 
 - Added `error` state variable
 - Shows `ErrorFallback` when dish category fetch fails
@@ -126,7 +126,7 @@ Implemented error handling in pages with three states: loading, error, success
 **Files Modified:**
 
 - `src/pages/Menu.tsx`
-- `src/pages/order/MainOrderLayout.tsx`
+- `src/pages/order/OrderSection.tsx`
 
 ---
 
@@ -193,7 +193,7 @@ Implemented error handling in pages with three states: loading, error, success
 2. `src/components/modals/RegisterModal.tsx` - Scroll fix + error types + unused var
 3. `src/contexts/AuthContext.tsx` - Error types
 4. `src/pages/Menu.tsx` - Error handling with ErrorFallback
-5. `src/pages/order/MainOrderLayout.tsx` - Error handling with ErrorFallback
+5. `src/pages/order/OrderSection.tsx` - Error handling with ErrorFallback
 
 ---
 

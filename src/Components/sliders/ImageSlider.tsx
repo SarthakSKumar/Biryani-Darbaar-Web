@@ -2,7 +2,7 @@
 import React from "react";
 import { Plus } from "lucide-react";
 import UnifiedSlider from "./UnifiedSlider";
-import { SPECIAL_OFFERS } from "@/constants/SliderContent";
+import { SPECIAL_OFFERS } from "@/contents/SliderContent";
 
 const ImageSlider: React.FC = () => {
   const sliderItems = SPECIAL_OFFERS.map((offer) => ({

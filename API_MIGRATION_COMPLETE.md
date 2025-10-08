@@ -19,7 +19,7 @@ All API calls in the codebase have been successfully migrated from scattered axi
 4. ✅ `src/pages/Menu.tsx` - 2 API calls (categories, dishes by category)
 5. ✅ `src/pages/SpecialOffers.tsx` - Uses `dishesAPI.getSpecialOffers()`
 6. ✅ `src/pages/Contact.tsx` - Uses `contactAPI.submitContactForm()`
-7. ✅ `src/pages/order/MainOrderLayout.tsx` - 2 API calls (dishes, orders)
+7. ✅ `src/pages/order/OrderSection.tsx` - 2 API calls (dishes, orders)
 
 #### Components (5 files)
 
@@ -119,7 +119,7 @@ All API calls in the codebase have been successfully migrated from scattered axi
 ### Complex Refactorings
 
 - **CartProvider.tsx**: Fixed duplicate try blocks, updated all 5 API call locations
-- **MainOrderLayout.tsx**: Converted promise chains to async/await
+- **OrderSection.tsx**: Converted promise chains to async/await
 - **login.tsx**: Switched from generic signup to registerUser
 
 ## Performance Improvements

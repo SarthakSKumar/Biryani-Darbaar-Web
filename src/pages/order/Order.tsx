@@ -1,6 +1,6 @@
 // Orders.tsx
 import LargeImageView from "@/components/LargeImageView";
-import MainOrderLayout from "@/pages/Order/MainOrderLayout";
+import OrderSection from "@/components/sections/order/OrderSection";
 import InfoPage from "@/components/sections/InfoSection";
 import LocationInfo from "@/components/sections/LocationSection";
 import { CartProvider } from "@/providers/CartProvider";
@@ -19,7 +19,7 @@ const Order = () => {
                         title="Biryani in Australia"
                         description="The rich flavors of Hyderabad biryani"
                     />
-                    <MainOrderLayout />
+                    <OrderSection />
                     <InfoPage />
                     <LocationInfo />
                 </motion.div>

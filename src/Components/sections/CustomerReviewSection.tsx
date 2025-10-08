@@ -1,6 +1,6 @@
 import React from "react";
 import UnifiedSlider from "../sliders/UnifiedSlider";
-import { reviews } from "../../constants/Reviews";
+import { reviews } from "../../contents/Reviews";
 import { Review } from "@/types/common.types";
 
 interface SliderItem {

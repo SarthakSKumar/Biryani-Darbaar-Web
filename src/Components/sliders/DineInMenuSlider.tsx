@@ -1,6 +1,6 @@
 import React from "react";
 import UnifiedSlider from "./UnifiedSlider";
-import { DINE_IN_MENU_ITEMS } from "@/constants/SliderContent";
+import { DINE_IN_MENU_ITEMS } from "@/contents/SliderContent";
 
 const DineInMenuSlider: React.FC = () => {
   const sliderItems = DINE_IN_MENU_ITEMS.map((item) => ({

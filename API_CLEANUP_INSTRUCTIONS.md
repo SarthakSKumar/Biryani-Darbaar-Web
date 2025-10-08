@@ -21,6 +21,7 @@ The following folders in `src/apis/` are now obsolete and can be safely deleted:
 ## 🧹 Cleanup Commands
 
 ### Windows PowerShell
+
 ```powershell
 cd "c:\Users\Sarthak S Kumar\Downloads\Biriyani-Darbar-Client"
 
@@ -37,6 +38,7 @@ Remove-Item -Recurse -Force src/apis/user
 ```
 
 ### Bash (Git Bash/WSL)
+
 ```bash
 cd "/c/Users/Sarthak S Kumar/Downloads/Biriyani-Darbar-Client"
 
@@ -66,13 +68,11 @@ Before deleting, verify:
   - payment.ts
   - promo.ts
   - user.ts
-  
 - [x] Main barrel export (`src/apis/index.ts`) updated to export from new files
 
 - [x] All imports across codebase verified:
   - No imports from `@/apis/*/GET.ts` or `@/apis/*/POST.ts` patterns
   - All imports use `from "@/apis"` format
-  
 - [x] Application tested and working
 
 ## 📊 Final Structure

@@ -14,7 +14,7 @@ All API calls have been centralized into a structured `/apis` folder with consol
 src/apis/
 ├── index.ts                  # Central barrel export file
 ├── auth.ts                   # All auth functions + types
-├── cart.ts                   # All cart functions + types  
+├── cart.ts                   # All cart functions + types
 ├── categories.ts             # All category functions + types
 ├── contact.ts                # All contact functions + types
 ├── dishes.ts                 # All dish functions + types
@@ -27,38 +27,47 @@ src/apis/
 ### Module Contents
 
 #### `auth.ts`
+
 - registerUser, loginUser, loginWithGoogle, signupWithGoogle
 - refreshAccessToken, logoutUser
 - Types: RegisterData, LoginData, AuthResponse, RefreshTokenResponse
 
 #### `cart.ts`
+
 - getCartItems, addToCart, updateCartItem, deleteCartItem
 - Types: CartItem, AddToCartData, UpdateCartData
 
 #### `categories.ts`
+
 - getCategories
 
 #### `contact.ts`
+
 - submitContactForm
 - Types: ContactFormData
 
 #### `dishes.ts`
+
 - getDishesByCategory, getSpecialOffers
 - Types: Dish
 
 #### `orders.ts`
+
 - getOrders, createOrder, deleteCartItemsAfterOrder
 - Types: Order, OrderItem, CreateOrderData
 
 #### `payment.ts`
+
 - createPaymentIntent
 - Types: CreatePaymentIntentData, CreatePaymentIntentResponse
 
 #### `promo.ts`
+
 - validatePromoCode
 - Types: ValidatePromoData, ValidatePromoResponse
 
 #### `user.ts`
+
 - getUserById, applyReward
 - Types: User, ApplyRewardData
 
@@ -102,7 +111,7 @@ src/apis/
 3. `src/components/PaymentGate.tsx` - createPaymentIntent, createOrder, deleteCartItemsAfterOrder
 4. `src/components/modals/PromoModal.tsx` - validatePromoCode
 5. `src/components/modals/PayMod.tsx` - getUserById, createOrder
-6. `src/pages/order/MainOrderLayout.tsx` - getDishesByCategory, getOrders
+6. `src/pages/order/OrderSection.tsx` - getDishesByCategory, getOrders
 7. `src/components/login.tsx` - loginWithGoogle, signupWithGoogle
 8. `src/contexts/AuthContext.tsx` - registerUser, loginUser, refreshAccessToken (if still using old authApi)
 9. `src/handlers/auth/authApi.ts` - Can be DEPRECATED (use apis/auth instead)

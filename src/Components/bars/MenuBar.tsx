@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { categoriesAPI } from "@/apis";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
@@ -21,8 +20,11 @@ const Sidebar: React.FC<SidebarProps> = ({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await categoriesAPI.getCategories();
-        setCategories(data);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_ENDPOINT}/categories`
+        );
+        // Extract the data array from the API response
+        setCategories(response.data.data || []);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }

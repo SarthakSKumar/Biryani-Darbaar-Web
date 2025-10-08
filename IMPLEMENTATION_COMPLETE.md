@@ -117,7 +117,7 @@ const { confirmPassword: _, ...registerData } = formData;
   - Category loading with error handling
   - Dishes loading with error handling
   - Retry reloads the page
-- ✅ `src/pages/order/MainOrderLayout.tsx`
+- ✅ `src/pages/order/OrderSection.tsx`
   - Dish category loading with error handling
   - Retry refetches current category
 
@@ -174,7 +174,7 @@ catch (error: unknown) {
 3. ✅ `src/contexts/AuthContext.tsx`
 4. ✅ `src/components/Navbar.tsx`
 5. ✅ `src/pages/Menu.tsx`
-6. ✅ `src/pages/order/MainOrderLayout.tsx`
+6. ✅ `src/pages/order/OrderSection.tsx`
 
 ---
 

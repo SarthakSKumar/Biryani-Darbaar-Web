@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { Bike, Receipt, Timer } from "lucide-react";
-import { heroImages } from "../constants/Services";
+import { heroImages } from "../contents/Services";
 import { LargeImageViewProps } from "@/types/component.types";
 
 const LargeImageView: React.FC<LargeImageViewProps> = ({

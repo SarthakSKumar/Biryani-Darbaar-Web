@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone, LucideIcon } from "lucide-react";
-import { footerLinks, socialLinks } from "../../constants/FooterLinks";
+import { footerLinks, socialLinks } from "../../contents/FooterLinks";
 
 const iconMap: Record<"instagram" | "mail" | "phone", LucideIcon> = {
   instagram: Instagram,

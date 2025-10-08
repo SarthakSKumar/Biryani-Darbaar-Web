@@ -4,7 +4,7 @@ import LocationInfo from "@/components/sections/LocationSection";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import InfoPage from "@/components/sections/InfoSection";
 import { FileText, ShieldCheck, CreditCard, Truck, Copyright, Scale, Calendar, Mail, Phone } from "lucide-react";
-import { termsAndConditionsSections, termsAndConditionsMeta } from "@/constants/TermsAndConditionsContent";
+import { termsAndConditionsSections, termsAndConditionsMeta } from "@/contents/TermsAndConditionsContent";
 
 const iconMap = {
   ShieldCheck,

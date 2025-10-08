@@ -1,11 +1,13 @@
 # API Structure Consolidation Complete ✅
 
 ## Summary
+
 All API functions have been consolidated from folder-based structure to single-file modules in `src/apis/`.
 
 ## Changes Made
 
 ### Before Structure
+
 ```
 src/apis/
 ├── auth/
@@ -46,6 +48,7 @@ src/apis/
 ```
 
 ### After Structure
+
 ```
 src/apis/
 ├── auth.ts (All auth functions + types)
@@ -63,7 +66,9 @@ src/apis/
 ## New File Contents
 
 ### 1. `src/apis/auth.ts`
-**Functions**: 
+
+**Functions**:
+
 - `registerUser(data: RegisterData): Promise<AuthResponse>`
 - `loginUser(data: LoginData): Promise<AuthResponse>`
 - `loginWithGoogle(data: LoginWithGoogleData): Promise<{sessionId, sessionUserId}>`
@@ -74,7 +79,9 @@ src/apis/
 **Types**: RegisterData, LoginData, LoginWithGoogleData, SignupWithGoogleData, AuthResponse, RefreshTokenResponse
 
 ### 2. `src/apis/cart.ts`
-**Functions**: 
+
+**Functions**:
+
 - `getCartItems(data: GetCartData): Promise<CartItem[]>`
 - `addToCart(data: AddToCartData): Promise<AddToCartResponse>`
 - `updateCartItem(cartItemId: string, data: UpdateCartData): Promise<void>`
@@ -83,24 +90,32 @@ src/apis/
 **Types**: CartItem, GetCartData, AddToCartData, AddToCartResponse, UpdateCartData
 
 ### 3. `src/apis/categories.ts`
-**Functions**: 
+
+**Functions**:
+
 - `getCategories(): Promise<string[]>`
 
 ### 4. `src/apis/contact.ts`
-**Functions**: 
+
+**Functions**:
+
 - `submitContactForm(data: ContactFormData): Promise<void>`
 
 **Types**: ContactFormData
 
 ### 5. `src/apis/dishes.ts`
-**Functions**: 
+
+**Functions**:
+
 - `getDishesByCategory(category: string): Promise<Dish[]>`
 - `getSpecialOffers(): Promise<Dish[]>`
 
 **Types**: Dish
 
 ### 6. `src/apis/orders.ts`
-**Functions**: 
+
+**Functions**:
+
 - `getOrders(userId: string): Promise<Order[]>`
 - `createOrder(data: CreateOrderData): Promise<CreateOrderResponse>`
 - `deleteCartItemsAfterOrder(cartItemIds: string[]): Promise<void>`
@@ -108,19 +123,25 @@ src/apis/
 **Types**: OrderItem, Order, CreateOrderData, CreateOrderResponse
 
 ### 7. `src/apis/payment.ts`
-**Functions**: 
+
+**Functions**:
+
 - `createPaymentIntent(data: CreatePaymentIntentData): Promise<CreatePaymentIntentResponse>`
 
 **Types**: CreatePaymentIntentData, CreatePaymentIntentResponse
 
 ### 8. `src/apis/promo.ts`
-**Functions**: 
+
+**Functions**:
+
 - `validatePromoCode(data: ValidatePromoData): Promise<ValidatePromoResponse>`
 
 **Types**: ValidatePromoData, ValidatePromoResponse
 
 ### 9. `src/apis/user.ts`
-**Functions**: 
+
+**Functions**:
+
 - `getUserById(userId: string): Promise<User>`
 - `applyReward(data: ApplyRewardData): Promise<ApplyRewardResponse>`
 
@@ -129,6 +150,7 @@ src/apis/
 ## Updated Imports
 
 ### Main Index Export (`src/apis/index.ts`)
+
 ```typescript
 // Export axios instance and interceptor
 export { default as axiosInstance } from "../lib/axiosInstance";
@@ -147,6 +169,7 @@ export * as ordersAPI from "./orders";
 ```
 
 ### Usage Example
+
 ```typescript
 // Before: Not needed (already using correct imports)
 // After: No changes needed, all imports remain the same
@@ -161,6 +184,7 @@ await cartAPI.addToCart({ userId, dishId, name, image, price, quantity });
 ## Files Updated
 
 ### Import Changes
+
 1. ✅ `src/contexts/AuthContext.tsx` - Changed from `@/apis/auth/POST` to `@/apis/auth`
 
 All other files were already using the correct import format (`from "@/apis"`).
@@ -168,21 +192,25 @@ All other files were already using the correct import format (`from "@/apis"`).
 ## Benefits of New Structure
 
 ### 1. **Simplified Navigation**
+
 - Single file per API module instead of multiple files per folder
 - Easier to find all functions for a specific resource
 - Less folder nesting
 
 ### 2. **Better Organization**
+
 - All related functions and types in one place
 - Clear separation of concerns by resource type
 - Consistent file structure across all modules
 
 ### 3. **Improved Maintainability**
+
 - Fewer files to manage
 - Easier to see all available functions for a module at a glance
 - Reduced import complexity
 
 ### 4. **Type Safety**
+
 - All types defined alongside their functions
 - Export types from the same file for easy import
 - Clear type definitions at the top of each file
@@ -190,14 +218,18 @@ All other files were already using the correct import format (`from "@/apis"`).
 ## File Structure Benefits
 
 ### Single File Per Module
+
 Each API module now has:
+
 - **Types & Interfaces** section at the top
 - **API Functions** section below
 - All related code in ~50-120 lines per file
 - Easy to scan and understand
 
 ### Barrel Export Pattern
+
 The `index.ts` maintains clean exports:
+
 - Named exports for each API module (`authAPI`, `cartAPI`, etc.)
 - Easy to import multiple APIs: `import { authAPI, cartAPI } from "@/apis"`
 - Maintains backward compatibility with existing code
@@ -205,6 +237,7 @@ The `index.ts` maintains clean exports:
 ## Old Folders to Remove
 
 The following folders can now be safely deleted as they've been consolidated:
+
 ```
 src/apis/auth/
 src/apis/cart/

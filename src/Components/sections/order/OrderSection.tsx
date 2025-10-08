@@ -1,4 +1,4 @@
-// MainOrderLayout.tsx
+// OrderSection.tsx
 import React, { useState, useEffect } from "react";
 import MenuCard from "@/components/cards/MenuCard";
 import Sidebar from "@/components/bars/MenuBar"
@@ -23,7 +23,7 @@ interface Order {
   customerAddress: string;
 }
 
-const MainOrderLayout: React.FC = () => {
+const OrderSection: React.FC = () => {
   interface MenuItem {
     dishId: string;
     name: string;
@@ -236,4 +236,4 @@ const MainOrderLayout: React.FC = () => {
   );
 };
 
-export default MainOrderLayout;
+export default OrderSection;
