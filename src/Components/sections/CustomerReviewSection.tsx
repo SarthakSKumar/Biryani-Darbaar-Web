@@ -1,5 +1,5 @@
 import React from "react";
-import UnifiedSlider from "../sliders/UnifiedSlider";
+import UnifiedSlider from "../UnifiedSlider";
 import { reviews } from "../../contents/Reviews";
 import { Review } from "@/types/common.types";
 

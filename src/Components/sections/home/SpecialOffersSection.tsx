@@ -1,6 +1,6 @@
 import ArchedCard from "@/components/cards/ArchedCard";
 import Loading from "@/components/Loading";
-import UnifiedSlider from "@/components/sliders/UnifiedSlider";
+import UnifiedSlider from "@/components/UnifiedSlider";
 
 interface Dish {
     image: string;

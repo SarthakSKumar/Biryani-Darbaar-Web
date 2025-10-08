@@ -5,7 +5,7 @@ import ArchedCard from "@/components/cards/ArchedCard";
 import LargeImageView from "@/components/LargeImageView";
 import InfoPage from "@/components/sections/InfoSection";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
-import ImageSlider from "@/components/sliders/ImageSlider";
+import DiscountSection from "@/components/sections/DiscountSection";
 import InputSearch from "@/components/InputSearch";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
@@ -159,7 +159,7 @@ const Menu = () => {
                     )}
                 </div>
             </div>
-            <ImageSlider />
+            <DiscountSection />
 
             <div className="container-custom py-12">
 

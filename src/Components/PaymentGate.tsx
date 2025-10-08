@@ -12,7 +12,7 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { paymentAPI, ordersAPI } from "@/apis";
 import { useCart } from "../contexts/CartContext";
-
+// TODO: REFACTOR
 const stripePromise = loadStripe(
   "pk_test_51QI9zGP1mrjxuTnQyyTUejvj7utgaGHnYp3BAB4VNGDmHkpqd5xCJmV3Q9QVpI3302xjpR8K8zWxIzIzI1GfBV1t00UAvTLEY7"
 );

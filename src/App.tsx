@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 import Home from "@/pages/Home";
 import Menu from "@/pages/Menu";
-import Order from "@/pages/Order/Order";
+import Order from "@/pages/Order";
 import Checkout from "@/pages/Checkout";
 import About from "@/pages/About";
 import SpecialOffer from "@/pages/SpecialOffers";

@@ -3,7 +3,7 @@ import ArchedCard from "@/components/cards/ArchedCard";
 import { useEffect, useState } from "react";
 import { dishesAPI } from "@/apis";
 import DineInMenuSection from "@/components/sections/specialOffer/DineInMenuSection";
-import ImageSlider from "@/components/sliders/ImageSlider";
+import DiscountSection from "@/components/sections/DiscountSection";
 
 const SpecialOffer = () => {
     interface Dish {
@@ -38,11 +38,8 @@ const SpecialOffer = () => {
                 />
             </div>
 
-            <div className="container-custom">
-                <ImageSlider />
-            </div>
+            <DiscountSection />
 
-            {/* Today Special Offers Section */}
             <div className="container-custom">
                 <div className="text-center">
                     <h1 className="text-4xl md:text-5xl font-bold">
@@ -81,11 +78,7 @@ const SpecialOffer = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Dine In Menu Slider Section */}
-            <div className="container-custom">
-                <DineInMenuSection />
-            </div>
+            <DineInMenuSection />
         </div>
     );
 };

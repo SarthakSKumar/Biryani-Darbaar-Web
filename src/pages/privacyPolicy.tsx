@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import LocationInfo from "@/components/sections/LocationSection";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import InfoPage from "@/components/sections/InfoSection";
-import { Shield, Mail, Phone } from "lucide-react";
+import { Shield } from "lucide-react";
 import { privacyPolicySections, privacyPolicyMeta } from "@/contents/PrivacyPolicyContent";
 
 const PrivacyPolicy: React.FC = () => {
@@ -97,37 +97,6 @@ const PrivacyPolicy: React.FC = () => {
               )}
             </motion.div>
           ))}
-
-          {/* Contact Section */}
-          <motion.div
-            className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg p-8 border border-primary/20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            <h3 className="text-xl md:texl-2xl font-semibold text-neutral-900 mb-6 text-center">
-              Contact Us
-            </h3>
-            <p className="text-lg text-neutral-600 leading-relaxed mb-6 text-center">
-              If you have any questions about this Privacy Policy, please reach out to us:
-            </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <a
-                href={`mailto:${privacyPolicyMeta.contactInfo.email}`}
-                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-neutral-200 hover:border-primary transition-colors"
-              >
-                <Mail className="w-5 h-5 text-primary" />
-                <span className="font-semibold text-neutral-900">{privacyPolicyMeta.contactInfo.email}</span>
-              </a>
-              <a
-                href={`tel:${privacyPolicyMeta.contactInfo.phone}`}
-                className="flex items-center gap-3 px-6 py-3 bg-white rounded-lg border border-neutral-200 hover:border-primary transition-colors"
-              >
-                <Phone className="w-5 h-5 text-primary" />
-                <span className="font-semibold text-neutral-900">{privacyPolicyMeta.contactInfo.phone}</span>
-              </a>
-            </div>
-          </motion.div>
         </section>
       </motion.div>
       <InfoPage />

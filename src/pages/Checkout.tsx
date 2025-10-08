@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Truck, Package, Plus, Minus, Trash2 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-
+//TODO: REFACTOR
 const Checkout: React.FC = () => {
     const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
     const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React from "react";
-import UnifiedSlider from "../../sliders/UnifiedSlider";
+import UnifiedSlider from "../../UnifiedSlider";
 import { DINE_IN_MENU_ITEMS } from "@/contents/SliderContent";
 
 const DineInMenuSection: React.FC = () => {
@@ -23,7 +23,7 @@ const DineInMenuSection: React.FC = () => {
   }));
 
   return (
-    <div className="md:w-full w-11/12 md:ml-0 ml-4 px-4 md:px-8 lg:px-12 py-8 relative">
+    <div className="md:w-full w-11/12 md:ml-0 ml-4 px-4 md:px-8 lg:px-12 py-8 relative container-custom">
       <h2 className="text-center text-2xl font-bold mb-6 text-neutral-800">
         DINE IN MENU
       </h2>

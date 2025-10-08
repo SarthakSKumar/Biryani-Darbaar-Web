@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { Plus } from "lucide-react";
-import UnifiedSlider from "./UnifiedSlider";
+import UnifiedSlider from "../UnifiedSlider";
 import { SPECIAL_OFFERS } from "@/contents/SliderContent";
 
-const ImageSlider: React.FC = () => {
+const DiscountSection: React.FC = () => {
   const sliderItems = SPECIAL_OFFERS.map((offer) => ({
     content: (
       <div className="relative rounded-lg overflow-hidden border border-neutral-200 hover:border-primary transition-all group">
@@ -46,20 +46,22 @@ const ImageSlider: React.FC = () => {
   }));
 
   return (
-    <UnifiedSlider
-      items={sliderItems}
-      slidesPerView={3}
-      spaceBetween={24}
-      autoplay={false}
-      loop={true}
-      pagination={true}
-      breakpoints={{
-        640: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      }}
-    />
+    <div className="container-custom">
+      <UnifiedSlider
+        items={sliderItems}
+        slidesPerView={3}
+        spaceBetween={24}
+        autoplay={false}
+        loop={true}
+        pagination={true}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+      />
+    </div>
   );
 };
 
-export default ImageSlider;
+export default DiscountSection;
