@@ -4,7 +4,7 @@ import ErrorFallback from "@/components/ErrorFallback";
 import UnifiedSlider from "@/components/UnifiedSlider";
 import { SpecialOffersSectionProps } from "@/types";
 
-const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({ 
+const SpecialOffersSection: React.FC<SpecialOffersSectionProps> = ({
     specialDishes,
     loading = false,
     error = false,
