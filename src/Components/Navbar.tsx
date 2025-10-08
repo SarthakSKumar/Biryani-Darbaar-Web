@@ -2,26 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, Location } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import RedButton from "./RedButton";
-import { Instagram, Phone, Menu, X, ShoppingCart } from "lucide-react";
-import { getAuth, signOut, onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "../lib/firebase";
+import { Instagram, Phone, Menu, X, ShoppingCart, LogOut, User } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
-import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
 import { navbarLinks } from "../constants/NavbarLinks";
+import LoginModal from "./modals/LoginModal";
+import RegisterModal from "./modals/RegisterModal";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
+  const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
   const { cartItems } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   const location: Location = useLocation();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
-      setIsAuthenticated(!!user);
-    });
-    return () => unsubscribe();
-  }, []);
 
   useEffect(() => {
     const handleScroll = (): void => setIsScrolled(window.scrollY > 20);
@@ -46,12 +42,27 @@ const Navbar: React.FC = () => {
   const totalItems: number = cartItems.reduce((sum: number, item) => sum + item.quantity, 0);
 
   const handleSignOut = async (): Promise<void> => {
-    const auth = getAuth();
-    await signOut(auth);
-    const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/logout`);
-    console.log("Sign out response:", res);
-    sessionStorage.clear();
-    setIsMobileMenuOpen(false);
+    try {
+      await logout();
+      toast.success("Successfully signed out");
+      setIsMobileMenuOpen(false);
+    } catch (error) {
+      toast.error("Failed to sign out");
+    }
+  };
+
+  const handleSignInClick = (): void => {
+    setShowLoginModal(true);
+  };
+
+  const handleSwitchToRegister = (): void => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const handleSwitchToLogin = (): void => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
   };
 
   return (
@@ -116,12 +127,37 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Auth Button - Desktop */}
-            <div className="hidden lg:block">
-              <RedButton
-                variant="active"
-                name={isAuthenticated ? "Sign Out" : "Download App"}
-                onClick={isAuthenticated ? handleSignOut : undefined}
-              />
+            <div className="hidden lg:flex items-center gap-3">
+              {isAuthenticated && user ? (
+                <>
+                  <div className="flex items-center gap-3 bg-red-50 px-4 py-2 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold">
+                        {user.firstName[0]}{user.lastName[0]}
+                      </div>
+                      <div className="text-left">
+                        <p className="text-sm font-semibold text-gray-900">
+                          {user.firstName} {user.lastName}
+                        </p>
+                        <p className="text-xs text-gray-600">{user.email}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleSignOut}
+                    className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                    title="Sign Out"
+                  >
+                    <LogOut size={20} />
+                  </button>
+                </>
+              ) : (
+                <RedButton
+                  variant="active"
+                  name="Sign In"
+                  onClick={handleSignInClick}
+                />
+              )}
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -161,17 +197,52 @@ const Navbar: React.FC = () => {
 
               {/* Mobile Auth Button */}
               <div className="pt-4 border-t border-neutral-200">
-                <RedButton
-                  variant="active"
-                  name={isAuthenticated ? "Sign Out" : "Download App"}
-                  className="w-full"
-                  onClick={isAuthenticated ? handleSignOut : undefined}
-                />
+                {isAuthenticated && user ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 bg-red-50 px-4 py-3 rounded-lg">
+                      <div className="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-semibold">
+                        {user.firstName[0]}{user.lastName[0]}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-gray-900">
+                          {user.firstName} {user.lastName}
+                        </p>
+                        <p className="text-xs text-gray-600">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg transition-colors font-semibold"
+                    >
+                      <LogOut size={20} />
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <RedButton
+                    variant="active"
+                    name="Sign In"
+                    className="w-full"
+                    onClick={handleSignInClick}
+                  />
+                )}
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Auth Modals */}
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      <RegisterModal
+        isOpen={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </nav>
   );
 };
