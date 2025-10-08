@@ -10,7 +10,7 @@ import {
     StoredUserData,
 } from '@/handlers/auth/authStorage';
 import { getErrorMessage } from '@/types';
-import type { LoginData, RegisterData } from '@/apis/auth/POST';
+import type { LoginData, RegisterData } from '@/apis/auth';
 
 interface AuthContextType {
     user: StoredUserData | null;

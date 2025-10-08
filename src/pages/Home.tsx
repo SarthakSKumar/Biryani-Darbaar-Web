@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { categoriesAPI, dishesAPI } from "@/apis";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import LocationInfo from "@/components/sections/LocationSection";
-import HeroSection from "@/components/sections/HeroSection";
-import SpecialOffersSection from "@/components/sections/SpecialOffersSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import MenuCategoriesSection from "@/components/sections/MenuCategoriesSection";
-import MobileAppSection from "@/components/sections/MobileAppSection";
+import HeroSection from "@/components/sections/home/HeroSection";
+import SpecialOffersSection from "@/components/sections/home/SpecialOffersSection";
+import ServicesSection from "@/components/sections/home/ServicesSection";
+import MenuCategoriesSection from "@/components/sections/home/MenuCategoriesSection";
+import MobileAppSection from "@/components/sections/home/MobileAppSection";
 import InfoPage from "@/components/sections/InfoSection";
 
 const Home = () => {

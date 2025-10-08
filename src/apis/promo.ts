@@ -1,4 +1,8 @@
-import axiosInstance from "../../lib/axiosInterceptor";
+import axiosInstance from "../lib/axiosInterceptor";
+
+// ============================================================================
+// Types & Interfaces
+// ============================================================================
 
 export interface ValidatePromoData {
   promoCode: string;
@@ -9,6 +13,10 @@ export interface ValidatePromoResponse {
   message?: string;
   finalDiscount: number;
 }
+
+// ============================================================================
+// API Functions
+// ============================================================================
 
 /**
  * Validate and apply promo code

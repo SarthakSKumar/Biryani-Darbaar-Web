@@ -1,4 +1,8 @@
-import axiosInstance from "../../lib/axiosInterceptor";
+import axiosInstance from "../lib/axiosInterceptor";
+
+// ============================================================================
+// Types & Interfaces
+// ============================================================================
 
 export interface CreatePaymentIntentData {
   amount: number;
@@ -8,6 +12,10 @@ export interface CreatePaymentIntentData {
 export interface CreatePaymentIntentResponse {
   clientSecret: string;
 }
+
+// ============================================================================
+// API Functions
+// ============================================================================
 
 /**
  * Create Stripe payment intent

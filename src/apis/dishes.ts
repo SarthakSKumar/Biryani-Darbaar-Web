@@ -1,4 +1,8 @@
-import axiosInstance from "../../lib/axiosInterceptor";
+import axiosInstance from "../lib/axiosInterceptor";
+
+// ============================================================================
+// Types & Interfaces
+// ============================================================================
 
 export interface Dish {
   dishId: string;
@@ -14,6 +18,10 @@ export interface Dish {
   discount: number;
   addons?: { addonName: string; price: string | number }[];
 }
+
+// ============================================================================
+// API Functions
+// ============================================================================
 
 /**
  * Fetch dishes by category

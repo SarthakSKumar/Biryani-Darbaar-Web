@@ -2,53 +2,69 @@
 
 ## Overview
 
-All API calls have been centralized into a structured `/apis` folder with proper organization by resource type and HTTP method.
+All API calls have been centralized into a structured `/apis` folder with consolidated single-file modules for each resource type.
 
-## New Structure
+## ✨ Latest Update (October 8, 2025)
+
+**API structure has been consolidated!** Each resource now has a single file containing all functions and types, making the codebase cleaner and easier to navigate.
+
+## New Consolidated Structure
 
 ```
 src/apis/
-├── axiosInstance.ts          # Base axios instance configuration
-├── axiosInterceptor.ts       # Request/Response interceptors with auto token refresh
-├── index.ts                  # Central export file
-├── auth/
-│   ├── POST.ts              # registerUser, loginUser, loginWithGoogle, signupWithGoogle
-│   ├── DELETE.ts            # refreshAccessToken, logoutUser
-│   └── index.ts
-├── categories/
-│   ├── GET.ts               # getCategories
-│   └── index.ts
-├── dishes/
-│   ├── GET.ts               # getDishesByCategory, getSpecialOffers
-│   └── index.ts
-├── cart/
-│   ├── GET.ts               # getCartItems
-│   ├── POST.ts              # addToCart
-│   ├── PUT.ts               # updateCartItem
-│   ├── DELETE.ts            # deleteCartItem
-│   └── index.ts
-├── user/
-│   ├── GET.ts               # getUserById
-│   └── index.ts
-├── payment/
-│   ├── POST.ts              # createPaymentIntent
-│   └── index.ts
-├── promo/
-│   ├── POST.ts              # validatePromoCode
-│   └── index.ts
-├── contact/
-│   ├── POST.ts              # submitContactForm
-│   └── index.ts
-└── orders/
-    ├── GET.ts               # getOrders
-    ├── POST.ts              # createOrder
-    ├── DELETE.ts            # deleteCartItemsAfterOrder
-    └── index.ts
+├── index.ts                  # Central barrel export file
+├── auth.ts                   # All auth functions + types
+├── cart.ts                   # All cart functions + types  
+├── categories.ts             # All category functions + types
+├── contact.ts                # All contact functions + types
+├── dishes.ts                 # All dish functions + types
+├── orders.ts                 # All order functions + types
+├── payment.ts                # All payment functions + types
+├── promo.ts                  # All promo functions + types
+└── user.ts                   # All user functions + types
 ```
+
+### Module Contents
+
+#### `auth.ts`
+- registerUser, loginUser, loginWithGoogle, signupWithGoogle
+- refreshAccessToken, logoutUser
+- Types: RegisterData, LoginData, AuthResponse, RefreshTokenResponse
+
+#### `cart.ts`
+- getCartItems, addToCart, updateCartItem, deleteCartItem
+- Types: CartItem, AddToCartData, UpdateCartData
+
+#### `categories.ts`
+- getCategories
+
+#### `contact.ts`
+- submitContactForm
+- Types: ContactFormData
+
+#### `dishes.ts`
+- getDishesByCategory, getSpecialOffers
+- Types: Dish
+
+#### `orders.ts`
+- getOrders, createOrder, deleteCartItemsAfterOrder
+- Types: Order, OrderItem, CreateOrderData
+
+#### `payment.ts`
+- createPaymentIntent
+- Types: CreatePaymentIntentData, CreatePaymentIntentResponse
+
+#### `promo.ts`
+- validatePromoCode
+- Types: ValidatePromoData, ValidatePromoResponse
+
+#### `user.ts`
+- getUserById, applyReward
+- Types: User, ApplyRewardData
 
 ## Key Features
 
-### 1. Axios Instance (`axiosInstance.ts`)
+### 1. Axios Instance (`lib/axiosInstance.ts`)
 
 - Base URL configuration from environment
 - 15-second timeout
