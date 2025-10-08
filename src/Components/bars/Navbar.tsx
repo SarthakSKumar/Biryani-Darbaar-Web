@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, Location } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import RedButton from "./RedButton";
+import RedButton from "../RedButton";
 import { Instagram, Phone, Menu, X, ShoppingCart, LogOut } from "lucide-react";
-import { useCart } from "../contexts/CartContext";
-import { useAuth } from "../contexts/AuthContext";
-import { navbarLinks } from "../constants/NavbarLinks";
-import LoginModal from "./modals/LoginModal";
-import RegisterModal from "./modals/RegisterModal";
+import { useCart } from "../../contexts/CartContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { navbarLinks } from "../../constants/NavbarLinks";
+import LoginModal from "../modals/LoginModal";
+import RegisterModal from "../modals/RegisterModal";
 import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {

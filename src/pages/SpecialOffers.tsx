@@ -1,15 +1,16 @@
 import LargeImageView from "@/components/LargeImageView";
 import ArchedCard from "@/components/cards/ArchedCard";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { dishesAPI } from "@/apis";
 import DineInMenuSlider from "@/components/sliders/DineInMenuSlider";
 import ImageSlider from "@/components/sliders/ImageSlider";
 
 const SpecialOffer = () => {
     interface Dish {
         image: string;
-        name: string;
-        description: string;
+        name?: string;
+        dishName?: string;
+        description?: string;
         price: number;
     }
 
@@ -18,10 +19,8 @@ const SpecialOffer = () => {
     useEffect(() => {
         const fetchDishes = async () => {
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT}/specialOffers`
-                );
-                setDishes(response.data);
+                const data = await dishesAPI.getSpecialOffers();
+                setDishes(data);
             } catch (error) {
                 console.error("Error fetching dishes:", error);
             }
@@ -58,7 +57,7 @@ const SpecialOffer = () => {
                             <div key={index} className="min-w-[270px]">
                                 <ArchedCard
                                     image={dish.image}
-                                    title={dish.name}
+                                    title={dish.dishName || dish.name || "Delicious Dish"}
                                     description={dish.description || "Delicious dishes"}
                                     buttonTitle="Order Now"
                                     price={`$${dish.price.toString()}`}
@@ -73,7 +72,7 @@ const SpecialOffer = () => {
                             <ArchedCard
                                 key={index}
                                 image={dish.image}
-                                title={dish.name}
+                                title={dish.dishName || dish.name || "Delicious Dish"}
                                 description={dish.description || "Delicious dishes"}
                                 buttonTitle="Order Now"
                                 price={`$${dish.price.toString()}`}

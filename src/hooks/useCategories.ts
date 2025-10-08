@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { API_ENDPOINT } from "@/config";
+import { categoriesAPI } from "@/apis";
 import { UseCategoriesReturn } from "@/types/hook.types";
 
 /**
@@ -16,8 +15,8 @@ export const useCategories = (): UseCategoriesReturn => {
     const fetchCategories = async (): Promise<void> => {
       setLoading(true);
       try {
-        const response = await axios.get(`${API_ENDPOINT}/categories`);
-        setCategories(response.data);
+        const data = await categoriesAPI.getCategories();
+        setCategories(data);
         setError(null);
       } catch (err) {
         console.error("Error fetching categories:", err);

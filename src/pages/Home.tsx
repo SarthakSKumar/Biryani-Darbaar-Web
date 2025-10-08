@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { categoriesAPI, dishesAPI } from "@/apis";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import LocationInfo from "@/components/sections/LocationSection";
 import HeroSection from "@/components/sections/HeroSection";
@@ -16,11 +16,8 @@ const Home = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT}/categories`
-                );
-                // Extract the data array from the API response
-                setCategories(response.data.data || []);
+                const data = await categoriesAPI.getCategories();
+                setCategories(data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
                 setCategories([]);
@@ -40,12 +37,8 @@ const Home = () => {
     useEffect(() => {
         const fetchDishes = async () => {
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT
-                    }/dishes/category/${activeCategory}`
-                );
-                // Extract the data array from the API response
-                setDishes(response.data.data || []);
+                const data = await dishesAPI.getDishesByCategory(activeCategory);
+                setDishes(data);
             } catch (error) {
                 console.error("Error fetching dishes:", error);
                 setDishes([]);
@@ -71,11 +64,8 @@ const Home = () => {
     useEffect(() => {
         const fetchSpecialDishes = async () => {
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT}/specialOffers`
-                );
-                // Extract the data array from the API response
-                setSpecialDishes(response.data.data || []);
+                const data = await dishesAPI.getSpecialOffers();
+                setSpecialDishes(data);
             } catch (error) {
                 console.error("Error fetching special dishes:", error);
                 setSpecialDishes([]);

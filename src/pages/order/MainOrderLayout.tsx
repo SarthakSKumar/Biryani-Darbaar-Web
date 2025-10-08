@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MenuCard from "@/components/cards/MenuCard";
-import Sidebar from "@/components/MenuBar"
+import Sidebar from "@/components/bars/MenuBar"
 import Cart from "@/components/modals/CartModal";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";

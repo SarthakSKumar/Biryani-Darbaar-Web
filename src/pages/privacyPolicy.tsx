@@ -4,7 +4,7 @@ import LocationInfo from "@/components/sections/LocationSection";
 import CustomerReviews from "@/components/sections/CustomerReviewSection";
 import InfoPage from "@/components/sections/InfoSection";
 import { Shield, Mail, Phone } from "lucide-react";
-import { privacyPolicySections, privacyPolicyMeta } from "@/constants/privacyPolicyContent";
+import { privacyPolicySections, privacyPolicyMeta } from "@/constants/PrivacyPolicyContent";
 
 const PrivacyPolicy: React.FC = () => {
   return (

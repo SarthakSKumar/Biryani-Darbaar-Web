@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { API_ENDPOINT } from "@/config";
+import { dishesAPI } from "@/apis";
 import { Dish } from "@/types/common.types";
 import { UseDishesReturn } from "@/types/hook.types";
 
@@ -19,10 +18,8 @@ export const useDishes = (category: string): UseDishesReturn => {
     const fetchDishes = async (): Promise<void> => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          `${API_ENDPOINT}/dishes/category/${encodeURIComponent(category)}`
-        );
-        setDishes(response.data);
+        const data = await dishesAPI.getDishesByCategory(category);
+        setDishes(data);
         setError(null);
       } catch (err) {
         console.error("Error fetching dishes:", err);

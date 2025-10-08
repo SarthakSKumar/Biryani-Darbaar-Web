@@ -12,8 +12,8 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import NotFound from "@/pages/NotFound";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/bars/Navbar";
+import Footer from "@/components/bars/Footer";
 import Contact from "@/pages/Contact";
 import LoginModal from "@/components/modals/LoginModal";
 import RegisterModal from "@/components/modals/RegisterModal";

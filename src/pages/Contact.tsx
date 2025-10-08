@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, User, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { contactAPI } from '@/apis';
 import { getErrorMessage } from '@/types';
 
 interface ContactFormData {
@@ -76,13 +77,10 @@ const Contact: React.FC = () => {
         setIsSubmitting(true);
 
         try {
-            await axios.post(
-                `${import.meta.env.VITE_API_ENDPOINT}/contact`,
-                formData
-            );
-            
+            await contactAPI.submitContactForm(formData);
+
             toast.success('Message sent successfully! We\'ll get back to you soon.');
-            
+
             // Reset form
             setFormData({
                 firstName: '',

@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import React, { useState, useEffect } from "react";
-import { Clock, Bike, Receipt } from "lucide-react";
-import { heroImages } from "../constants";
+import { Bike, Receipt, Timer } from "lucide-react";
+import { heroImages } from "../constants/Services";
 import { LargeImageViewProps } from "@/types/component.types";
 
 const LargeImageView: React.FC<LargeImageViewProps> = ({
@@ -68,10 +68,19 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
             </div>
 
             {/* Open Status */}
-            <div className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-md">
-              <Clock className="w-5 h-5" />
-              <span className="font-semibold">Open until 3:00 AM</span>
-            </div>
+            <motion.div
+              className="flex items-center justify-start bg-primary bg-opacity-10 rounded-2xl w-fit p-4 h-7 mt-2"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              <div className="flex items-center justify-center bg-primary rounded-full w-5 h-5 mr-3">
+                <Timer className="w-3 h-3 text-white" />
+              </div>
+              <div className="text-black text-xs font-medium">
+                Open until 3:00 AM
+              </div>
+            </motion.div>
           </div>
 
           {/* Right Section - Image Carousel */}
@@ -128,8 +137,8 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
                     key={index}
                     onClick={() => goToImage(index)}
                     className={`transition-all rounded-full ${index === currentImage
-                        ? "w-8 h-2 bg-white"
-                        : "w-2 h-2 bg-white/50 hover:bg-white/75"
+                      ? "w-8 h-2 bg-white"
+                      : "w-2 h-2 bg-white/50 hover:bg-white/75"
                       }`}
                     aria-label={`Go to image ${index + 1}`}
                   />

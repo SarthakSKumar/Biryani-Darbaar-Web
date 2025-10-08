@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { categoriesAPI, dishesAPI } from "@/apis";
 import ArchedCard from "@/components/cards/ArchedCard";
 import LargeImageView from "@/components/LargeImageView";
 import InfoPage from "@/components/sections/InfoSection";
@@ -8,7 +9,6 @@ import ImageSlider from "@/components/sliders/ImageSlider";
 import InputSearch from "@/components/InputSearch";
 import Loading from "@/components/Loading";
 import ErrorFallback from "@/components/ErrorFallback";
-import { useLocation } from "react-router-dom";
 
 const Menu = () => {
     const [categories, setCategories] = useState<string[]>([]);
@@ -24,10 +24,8 @@ const Menu = () => {
             setIsLoadingCategories(true);
             setCategoryError(false);
             try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_ENDPOINT}/categories`
-                );
-                setCategories(response.data);
+                const data = await categoriesAPI.getCategories();
+                setCategories(data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
                 setCategoryError(true);
@@ -35,7 +33,6 @@ const Menu = () => {
                 setIsLoadingCategories(false);
             }
         };
-
         fetchCategories();
     }, []);
 
@@ -86,8 +83,9 @@ const Menu = () => {
 
     interface Dish {
         image: string;
-        dishName: string;
-        description: string;
+        dishName?: string;
+        name?: string;
+        description?: string;
         price: number;
     }
 
@@ -102,10 +100,8 @@ const Menu = () => {
 
             for (const category of categories) {
                 try {
-                    const response = await axios.get(
-                        `${import.meta.env.VITE_API_ENDPOINT}/dishes/category/${category}`
-                    );
-                    dishesData[category] = response.data;
+                    const data = await dishesAPI.getDishesByCategory(category);
+                    dishesData[category] = data;
                 } catch (error) {
                     console.error(`Error fetching data for category ${category}:`, error);
                     hasError = true;
@@ -190,7 +186,7 @@ const Menu = () => {
                                     <div key={index} className="min-w-[280px]">
                                         <ArchedCard
                                             image={dish.image}
-                                            title={dish.dishName}
+                                            title={dish.dishName || dish.name || "Delicious Dish"}
                                             description={dish.description || "Delicious dishes"}
                                             buttonTitle="Order Now"
                                             price={`$${dish.price}`}
@@ -206,7 +202,7 @@ const Menu = () => {
                                     <ArchedCard
                                         key={index}
                                         image={dish.image}
-                                        title={dish.dishName}
+                                        title={dish.dishName || dish.name || "Delicious Dish"}
                                         description={dish.description || "Delicious dishes"}
                                         buttonTitle="Order Now"
                                         price={`$${dish.price}`}
