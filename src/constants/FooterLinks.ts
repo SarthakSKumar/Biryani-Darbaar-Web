@@ -1,4 +1,4 @@
-import { FooterLink, SocialLink } from "@/types";
+import { FooterLink, SocialLink } from "@/types/common.types";
 
 export const footerLinks: FooterLink[] = [
   { label: "About Us", path: "/About" },

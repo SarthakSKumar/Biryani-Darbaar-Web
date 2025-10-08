@@ -60,7 +60,7 @@ const TermsAndConditions: React.FC = () => {
         <section className="container-custom section-spacing max-w-5xl">
           {termsAndConditionsSections.map((section, index) => {
             const IconComponent = iconMap[section.icon as keyof typeof iconMap];
-            
+
             return (
               <motion.div
                 key={section.number}

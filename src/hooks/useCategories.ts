@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_ENDPOINT } from "@/config/constants";
-import { UseCategoriesReturn } from "@/types";
+import { UseCategoriesReturn } from "@/types/hook.types";
 
 /**
  * Custom hook for fetching categories

@@ -1,4 +1,4 @@
-import { NavLink } from "@/types";
+import { NavLink } from "@/types/common.types";
 
 export const navbarLinks: NavLink[] = [
   { path: "/", label: "Home" },

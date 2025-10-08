@@ -19,7 +19,8 @@ export const termsAndConditionsSections: TermsSection[] = [
     iconColor: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/20",
-    content: "You agree to use our services only for lawful purposes. You must not:",
+    content:
+      "You agree to use our services only for lawful purposes. You must not:",
     list: [
       { text: "Use our services to harm others or violate any laws" },
       { text: "Attempt to gain unauthorized access to our systems" },
@@ -86,7 +87,9 @@ export const termsAndConditionsSections: TermsSection[] = [
       {
         text: "Any indirect or consequential damages arising from your use of our services",
       },
-      { text: "Issues caused by third-party services, such as delivery delays" },
+      {
+        text: "Issues caused by third-party services, such as delivery delays",
+      },
       {
         text: "Errors in menu items or pricing due to unforeseen circumstances",
       },

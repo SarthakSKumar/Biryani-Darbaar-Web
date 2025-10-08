@@ -76,7 +76,15 @@ export interface SocialLink {
 // ============ Event Handler Types ============
 export type ClickHandler = () => void;
 export type ChangeHandler = (value: string) => void;
-export type FormSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => void;
-export type InputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
-export type TextareaChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-export type SelectChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => void;
+export type FormSubmitHandler = (
+  event: React.FormEvent<HTMLFormElement>
+) => void;
+export type InputChangeHandler = (
+  event: React.ChangeEvent<HTMLInputElement>
+) => void;
+export type TextareaChangeHandler = (
+  event: React.ChangeEvent<HTMLTextAreaElement>
+) => void;
+export type SelectChangeHandler = (
+  event: React.ChangeEvent<HTMLSelectElement>
+) => void;

@@ -8,7 +8,7 @@ const ServicesSection: React.FC = () => {
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     {/* Left Image */}
                     <div className="hidden md:block md:w-2/5">
-                        <img src="/assets/homechef1.png" alt="Biryani Darbaar - Chef" className="w-full h-auto" />
+                        <img src="/assets/serviceschef.png" alt="Biryani Darbaar - Chef" className="w-full h-auto" />
                     </div>
 
                     {/* Right Content */}

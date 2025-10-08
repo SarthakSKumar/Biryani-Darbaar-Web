@@ -22,7 +22,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    backgroundImage: `url("/background.png")`,
+                    backgroundImage: `url("/assets/images/background.png")`,
                 }}
             />
             {/* Content Container */}
@@ -163,28 +163,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             {/* Rotating Meal Circles */}
                             <motion.img
                                 className="absolute -bottom-8 -left-32 w-44 z-10"
-                                src="/assets/mealcircle1.png"
+                                src="/assets/rounded-meal-1.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 left-4 w-56 z-10"
-                                src="/assets/mealcircle2.png"
+                                src="/assets/rounded-meal-2.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute -bottom-32 right-2 w-52 z-10"
-                                src="/assets/mealcircle3.png"
+                                src="/assets/rounded-meal-3.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.img
                                 className="absolute top-56 -right-32 w-54 z-10"
-                                src="/assets/mealcircle4.png"
+                                src="/assets/rounded-meal-4.png"
                                 alt="Biryani Darbaar"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

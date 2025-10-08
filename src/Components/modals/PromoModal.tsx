@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, MouseEvent } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
-import { PromoModalProps } from "@/types";
+import { PromoModalProps } from "@/types/component.types";
 
 const PromoModal: React.FC<PromoModalProps> = ({ onClose, onApplyPromo }) => {
   const [promoCode, setPromoCode] = useState<string>("");

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { AuthHookReturn } from "@/types";
+import { AuthHookReturn } from "@/types/hook.types";
 
 /**
  * Custom hook for authentication state management

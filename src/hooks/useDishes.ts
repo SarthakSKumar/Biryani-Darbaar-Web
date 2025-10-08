@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_ENDPOINT } from "@/config/constants";
-import { Dish, UseDishesReturn } from "@/types";
+import { Dish } from "@/types/common.types";
+import { UseDishesReturn } from "@/types/hook.types";
 
 /**
  * Custom hook for fetching dishes by category

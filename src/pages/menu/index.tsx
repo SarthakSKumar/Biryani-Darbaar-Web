@@ -121,7 +121,7 @@ const Menu = () => {
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
-                        backgroundImage: `url("/background.png")`,
+                        backgroundImage: `url("/assets/images/background.png")`,
                     }}
                 />
                 <LargeImageView
