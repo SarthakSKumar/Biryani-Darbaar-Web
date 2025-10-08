@@ -115,7 +115,7 @@ const Menu = () => {
     return (
         <div className="flex flex-col gap-20 md:gap-28">
             <div className="container-custom section-spacing mt-12">
-                <div
+                {/* <div
                     className="absolute inset-0 max-h-screen"
                     style={{
                         backgroundSize: "cover",
@@ -123,7 +123,7 @@ const Menu = () => {
                         backgroundRepeat: "no-repeat",
                         backgroundImage: `url("/assets/images/background.png")`,
                     }}
-                />
+                /> */}
                 <LargeImageView
                     title="Biryani Darbaar in Athol Park"
                     description="Enjoy authentic biryani with fresh ingredients!"

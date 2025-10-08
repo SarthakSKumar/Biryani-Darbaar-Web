@@ -34,10 +34,10 @@ export const services: Service[] = [
 ];
 
 export const heroImages: string[] = [
-  "/assets/images/carousel/1.jpg",
-  "/assets/images/carousel/2.jpg",
-  "/assets/images/carousel/3.jpg",
-  "/assets/images/carousel/4.jpg",
-  "/assets/images/carousel/5.jpg",
-  "/assets/images/carousel/6.jpg",
+  "/assets/images/large-carousel/1.jpg",
+  "/assets/images/large-carousel/2.jpg",
+  "/assets/images/large-carousel/3.jpg",
+  "/assets/images/large-carousel/4.jpg",
+  "/assets/images/large-carousel/5.jpg",
+  "/assets/images/large-carousel/6.jpg",
 ];

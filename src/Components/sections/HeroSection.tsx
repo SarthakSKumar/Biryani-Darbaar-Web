@@ -160,7 +160,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                             </div>
 
                             {/* Bottom Border Arc */}
-                            <div className="w-[485px] h-[225px] z-50 border-[23px] border-shade rounded-b-full border-t-0 -mt-48 -ml-9"></div>
+                            <div className="w-[485px] h-[225px] z-ui border-[23px] border-shade rounded-b-full border-t-0 -mt-48 -ml-9"></div>
 
                             {/* Rotating Meal Circles */}
                             <motion.img

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Clock, Bike, Receipt } from "lucide-react";
 import { heroImages } from "../constants";
 import { LargeImageViewProps } from "@/types/component.types";
 
@@ -23,16 +23,6 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  const goToNext = (): void => {
-    setDirection(1);
-    setCurrentImage((prev: number) => (prev + 1) % heroImages.length);
-  };
-
-  const goToPrevious = (): void => {
-    setDirection(-1);
-    setCurrentImage((prev: number) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
-
   const goToImage = (index: number): void => {
     setDirection(index > currentImage ? 1 : -1);
     setCurrentImage(index);
@@ -54,91 +44,102 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative w-full mb-4 rounded-2xl shadow-2xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      {/* Image Slider with AnimatePresence */}
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={currentImage}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.5 },
-          }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <img
-            src={heroImages[currentImage]}
-            alt={`Biryani Darbaar - Slide ${currentImage + 1}`}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div className="w-full bg-gradient-to-br from-yellow-100 via-yellow-50 to-orange-50 p-6 md:p-12">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Left Section - Info */}
+          <div className="space-y-6">
+            <p className="text-lg font-medium text-gray-700">{description}</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+              {title}
+            </h1>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            {/* Badges */}
+            <div className="flex flex-wrap gap-3">
+              <div className="flex items-center gap-2 bg-gray-900 text-white px-4 py-3 rounded-full">
+                <Receipt className="w-5 h-5" />
+                <span className="font-medium">Minimum Order: 12 GBP</span>
+              </div>
+              <div className="flex items-center gap-2 bg-gray-900 text-white px-4 py-3 rounded-full">
+                <Bike className="w-5 h-5" />
+                <span className="font-medium">Delivery in 20-25 Minutes</span>
+              </div>
+            </div>
 
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white/90 text-base md:text-xl lg:text-2xl mb-2 font-medium"
-        >
-          {description}
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-white text-3xl md:text-5xl lg:text-6xl font-bold drop-shadow-2xl"
-        >
-          {title}
-        </motion.h1>
+            {/* Open Status */}
+            <div className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-md">
+              <Clock className="w-5 h-5" />
+              <span className="font-semibold">Open until 3:00 AM</span>
+            </div>
+          </div>
+
+          {/* Right Section - Image Carousel */}
+          <div className="relative">
+            {/* Rating Badge */}
+            <div className="absolute -top-4 -right-4 z-30 bg-white rounded-2xl shadow-xl p-6 text-center">
+              <div className="text-5xl font-bold text-gray-900 mb-1">3.4</div>
+              <div className="flex gap-1 mb-2 justify-center">
+                {[...Array(3)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-xl">★</span>
+                ))}
+                {[...Array(2)].map((_, i) => (
+                  <span key={i} className="text-gray-300 text-xl">★</span>
+                ))}
+              </div>
+              <div className="text-sm text-gray-600">1,360 reviews</div>
+            </div>
+
+            {/* Carousel */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-white"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={currentImage}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.5 },
+                  }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={heroImages[currentImage]}
+                    alt={`Biryani Darbaar - Slide ${currentImage + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`transition-all rounded-full ${
+                      index === currentImage
+                        ? "w-8 h-2 bg-white"
+                        : "w-2 h-2 bg-white/50 hover:bg-white/75"
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 md:p-3 rounded-full transition-all z-20 group"
-        aria-label="Previous image"
-      >
-        <ChevronLeft className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform" />
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm p-2 md:p-3 rounded-full transition-all z-20 group"
-        aria-label="Next image"
-      >
-        <ChevronRight className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform" />
-      </button>
-
-      {/* Dot Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToImage(index)}
-            className={`transition-all rounded-full ${index === currentImage
-              ? "w-8 h-2 bg-white"
-              : "w-2 h-2 bg-white/50 hover:bg-white/75"
-              }`}
-            aria-label={`Go to image ${index + 1}`}
-          />
-        ))}
-      </div>
-    </motion.div>
+    </div>
   );
 };
 

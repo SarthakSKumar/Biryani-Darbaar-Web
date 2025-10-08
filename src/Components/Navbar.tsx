@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
+      className={`fixed top-0 left-0 right-0 z-navbar flex flex-col transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md" : "transparent backdrop-blur-none"
         }`}
     >
       <div className="bg-red-700">

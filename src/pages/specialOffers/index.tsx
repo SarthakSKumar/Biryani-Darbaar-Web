@@ -35,8 +35,8 @@ const SpecialOffer = () => {
             <div className="pt-24">
                 <div className="container-custom">
                     <LargeImageView
-                        title="SPECIAL OFFER"
-                        description="I'm Lovin' it!"
+                        title="Special Offer"
+                        description="Discover our exclusive deals and limited-time promotions on your favorite dishes."
                     />
                 </div>
             </div>

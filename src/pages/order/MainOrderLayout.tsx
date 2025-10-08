@@ -228,7 +228,7 @@ const MainOrderLayout: React.FC = () => {
         {/* Cart Popup - More horizontal with max height */}
         {showCart && !orders.length && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-[2000] flex justify-center items-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-50 z-modal flex justify-center items-center p-4"
             onClick={() => setShowCart(false)}
           >
             <div

@@ -10,3 +10,8 @@ ordernow page fix.
 email address for business
 
 check on site also emails, social links, phone numbers
+
+only aussie phones?
+
+what currency?
+

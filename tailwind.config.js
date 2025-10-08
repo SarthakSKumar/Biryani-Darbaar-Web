@@ -46,6 +46,20 @@ export default {
 
       },
     },
+      zIndex: {
+        '0': '0',
+        '10': '10',
+        '20': '20',
+        '30': '30',
+        '40': '40',
+        '50': '50',
+        // named layers for clarity and consistent stacking
+        'ui': '50',       // default UI elements / decorations
+        'modal': '100',   // modal overlays that should sit above UI
+        'login': '1000',  // login modal (should be above regular modals)
+        'navbar': '2000', // navbar must be on the very top
+        'top': '3000',
+      },
   },
   plugins: [],
 }
