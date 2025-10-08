@@ -115,14 +115,14 @@ export interface MenuCategoriesSectionProps {
   categories: string[];
   activeCategory: string;
   setActiveCategory: (category: string) => void;
-  dishes: import('./common.types').Dish[];
+  dishes: import("./common.types").Dish[];
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;
 }
 
 export interface SpecialOffersSectionProps {
-  specialDishes: import('./common.types').Dish[];
+  specialDishes: import("./common.types").Dish[];
   loading?: boolean;
   error?: boolean;
   onRetry?: () => void;
