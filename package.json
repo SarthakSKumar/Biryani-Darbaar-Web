@@ -8,15 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "pm2:start": "pm2 start ecosystem.config.cjs --env production",
-    "pm2:start:qa": "pm2 start ecosystem.config.cjs --env qa",
-    "pm2:start:dev": "pm2 start ecosystem.config.cjs --env development",
-    "pm2:stop": "pm2 stop biryani-darbaar-client",
-    "pm2:restart": "pm2 restart biryani-darbaar-client",
-    "pm2:delete": "pm2 delete biryani-darbaar-client",
-    "pm2:logs": "pm2 logs biryani-darbaar-client",
-    "pm2:status": "pm2 status",
-    "pm2:monit": "pm2 monit"
+    "start": "serve -s dist"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^3.0.0",
