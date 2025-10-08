@@ -44,7 +44,8 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
   };
 
   return (
-    <div className="w-full bg-gradient-to-br from-yellow-100 via-yellow-50 to-orange-50 p-6 md:p-12">
+    <div className="w-full bg-gradient-to-br from-yellow-100 via-yellow-50 to-orange-50 p-6 md:p-12 z-top">
+
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Section - Info */}
@@ -76,7 +77,7 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
           {/* Right Section - Image Carousel */}
           <div className="relative">
             {/* Rating Badge */}
-            <div className="absolute -top-4 -right-4 z-30 bg-white rounded-2xl shadow-xl p-6 text-center">
+            <div className="absolute -top-4 -right-4 z-ui bg-white rounded-2xl shadow-xl p-6 text-center">
               <div className="text-5xl font-bold text-gray-900 mb-1">3.4</div>
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(3)].map((_, i) => (
@@ -121,16 +122,15 @@ const LargeImageView: React.FC<LargeImageViewProps> = ({
               </AnimatePresence>
 
               {/* Dot Indicators */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-ui">
                 {heroImages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToImage(index)}
-                    className={`transition-all rounded-full ${
-                      index === currentImage
+                    className={`transition-all rounded-full ${index === currentImage
                         ? "w-8 h-2 bg-white"
                         : "w-2 h-2 bg-white/50 hover:bg-white/75"
-                    }`}
+                      }`}
                     aria-label={`Go to image ${index + 1}`}
                   />
                 ))}

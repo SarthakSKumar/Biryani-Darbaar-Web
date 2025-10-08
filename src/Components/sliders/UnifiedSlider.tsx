@@ -76,13 +76,13 @@ const UnifiedSlider: React.FC<UnifiedSliderProps> = ({
 
             {/* Custom Navigation Buttons - Always visible with Red-500 background */}
             <button
-                className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+                className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-ui bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
                 aria-label="Previous slide"
             >
                 <ChevronLeft size={24} />
             </button>
             <button
-                className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
+                className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-ui bg-red-500 hover:bg-red-600 text-white rounded-full p-3 shadow-lg transition-all duration-300"
                 aria-label="Next slide"
             >
                 <ChevronRight size={24} />
